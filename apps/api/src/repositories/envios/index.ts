@@ -66,7 +66,6 @@ export class EnviosRepository {
       where: { fechado },
     });
   }
-
   static async devolveContainerPorId(idContainer: number) {
     return PrismaSingleton.getEnviosPrisma().container.findUnique({
       where: {
@@ -74,7 +73,6 @@ export class EnviosRepository {
       },
     });
   }
-
   static async numeroOrdemContainerSeSubContainer(
     container: PostContainerSchemaDto,
   ): Promise<number> {
@@ -97,7 +95,6 @@ export class EnviosRepository {
       },
     });
   }
-
   static async insereContainer(
     container: PostContainerSchemaDto,
     ordem: number,
@@ -112,7 +109,6 @@ export class EnviosRepository {
       },
     });
   }
-
   static async getEnvioById(idEnvio: number) {
     const resBody = new ApiResponseBody<EnvioDto>();
 
@@ -354,5 +350,40 @@ export class EnviosRepository {
       };
       return resBody;
     }
+  }
+  static async verificoSeContainerTemSubContainers(idContainer: number) {
+    const subContainers =
+      await PrismaSingleton.getEnviosPrisma().container.findMany({
+        where: { idContainerPai: idContainer },
+      });
+    return subContainers;
+  }
+  static async verificoSeContainerTemConteudo(idContainer: number) {
+    const conteudo = await PrismaSingleton.getEnviosPrisma().conteudo.findMany({
+      where: { idContainer },
+    });
+    return conteudo;
+  }
+  static async containerApagar(idContainer: number) {
+    const temSubContainers =
+      await this.verificoSeContainerTemSubContainers(idContainer);
+    if (temSubContainers.length > 0) {
+      return ResponseHandler.BadRequest(
+        'Não pode ser apagado pois tem SubContainers...',
+      );
+    }
+    const temConteudo = await this.verificoSeContainerTemConteudo(idContainer);
+    if (temConteudo.length > 0) {
+      return ResponseHandler.BadRequest(
+        'Não pode ser apagado pois tem Conteudo...',
+      );
+    }
+    const resBody = new ApiResponseBody<BaseContainerSchemaDto>();
+    const containerApagado =
+      await PrismaSingleton.getEnviosPrisma().container.delete({
+        where: { idContainer },
+      });
+    resBody.data = containerApagado;
+    return resBody;
   }
 }

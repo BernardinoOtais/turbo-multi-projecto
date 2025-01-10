@@ -144,8 +144,17 @@ const NovoEmbarque = async ({ searchParams }: PageProps) => {
                       }}
                     >
                       <span>{con.TipoContainer?.Item.Descricao}</span>
+                      <span>{con.ordem}</span>
+                      <span>{con.idContainer}</span>
                     </Link>
                   </Button>
+                  {con.Conteudo?.map(conteudoItem => {
+                    return (
+                      <div key={conteudoItem.idConteudo} className="bg-red-500">
+                        {conteudoItem.Item.Descricao}
+                      </div>
+                    );
+                  })}
                 </div>
               );
             })}

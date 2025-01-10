@@ -66,5 +66,28 @@ EnvioRotas.post(
     }
   },
 );
+EnvioRotas.delete(
+  '/container',
+  validaSchema(IdNumeroInteiroNaoNegativoSchema, 'query'),
+  async (req: Request, res: Response, next: NextFunction) => {
+    const idRecebido = IdNumeroInteiroNaoNegativoSchema.parse(req.query);
+    const idContainer = idRecebido.id;
+
+    const containerApagado =
+      await EnviosRepository.containerApagar(idContainer);
+
+    try {
+      res
+        .status(
+          containerApagado.error
+            ? containerApagado.error.code
+            : HttpStatusCode.OK,
+        )
+        .json(containerApagado);
+    } catch (err) {
+      next(err);
+    }
+  },
+);
 
 export default EnvioRotas;
