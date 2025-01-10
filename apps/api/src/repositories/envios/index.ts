@@ -252,15 +252,19 @@ export class EnviosRepository {
                             },
                           },
                         },
+                        orderBy: { ordem: 'asc' },
                       },
                       //Container Sub sub sub
                     },
+                    orderBy: { ordem: 'asc' },
                   },
                   //Container Sub sub
                 },
+                orderBy: { ordem: 'asc' },
               },
               //Container Sub
             },
+            orderBy: { ordem: 'asc' },
           },
           //Container principal
         },
@@ -364,7 +368,9 @@ export class EnviosRepository {
     });
     return conteudo;
   }
-  static async containerApagar(idContainer: number) {
+  static async containerApagar(
+    idContainer: number,
+  ): Promise<ApiResponseBody<BaseContainerSchemaDto | undefined>> {
     const temSubContainers =
       await this.verificoSeContainerTemSubContainers(idContainer);
     if (temSubContainers.length > 0) {
@@ -372,18 +378,56 @@ export class EnviosRepository {
         'Não pode ser apagado pois tem SubContainers...',
       );
     }
+
     const temConteudo = await this.verificoSeContainerTemConteudo(idContainer);
     if (temConteudo.length > 0) {
       return ResponseHandler.BadRequest(
         'Não pode ser apagado pois tem Conteudo...',
       );
     }
+
+    const prisma = PrismaSingleton.getEnviosPrisma();
     const resBody = new ApiResponseBody<BaseContainerSchemaDto>();
-    const containerApagado =
-      await PrismaSingleton.getEnviosPrisma().container.delete({
-        where: { idContainer },
+
+    try {
+      const resultadoDaTransaction = await prisma.$transaction(async (tx) => {
+        // Delete the container
+        const containerApagado = await tx.container.delete({
+          where: { idContainer },
+        });
+
+        // Adjust the "ordem" of remaining containers
+        const { idContainerPai, idTipoContainer } = containerApagado;
+
+        await tx.container.updateMany({
+          where: {
+            idContainerPai,
+            idTipoContainer,
+            idContainer: { gt: idContainer },
+          },
+          data: {
+            ordem: {
+              decrement: 1,
+            },
+          },
+        });
+
+        return containerApagado;
       });
-    resBody.data = containerApagado;
-    return resBody;
+
+      // Return the result in the response body
+      resBody.data = resultadoDaTransaction;
+      return resBody;
+    } catch (error) {
+      // Handle errors in a consistent way
+      resBody.error = {
+        code: HttpStatusCode.INTERNAL_SERVER_ERROR,
+        message:
+          error instanceof Error
+            ? error.message
+            : 'Unexpected error occurred while deleting container.',
+      };
+      return resBody;
+    }
   }
 }

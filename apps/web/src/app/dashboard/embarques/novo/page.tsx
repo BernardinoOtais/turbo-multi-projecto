@@ -10,6 +10,7 @@ import ContainerBreadCrumbs from "@/components/dashboard/embarques/novo/containe
 import { cn } from "@/lib/utils";
 import RodaPe from "@/components/dashboard/embarques/novo/rodape";
 import { NIVEIS_INICIAIS } from "@/lib/constants";
+import BotaoApagaContainer from "@/components/dashboard/embarques/novo/botao-apaga-container";
 
 const niveis = z.object({
   nivel: z
@@ -84,6 +85,7 @@ const NovoEmbarque = async ({ searchParams }: PageProps) => {
   if (temContainersSeleccionadados) {
     for (const nivel of niveisValidados) {
       const conteudoPai = conteudo?.find(con => con.idContainer === nivel);
+
       const badge = conteudoPai?.other_Container?.filter(
         oc => oc.idContainer !== nivel,
       ).length;
@@ -148,6 +150,10 @@ const NovoEmbarque = async ({ searchParams }: PageProps) => {
                       <span>{con.idContainer}</span>
                     </Link>
                   </Button>
+                  {con.other_Container?.length == 0 &&
+                    con.Conteudo?.length == 0 && (
+                      <BotaoApagaContainer idContainer={con.idContainer} />
+                    )}
                   {con.Conteudo?.map(conteudoItem => {
                     return (
                       <div key={conteudoItem.idConteudo} className="bg-red-500">

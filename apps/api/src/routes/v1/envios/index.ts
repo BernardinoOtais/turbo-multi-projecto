@@ -18,10 +18,8 @@ EnvioRotas.get(
   validaSchema(DadosParaPesquisaComPaginacaoEOrdem, 'query'),
   async (req: Request, res: Response, next: NextFunction) => {
     const parameters = DadosParaPesquisaComPaginacaoEOrdem.parse(req.query);
-
-    const envio = await EnviosRepository.getEnvios(parameters);
-
     try {
+      const envio = await EnviosRepository.getEnvios(parameters);
       res
         .status(envio.error ? envio.error.code : HttpStatusCode.OK)
         .json(envio);
@@ -36,10 +34,8 @@ EnvioRotas.get(
   validaSchema(IdNumeroInteiroNaoNegativoSchema, 'query'),
   async (req: Request, res: Response, next: NextFunction) => {
     const idEnvio = IdNumeroInteiroNaoNegativoSchema.parse(req.query);
-
-    const envio = await EnviosRepository.getEnvioById(idEnvio.id);
-
     try {
+      const envio = await EnviosRepository.getEnvioById(idEnvio.id);
       res
         .status(envio.error ? envio.error.code : HttpStatusCode.OK)
         .json(envio);
@@ -54,10 +50,8 @@ EnvioRotas.post(
   validaSchema(PostContainerSchema),
   async (req: Request, res: Response, next: NextFunction) => {
     const body: PostContainerSchemaDto = req.body;
-
-    const resBody = await EnviosRepository.postContainer(body);
-
     try {
+      const resBody = await EnviosRepository.postContainer(body);
       res
         .status(resBody.error ? resBody.error.code : HttpStatusCode.OK)
         .json(resBody);
@@ -72,11 +66,9 @@ EnvioRotas.delete(
   async (req: Request, res: Response, next: NextFunction) => {
     const idRecebido = IdNumeroInteiroNaoNegativoSchema.parse(req.query);
     const idContainer = idRecebido.id;
-
-    const containerApagado =
-      await EnviosRepository.containerApagar(idContainer);
-
     try {
+      const containerApagado =
+        await EnviosRepository.containerApagar(idContainer);
       res
         .status(
           containerApagado.error
