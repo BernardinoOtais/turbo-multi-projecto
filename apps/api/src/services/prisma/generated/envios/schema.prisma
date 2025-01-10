@@ -1,0 +1,121 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/services/prisma/generated/envios"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("ENVIOS_URL")
+}
+
+model Papeis {
+  idPapel    String       @id(map: "PK_Papeis") @default(dbgenerated("newid()"), map: "DF_Papeis_idPapeis") @db.UniqueIdentifier
+  descPapel  String       @unique(map: "UQ_Papeis_descPapel") @db.NVarChar(100)
+  UserPapeis UserPapeis[]
+}
+
+model sysdiagrams {
+  name         String @db.NVarChar(128)
+  principal_id Int
+  diagram_id   Int    @id(map: "PK__sysdiagr__C2B05B61A3E2AEFC") @default(autoincrement())
+  version      Int?
+  definition   Bytes?
+
+  @@unique([principal_id, name], map: "UK_principal_name")
+}
+
+model User {
+  nomeUser           String       @id(map: "PK_User") @unique @db.NVarChar(100)
+  pHashed            String
+  hashedRefreshToken String?      @db.NVarChar(4000)
+  nome               String
+  apelido            String
+  email              String       @unique
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime
+  UserPapeis         UserPapeis[]
+}
+
+model UserPapeis {
+  idPapel  String @db.UniqueIdentifier
+  nomeUser String @db.NVarChar(100)
+  Papeis   Papeis @relation(fields: [idPapel], references: [idPapel], onUpdate: NoAction, map: "FK_UserPapeis_Papeis")
+  User     User   @relation(fields: [nomeUser], references: [nomeUser], onUpdate: NoAction, map: "FK_UserPapeis_User")
+
+  @@id([idPapel, nomeUser], map: "PK_UserPapeis")
+}
+
+model Container {
+  idContainer     Int           @id(map: "PK_Container") @default(autoincrement())
+  idContainerPai  Int?
+  idEnvio         Int
+  idTipoContainer Int
+  ordem           Int
+  Container       Container?    @relation("ContainerToContainer", fields: [idContainerPai], references: [idContainer], onDelete: NoAction, onUpdate: NoAction, map: "FK_Container_Container")
+  other_Container Container[]   @relation("ContainerToContainer")
+  Envio           Envio         @relation(fields: [idEnvio], references: [idEnvio], onUpdate: NoAction, map: "FK_Container_Envio")
+  TipoContainer   TipoContainer @relation(fields: [idTipoContainer], references: [idTipoContainer], onUpdate: NoAction, map: "FK_Container_TipoContainer")
+  Conteudo        Conteudo[]
+}
+
+model Conteudo {
+  idConteudo  Int       @id(map: "PK_Conteudo") @default(autoincrement())
+  idContainer Int
+  idItem      Int
+  Container   Container @relation(fields: [idContainer], references: [idContainer], onUpdate: NoAction, map: "FK_Conteudo_Container")
+  Item        Item      @relation(fields: [idItem], references: [idItem], onUpdate: NoAction, map: "FK_Conteudo_Item")
+}
+
+model Envio {
+  idEnvio   Int         @id(map: "PK_Envio") @default(autoincrement())
+  nomeEnvio String      @db.NVarChar(50)
+  idDestino Int
+  fechado   Boolean     @default(false, map: "DF_Envio_fechado")
+  createdAt DateTime    @default(dbgenerated("sysdatetime()"), map: "DF__Envio__createdAt__1940BAED")
+  endDate   DateTime?
+  obs       String?     @db.Text
+  nomeUser  String      @db.NVarChar(100)
+  Container Container[]
+  Destinos  Destinos    @relation(fields: [idDestino], references: [idDestino], onUpdate: NoAction, map: "FK_Envio_Destinos")
+}
+
+model Idiomas {
+  idIdioma      Int             @id(map: "PK_Idiomas_1") @default(autoincrement())
+  nomeIdioma    String          @db.NChar(50)
+  Destinos      Destinos[]
+  ItemTraduzido ItemTraduzido[]
+}
+
+model Item {
+  idItem        Int             @id(map: "PK_Item") @default(autoincrement())
+  Descricao     String          @db.NChar(100)
+  Conteudo      Conteudo[]
+  ItemTraduzido ItemTraduzido[]
+  TipoContainer TipoContainer?
+}
+
+model ItemTraduzido {
+  idIdioma Int
+  idItem   Int
+  descItem String  @db.NChar(100)
+  Idiomas  Idiomas @relation(fields: [idIdioma], references: [idIdioma], onUpdate: NoAction, map: "FK_ItemTraduzido_Idiomas")
+  Item     Item    @relation(fields: [idItem], references: [idItem], onUpdate: NoAction, map: "FK_ItemTraduzido_Item")
+
+  @@id([idIdioma, idItem], map: "PK_ItemTraduzido")
+}
+
+model TipoContainer {
+  idTipoContainer     Int         @id(map: "PK_TipoContainer") @default(autoincrement())
+  idItem              Int         @unique(map: "UQ_TipoContainer_idItem")
+  permiteSubContainer Boolean     @default(false, map: "DF_TipoContainer_permiteSubContainer")
+  Container           Container[]
+  Item                Item        @relation(fields: [idItem], references: [idItem], onUpdate: NoAction, map: "FK_TipoContainer_Item")
+}
+
+model Destinos {
+  idDestino   Int     @id(map: "PK_Destinos") @default(autoincrement())
+  idIdioma    Int
+  nomeDestino String  @db.NVarChar(60)
+  Idiomas     Idiomas @relation(fields: [idIdioma], references: [idIdioma], onUpdate: NoAction, map: "FK_Destinos_Idiomas")
+  Envio       Envio[]
+}
