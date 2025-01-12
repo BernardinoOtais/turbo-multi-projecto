@@ -73,3 +73,5 @@ export type EnvioDto = z.infer<typeof EnvioSchema>;
 export type EnviosListDto = z.infer<typeof EnviosListSchema>;
 
 export type BaseContainerSchemaDto = z.infer<typeof baseContainerSchema>;
+
+export type ConteudoDto = z.infer<typeof conteudo>;

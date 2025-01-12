@@ -4,7 +4,7 @@ import { fetchGet } from "@/lib/fetch/fetch-get";
 import { Metadata } from "next";
 import Link from "next/link";
 import React from "react";
-import { EnvioSchema } from "@repo/types";
+import { ConteudoDto, EnvioSchema, conteudo } from "@repo/types";
 import { z } from "zod";
 import ContainerBreadCrumbs from "@/components/dashboard/embarques/novo/container-bread-combes";
 import { cn } from "@/lib/utils";
@@ -58,7 +58,7 @@ const NovoEmbarque = async ({ searchParams }: PageProps) => {
 
   const dadosEnvio = envioValidado.data;
 
-  let conteudo = dadosEnvio.Container;
+  let container = dadosEnvio.Container;
 
   const listaDeContainers: EmbarqueBreadCrumbContainers[] = [];
 
@@ -82,16 +82,18 @@ const NovoEmbarque = async ({ searchParams }: PageProps) => {
     listaDeContainersNivelUmDisponivelParaInserir,
   );*/
 
+  let conteudo: ConteudoDto[] = [];
   if (temContainersSeleccionadados) {
     for (const nivel of niveisValidados) {
-      const conteudoPai = conteudo?.find(con => con.idContainer === nivel);
+      const conteudoPai = container?.find(con => con.idContainer === nivel);
 
       const badge = conteudoPai?.other_Container?.filter(
         oc => oc.idContainer !== nivel,
       ).length;
 
-      conteudo = conteudoPai?.other_Container;
+      container = conteudoPai?.other_Container;
 
+      conteudo = conteudoPai?.Conteudo;
       listaDeContainers.push({
         id: nivel,
         nome: conteudoPai?.TipoContainer?.Item.Descricao || "",
@@ -101,6 +103,17 @@ const NovoEmbarque = async ({ searchParams }: PageProps) => {
     }
   }
 
+  /*
+
+
+                    {con.Conteudo?.map(conteudoItem => {
+                    return (
+                      <div key={conteudoItem.idConteudo} className="bg-red-500">
+                        {conteudoItem.Item.Descricao}
+                      </div>
+                    );
+                  })}
+  */
   return (
     <>
       <header className="x-1 space-y-1.5 border-b py-3 text-center">
@@ -130,7 +143,7 @@ const NovoEmbarque = async ({ searchParams }: PageProps) => {
       <main className="relative grow">
         <div className="absolute bottom-0 top-0 flex w-full">
           <div className="w-full">
-            {conteudo?.map(con => {
+            {container?.map(con => {
               return (
                 <div key={con.idContainer}>
                   <Button asChild variant="ghost">
@@ -154,13 +167,13 @@ const NovoEmbarque = async ({ searchParams }: PageProps) => {
                     con.Conteudo?.length == 0 && (
                       <BotaoApagaContainer idContainer={con.idContainer} />
                     )}
-                  {con.Conteudo?.map(conteudoItem => {
-                    return (
-                      <div key={conteudoItem.idConteudo} className="bg-red-500">
-                        {conteudoItem.Item.Descricao}
-                      </div>
-                    );
-                  })}
+                </div>
+              );
+            })}
+            {conteudo?.map(conteudoItem => {
+              return (
+                <div key={conteudoItem.idConteudo} className="bg-red-500">
+                  {conteudoItem.Item.Descricao}
                 </div>
               );
             })}
