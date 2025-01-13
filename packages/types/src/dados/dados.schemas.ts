@@ -36,6 +36,25 @@ export const IdNumeroInteiroNaoNegativoSchema = z.object({
     .nonnegative({ message: "Tem que ser positivo..." }),
 });
 
+export const IdOrdemSchema = z.array(
+  z.object({
+    id: z.coerce
+      .number({
+        required_error: "Tem que inserrir números...",
+        invalid_type_error: "Formato de número errado...",
+      })
+      .int({ message: "Tem que ser inteiro...." })
+      .nonnegative({ message: "Tem que ser positivo..." }),
+    ordem: z.coerce
+      .number({
+        required_error: "Tem que inserrir números...",
+        invalid_type_error: "Formato de número errado...",
+      })
+      .int({ message: "Tem que ser inteiro...." })
+      .nonnegative({ message: "Tem que ser positivo..." }),
+  })
+);
+
 export const PostContainerSchema = z.object({
   idEnvio: z.coerce
     .number({
@@ -62,3 +81,5 @@ export const PostContainerSchema = z.object({
 });
 
 export type PostContainerSchemaDto = z.infer<typeof PostContainerSchema>;
+
+export type IdOrdemDto = z.infer<typeof IdOrdemSchema>;

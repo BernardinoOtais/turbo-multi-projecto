@@ -1,7 +1,8 @@
-import type { PostContainerSchemaDto } from '@repo/types';
+import type { IdOrdemDto, PostContainerSchemaDto } from '@repo/types';
 import {
   DadosParaPesquisaComPaginacaoEOrdem,
   IdNumeroInteiroNaoNegativoSchema,
+  IdOrdemSchema,
   PostContainerSchema,
 } from '@repo/types';
 import { Router } from 'express';
@@ -76,6 +77,21 @@ EnvioRotas.delete(
             : HttpStatusCode.OK,
         )
         .json(containerApagado);
+    } catch (err) {
+      next(err);
+    }
+  },
+);
+EnvioRotas.patch(
+  '/containerOrdem',
+  validaSchema(IdOrdemSchema),
+  async (req: Request, res: Response, next: NextFunction) => {
+    const body: IdOrdemDto = req.body;
+    try {
+      const resBody = await EnviosRepository.ordenaContainer(body);
+      res
+        .status(resBody.error ? resBody.error.code : HttpStatusCode.OK)
+        .json(resBody);
     } catch (err) {
       next(err);
     }

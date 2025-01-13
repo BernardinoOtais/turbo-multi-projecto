@@ -1,16 +1,14 @@
-import { Button } from "@/components/ui/button";
 import { fetchGet } from "@/lib/fetch/fetch-get";
 
 import { Metadata } from "next";
-import Link from "next/link";
 import React from "react";
-import { ConteudoDto, EnvioSchema, conteudo } from "@repo/types";
+import { ConteudoDto, EnvioSchema } from "@repo/types";
 import { z } from "zod";
 import ContainerBreadCrumbs from "@/components/dashboard/embarques/novo/container-bread-combes";
 import { cn } from "@/lib/utils";
 import RodaPe from "@/components/dashboard/embarques/novo/rodape";
 import { NIVEIS_INICIAIS } from "@/lib/constants";
-import BotaoApagaContainer from "@/components/dashboard/embarques/novo/botao-apaga-container";
+import Containers from "@/components/dashboard/embarques/novo/containers";
 
 const niveis = z.object({
   nivel: z
@@ -82,7 +80,7 @@ const NovoEmbarque = async ({ searchParams }: PageProps) => {
     listaDeContainersNivelUmDisponivelParaInserir,
   );*/
 
-  let conteudo: ConteudoDto[] = [];
+  let conteudo: ConteudoDto[] | undefined = [];
   if (temContainersSeleccionadados) {
     for (const nivel of niveisValidados) {
       const conteudoPai = container?.find(con => con.idContainer === nivel);
@@ -94,6 +92,7 @@ const NovoEmbarque = async ({ searchParams }: PageProps) => {
       container = conteudoPai?.other_Container;
 
       conteudo = conteudoPai?.Conteudo;
+
       listaDeContainers.push({
         id: nivel,
         nome: conteudoPai?.TipoContainer?.Item.Descricao || "",
@@ -103,17 +102,6 @@ const NovoEmbarque = async ({ searchParams }: PageProps) => {
     }
   }
 
-  /*
-
-
-                    {con.Conteudo?.map(conteudoItem => {
-                    return (
-                      <div key={conteudoItem.idConteudo} className="bg-red-500">
-                        {conteudoItem.Item.Descricao}
-                      </div>
-                    );
-                  })}
-  */
   return (
     <>
       <header className="x-1 space-y-1.5 border-b py-3 text-center">
@@ -142,34 +130,13 @@ const NovoEmbarque = async ({ searchParams }: PageProps) => {
       </header>
       <main className="relative grow">
         <div className="absolute bottom-0 top-0 flex w-full">
-          <div className="w-full">
-            {container?.map(con => {
-              return (
-                <div key={con.idContainer}>
-                  <Button asChild variant="ghost">
-                    <Link
-                      href={{
-                        pathname: "/dashboard/embarques/novo",
-                        query: {
-                          idEnvio: nIdEnvio,
-                          nivel: [
-                            ...new Set([...niveisValidados, con.idContainer]),
-                          ], // Remove duplicates
-                        },
-                      }}
-                    >
-                      <span>{con.TipoContainer?.Item.Descricao}</span>
-                      <span>{con.ordem}</span>
-                      <span>{con.idContainer}</span>
-                    </Link>
-                  </Button>
-                  {con.other_Container?.length == 0 &&
-                    con.Conteudo?.length == 0 && (
-                      <BotaoApagaContainer idContainer={con.idContainer} />
-                    )}
-                </div>
-              );
-            })}
+          <div className="w-full overflow-auto">
+            <Containers
+              containers={container}
+              idEnvio={nIdEnvio}
+              niveisValidados={niveisValidados}
+            />
+
             {conteudo?.map(conteudoItem => {
               return (
                 <div key={conteudoItem.idConteudo} className="bg-red-500">

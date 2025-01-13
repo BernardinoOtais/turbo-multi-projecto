@@ -1,4 +1,8 @@
-import type { BaseContainerSchemaDto } from '@repo/types';
+import type {
+  ContainerSchemaDto,
+  IdOrdemDto,
+  ListaDeContainersEnvioDto,
+} from '@repo/types';
 import {
   type DadosParaPesquisaComPaginacaoEOrdemDto,
   type EnvioDto,
@@ -289,7 +293,7 @@ export class EnviosRepository {
     }
   }
   static async postContainer(container: PostContainerSchemaDto) {
-    const resBody = new ApiResponseBody<BaseContainerSchemaDto>();
+    const resBody = new ApiResponseBody<ContainerSchemaDto>();
     const { idContainerPai, idTipoContainer } = container;
 
     try {
@@ -370,7 +374,7 @@ export class EnviosRepository {
   }
   static async containerApagar(
     idContainer: number,
-  ): Promise<ApiResponseBody<BaseContainerSchemaDto | undefined>> {
+  ): Promise<ApiResponseBody<ContainerSchemaDto | undefined>> {
     const temSubContainers =
       await this.verificoSeContainerTemSubContainers(idContainer);
     if (temSubContainers.length > 0) {
@@ -387,7 +391,7 @@ export class EnviosRepository {
     }
 
     const prisma = PrismaSingleton.getEnviosPrisma();
-    const resBody = new ApiResponseBody<BaseContainerSchemaDto>();
+    const resBody = new ApiResponseBody<ContainerSchemaDto>();
 
     try {
       const resultadoDaTransaction = await prisma.$transaction(async (tx) => {
@@ -429,5 +433,34 @@ export class EnviosRepository {
       };
       return resBody;
     }
+  }
+
+  static async ordenaContainer(ordemRecebida: IdOrdemDto) {
+    const resBody = new ApiResponseBody<ListaDeContainersEnvioDto>();
+    const prisma = PrismaSingleton.getEnviosPrisma();
+
+    try {
+      const resultadoDaTransaction = await prisma.$transaction((tx) =>
+        Promise.all(
+          ordemRecebida.map((item) =>
+            tx.container.update({
+              where: { idContainer: item.id },
+              data: { ordem: item.ordem },
+            }),
+          ),
+        ),
+      );
+      resBody.data = resultadoDaTransaction;
+    } catch (error) {
+      resBody.error = {
+        code: HttpStatusCode.INTERNAL_SERVER_ERROR,
+        message:
+          error instanceof Error
+            ? error.message
+            : 'Unexpected error occurred while updating container order.',
+      };
+    }
+
+    return resBody;
   }
 }
