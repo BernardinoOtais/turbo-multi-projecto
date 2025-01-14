@@ -1,3 +1,4 @@
+"use server";
 import { getSession } from "../actions/auth/sessions";
 import { BACKEND_URL } from "../constants";
 

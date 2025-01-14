@@ -442,7 +442,7 @@ export class EnviosRepository {
     try {
       const resultadoDaTransaction = await prisma.$transaction((tx) =>
         Promise.all(
-          ordemRecebida.map((item) =>
+          ordemRecebida.idOrdem.map((item) =>
             tx.container.update({
               where: { idContainer: item.id },
               data: { ordem: item.ordem },

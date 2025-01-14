@@ -34,6 +34,7 @@ import {
 } from "@dnd-kit/sortable";
 
 import { CSS } from "@dnd-kit/utilities";
+import { fetchPatch } from "@/lib/fetch/fetch-patch";
 
 const DndContextWithNoSSR = dynamic(
   () => import("@dnd-kit/core").then(mod => mod.DndContext),
@@ -79,11 +80,13 @@ const SortableItem = ({
         transition,
       }}
     >
-      <GripHorizontal
-        {...attributes}
-        {...listeners}
-        className="absolute right-2 top-2 size-5 cursor-grab text-muted-foreground focus:outline-none"
-      />
+      {niveisValidados.length > 0 && (
+        <GripHorizontal
+          {...attributes}
+          {...listeners}
+          className="absolute right-2 top-2 size-5 cursor-grab text-muted-foreground focus:outline-none"
+        />
+      )}
       <CardHeader>
         <div className="mx-auto">
           <Link
@@ -135,12 +138,14 @@ const Containers = ({
     }),
   );
 
-  const handleDragEnd = (event: DragEndEvent) => {
+  const handleDragEnd = async (event: DragEndEvent) => {
     const { active, over } = event;
 
     if (over && active.id !== over.id) {
+      let updatedItemsFinal: ContainerSchemaDto[] = [];
+      let estadoInicial: ContainerSchemaDto[] = [];
       setItems(prevItems => {
-        // Ensure that we find valid indices, otherwise return the array unchanged
+        estadoInicial = prevItems;
         const oldIndex = prevItems.findIndex(
           item => item.idContainer === active.id,
         );
@@ -149,31 +154,50 @@ const Containers = ({
         );
 
         if (oldIndex === -1 || newIndex === -1) {
-          return prevItems; // No change if indices are invalid
+          return prevItems;
         }
 
-        // Create a new array to avoid mutating the state directly
         const updatedItems = [...prevItems];
 
-        // Move the item to the new position
         const [movedItem] = updatedItems.splice(oldIndex, 1); // Remove the item
         updatedItems.splice(newIndex, 0, movedItem); // Insert the item at the new position
 
-        // Update the 'ordem' field to reflect the new order
-        const updatedItemsWithOrder = updatedItems.map((item, index) => ({
+        updatedItemsFinal = updatedItems.map((item, index) => ({
           ...item,
-          ordem: index + 1, // Set ordem based on index (or your logic)
+          ordem: index + 1,
         }));
 
-        const dadosParaPost = updatedItems.map(item => ({
+        return updatedItemsFinal;
+      });
+
+      try {
+        const dadosParaPost = updatedItemsFinal.map(item => ({
           id: item.idContainer,
           ordem: item.ordem,
         }));
 
-        //return updatedItemsWithOrder;
-      });
+        const response = await fetchPatch("envios/containerOrdem", {
+          idOrdem: dadosParaPost,
+        });
+
+        //console.log("Server response:", response);
+
+        setItems(prevItems =>
+          prevItems.map(item => {
+            const updatedItem = response.data.find(
+              (resItem: { id: number }) => resItem.id === item.idContainer,
+            );
+            return updatedItem ? { ...item, ordem: updatedItem.ordem } : item;
+          }),
+        );
+      } catch (error) {
+        setItems(estadoInicial);
+        console.error("Error updating order:", error);
+        // Optionally handle rollback or show error feedback to the user
+      }
     }
   };
+
   return (
     <DndContextWithNoSSR
       sensors={sensors}
