@@ -23,6 +23,7 @@ export const baseContainerSchema = z.object({
   idContainerPai: z.number().int().nonnegative().nullable(),
   idTipoContainer: z.number().int().nonnegative(),
   ordem: z.number().int().nonnegative(),
+  altura: z.number().nonnegative(),
   TipoContainer: z
     .object({
       idItem: z.number().int().nonnegative(),

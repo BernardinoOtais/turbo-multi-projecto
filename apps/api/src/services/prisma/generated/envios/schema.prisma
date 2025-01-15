@@ -51,6 +51,7 @@ model Container {
   idEnvio         Int
   idTipoContainer Int
   ordem           Int
+  altura          Float         @default(0, map: "DF_Container_altura")
   Container       Container?    @relation("ContainerToContainer", fields: [idContainerPai], references: [idContainer], onDelete: NoAction, onUpdate: NoAction, map: "FK_Container_Container")
   other_Container Container[]   @relation("ContainerToContainer")
   Envio           Envio         @relation(fields: [idEnvio], references: [idEnvio], onUpdate: NoAction, map: "FK_Container_Envio")

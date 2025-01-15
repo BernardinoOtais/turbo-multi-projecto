@@ -6,9 +6,8 @@ import { ConteudoDto, EnvioSchema } from "@repo/types";
 import { z } from "zod";
 import ContainerBreadCrumbs from "@/components/dashboard/embarques/novo/container-bread-combes";
 import { cn } from "@/lib/utils";
-import RodaPe from "@/components/dashboard/embarques/novo/rodape";
 import { NIVEIS_INICIAIS } from "@/lib/constants";
-import Containers from "@/components/dashboard/embarques/novo/containers";
+import MainEFooterEmbarqueNovo from "@/components/dashboard/embarques/novo/main-e-footer-embarque-novo";
 
 const niveis = z.object({
   nivel: z
@@ -128,42 +127,23 @@ const NovoEmbarque = async ({ searchParams }: PageProps) => {
           />
         </h3>
       </header>
-      <main className="relative grow">
-        <div className="absolute bottom-0 top-0 flex w-full">
-          <div className="w-full overflow-auto">
-            <Containers
-              containers={container}
-              idEnvio={nIdEnvio}
-              niveisValidados={niveisValidados}
-            />
-
-            {conteudo?.map(conteudoItem => {
-              return (
-                <div key={conteudoItem.idConteudo} className="bg-red-500">
-                  {conteudoItem.Item.Descricao}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </main>
-      <footer className="w-full px-1 py-2">
-        <RodaPe
-          idEnvio={nIdEnvio}
-          nivel={niveisValidados}
-          nivelUmContainersExistentes={
-            listaDeContainersNivelUmDisponivelParaInserir
-          }
-          primeiroBadge={
-            listaDeContainers.length > 0 ? listaDeContainers[0].nome : ""
-          }
-          idContainerPai={
-            listaDeContainers.length > 0
-              ? listaDeContainers[listaDeContainers.length - 1].id
-              : null
-          }
-        />
-      </footer>
+      <MainEFooterEmbarqueNovo
+        idEnvio={nIdEnvio}
+        niveisValidados={niveisValidados}
+        listaDeContainersNivelUmDisponivelParaInserir={
+          listaDeContainersNivelUmDisponivelParaInserir
+        }
+        primeiroBadge={
+          listaDeContainers.length > 0 ? listaDeContainers[0].nome : ""
+        }
+        idContainerPai={
+          listaDeContainers.length > 0
+            ? listaDeContainers[listaDeContainers.length - 1].id
+            : null
+        }
+        containers={container}
+        conteudos={conteudo}
+      />
     </>
   );
 };

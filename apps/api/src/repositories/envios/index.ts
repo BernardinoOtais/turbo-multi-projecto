@@ -2,6 +2,7 @@ import type {
   ContainerSchemaDto,
   IdOrdemDto,
   ListaDeContainersEnvioDto,
+  PostAlturaDto,
 } from '@repo/types';
 import {
   type DadosParaPesquisaComPaginacaoEOrdemDto,
@@ -142,6 +143,7 @@ export class EnviosRepository {
               idContainerPai: true,
               idTipoContainer: true,
               ordem: true,
+              altura: true,
               TipoContainer: {
                 select: {
                   idItem: true,
@@ -172,6 +174,7 @@ export class EnviosRepository {
                   idContainerPai: true,
                   idTipoContainer: true,
                   ordem: true,
+                  altura: true,
                   TipoContainer: {
                     select: {
                       idItem: true,
@@ -202,6 +205,7 @@ export class EnviosRepository {
                       idContainerPai: true,
                       idTipoContainer: true,
                       ordem: true,
+                      altura: true,
                       TipoContainer: {
                         select: {
                           idItem: true,
@@ -232,6 +236,7 @@ export class EnviosRepository {
                           idContainerPai: true,
                           idTipoContainer: true,
                           ordem: true,
+                          altura: true,
                           TipoContainer: {
                             select: {
                               idItem: true,
@@ -256,19 +261,19 @@ export class EnviosRepository {
                             },
                           },
                         },
-                        orderBy: { ordem: 'asc' },
+                        orderBy: [{ idTipoContainer: 'asc' }, { ordem: 'asc' }],
                       },
                       //Container Sub sub sub
                     },
-                    orderBy: { ordem: 'asc' },
+                    orderBy: [{ idTipoContainer: 'asc' }, { ordem: 'asc' }],
                   },
                   //Container Sub sub
                 },
-                orderBy: { ordem: 'asc' },
+                orderBy: [{ idTipoContainer: 'asc' }, { ordem: 'asc' }],
               },
               //Container Sub
             },
-            orderBy: { ordem: 'asc' },
+            orderBy: [{ idTipoContainer: 'asc' }, { ordem: 'asc' }],
           },
           //Container principal
         },
@@ -401,13 +406,13 @@ export class EnviosRepository {
         });
 
         // Adjust the "ordem" of remaining containers
-        const { idContainerPai, idTipoContainer } = containerApagado;
+        const { idContainerPai, idTipoContainer, ordem } = containerApagado;
 
         await tx.container.updateMany({
           where: {
             idContainerPai,
             idTipoContainer,
-            idContainer: { gt: idContainer },
+            ordem: { gt: ordem },
           },
           data: {
             ordem: {
@@ -444,13 +449,37 @@ export class EnviosRepository {
         Promise.all(
           ordemRecebida.idOrdem.map((item) =>
             tx.container.update({
-              where: { idContainer: item.id },
+              where: {
+                idContainer: item.id,
+              },
               data: { ordem: item.ordem },
             }),
           ),
         ),
       );
       resBody.data = resultadoDaTransaction;
+    } catch (error) {
+      resBody.error = {
+        code: HttpStatusCode.INTERNAL_SERVER_ERROR,
+        message:
+          error instanceof Error
+            ? error.message
+            : 'Unexpected error occurred while updating container order.',
+      };
+    }
+
+    return resBody;
+  }
+  static async insiroAlturaContainer(alturaRecebida: PostAlturaDto) {
+    const resBody = new ApiResponseBody<ContainerSchemaDto>();
+    const { id, altura } = alturaRecebida.PostAltura;
+    try {
+      const container =
+        await PrismaSingleton.getEnviosPrisma().container.update({
+          where: { idContainer: id },
+          data: { altura: altura },
+        });
+      resBody.data = container;
     } catch (error) {
       resBody.error = {
         code: HttpStatusCode.INTERNAL_SERVER_ERROR,

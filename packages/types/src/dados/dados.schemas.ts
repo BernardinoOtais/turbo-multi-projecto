@@ -82,6 +82,32 @@ export const PostContainerSchema = z.object({
     .nonnegative({ message: "Tem que ser positivo..." }),
 });
 
+export const PostAlturaSchema = z.object({
+  PostAltura: z.object({
+    id: z.coerce
+      .number({
+        required_error: "Tem que inserrir números...",
+        invalid_type_error: "Formato de número errado...",
+      })
+      .int({ message: "Tem que ser inteiro...." })
+      .nonnegative({ message: "Tem que ser positivo..." }),
+    altura: z
+      .union([z.string(), z.number()]) // Accept string or number
+      .transform((value) =>
+        typeof value === "string" ? value.trim().replace(",", ".") : value
+      ) // Normalize strings (replace commas with dots)
+      .refine((value) => !isNaN(parseFloat(value.toString())), {
+        message: "Formato de número errado...",
+      }) // Ensure valid number format
+      .transform((value) => parseFloat(value.toString())) // Convert to number
+      .refine((value) => value > 0, {
+        message: "Tem ser maior que 0...",
+      }), // Ensure non-negative
+  }),
+});
+
 export type PostContainerSchemaDto = z.infer<typeof PostContainerSchema>;
 
 export type IdOrdemDto = z.infer<typeof IdOrdemSchema>;
+
+export type PostAlturaDto = z.infer<typeof PostAlturaSchema>;

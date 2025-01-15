@@ -1,3 +1,4 @@
+"use server";
 import { getSession } from "../actions/auth/sessions";
 import { BACKEND_URL } from "../constants";
 
@@ -19,7 +20,7 @@ export const fetchPost = async (
       "Content-Type": "application/json",
       Authorization: `Bearer ${session?.accessToken}`,
     };
-
+    console.log("fetchPost url", requestUrl);
     const response = await fetch(requestUrl, {
       ...options,
       method: "POST",

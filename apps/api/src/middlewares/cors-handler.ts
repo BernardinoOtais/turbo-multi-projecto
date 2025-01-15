@@ -7,7 +7,7 @@ export const corsHandler = (allowedOrigins: string[]) => {
   return (req: Request, res: Response, next: NextFunction): void => {
     const origin = req.headers.origin;
 
-    console.log('allowedOrigins: ', allowedOrigins);
+    //console.log('allowedOrigins: ', allowedOrigins);
     // Allow requests with no origin (e.g., Android apps, Postman, curl)
     if (!origin) {
       res.setHeader('Access-Control-Allow-Origin', '*');

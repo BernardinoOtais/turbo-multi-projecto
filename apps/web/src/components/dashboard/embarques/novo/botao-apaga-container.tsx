@@ -9,15 +9,18 @@ import React, { useState } from "react";
 type BotaoApagaContainerProps = {
   idContainer: number;
   className?: string; // Optional `className` prop
+  setScroll: (data: boolean) => void;
 };
 
 const BotaoApagaContainer = ({
   idContainer,
   className,
+  setScroll,
 }: BotaoApagaContainerProps) => {
   const [disable, setDisable] = useState(false);
   const apagaContainerFun = () => {
     setDisable(true);
+    setScroll(false);
     apagaContainer(idContainer).then(() => {
       setDisable(false);
     });

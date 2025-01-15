@@ -1,8 +1,13 @@
-import type { IdOrdemDto, PostContainerSchemaDto } from '@repo/types';
+import type {
+  IdOrdemDto,
+  PostAlturaDto,
+  PostContainerSchemaDto,
+} from '@repo/types';
 import {
   DadosParaPesquisaComPaginacaoEOrdem,
   IdNumeroInteiroNaoNegativoSchema,
   IdOrdemSchema,
+  PostAlturaSchema,
   PostContainerSchema,
 } from '@repo/types';
 import { Router } from 'express';
@@ -89,6 +94,22 @@ EnvioRotas.patch(
     const body: IdOrdemDto = req.body;
     try {
       const resBody = await EnviosRepository.ordenaContainer(body);
+      res
+        .status(resBody.error ? resBody.error.code : HttpStatusCode.OK)
+        .json(resBody);
+    } catch (err) {
+      next(err);
+    }
+  },
+);
+
+EnvioRotas.post(
+  '/containerAltura',
+  validaSchema(PostAlturaSchema),
+  async (req: Request, res: Response, next: NextFunction) => {
+    const body: PostAlturaDto = PostAlturaSchema.parse(req.body);
+    try {
+      const resBody = await EnviosRepository.insiroAlturaContainer(body);
       res
         .status(resBody.error ? resBody.error.code : HttpStatusCode.OK)
         .json(resBody);
