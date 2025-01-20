@@ -11,14 +11,21 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Loader2 } from "lucide-react";
 
 type InputAlturaProps = {
+  isSaving: boolean;
   altura: PostAlturaDto;
   setAltura: (data: PostAlturaDto) => void;
   setScroll: (data: boolean) => void;
 };
 
-const InputAltura = ({ altura, setAltura, setScroll }: InputAlturaProps) => {
+const InputAltura = ({
+  isSaving,
+  altura,
+  setAltura,
+  setScroll,
+}: InputAlturaProps) => {
   const form = useForm<PostAlturaDto>({
     resolver: zodResolver(PostAlturaSchema),
     defaultValues: altura,
@@ -27,7 +34,7 @@ const InputAltura = ({ altura, setAltura, setScroll }: InputAlturaProps) => {
   useEffect(() => {
     const { unsubscribe } = form.watch(async values => {
       const isValid = await form.trigger();
-      console.log("Use effect component: isvalid", isValid);
+      //console.log("Use effect component: isvalid", isValid);
       if (!isValid) return;
       //values.PostAltura?.altura || altura.PostAltura.altura,
       //console.log("Use effect component:", values);
@@ -46,41 +53,37 @@ const InputAltura = ({ altura, setAltura, setScroll }: InputAlturaProps) => {
   return (
     <Form {...form}>
       <form>
-        <FormField
-          control={form.control}
-          name="PostAltura.altura"
-          render={({ field }) => (
-            <FormItem>
-              <div className="flex flex-row items-center justify-start">
-                <FormLabel className="sr-only">Altura da Pallet</FormLabel>
-                <FormControl>
-                  <Input className="w-16" {...field} placeholder="..." />
-                </FormControl>
-                <span className="p-1">Altura em Mt</span>
-              </div>
-              <FormMessage />
-            </FormItem>
+        <div className="relative">
+          {isSaving && (
+            <div className="absolute inset-0 z-10 flex items-center justify-center bg-white bg-opacity-50">
+              <Loader2 className="animate-spin" />
+            </div>
           )}
-        />
+          <FormField
+            control={form.control}
+            name="PostAltura.altura"
+            render={({ field }) => (
+              <FormItem className="">
+                <div className="flex flex-col items-center justify-start">
+                  <FormLabel className="sr-only">Altura da Pallet</FormLabel>
+                  <span>Altura em Mt</span>
+                  <FormControl>
+                    <Input
+                      className="w-16 text-center"
+                      {...field}
+                      placeholder="..."
+                      disabled={isSaving}
+                    />
+                  </FormControl>
+                </div>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
       </form>
     </Form>
   );
 };
 
 export default InputAltura;
-
-/*
-
-
-    <>
-      <Input
-        className="w-16 appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-        type="number"
-        min={0}
-        defaultValue={0}
-      />
-      <span className="p-1">Mt Altura</span>
-    </>
-
-
-*/

@@ -159,7 +159,11 @@ exports.Prisma.ContainerScalarFieldEnum = {
 exports.Prisma.ConteudoScalarFieldEnum = {
   idConteudo: 'idConteudo',
   idContainer: 'idContainer',
-  idItem: 'idItem'
+  idItem: 'idItem',
+  op: 'op',
+  tam: 'tam',
+  qtt: 'qtt',
+  peso: 'peso'
 };
 
 exports.Prisma.EnvioScalarFieldEnum = {
@@ -201,6 +205,34 @@ exports.Prisma.DestinosScalarFieldEnum = {
   nomeDestino: 'nomeDestino'
 };
 
+exports.Prisma.ContainerOpScalarFieldEnum = {
+  idContainer: 'idContainer',
+  op: 'op'
+};
+
+exports.Prisma.ContainerOpTamScalarFieldEnum = {
+  idContainer: 'idContainer',
+  op: 'op',
+  tam: 'tam'
+};
+
+exports.Prisma.OpScalarFieldEnum = {
+  op: 'op',
+  ref: 'ref',
+  modeloDesc: 'modeloDesc',
+  modelo: 'modelo',
+  cor: 'cor',
+  pedido: 'pedido',
+  norma: 'norma'
+};
+
+exports.Prisma.OpTamanhoScalarFieldEnum = {
+  op: 'op',
+  tam: 'tam',
+  ordem: 'ordem',
+  qtt: 'qtt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -224,7 +256,11 @@ exports.Prisma.ModelName = {
   Item: 'Item',
   ItemTraduzido: 'ItemTraduzido',
   TipoContainer: 'TipoContainer',
-  Destinos: 'Destinos'
+  Destinos: 'Destinos',
+  ContainerOp: 'ContainerOp',
+  ContainerOpTam: 'ContainerOpTam',
+  Op: 'Op',
+  OpTamanho: 'OpTamanho'
 };
 
 /**

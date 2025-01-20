@@ -24,11 +24,8 @@ export default function useSaveAltura(alturaSchema: PostAlturaDto) {
         setIsError(false);
         const newData = structuredClone(debounceAltura);
 
-        if (newData.PostAltura.id === 5) console.log("escrevo", newData);
-        //função escrever
-
-        const dadosPost = await fetchPost("envios/containerAltura", newData);
-        console.log("dadosPost::::", dadosPost);
+        await fetchPost("envios/containerAltura", newData);
+        //console.log("dadosPost::::", dadosPost);
 
         setLastSavedData(newData);
       } catch (error) {

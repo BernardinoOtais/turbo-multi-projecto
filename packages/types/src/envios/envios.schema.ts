@@ -18,6 +18,29 @@ export const conteudo = z.object({
   Item: item,
 });
 
+export const OpSchema = z.object({
+  op: z.number().int().nonnegative(),
+  ref: z.string().max(18),
+  modeloDesc: z.string().max(60),
+  modelo: z.string().max(50),
+  cor: z.string().max(50),
+  pedido: z.string().max(50),
+  norma: z.string().max(50),
+});
+export const ContainerOpTamSchema = z.object({
+  tam: z.string().max(25),
+  OpTamanho: z.object({
+    tam: z.string().max(25),
+    ordem: z.number().int().nonnegative(),
+    qtt: z.number().int().nonnegative(),
+  }),
+});
+export const ContainerOpSchema = z.object({
+  op: z.number().int().nonnegative(),
+  Op: OpSchema,
+  ContainerOpTam: z.array(ContainerOpTamSchema),
+});
+
 export const baseContainerSchema = z.object({
   idContainer: z.number().int().nonnegative(),
   idContainerPai: z.number().int().nonnegative().nullable(),
@@ -32,6 +55,7 @@ export const baseContainerSchema = z.object({
       }),
     })
     .optional(),
+  ContainerOp: z.array(ContainerOpSchema).optional(),
   Conteudo: z.array(conteudo).optional(),
 });
 

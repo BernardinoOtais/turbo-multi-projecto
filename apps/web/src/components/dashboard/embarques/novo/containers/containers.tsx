@@ -40,16 +40,19 @@ const Containers = ({
   niveisValidados,
 }: ContainersProps) => {
   const [items, setItems] = useState(containers ?? []);
+
   const [scroll, setScroll] = useState(true);
 
   useEffect(() => {
+    // Update items state if containers change
     setItems(containers ?? []);
   }, [containers]);
 
   useEffect(() => {
-    // Update the items state if containers prop changes
-    if (containers && items.length < containers?.length && !scroll)
+    // Check if items need to trigger a scroll update
+    if (containers && items.length < containers.length && !scroll) {
       setScroll(true);
+    }
   }, [containers, items, scroll]);
 
   const lastItemRef = useRef<HTMLDivElement | null>(null);
@@ -109,7 +112,7 @@ const Containers = ({
           idOrdem: dadosParaPost,
         });
 
-        console.log("Server response:", response);
+        //console.log("Server response:", response);
 
         setItems(prevItems =>
           prevItems.map(item => {
@@ -138,18 +141,16 @@ const Containers = ({
         items={items.map(item => item.idContainer)}
         strategy={verticalListSortingStrategy}
       >
-        <div>
-          {items.map((container, index) => (
-            <ContainerCard
-              key={container.idContainer}
-              container={container}
-              idEnvio={idEnvio}
-              niveisValidados={niveisValidados}
-              referencia={index === items.length - 1 ? lastItemRef : null}
-              setScroll={setScroll}
-            />
-          ))}
-        </div>
+        {items.map((container, index) => (
+          <ContainerCard
+            key={container.idContainer}
+            container={container}
+            idEnvio={idEnvio}
+            niveisValidados={niveisValidados}
+            referencia={index === items.length - 1 ? lastItemRef : null}
+            setScroll={setScroll}
+          />
+        ))}
       </SortableContext>
     </DndContextWithNoSSR>
   );

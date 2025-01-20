@@ -1,4 +1,5 @@
 "use server";
+import { revalidatePath } from "next/cache";
 import { getSession } from "../actions/auth/sessions";
 import { BACKEND_URL } from "../constants";
 
@@ -8,6 +9,7 @@ export interface FetchOptions extends RequestInit {
 export const fetchPost = async (
   url: string,
   body: Record<string, unknown>,
+  revalida?: string,
   options: FetchOptions = {},
 ) => {
   // console.log("fetchPost", body);
@@ -33,6 +35,7 @@ export const fetchPost = async (
       return null;
     }
 
+    if (revalida) revalidatePath(revalida);
     return await response.json();
   } catch (error) {
     console.error("Error in fetchPost:", error);

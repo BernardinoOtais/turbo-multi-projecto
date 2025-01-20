@@ -1,4 +1,4 @@
-import { ContainerSchemaDto } from "@repo/types";
+import { ContainerSchemaDto, PostOpDto } from "@repo/types";
 import React, { useState } from "react";
 
 import {
@@ -8,6 +8,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+
+import { Separator } from "@/components/ui/separator";
 import { GripHorizontal } from "lucide-react";
 
 import { useSortable } from "@dnd-kit/sortable";
@@ -19,13 +21,17 @@ import BotaoApagaContainer from "../botao-apaga-container";
 import InputAltura from "./input-altura";
 import { PostAlturaDto } from "@repo/types";
 import useSaveAltura from "@/hooks/use-save-altura";
+import useUnloadWarning from "@/hooks/use-unload-warning";
+import useSaveOpContainer from "@/hooks/use-save-op-container";
+import InputOp from "./input-op";
+import ApagaOpDContainer from "./apaga-op-do-container";
 
 type ContainerCardProps = {
   container: ContainerSchemaDto;
   idEnvio: number;
   niveisValidados: number[];
   referencia: React.RefObject<HTMLDivElement | null> | null;
-  setScroll: React.Dispatch<React.SetStateAction<boolean>>;
+  setScroll: (data: boolean) => void;
 };
 const ContainerCard = ({
   container,
@@ -46,8 +52,17 @@ const ContainerCard = ({
   const [altura, setAltura] = useState<PostAlturaDto>({
     PostAltura: { id: container.idContainer, altura: container.altura },
   });
-
   const { isSaving, hasUnsavedChanges } = useSaveAltura(altura);
+
+  const valorOriginalOp = {
+    PostOp: { id: container.idContainer, op: 0 },
+  };
+
+  const [op, setOp] = useState<PostOpDto>(valorOriginalOp);
+
+  const { isSavingOP, hasUnsavedChangesOp } = useSaveOpContainer(op);
+
+  useUnloadWarning(hasUnsavedChanges || hasUnsavedChangesOp);
 
   return (
     <Card
@@ -89,17 +104,34 @@ const ContainerCard = ({
       </CardHeader>
       <CardContent
         ref={referencia}
-        className="flex flex-row items-center justify-start"
+        className="flex flex-col items-center justify-start gap-1 md:flex-row"
       >
-        {container.idTipoContainer === 4 ? (
-          <InputAltura
-            altura={altura}
-            setAltura={setAltura}
-            setScroll={setScroll}
-          />
-        ) : (
-          container.idTipoContainer > 4 && <span>Caixa</span>
-        )}
+        <div className="flex flex-row gap-1">
+          {container.idTipoContainer === 4 ? (
+            <InputAltura
+              isSaving={isSaving}
+              altura={altura}
+              setAltura={setAltura}
+              setScroll={setScroll}
+            />
+          ) : (
+            container.idTipoContainer > 4 && <span>Caixa</span>
+          )}
+          <Separator orientation="vertical" className="h-14 w-[2px]" />
+          {niveisValidados.length === 1 && (
+            <InputOp
+              isSaving={isSavingOP}
+              idContainer={container.idContainer}
+              setScroll={setScroll}
+              setOp={setOp}
+            />
+          )}
+        </div>
+        <div className="flex flex-row bg-red-400">
+          {container.ContainerOp?.map(op => {
+            return <ApagaOpDContainer key={op.op} op={op.op} />;
+          })}
+        </div>
       </CardContent>
       {container.other_Container?.length == 0 &&
         container.Conteudo?.length == 0 && (

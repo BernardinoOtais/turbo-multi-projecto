@@ -1,4 +1,5 @@
 "use server";
+import { revalidatePath } from "next/cache";
 import { getSession } from "../actions/auth/sessions";
 import { BACKEND_URL } from "../constants";
 
@@ -9,6 +10,7 @@ export interface FetchOptions extends RequestInit {
 export const fetchPatch = async (
   url: string,
   body: Record<string, unknown>,
+  path?: string,
   options: FetchOptions = {},
 ) => {
   try {
@@ -32,6 +34,8 @@ export const fetchPatch = async (
       console.error("Fetch PATCH failed:", response);
       return null;
     }
+
+    if (path) revalidatePath(path);
 
     return await response.json();
   } catch (error) {

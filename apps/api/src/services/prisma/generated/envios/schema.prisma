@@ -56,15 +56,24 @@ model Container {
   other_Container Container[]   @relation("ContainerToContainer")
   Envio           Envio         @relation(fields: [idEnvio], references: [idEnvio], onUpdate: NoAction, map: "FK_Container_Envio")
   TipoContainer   TipoContainer @relation(fields: [idTipoContainer], references: [idTipoContainer], onUpdate: NoAction, map: "FK_Container_TipoContainer")
+  ContainerOp     ContainerOp[]
   Conteudo        Conteudo[]
 }
 
 model Conteudo {
-  idConteudo  Int       @id(map: "PK_Conteudo") @default(autoincrement())
-  idContainer Int
-  idItem      Int
-  Container   Container @relation(fields: [idContainer], references: [idContainer], onUpdate: NoAction, map: "FK_Conteudo_Container")
-  Item        Item      @relation(fields: [idItem], references: [idItem], onUpdate: NoAction, map: "FK_Conteudo_Item")
+  idConteudo     Int            @default(autoincrement())
+  idContainer    Int
+  idItem         Int
+  op             Int
+  tam            String         @db.NVarChar(25)
+  qtt            Float
+  peso           Float
+  Container      Container      @relation(fields: [idContainer], references: [idContainer], onUpdate: NoAction, map: "FK_Conteudo_Container")
+  ContainerOp    ContainerOp    @relation(fields: [idContainer, op], references: [idContainer, op], onUpdate: NoAction, map: "FK_Conteudo_ContainerOp")
+  ContainerOpTam ContainerOpTam @relation(fields: [idContainer, op, tam], references: [idContainer, op, tam], onUpdate: NoAction, map: "FK_Conteudo_ContainerOpTam")
+  Item           Item           @relation(fields: [idItem], references: [idItem], onUpdate: NoAction, map: "FK_Conteudo_Item")
+
+  @@id([idConteudo, idContainer, op, tam], map: "PK_Conteudo")
 }
 
 model Envio {
@@ -119,4 +128,49 @@ model Destinos {
   nomeDestino String  @db.NVarChar(60)
   Idiomas     Idiomas @relation(fields: [idIdioma], references: [idIdioma], onUpdate: NoAction, map: "FK_Destinos_Idiomas")
   Envio       Envio[]
+}
+
+model ContainerOp {
+  idContainer    Int
+  op             Int
+  Container      Container        @relation(fields: [idContainer], references: [idContainer], onUpdate: NoAction, map: "FK_ContainerOp_Container")
+  Op             Op               @relation(fields: [op], references: [op], onUpdate: NoAction, map: "FK_ContainerOp_Op")
+  ContainerOpTam ContainerOpTam[]
+  Conteudo       Conteudo[]
+
+  @@id([idContainer, op], map: "PK_ContainerOp")
+}
+
+model ContainerOpTam {
+  idContainer Int
+  op          Int
+  tam         String      @db.NVarChar(25)
+  ContainerOp ContainerOp @relation(fields: [idContainer, op], references: [idContainer, op], onUpdate: NoAction, map: "FK_ContainerOpTam_ContainerOp")
+  OpTamanho   OpTamanho   @relation(fields: [op, tam], references: [op, tam], onUpdate: NoAction, map: "FK_ContainerOpTam_OpTamanho")
+  Conteudo    Conteudo[]
+
+  @@id([idContainer, op, tam], map: "PK_ContainerOpTam")
+}
+
+model Op {
+  op          Int           @id(map: "PK_Op_1")
+  ref         String        @db.Char(18)
+  modeloDesc  String        @db.NVarChar(60)
+  modelo      String        @db.NVarChar(50)
+  cor         String        @db.NVarChar(50)
+  pedido      String        @db.NVarChar(50)
+  norma       String        @db.NVarChar(100)
+  ContainerOp ContainerOp[]
+  OpTamanho   OpTamanho[]
+}
+
+model OpTamanho {
+  op             Int
+  tam            String           @db.NVarChar(25)
+  ordem          Int
+  qtt            Int
+  ContainerOpTam ContainerOpTam[]
+  Op             Op               @relation(fields: [op], references: [op], onUpdate: NoAction, map: "FK_OpTamanho_Op")
+
+  @@id([op, tam], map: "PK_OpTamanho")
 }
