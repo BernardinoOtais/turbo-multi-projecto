@@ -4,32 +4,35 @@ import { Button } from "@/components/ui/button";
 import { apagaContainer } from "@/lib/actions/dashboard/embarques/novo";
 import { cn } from "@/lib/utils";
 import { Loader2, Trash2 } from "lucide-react";
-import React, { useState } from "react";
+import React from "react";
 
 type BotaoApagaContainerProps = {
   idContainer: number;
   className?: string; // Optional `className` prop
   setScroll: (data: boolean) => void;
+  apagaCardEstado: boolean;
+  setApgaCardEstado: (data: boolean) => void;
 };
 
 const BotaoApagaContainer = ({
   idContainer,
   className,
   setScroll,
+  apagaCardEstado,
+  setApgaCardEstado,
 }: BotaoApagaContainerProps) => {
-  const [disable, setDisable] = useState(false);
   const apagaContainerFun = () => {
-    setDisable(true);
+    setApgaCardEstado(true);
     setScroll(false);
-    apagaContainer(idContainer).then(() => {
-      setDisable(false);
-    });
+    apagaContainer(idContainer)
+      .catch(error => console.error(error))
+      .finally(() => setApgaCardEstado(false));
   };
 
   return (
     <Button
       size="icon"
-      disabled={disable}
+      disabled={apagaCardEstado}
       onClick={() => apagaContainerFun()}
       className={cn(
         "relative flex items-center justify-center", // Default classes
@@ -37,8 +40,8 @@ const BotaoApagaContainer = ({
       )}
       title="Apaga Container"
     >
-      {disable && <Loader2 className="absolute animate-spin" />}
-      {!disable && <Trash2 />}
+      {apagaCardEstado && <Loader2 className="absolute animate-spin" />}
+      {!apagaCardEstado && <Trash2 />}
     </Button>
   );
 };

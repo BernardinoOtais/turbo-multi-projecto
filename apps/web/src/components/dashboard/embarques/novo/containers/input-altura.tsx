@@ -55,7 +55,7 @@ const InputAltura = ({
       <form>
         <div className="relative">
           {isSaving && (
-            <div className="absolute inset-0 z-10 flex items-center justify-center bg-white bg-opacity-50">
+            <div className="absolute inset-0 z-10 flex items-center justify-center bg-white bg-opacity-60">
               <Loader2 className="animate-spin" />
             </div>
           )}
@@ -64,7 +64,7 @@ const InputAltura = ({
             name="PostAltura.altura"
             render={({ field }) => (
               <FormItem className="">
-                <div className="flex flex-col items-center justify-start">
+                <div className="flex w-24 flex-col items-center justify-start">
                   <FormLabel className="sr-only">Altura da Pallet</FormLabel>
                   <span>Altura em Mt</span>
                   <FormControl>

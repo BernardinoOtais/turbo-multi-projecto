@@ -39,6 +39,8 @@ const Containers = ({
   idEnvio,
   niveisValidados,
 }: ContainersProps) => {
+  const [apagaCardEstado, setApgaCardEstado] = useState(false);
+
   const [items, setItems] = useState(containers ?? []);
 
   const [scroll, setScroll] = useState(true);
@@ -76,8 +78,10 @@ const Containers = ({
     if (over && active.id !== over.id) {
       let updatedItemsFinal: ContainerSchemaDto[] = [];
       let estadoInicial: ContainerSchemaDto[] = [];
+
       setItems(prevItems => {
         estadoInicial = prevItems;
+
         const oldIndex = prevItems.findIndex(
           item => item.idContainer === active.id,
         );
@@ -90,18 +94,52 @@ const Containers = ({
         }
 
         const updatedItems = [...prevItems];
-
         const [movedItem] = updatedItems.splice(oldIndex, 1); // Remove the item
-        updatedItems.splice(newIndex, 0, movedItem); // Insert the item at the new position
+        updatedItems.splice(newIndex, 0, movedItem); // Insert the item at the new index
 
-        updatedItemsFinal = updatedItems.map((item, index) => ({
+        // Assign correct `ordem` to all items
+        const dadosComOrdemCorrecta = updatedItems.map((item, index) => ({
           ...item,
           ordem: index + 1,
         }));
-        setScroll(false);
+
+        // Group by `idTipoContainer`
+        const dadosAgrupadosPorTipo: Record<number, ContainerSchemaDto[]> = {};
+        dadosComOrdemCorrecta.forEach(container => {
+          if (!dadosAgrupadosPorTipo[container.idTipoContainer]) {
+            dadosAgrupadosPorTipo[container.idTipoContainer] = [];
+          }
+          dadosAgrupadosPorTipo[container.idTipoContainer].push(container);
+        });
+
+        // Assign `nContainer` within each group
+        const nContainerComAOrdemCorrect = Object.values(
+          dadosAgrupadosPorTipo,
+        ).flatMap(grupo =>
+          grupo.map((container, index) => ({
+            idContainer: container.idContainer,
+            nContainer: index + 1, // Assign sequential nContainer
+          })),
+        );
+
+        // Merge updated `nContainer` back into items
+        const newDadosComOrdemCorrecta = dadosComOrdemCorrecta.map(item => {
+          const updatedContainer = nContainerComAOrdemCorrect.find(
+            nItem => nItem.idContainer === item.idContainer,
+          );
+          return {
+            ...item,
+            nContainer: updatedContainer
+              ? updatedContainer.nContainer
+              : item.nContainer, // Keep existing nContainer if not updated
+          };
+        });
+
+        updatedItemsFinal = newDadosComOrdemCorrecta;
         return updatedItemsFinal;
       });
 
+      //Post
       try {
         const dadosParaPost = updatedItemsFinal.map(item => ({
           id: item.idContainer,
@@ -112,20 +150,23 @@ const Containers = ({
           idOrdem: dadosParaPost,
         });
 
-        //console.log("Server response:", response);
-
         setItems(prevItems =>
           prevItems.map(item => {
             const updatedItem = response.data.find(
               (resItem: { id: number }) => resItem.id === item.idContainer,
             );
-            return updatedItem ? { ...item, ordem: updatedItem.ordem } : item;
+            return updatedItem
+              ? {
+                  ...item,
+                  ordem: updatedItem.ordem,
+                  nContainer: updatedItem.nContainer,
+                }
+              : item;
           }),
         );
       } catch (error) {
         setItems(estadoInicial);
         console.error("Error updating order:", error);
-        // Optionally handle rollback or show error feedback to the user
       }
     }
   };
@@ -149,6 +190,8 @@ const Containers = ({
             niveisValidados={niveisValidados}
             referencia={index === items.length - 1 ? lastItemRef : null}
             setScroll={setScroll}
+            apagaCardEstado={apagaCardEstado}
+            setApgaCardEstado={setApgaCardEstado}
           />
         ))}
       </SortableContext>

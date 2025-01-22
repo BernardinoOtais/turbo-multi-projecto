@@ -7,10 +7,11 @@ export function parseAPIVersion(version: number) {
 const Pallet = 4;
 const Caixa = 5;
 const chão = 6;
+const Volumes = 7;
 export const permiteSubcontainer = {
   1: [Pallet, Caixa, chão],
   2: [Pallet, Caixa, chão],
-  3: [Pallet, Caixa, chão],
-  4: [Caixa],
+  3: [Pallet, chão],
+  4: [Caixa, Volumes],
   6: [Pallet, Caixa],
 };

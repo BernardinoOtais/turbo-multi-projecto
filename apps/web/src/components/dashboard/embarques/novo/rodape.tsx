@@ -56,6 +56,8 @@ const RodaPe = ({
   const dadosParaBoatoes =
     normalizedBadge && ContainersExistentes[normalizedBadge];
 
+  //console.log("dadosParaBoatoes:", dadosParaBoatoes);
+
   const botoesDados =
     numeroDeBotaoes === 1
       ? dadosParaBoatoes.subContainer
@@ -73,7 +75,7 @@ export default RodaPe;
 const botoes = (
   containers: Container[],
   disable: boolean,
-  setDisable: React.Dispatch<React.SetStateAction<boolean>>,
+  setDisable: (data: boolean) => void,
   idEnvio: number,
   idContainerPai: number | null,
 ) => {
@@ -84,9 +86,11 @@ const botoes = (
       idTipoContainer,
       idEnvio,
       idContainerPai,
-    }).then(() => {
-      setDisable(false);
-    });
+    })
+      .catch(erro => {
+        console.error(erro);
+      })
+      .finally(() => setDisable(false));
   };
 
   const botoesAApresentar = containers.map(b => {

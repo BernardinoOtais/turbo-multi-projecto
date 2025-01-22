@@ -6244,6 +6244,7 @@ export namespace Prisma {
     idEnvio: number | null
     idTipoContainer: number | null
     ordem: number | null
+    nContainer: number | null
     altura: number | null
   }
 
@@ -6253,6 +6254,7 @@ export namespace Prisma {
     idEnvio: number | null
     idTipoContainer: number | null
     ordem: number | null
+    nContainer: number | null
     altura: number | null
   }
 
@@ -6262,6 +6264,7 @@ export namespace Prisma {
     idEnvio: number | null
     idTipoContainer: number | null
     ordem: number | null
+    nContainer: number | null
     altura: number | null
   }
 
@@ -6271,6 +6274,7 @@ export namespace Prisma {
     idEnvio: number | null
     idTipoContainer: number | null
     ordem: number | null
+    nContainer: number | null
     altura: number | null
   }
 
@@ -6280,6 +6284,7 @@ export namespace Prisma {
     idEnvio: number
     idTipoContainer: number
     ordem: number
+    nContainer: number
     altura: number
     _all: number
   }
@@ -6291,6 +6296,7 @@ export namespace Prisma {
     idEnvio?: true
     idTipoContainer?: true
     ordem?: true
+    nContainer?: true
     altura?: true
   }
 
@@ -6300,6 +6306,7 @@ export namespace Prisma {
     idEnvio?: true
     idTipoContainer?: true
     ordem?: true
+    nContainer?: true
     altura?: true
   }
 
@@ -6309,6 +6316,7 @@ export namespace Prisma {
     idEnvio?: true
     idTipoContainer?: true
     ordem?: true
+    nContainer?: true
     altura?: true
   }
 
@@ -6318,6 +6326,7 @@ export namespace Prisma {
     idEnvio?: true
     idTipoContainer?: true
     ordem?: true
+    nContainer?: true
     altura?: true
   }
 
@@ -6327,6 +6336,7 @@ export namespace Prisma {
     idEnvio?: true
     idTipoContainer?: true
     ordem?: true
+    nContainer?: true
     altura?: true
     _all?: true
   }
@@ -6423,6 +6433,7 @@ export namespace Prisma {
     idEnvio: number
     idTipoContainer: number
     ordem: number
+    nContainer: number
     altura: number
     _count: ContainerCountAggregateOutputType | null
     _avg: ContainerAvgAggregateOutputType | null
@@ -6451,6 +6462,7 @@ export namespace Prisma {
     idEnvio?: boolean
     idTipoContainer?: boolean
     ordem?: boolean
+    nContainer?: boolean
     altura?: boolean
     Container?: boolean | Container$ContainerArgs<ExtArgs>
     other_Container?: boolean | Container$other_ContainerArgs<ExtArgs>
@@ -6469,10 +6481,11 @@ export namespace Prisma {
     idEnvio?: boolean
     idTipoContainer?: boolean
     ordem?: boolean
+    nContainer?: boolean
     altura?: boolean
   }
 
-  export type ContainerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"idContainer" | "idContainerPai" | "idEnvio" | "idTipoContainer" | "ordem" | "altura", ExtArgs["result"]["container"]>
+  export type ContainerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"idContainer" | "idContainerPai" | "idEnvio" | "idTipoContainer" | "ordem" | "nContainer" | "altura", ExtArgs["result"]["container"]>
   export type ContainerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Container?: boolean | Container$ContainerArgs<ExtArgs>
     other_Container?: boolean | Container$other_ContainerArgs<ExtArgs>
@@ -6499,6 +6512,7 @@ export namespace Prisma {
       idEnvio: number
       idTipoContainer: number
       ordem: number
+      nContainer: number
       altura: number
     }, ExtArgs["result"]["container"]>
     composites: {}
@@ -6880,6 +6894,7 @@ export namespace Prisma {
     readonly idEnvio: FieldRef<"Container", 'Int'>
     readonly idTipoContainer: FieldRef<"Container", 'Int'>
     readonly ordem: FieldRef<"Container", 'Int'>
+    readonly nContainer: FieldRef<"Container", 'Int'>
     readonly altura: FieldRef<"Container", 'Float'>
   }
     
@@ -18228,6 +18243,7 @@ export namespace Prisma {
     idEnvio: 'idEnvio',
     idTipoContainer: 'idTipoContainer',
     ordem: 'ordem',
+    nContainer: 'nContainer',
     altura: 'altura'
   };
 
@@ -18628,6 +18644,7 @@ export namespace Prisma {
     idEnvio?: IntFilter<"Container"> | number
     idTipoContainer?: IntFilter<"Container"> | number
     ordem?: IntFilter<"Container"> | number
+    nContainer?: IntFilter<"Container"> | number
     altura?: FloatFilter<"Container"> | number
     Container?: XOR<ContainerNullableScalarRelationFilter, ContainerWhereInput> | null
     other_Container?: ContainerListRelationFilter
@@ -18643,6 +18660,7 @@ export namespace Prisma {
     idEnvio?: SortOrder
     idTipoContainer?: SortOrder
     ordem?: SortOrder
+    nContainer?: SortOrder
     altura?: SortOrder
     Container?: ContainerOrderByWithRelationInput
     other_Container?: ContainerOrderByRelationAggregateInput
@@ -18661,6 +18679,7 @@ export namespace Prisma {
     idEnvio?: IntFilter<"Container"> | number
     idTipoContainer?: IntFilter<"Container"> | number
     ordem?: IntFilter<"Container"> | number
+    nContainer?: IntFilter<"Container"> | number
     altura?: FloatFilter<"Container"> | number
     Container?: XOR<ContainerNullableScalarRelationFilter, ContainerWhereInput> | null
     other_Container?: ContainerListRelationFilter
@@ -18676,6 +18695,7 @@ export namespace Prisma {
     idEnvio?: SortOrder
     idTipoContainer?: SortOrder
     ordem?: SortOrder
+    nContainer?: SortOrder
     altura?: SortOrder
     _count?: ContainerCountOrderByAggregateInput
     _avg?: ContainerAvgOrderByAggregateInput
@@ -18693,6 +18713,7 @@ export namespace Prisma {
     idEnvio?: IntWithAggregatesFilter<"Container"> | number
     idTipoContainer?: IntWithAggregatesFilter<"Container"> | number
     ordem?: IntWithAggregatesFilter<"Container"> | number
+    nContainer?: IntWithAggregatesFilter<"Container"> | number
     altura?: FloatWithAggregatesFilter<"Container"> | number
   }
 
@@ -19532,6 +19553,7 @@ export namespace Prisma {
 
   export type ContainerCreateInput = {
     ordem: number
+    nContainer: number
     altura?: number
     Container?: ContainerCreateNestedOneWithoutOther_ContainerInput
     other_Container?: ContainerCreateNestedManyWithoutContainerInput
@@ -19547,6 +19569,7 @@ export namespace Prisma {
     idEnvio: number
     idTipoContainer: number
     ordem: number
+    nContainer: number
     altura?: number
     other_Container?: ContainerUncheckedCreateNestedManyWithoutContainerInput
     ContainerOp?: ContainerOpUncheckedCreateNestedManyWithoutContainerInput
@@ -19555,6 +19578,7 @@ export namespace Prisma {
 
   export type ContainerUpdateInput = {
     ordem?: IntFieldUpdateOperationsInput | number
+    nContainer?: IntFieldUpdateOperationsInput | number
     altura?: FloatFieldUpdateOperationsInput | number
     Container?: ContainerUpdateOneWithoutOther_ContainerNestedInput
     other_Container?: ContainerUpdateManyWithoutContainerNestedInput
@@ -19570,6 +19594,7 @@ export namespace Prisma {
     idEnvio?: IntFieldUpdateOperationsInput | number
     idTipoContainer?: IntFieldUpdateOperationsInput | number
     ordem?: IntFieldUpdateOperationsInput | number
+    nContainer?: IntFieldUpdateOperationsInput | number
     altura?: FloatFieldUpdateOperationsInput | number
     other_Container?: ContainerUncheckedUpdateManyWithoutContainerNestedInput
     ContainerOp?: ContainerOpUncheckedUpdateManyWithoutContainerNestedInput
@@ -19581,11 +19606,13 @@ export namespace Prisma {
     idEnvio: number
     idTipoContainer: number
     ordem: number
+    nContainer: number
     altura?: number
   }
 
   export type ContainerUpdateManyMutationInput = {
     ordem?: IntFieldUpdateOperationsInput | number
+    nContainer?: IntFieldUpdateOperationsInput | number
     altura?: FloatFieldUpdateOperationsInput | number
   }
 
@@ -19595,6 +19622,7 @@ export namespace Prisma {
     idEnvio?: IntFieldUpdateOperationsInput | number
     idTipoContainer?: IntFieldUpdateOperationsInput | number
     ordem?: IntFieldUpdateOperationsInput | number
+    nContainer?: IntFieldUpdateOperationsInput | number
     altura?: FloatFieldUpdateOperationsInput | number
   }
 
@@ -20511,6 +20539,7 @@ export namespace Prisma {
     idEnvio?: SortOrder
     idTipoContainer?: SortOrder
     ordem?: SortOrder
+    nContainer?: SortOrder
     altura?: SortOrder
   }
 
@@ -20520,6 +20549,7 @@ export namespace Prisma {
     idEnvio?: SortOrder
     idTipoContainer?: SortOrder
     ordem?: SortOrder
+    nContainer?: SortOrder
     altura?: SortOrder
   }
 
@@ -20529,6 +20559,7 @@ export namespace Prisma {
     idEnvio?: SortOrder
     idTipoContainer?: SortOrder
     ordem?: SortOrder
+    nContainer?: SortOrder
     altura?: SortOrder
   }
 
@@ -20538,6 +20569,7 @@ export namespace Prisma {
     idEnvio?: SortOrder
     idTipoContainer?: SortOrder
     ordem?: SortOrder
+    nContainer?: SortOrder
     altura?: SortOrder
   }
 
@@ -20547,6 +20579,7 @@ export namespace Prisma {
     idEnvio?: SortOrder
     idTipoContainer?: SortOrder
     ordem?: SortOrder
+    nContainer?: SortOrder
     altura?: SortOrder
   }
 
@@ -22582,6 +22615,7 @@ export namespace Prisma {
 
   export type ContainerCreateWithoutOther_ContainerInput = {
     ordem: number
+    nContainer: number
     altura?: number
     Container?: ContainerCreateNestedOneWithoutOther_ContainerInput
     Envio: EnvioCreateNestedOneWithoutContainerInput
@@ -22596,6 +22630,7 @@ export namespace Prisma {
     idEnvio: number
     idTipoContainer: number
     ordem: number
+    nContainer: number
     altura?: number
     ContainerOp?: ContainerOpUncheckedCreateNestedManyWithoutContainerInput
     Conteudo?: ConteudoUncheckedCreateNestedManyWithoutContainerInput
@@ -22608,6 +22643,7 @@ export namespace Prisma {
 
   export type ContainerCreateWithoutContainerInput = {
     ordem: number
+    nContainer: number
     altura?: number
     other_Container?: ContainerCreateNestedManyWithoutContainerInput
     Envio: EnvioCreateNestedOneWithoutContainerInput
@@ -22621,6 +22657,7 @@ export namespace Prisma {
     idEnvio: number
     idTipoContainer: number
     ordem: number
+    nContainer: number
     altura?: number
     other_Container?: ContainerUncheckedCreateNestedManyWithoutContainerInput
     ContainerOp?: ContainerOpUncheckedCreateNestedManyWithoutContainerInput
@@ -22739,6 +22776,7 @@ export namespace Prisma {
 
   export type ContainerUpdateWithoutOther_ContainerInput = {
     ordem?: IntFieldUpdateOperationsInput | number
+    nContainer?: IntFieldUpdateOperationsInput | number
     altura?: FloatFieldUpdateOperationsInput | number
     Container?: ContainerUpdateOneWithoutOther_ContainerNestedInput
     Envio?: EnvioUpdateOneRequiredWithoutContainerNestedInput
@@ -22753,6 +22791,7 @@ export namespace Prisma {
     idEnvio?: IntFieldUpdateOperationsInput | number
     idTipoContainer?: IntFieldUpdateOperationsInput | number
     ordem?: IntFieldUpdateOperationsInput | number
+    nContainer?: IntFieldUpdateOperationsInput | number
     altura?: FloatFieldUpdateOperationsInput | number
     ContainerOp?: ContainerOpUncheckedUpdateManyWithoutContainerNestedInput
     Conteudo?: ConteudoUncheckedUpdateManyWithoutContainerNestedInput
@@ -22783,6 +22822,7 @@ export namespace Prisma {
     idEnvio?: IntFilter<"Container"> | number
     idTipoContainer?: IntFilter<"Container"> | number
     ordem?: IntFilter<"Container"> | number
+    nContainer?: IntFilter<"Container"> | number
     altura?: FloatFilter<"Container"> | number
   }
 
@@ -22895,6 +22935,7 @@ export namespace Prisma {
 
   export type ContainerCreateWithoutConteudoInput = {
     ordem: number
+    nContainer: number
     altura?: number
     Container?: ContainerCreateNestedOneWithoutOther_ContainerInput
     other_Container?: ContainerCreateNestedManyWithoutContainerInput
@@ -22909,6 +22950,7 @@ export namespace Prisma {
     idEnvio: number
     idTipoContainer: number
     ordem: number
+    nContainer: number
     altura?: number
     other_Container?: ContainerUncheckedCreateNestedManyWithoutContainerInput
     ContainerOp?: ContainerOpUncheckedCreateNestedManyWithoutContainerInput
@@ -22983,6 +23025,7 @@ export namespace Prisma {
 
   export type ContainerUpdateWithoutConteudoInput = {
     ordem?: IntFieldUpdateOperationsInput | number
+    nContainer?: IntFieldUpdateOperationsInput | number
     altura?: FloatFieldUpdateOperationsInput | number
     Container?: ContainerUpdateOneWithoutOther_ContainerNestedInput
     other_Container?: ContainerUpdateManyWithoutContainerNestedInput
@@ -22997,6 +23040,7 @@ export namespace Prisma {
     idEnvio?: IntFieldUpdateOperationsInput | number
     idTipoContainer?: IntFieldUpdateOperationsInput | number
     ordem?: IntFieldUpdateOperationsInput | number
+    nContainer?: IntFieldUpdateOperationsInput | number
     altura?: FloatFieldUpdateOperationsInput | number
     other_Container?: ContainerUncheckedUpdateManyWithoutContainerNestedInput
     ContainerOp?: ContainerOpUncheckedUpdateManyWithoutContainerNestedInput
@@ -23073,6 +23117,7 @@ export namespace Prisma {
 
   export type ContainerCreateWithoutEnvioInput = {
     ordem: number
+    nContainer: number
     altura?: number
     Container?: ContainerCreateNestedOneWithoutOther_ContainerInput
     other_Container?: ContainerCreateNestedManyWithoutContainerInput
@@ -23086,6 +23131,7 @@ export namespace Prisma {
     idContainerPai?: number | null
     idTipoContainer: number
     ordem: number
+    nContainer: number
     altura?: number
     other_Container?: ContainerUncheckedCreateNestedManyWithoutContainerInput
     ContainerOp?: ContainerOpUncheckedCreateNestedManyWithoutContainerInput
@@ -23442,6 +23488,7 @@ export namespace Prisma {
 
   export type ContainerCreateWithoutTipoContainerInput = {
     ordem: number
+    nContainer: number
     altura?: number
     Container?: ContainerCreateNestedOneWithoutOther_ContainerInput
     other_Container?: ContainerCreateNestedManyWithoutContainerInput
@@ -23455,6 +23502,7 @@ export namespace Prisma {
     idContainerPai?: number | null
     idEnvio: number
     ordem: number
+    nContainer: number
     altura?: number
     other_Container?: ContainerUncheckedCreateNestedManyWithoutContainerInput
     ContainerOp?: ContainerOpUncheckedCreateNestedManyWithoutContainerInput
@@ -23628,6 +23676,7 @@ export namespace Prisma {
 
   export type ContainerCreateWithoutContainerOpInput = {
     ordem: number
+    nContainer: number
     altura?: number
     Container?: ContainerCreateNestedOneWithoutOther_ContainerInput
     other_Container?: ContainerCreateNestedManyWithoutContainerInput
@@ -23642,6 +23691,7 @@ export namespace Prisma {
     idEnvio: number
     idTipoContainer: number
     ordem: number
+    nContainer: number
     altura?: number
     other_Container?: ContainerUncheckedCreateNestedManyWithoutContainerInput
     Conteudo?: ConteudoUncheckedCreateNestedManyWithoutContainerInput
@@ -23737,6 +23787,7 @@ export namespace Prisma {
 
   export type ContainerUpdateWithoutContainerOpInput = {
     ordem?: IntFieldUpdateOperationsInput | number
+    nContainer?: IntFieldUpdateOperationsInput | number
     altura?: FloatFieldUpdateOperationsInput | number
     Container?: ContainerUpdateOneWithoutOther_ContainerNestedInput
     other_Container?: ContainerUpdateManyWithoutContainerNestedInput
@@ -23751,6 +23802,7 @@ export namespace Prisma {
     idEnvio?: IntFieldUpdateOperationsInput | number
     idTipoContainer?: IntFieldUpdateOperationsInput | number
     ordem?: IntFieldUpdateOperationsInput | number
+    nContainer?: IntFieldUpdateOperationsInput | number
     altura?: FloatFieldUpdateOperationsInput | number
     other_Container?: ContainerUncheckedUpdateManyWithoutContainerNestedInput
     Conteudo?: ConteudoUncheckedUpdateManyWithoutContainerNestedInput
@@ -24172,6 +24224,7 @@ export namespace Prisma {
     idEnvio: number
     idTipoContainer: number
     ordem: number
+    nContainer: number
     altura?: number
   }
 
@@ -24189,6 +24242,7 @@ export namespace Prisma {
 
   export type ContainerUpdateWithoutContainerInput = {
     ordem?: IntFieldUpdateOperationsInput | number
+    nContainer?: IntFieldUpdateOperationsInput | number
     altura?: FloatFieldUpdateOperationsInput | number
     other_Container?: ContainerUpdateManyWithoutContainerNestedInput
     Envio?: EnvioUpdateOneRequiredWithoutContainerNestedInput
@@ -24202,6 +24256,7 @@ export namespace Prisma {
     idEnvio?: IntFieldUpdateOperationsInput | number
     idTipoContainer?: IntFieldUpdateOperationsInput | number
     ordem?: IntFieldUpdateOperationsInput | number
+    nContainer?: IntFieldUpdateOperationsInput | number
     altura?: FloatFieldUpdateOperationsInput | number
     other_Container?: ContainerUncheckedUpdateManyWithoutContainerNestedInput
     ContainerOp?: ContainerOpUncheckedUpdateManyWithoutContainerNestedInput
@@ -24213,6 +24268,7 @@ export namespace Prisma {
     idEnvio?: IntFieldUpdateOperationsInput | number
     idTipoContainer?: IntFieldUpdateOperationsInput | number
     ordem?: IntFieldUpdateOperationsInput | number
+    nContainer?: IntFieldUpdateOperationsInput | number
     altura?: FloatFieldUpdateOperationsInput | number
   }
 
@@ -24263,11 +24319,13 @@ export namespace Prisma {
     idContainerPai?: number | null
     idTipoContainer: number
     ordem: number
+    nContainer: number
     altura?: number
   }
 
   export type ContainerUpdateWithoutEnvioInput = {
     ordem?: IntFieldUpdateOperationsInput | number
+    nContainer?: IntFieldUpdateOperationsInput | number
     altura?: FloatFieldUpdateOperationsInput | number
     Container?: ContainerUpdateOneWithoutOther_ContainerNestedInput
     other_Container?: ContainerUpdateManyWithoutContainerNestedInput
@@ -24281,6 +24339,7 @@ export namespace Prisma {
     idContainerPai?: NullableIntFieldUpdateOperationsInput | number | null
     idTipoContainer?: IntFieldUpdateOperationsInput | number
     ordem?: IntFieldUpdateOperationsInput | number
+    nContainer?: IntFieldUpdateOperationsInput | number
     altura?: FloatFieldUpdateOperationsInput | number
     other_Container?: ContainerUncheckedUpdateManyWithoutContainerNestedInput
     ContainerOp?: ContainerOpUncheckedUpdateManyWithoutContainerNestedInput
@@ -24292,6 +24351,7 @@ export namespace Prisma {
     idContainerPai?: NullableIntFieldUpdateOperationsInput | number | null
     idTipoContainer?: IntFieldUpdateOperationsInput | number
     ordem?: IntFieldUpdateOperationsInput | number
+    nContainer?: IntFieldUpdateOperationsInput | number
     altura?: FloatFieldUpdateOperationsInput | number
   }
 
@@ -24394,11 +24454,13 @@ export namespace Prisma {
     idContainerPai?: number | null
     idEnvio: number
     ordem: number
+    nContainer: number
     altura?: number
   }
 
   export type ContainerUpdateWithoutTipoContainerInput = {
     ordem?: IntFieldUpdateOperationsInput | number
+    nContainer?: IntFieldUpdateOperationsInput | number
     altura?: FloatFieldUpdateOperationsInput | number
     Container?: ContainerUpdateOneWithoutOther_ContainerNestedInput
     other_Container?: ContainerUpdateManyWithoutContainerNestedInput
@@ -24412,6 +24474,7 @@ export namespace Prisma {
     idContainerPai?: NullableIntFieldUpdateOperationsInput | number | null
     idEnvio?: IntFieldUpdateOperationsInput | number
     ordem?: IntFieldUpdateOperationsInput | number
+    nContainer?: IntFieldUpdateOperationsInput | number
     altura?: FloatFieldUpdateOperationsInput | number
     other_Container?: ContainerUncheckedUpdateManyWithoutContainerNestedInput
     ContainerOp?: ContainerOpUncheckedUpdateManyWithoutContainerNestedInput
@@ -24423,6 +24486,7 @@ export namespace Prisma {
     idContainerPai?: NullableIntFieldUpdateOperationsInput | number | null
     idEnvio?: IntFieldUpdateOperationsInput | number
     ordem?: IntFieldUpdateOperationsInput | number
+    nContainer?: IntFieldUpdateOperationsInput | number
     altura?: FloatFieldUpdateOperationsInput | number
   }
 

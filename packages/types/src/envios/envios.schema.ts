@@ -41,11 +41,14 @@ export const ContainerOpSchema = z.object({
   ContainerOpTam: z.array(ContainerOpTamSchema),
 });
 
+export const ContainerOpsSchemas = z.array(ContainerOpSchema).optional();
+
 export const baseContainerSchema = z.object({
   idContainer: z.number().int().nonnegative(),
   idContainerPai: z.number().int().nonnegative().nullable(),
   idTipoContainer: z.number().int().nonnegative(),
   ordem: z.number().int().nonnegative(),
+  nContainer: z.number().int().nonnegative(),
   altura: z.number().nonnegative(),
   TipoContainer: z
     .object({
@@ -55,7 +58,7 @@ export const baseContainerSchema = z.object({
       }),
     })
     .optional(),
-  ContainerOp: z.array(ContainerOpSchema).optional(),
+  ContainerOp: ContainerOpsSchemas,
   Conteudo: z.array(conteudo).optional(),
 });
 
@@ -104,3 +107,5 @@ export type ContainerSchemaDto = z.infer<typeof ContainerEnvio>;
 export type ConteudoDto = z.infer<typeof conteudo>;
 
 export type ListaDeContainersEnvioDto = z.infer<typeof ListaDeContainersEnvio>;
+
+export type ContainerOpsSchemasDto = z.infer<typeof ContainerOpsSchemas>;

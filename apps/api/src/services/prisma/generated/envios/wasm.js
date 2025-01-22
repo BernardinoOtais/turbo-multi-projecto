@@ -153,6 +153,7 @@ exports.Prisma.ContainerScalarFieldEnum = {
   idEnvio: 'idEnvio',
   idTipoContainer: 'idTipoContainer',
   ordem: 'ordem',
+  nContainer: 'nContainer',
   altura: 'altura'
 };
 

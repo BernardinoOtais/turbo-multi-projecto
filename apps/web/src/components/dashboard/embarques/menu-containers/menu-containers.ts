@@ -4,6 +4,7 @@ import {
   Tags,
   LayoutDashboard,
   PackageOpen,
+  TableOfContents,
 } from "lucide-react";
 type IconType = React.FC<React.SVGProps<SVGSVGElement>>;
 
@@ -112,15 +113,15 @@ export const ContainersExistentes: TodosOsContainers = {
             idTipoContainer: 5,
             subContainer: [],
           },
+          {
+            nome: "Volumes",
+            toolTip: "Volumes",
+            icon: TableOfContents,
+            nivel: 2,
+            idTipoContainer: 7,
+            subContainer: [],
+          },
         ],
-      },
-      {
-        nome: "Caixa",
-        toolTip: "Caixa",
-        icon: PackageOpen,
-        nivel: 1,
-        idTipoContainer: 5,
-        subContainer: [],
       },
     ],
   },
