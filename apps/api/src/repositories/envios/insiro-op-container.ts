@@ -30,19 +30,19 @@ export async function insiroOpContainer(
     });
 
     if (existingContainerOp) {
-      return ResponseHandler.BadRequest('OP already exists in the container');
+      return ResponseHandler.BadRequest('OP já existe..');
     }
 
     if (!existingOp) {
       const procedureResult: RespostaDto =
         await prisma.$queryRaw`exec inserirOp ${op}`;
-      console.log('procedureResult: ', procedureResult);
+      //console.log('procedureResult: ', procedureResult);
       const resposta = RespostaRecebidaSchema.parse(procedureResult);
       //console.log('procedureResult: ', resposta);
       if (resposta && resposta[0].status !== 'ok') {
-        console.log('procedureResult: ', 'n Ok');
+        //console.log('procedureResult: ', 'n Ok');
         return ResponseHandler.BadRequest(
-          'Failed to execute stored procedure inserirOp',
+          resposta[0].errorMessage ?? 'Errro ao inserir a Op...',
         );
       }
     }
