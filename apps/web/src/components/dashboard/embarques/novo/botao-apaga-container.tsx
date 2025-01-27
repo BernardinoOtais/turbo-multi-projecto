@@ -5,13 +5,15 @@ import { apagaContainer } from "@/lib/actions/dashboard/embarques/novo";
 import { cn } from "@/lib/utils";
 import { Loader2, Trash2 } from "lucide-react";
 import React from "react";
+import { toast } from "sonner";
 
 type BotaoApagaContainerProps = {
   idContainer: number;
   className?: string; // Optional `className` prop
   setScroll: (data: boolean) => void;
   apagaCardEstado: boolean;
-  setApgaCardEstado: (data: boolean) => void;
+  setApagaCardEstado: (data: boolean) => void;
+  nomeContainer: string;
 };
 
 const BotaoApagaContainer = ({
@@ -19,14 +21,24 @@ const BotaoApagaContainer = ({
   className,
   setScroll,
   apagaCardEstado,
-  setApgaCardEstado,
+  setApagaCardEstado,
+  nomeContainer,
 }: BotaoApagaContainerProps) => {
   const apagaContainerFun = () => {
-    setApgaCardEstado(true);
+    setApagaCardEstado(true);
     setScroll(false);
     apagaContainer(idContainer)
+      .then(resultado => {
+        if (!resultado.success)
+          toast.error(
+            `Erro ao apagar ${nomeContainer.trim()} id:${idContainer}`,
+            {
+              description: resultado.error,
+            },
+          );
+      })
       .catch(error => console.error(error))
-      .finally(() => setApgaCardEstado(false));
+      .finally(() => setApagaCardEstado(false));
   };
 
   return (

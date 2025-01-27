@@ -2,7 +2,7 @@ import type { PostContainerSchemaDto } from '@repo/types';
 
 import PrismaSingleton from '@services/prisma';
 
-export class AuthEnvios {
+export class AuxEnvios {
   static async numeroDeEnvios(fechado: boolean): Promise<number> {
     return PrismaSingleton.getEnviosPrisma().envio.count({
       where: { fechado },
@@ -77,5 +77,31 @@ export class AuthEnvios {
         nContainer,
       },
     });
+  }
+  static async getTodosContainersIdContainer(
+    idContainer: number,
+  ): Promise<number[]> {
+    // Fetch the container and its direct children
+    const container =
+      await PrismaSingleton.getEnviosPrisma().container.findUnique({
+        where: { idContainer },
+        include: {
+          other_Container: true, // Include direct children
+        },
+      });
+
+    if (!container) {
+      return []; // Return an empty array if the container doesn't exist
+    }
+
+    // Recursively fetch IDs for children
+    const childIds = await Promise.all(
+      container.other_Container.map(
+        async (child) => this.getTodosContainersIdContainer(child.idContainer), // Use `this` to call the static method
+      ),
+    );
+
+    // Flatten the child IDs and include the current container's ID
+    return [idContainer, ...childIds.flat()];
   }
 }

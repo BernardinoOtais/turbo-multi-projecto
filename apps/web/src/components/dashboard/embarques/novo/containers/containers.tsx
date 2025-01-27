@@ -20,8 +20,8 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 
-import { fetchPatch } from "@/lib/fetch/fetch-patch";
 import ContainerCard from "./container-card";
+import { reordenaContainer } from "@/lib/actions/dashboard/embarques/novo";
 
 const DndContextWithNoSSR = dynamic(
   () => import("@dnd-kit/core").then(mod => mod.DndContext),
@@ -39,7 +39,9 @@ const Containers = ({
   idEnvio,
   niveisValidados,
 }: ContainersProps) => {
-  const [apagaCardEstado, setApgaCardEstado] = useState(false);
+  //console.log("Containers", dadosDisponiveisParaInserir);
+  const [apagaCardEstado, setApagaCardEstado] = useState(false);
+  const [apagaOpEstado, setApagaOpEstado] = useState(false);
 
   const [items, setItems] = useState(containers ?? []);
 
@@ -136,38 +138,44 @@ const Containers = ({
         });
 
         updatedItemsFinal = newDadosComOrdemCorrecta;
+
         return updatedItemsFinal;
       });
 
-      //Post
-      try {
-        const dadosParaPost = updatedItemsFinal.map(item => ({
-          id: item.idContainer,
-          ordem: item.ordem,
-        }));
+      //O tais post Post
+      const dadosParaPost = updatedItemsFinal.map(item => ({
+        id: item.idContainer,
+        ordem: item.ordem,
+      }));
 
-        const response = await fetchPatch("envios/containerOrdem", {
-          idOrdem: dadosParaPost,
-        });
-
-        setItems(prevItems =>
-          prevItems.map(item => {
-            const updatedItem = response.data.find(
-              (resItem: { id: number }) => resItem.id === item.idContainer,
+      reordenaContainer(dadosParaPost)
+        .then(dados => {
+          //console.log(dados);
+          if (!dados.success) {
+            setItems(estadoInicial);
+          }
+          if (dados.success) {
+            const dadosRecebidos = dados.data.data;
+            setItems(prevItems =>
+              prevItems.map(item => {
+                const updatedItem = dadosRecebidos.find(
+                  (resItem: { id: number }) => resItem.id === item.idContainer,
+                );
+                return updatedItem
+                  ? {
+                      ...item,
+                      ordem: updatedItem.ordem,
+                      nContainer: updatedItem.nContainer,
+                    }
+                  : item;
+              }),
             );
-            return updatedItem
-              ? {
-                  ...item,
-                  ordem: updatedItem.ordem,
-                  nContainer: updatedItem.nContainer,
-                }
-              : item;
-          }),
-        );
-      } catch (error) {
-        setItems(estadoInicial);
-        console.error("Error updating order:", error);
-      }
+          }
+        })
+        .catch(error => {
+          console.error(error);
+          setItems(estadoInicial);
+        });
     }
   };
 
@@ -191,7 +199,9 @@ const Containers = ({
             referencia={index === items.length - 1 ? lastItemRef : null}
             setScroll={setScroll}
             apagaCardEstado={apagaCardEstado}
-            setApgaCardEstado={setApgaCardEstado}
+            setApagaCardEstado={setApagaCardEstado}
+            apagaOpEstado={apagaOpEstado}
+            setApagaOpEstado={setApagaOpEstado}
           />
         ))}
       </SortableContext>
@@ -200,3 +210,38 @@ const Containers = ({
 };
 
 export default Containers;
+
+/*
+
+      //Post
+      try {
+        const dadosParaPost = updatedItemsFinal.map(item => ({
+          id: item.idContainer,
+          ordem: item.ordem,
+        }));
+
+        const response = await fetchPatch("envios/containerOrdem", {
+          idOrdem: dadosParaPost,
+        });
+
+        console.log("response: ", response);
+
+        setItems(prevItems =>
+          prevItems.map(item => {
+            const updatedItem = response.data.find(
+              (resItem: { id: number }) => resItem.id === item.idContainer,
+            );
+            return updatedItem
+              ? {
+                  ...item,
+                  ordem: updatedItem.ordem,
+                  nContainer: updatedItem.nContainer,
+                }
+              : item;
+          }),
+        );
+      } catch (error) {
+        setItems(estadoInicial);
+        console.error("Error updating order:", error);
+      }
+*/

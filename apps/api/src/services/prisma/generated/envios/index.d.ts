@@ -79,11 +79,6 @@ export type Destinos = $Result.DefaultSelection<Prisma.$DestinosPayload>
  */
 export type ContainerOp = $Result.DefaultSelection<Prisma.$ContainerOpPayload>
 /**
- * Model ContainerOpTam
- * 
- */
-export type ContainerOpTam = $Result.DefaultSelection<Prisma.$ContainerOpTamPayload>
-/**
  * Model Op
  * 
  */
@@ -93,6 +88,11 @@ export type Op = $Result.DefaultSelection<Prisma.$OpPayload>
  * 
  */
 export type OpTamanho = $Result.DefaultSelection<Prisma.$OpTamanhoPayload>
+/**
+ * Model Unidades
+ * 
+ */
+export type Unidades = $Result.DefaultSelection<Prisma.$UnidadesPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -350,16 +350,6 @@ export class PrismaClient<
   get containerOp(): Prisma.ContainerOpDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.containerOpTam`: Exposes CRUD operations for the **ContainerOpTam** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more ContainerOpTams
-    * const containerOpTams = await prisma.containerOpTam.findMany()
-    * ```
-    */
-  get containerOpTam(): Prisma.ContainerOpTamDelegate<ExtArgs, ClientOptions>;
-
-  /**
    * `prisma.op`: Exposes CRUD operations for the **Op** model.
     * Example usage:
     * ```ts
@@ -378,6 +368,16 @@ export class PrismaClient<
     * ```
     */
   get opTamanho(): Prisma.OpTamanhoDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.unidades`: Exposes CRUD operations for the **Unidades** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Unidades
+    * const unidades = await prisma.unidades.findMany()
+    * ```
+    */
+  get unidades(): Prisma.UnidadesDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -831,9 +831,9 @@ export namespace Prisma {
     TipoContainer: 'TipoContainer',
     Destinos: 'Destinos',
     ContainerOp: 'ContainerOp',
-    ContainerOpTam: 'ContainerOpTam',
     Op: 'Op',
-    OpTamanho: 'OpTamanho'
+    OpTamanho: 'OpTamanho',
+    Unidades: 'Unidades'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -849,7 +849,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "papeis" | "sysdiagrams" | "user" | "userPapeis" | "container" | "conteudo" | "envio" | "idiomas" | "item" | "itemTraduzido" | "tipoContainer" | "destinos" | "containerOp" | "containerOpTam" | "op" | "opTamanho"
+      modelProps: "papeis" | "sysdiagrams" | "user" | "userPapeis" | "container" | "conteudo" | "envio" | "idiomas" | "item" | "itemTraduzido" | "tipoContainer" | "destinos" | "containerOp" | "op" | "opTamanho" | "unidades"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1711,72 +1711,6 @@ export namespace Prisma {
           }
         }
       }
-      ContainerOpTam: {
-        payload: Prisma.$ContainerOpTamPayload<ExtArgs>
-        fields: Prisma.ContainerOpTamFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.ContainerOpTamFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ContainerOpTamPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.ContainerOpTamFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ContainerOpTamPayload>
-          }
-          findFirst: {
-            args: Prisma.ContainerOpTamFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ContainerOpTamPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.ContainerOpTamFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ContainerOpTamPayload>
-          }
-          findMany: {
-            args: Prisma.ContainerOpTamFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ContainerOpTamPayload>[]
-          }
-          create: {
-            args: Prisma.ContainerOpTamCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ContainerOpTamPayload>
-          }
-          createMany: {
-            args: Prisma.ContainerOpTamCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.ContainerOpTamDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ContainerOpTamPayload>
-          }
-          update: {
-            args: Prisma.ContainerOpTamUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ContainerOpTamPayload>
-          }
-          deleteMany: {
-            args: Prisma.ContainerOpTamDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.ContainerOpTamUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.ContainerOpTamUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ContainerOpTamPayload>
-          }
-          aggregate: {
-            args: Prisma.ContainerOpTamAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateContainerOpTam>
-          }
-          groupBy: {
-            args: Prisma.ContainerOpTamGroupByArgs<ExtArgs>
-            result: $Utils.Optional<ContainerOpTamGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.ContainerOpTamCountArgs<ExtArgs>
-            result: $Utils.Optional<ContainerOpTamCountAggregateOutputType> | number
-          }
-        }
-      }
       Op: {
         payload: Prisma.$OpPayload<ExtArgs>
         fields: Prisma.OpFieldRefs
@@ -1909,6 +1843,72 @@ export namespace Prisma {
           }
         }
       }
+      Unidades: {
+        payload: Prisma.$UnidadesPayload<ExtArgs>
+        fields: Prisma.UnidadesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UnidadesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UnidadesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UnidadesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UnidadesPayload>
+          }
+          findFirst: {
+            args: Prisma.UnidadesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UnidadesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UnidadesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UnidadesPayload>
+          }
+          findMany: {
+            args: Prisma.UnidadesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UnidadesPayload>[]
+          }
+          create: {
+            args: Prisma.UnidadesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UnidadesPayload>
+          }
+          createMany: {
+            args: Prisma.UnidadesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.UnidadesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UnidadesPayload>
+          }
+          update: {
+            args: Prisma.UnidadesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UnidadesPayload>
+          }
+          deleteMany: {
+            args: Prisma.UnidadesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UnidadesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.UnidadesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UnidadesPayload>
+          }
+          aggregate: {
+            args: Prisma.UnidadesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUnidades>
+          }
+          groupBy: {
+            args: Prisma.UnidadesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UnidadesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UnidadesCountArgs<ExtArgs>
+            result: $Utils.Optional<UnidadesCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2006,9 +2006,9 @@ export namespace Prisma {
     tipoContainer?: TipoContainerOmit
     destinos?: DestinosOmit
     containerOp?: ContainerOpOmit
-    containerOpTam?: ContainerOpTamOmit
     op?: OpOmit
     opTamanho?: OpTamanhoOmit
+    unidades?: UnidadesOmit
   }
 
   /* Types for Logging */
@@ -2387,12 +2387,10 @@ export namespace Prisma {
    */
 
   export type ContainerOpCountOutputType = {
-    ContainerOpTam: number
     Conteudo: number
   }
 
   export type ContainerOpCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    ContainerOpTam?: boolean | ContainerOpCountOutputTypeCountContainerOpTamArgs
     Conteudo?: boolean | ContainerOpCountOutputTypeCountConteudoArgs
   }
 
@@ -2410,45 +2408,7 @@ export namespace Prisma {
   /**
    * ContainerOpCountOutputType without action
    */
-  export type ContainerOpCountOutputTypeCountContainerOpTamArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ContainerOpTamWhereInput
-  }
-
-  /**
-   * ContainerOpCountOutputType without action
-   */
   export type ContainerOpCountOutputTypeCountConteudoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ConteudoWhereInput
-  }
-
-
-  /**
-   * Count Type ContainerOpTamCountOutputType
-   */
-
-  export type ContainerOpTamCountOutputType = {
-    Conteudo: number
-  }
-
-  export type ContainerOpTamCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Conteudo?: boolean | ContainerOpTamCountOutputTypeCountConteudoArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * ContainerOpTamCountOutputType without action
-   */
-  export type ContainerOpTamCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ContainerOpTamCountOutputType
-     */
-    select?: ContainerOpTamCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * ContainerOpTamCountOutputType without action
-   */
-  export type ContainerOpTamCountOutputTypeCountConteudoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ConteudoWhereInput
   }
 
@@ -2459,11 +2419,13 @@ export namespace Prisma {
 
   export type OpCountOutputType = {
     ContainerOp: number
+    Conteudo: number
     OpTamanho: number
   }
 
   export type OpCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ContainerOp?: boolean | OpCountOutputTypeCountContainerOpArgs
+    Conteudo?: boolean | OpCountOutputTypeCountConteudoArgs
     OpTamanho?: boolean | OpCountOutputTypeCountOpTamanhoArgs
   }
 
@@ -2488,6 +2450,13 @@ export namespace Prisma {
   /**
    * OpCountOutputType without action
    */
+  export type OpCountOutputTypeCountConteudoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ConteudoWhereInput
+  }
+
+  /**
+   * OpCountOutputType without action
+   */
   export type OpCountOutputTypeCountOpTamanhoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: OpTamanhoWhereInput
   }
@@ -2498,11 +2467,11 @@ export namespace Prisma {
    */
 
   export type OpTamanhoCountOutputType = {
-    ContainerOpTam: number
+    Conteudo: number
   }
 
   export type OpTamanhoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    ContainerOpTam?: boolean | OpTamanhoCountOutputTypeCountContainerOpTamArgs
+    Conteudo?: boolean | OpTamanhoCountOutputTypeCountConteudoArgs
   }
 
   // Custom InputTypes
@@ -2519,8 +2488,39 @@ export namespace Prisma {
   /**
    * OpTamanhoCountOutputType without action
    */
-  export type OpTamanhoCountOutputTypeCountContainerOpTamArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ContainerOpTamWhereInput
+  export type OpTamanhoCountOutputTypeCountConteudoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ConteudoWhereInput
+  }
+
+
+  /**
+   * Count Type UnidadesCountOutputType
+   */
+
+  export type UnidadesCountOutputType = {
+    Conteudo: number
+  }
+
+  export type UnidadesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Conteudo?: boolean | UnidadesCountOutputTypeCountConteudoArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UnidadesCountOutputType without action
+   */
+  export type UnidadesCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UnidadesCountOutputType
+     */
+    select?: UnidadesCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UnidadesCountOutputType without action
+   */
+  export type UnidadesCountOutputTypeCountConteudoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ConteudoWhereInput
   }
 
 
@@ -7357,6 +7357,7 @@ export namespace Prisma {
     idItem: number | null
     op: number | null
     qtt: number | null
+    idUnidades: number | null
     peso: number | null
   }
 
@@ -7366,6 +7367,7 @@ export namespace Prisma {
     idItem: number | null
     op: number | null
     qtt: number | null
+    idUnidades: number | null
     peso: number | null
   }
 
@@ -7376,6 +7378,7 @@ export namespace Prisma {
     op: number | null
     tam: string | null
     qtt: number | null
+    idUnidades: number | null
     peso: number | null
   }
 
@@ -7386,6 +7389,7 @@ export namespace Prisma {
     op: number | null
     tam: string | null
     qtt: number | null
+    idUnidades: number | null
     peso: number | null
   }
 
@@ -7396,6 +7400,7 @@ export namespace Prisma {
     op: number
     tam: number
     qtt: number
+    idUnidades: number
     peso: number
     _all: number
   }
@@ -7407,6 +7412,7 @@ export namespace Prisma {
     idItem?: true
     op?: true
     qtt?: true
+    idUnidades?: true
     peso?: true
   }
 
@@ -7416,6 +7422,7 @@ export namespace Prisma {
     idItem?: true
     op?: true
     qtt?: true
+    idUnidades?: true
     peso?: true
   }
 
@@ -7426,6 +7433,7 @@ export namespace Prisma {
     op?: true
     tam?: true
     qtt?: true
+    idUnidades?: true
     peso?: true
   }
 
@@ -7436,6 +7444,7 @@ export namespace Prisma {
     op?: true
     tam?: true
     qtt?: true
+    idUnidades?: true
     peso?: true
   }
 
@@ -7446,6 +7455,7 @@ export namespace Prisma {
     op?: true
     tam?: true
     qtt?: true
+    idUnidades?: true
     peso?: true
     _all?: true
   }
@@ -7543,6 +7553,7 @@ export namespace Prisma {
     op: number
     tam: string
     qtt: number
+    idUnidades: number
     peso: number
     _count: ConteudoCountAggregateOutputType | null
     _avg: ConteudoAvgAggregateOutputType | null
@@ -7572,11 +7583,14 @@ export namespace Prisma {
     op?: boolean
     tam?: boolean
     qtt?: boolean
+    idUnidades?: boolean
     peso?: boolean
     Container?: boolean | ContainerDefaultArgs<ExtArgs>
     ContainerOp?: boolean | ContainerOpDefaultArgs<ExtArgs>
-    ContainerOpTam?: boolean | ContainerOpTamDefaultArgs<ExtArgs>
     Item?: boolean | ItemDefaultArgs<ExtArgs>
+    Op?: boolean | OpDefaultArgs<ExtArgs>
+    OpTamanho?: boolean | OpTamanhoDefaultArgs<ExtArgs>
+    Unidades?: boolean | UnidadesDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["conteudo"]>
 
 
@@ -7588,15 +7602,18 @@ export namespace Prisma {
     op?: boolean
     tam?: boolean
     qtt?: boolean
+    idUnidades?: boolean
     peso?: boolean
   }
 
-  export type ConteudoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"idConteudo" | "idContainer" | "idItem" | "op" | "tam" | "qtt" | "peso", ExtArgs["result"]["conteudo"]>
+  export type ConteudoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"idConteudo" | "idContainer" | "idItem" | "op" | "tam" | "qtt" | "idUnidades" | "peso", ExtArgs["result"]["conteudo"]>
   export type ConteudoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Container?: boolean | ContainerDefaultArgs<ExtArgs>
     ContainerOp?: boolean | ContainerOpDefaultArgs<ExtArgs>
-    ContainerOpTam?: boolean | ContainerOpTamDefaultArgs<ExtArgs>
     Item?: boolean | ItemDefaultArgs<ExtArgs>
+    Op?: boolean | OpDefaultArgs<ExtArgs>
+    OpTamanho?: boolean | OpTamanhoDefaultArgs<ExtArgs>
+    Unidades?: boolean | UnidadesDefaultArgs<ExtArgs>
   }
 
   export type $ConteudoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7604,8 +7621,10 @@ export namespace Prisma {
     objects: {
       Container: Prisma.$ContainerPayload<ExtArgs>
       ContainerOp: Prisma.$ContainerOpPayload<ExtArgs>
-      ContainerOpTam: Prisma.$ContainerOpTamPayload<ExtArgs>
       Item: Prisma.$ItemPayload<ExtArgs>
+      Op: Prisma.$OpPayload<ExtArgs>
+      OpTamanho: Prisma.$OpTamanhoPayload<ExtArgs>
+      Unidades: Prisma.$UnidadesPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       idConteudo: number
@@ -7614,6 +7633,7 @@ export namespace Prisma {
       op: number
       tam: string
       qtt: number
+      idUnidades: number
       peso: number
     }, ExtArgs["result"]["conteudo"]>
     composites: {}
@@ -7957,8 +7977,10 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     Container<T extends ContainerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ContainerDefaultArgs<ExtArgs>>): Prisma__ContainerClient<$Result.GetResult<Prisma.$ContainerPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
     ContainerOp<T extends ContainerOpDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ContainerOpDefaultArgs<ExtArgs>>): Prisma__ContainerOpClient<$Result.GetResult<Prisma.$ContainerOpPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
-    ContainerOpTam<T extends ContainerOpTamDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ContainerOpTamDefaultArgs<ExtArgs>>): Prisma__ContainerOpTamClient<$Result.GetResult<Prisma.$ContainerOpTamPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
     Item<T extends ItemDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ItemDefaultArgs<ExtArgs>>): Prisma__ItemClient<$Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
+    Op<T extends OpDefaultArgs<ExtArgs> = {}>(args?: Subset<T, OpDefaultArgs<ExtArgs>>): Prisma__OpClient<$Result.GetResult<Prisma.$OpPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
+    OpTamanho<T extends OpTamanhoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, OpTamanhoDefaultArgs<ExtArgs>>): Prisma__OpTamanhoClient<$Result.GetResult<Prisma.$OpTamanhoPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
+    Unidades<T extends UnidadesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UnidadesDefaultArgs<ExtArgs>>): Prisma__UnidadesClient<$Result.GetResult<Prisma.$UnidadesPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7994,6 +8016,7 @@ export namespace Prisma {
     readonly op: FieldRef<"Conteudo", 'Int'>
     readonly tam: FieldRef<"Conteudo", 'String'>
     readonly qtt: FieldRef<"Conteudo", 'Float'>
+    readonly idUnidades: FieldRef<"Conteudo", 'Int'>
     readonly peso: FieldRef<"Conteudo", 'Float'>
   }
     
@@ -10520,6 +10543,7 @@ export namespace Prisma {
     Conteudo?: boolean | Item$ConteudoArgs<ExtArgs>
     ItemTraduzido?: boolean | Item$ItemTraduzidoArgs<ExtArgs>
     TipoContainer?: boolean | Item$TipoContainerArgs<ExtArgs>
+    Unidades?: boolean | Item$UnidadesArgs<ExtArgs>
     _count?: boolean | ItemCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["item"]>
 
@@ -10535,6 +10559,7 @@ export namespace Prisma {
     Conteudo?: boolean | Item$ConteudoArgs<ExtArgs>
     ItemTraduzido?: boolean | Item$ItemTraduzidoArgs<ExtArgs>
     TipoContainer?: boolean | Item$TipoContainerArgs<ExtArgs>
+    Unidades?: boolean | Item$UnidadesArgs<ExtArgs>
     _count?: boolean | ItemCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -10544,6 +10569,7 @@ export namespace Prisma {
       Conteudo: Prisma.$ConteudoPayload<ExtArgs>[]
       ItemTraduzido: Prisma.$ItemTraduzidoPayload<ExtArgs>[]
       TipoContainer: Prisma.$TipoContainerPayload<ExtArgs> | null
+      Unidades: Prisma.$UnidadesPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       idItem: number
@@ -10891,6 +10917,7 @@ export namespace Prisma {
     Conteudo<T extends Item$ConteudoArgs<ExtArgs> = {}>(args?: Subset<T, Item$ConteudoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConteudoPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
     ItemTraduzido<T extends Item$ItemTraduzidoArgs<ExtArgs> = {}>(args?: Subset<T, Item$ItemTraduzidoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItemTraduzidoPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
     TipoContainer<T extends Item$TipoContainerArgs<ExtArgs> = {}>(args?: Subset<T, Item$TipoContainerArgs<ExtArgs>>): Prisma__TipoContainerClient<$Result.GetResult<Prisma.$TipoContainerPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
+    Unidades<T extends Item$UnidadesArgs<ExtArgs> = {}>(args?: Subset<T, Item$UnidadesArgs<ExtArgs>>): Prisma__UnidadesClient<$Result.GetResult<Prisma.$UnidadesPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -11320,6 +11347,25 @@ export namespace Prisma {
      */
     include?: TipoContainerInclude<ExtArgs> | null
     where?: TipoContainerWhereInput
+  }
+
+  /**
+   * Item.Unidades
+   */
+  export type Item$UnidadesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Unidades
+     */
+    select?: UnidadesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Unidades
+     */
+    omit?: UnidadesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UnidadesInclude<ExtArgs> | null
+    where?: UnidadesWhereInput
   }
 
   /**
@@ -14393,7 +14439,6 @@ export namespace Prisma {
     op?: boolean
     Container?: boolean | ContainerDefaultArgs<ExtArgs>
     Op?: boolean | OpDefaultArgs<ExtArgs>
-    ContainerOpTam?: boolean | ContainerOp$ContainerOpTamArgs<ExtArgs>
     Conteudo?: boolean | ContainerOp$ConteudoArgs<ExtArgs>
     _count?: boolean | ContainerOpCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["containerOp"]>
@@ -14409,7 +14454,6 @@ export namespace Prisma {
   export type ContainerOpInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Container?: boolean | ContainerDefaultArgs<ExtArgs>
     Op?: boolean | OpDefaultArgs<ExtArgs>
-    ContainerOpTam?: boolean | ContainerOp$ContainerOpTamArgs<ExtArgs>
     Conteudo?: boolean | ContainerOp$ConteudoArgs<ExtArgs>
     _count?: boolean | ContainerOpCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -14419,7 +14463,6 @@ export namespace Prisma {
     objects: {
       Container: Prisma.$ContainerPayload<ExtArgs>
       Op: Prisma.$OpPayload<ExtArgs>
-      ContainerOpTam: Prisma.$ContainerOpTamPayload<ExtArgs>[]
       Conteudo: Prisma.$ConteudoPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -14767,7 +14810,6 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     Container<T extends ContainerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ContainerDefaultArgs<ExtArgs>>): Prisma__ContainerClient<$Result.GetResult<Prisma.$ContainerPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
     Op<T extends OpDefaultArgs<ExtArgs> = {}>(args?: Subset<T, OpDefaultArgs<ExtArgs>>): Prisma__OpClient<$Result.GetResult<Prisma.$OpPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
-    ContainerOpTam<T extends ContainerOp$ContainerOpTamArgs<ExtArgs> = {}>(args?: Subset<T, ContainerOp$ContainerOpTamArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContainerOpTamPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
     Conteudo<T extends ContainerOp$ConteudoArgs<ExtArgs> = {}>(args?: Subset<T, ContainerOp$ConteudoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConteudoPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -15134,30 +15176,6 @@ export namespace Prisma {
   }
 
   /**
-   * ContainerOp.ContainerOpTam
-   */
-  export type ContainerOp$ContainerOpTamArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ContainerOpTam
-     */
-    select?: ContainerOpTamSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ContainerOpTam
-     */
-    omit?: ContainerOpTamOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ContainerOpTamInclude<ExtArgs> | null
-    where?: ContainerOpTamWhereInput
-    orderBy?: ContainerOpTamOrderByWithRelationInput | ContainerOpTamOrderByWithRelationInput[]
-    cursor?: ContainerOpTamWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ContainerOpTamScalarFieldEnum | ContainerOpTamScalarFieldEnum[]
-  }
-
-  /**
    * ContainerOp.Conteudo
    */
   export type ContainerOp$ConteudoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -15197,976 +15215,6 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ContainerOpInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model ContainerOpTam
-   */
-
-  export type AggregateContainerOpTam = {
-    _count: ContainerOpTamCountAggregateOutputType | null
-    _avg: ContainerOpTamAvgAggregateOutputType | null
-    _sum: ContainerOpTamSumAggregateOutputType | null
-    _min: ContainerOpTamMinAggregateOutputType | null
-    _max: ContainerOpTamMaxAggregateOutputType | null
-  }
-
-  export type ContainerOpTamAvgAggregateOutputType = {
-    idContainer: number | null
-    op: number | null
-  }
-
-  export type ContainerOpTamSumAggregateOutputType = {
-    idContainer: number | null
-    op: number | null
-  }
-
-  export type ContainerOpTamMinAggregateOutputType = {
-    idContainer: number | null
-    op: number | null
-    tam: string | null
-  }
-
-  export type ContainerOpTamMaxAggregateOutputType = {
-    idContainer: number | null
-    op: number | null
-    tam: string | null
-  }
-
-  export type ContainerOpTamCountAggregateOutputType = {
-    idContainer: number
-    op: number
-    tam: number
-    _all: number
-  }
-
-
-  export type ContainerOpTamAvgAggregateInputType = {
-    idContainer?: true
-    op?: true
-  }
-
-  export type ContainerOpTamSumAggregateInputType = {
-    idContainer?: true
-    op?: true
-  }
-
-  export type ContainerOpTamMinAggregateInputType = {
-    idContainer?: true
-    op?: true
-    tam?: true
-  }
-
-  export type ContainerOpTamMaxAggregateInputType = {
-    idContainer?: true
-    op?: true
-    tam?: true
-  }
-
-  export type ContainerOpTamCountAggregateInputType = {
-    idContainer?: true
-    op?: true
-    tam?: true
-    _all?: true
-  }
-
-  export type ContainerOpTamAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ContainerOpTam to aggregate.
-     */
-    where?: ContainerOpTamWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ContainerOpTams to fetch.
-     */
-    orderBy?: ContainerOpTamOrderByWithRelationInput | ContainerOpTamOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: ContainerOpTamWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ContainerOpTams from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ContainerOpTams.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned ContainerOpTams
-    **/
-    _count?: true | ContainerOpTamCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: ContainerOpTamAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: ContainerOpTamSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: ContainerOpTamMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: ContainerOpTamMaxAggregateInputType
-  }
-
-  export type GetContainerOpTamAggregateType<T extends ContainerOpTamAggregateArgs> = {
-        [P in keyof T & keyof AggregateContainerOpTam]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateContainerOpTam[P]>
-      : GetScalarType<T[P], AggregateContainerOpTam[P]>
-  }
-
-
-
-
-  export type ContainerOpTamGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ContainerOpTamWhereInput
-    orderBy?: ContainerOpTamOrderByWithAggregationInput | ContainerOpTamOrderByWithAggregationInput[]
-    by: ContainerOpTamScalarFieldEnum[] | ContainerOpTamScalarFieldEnum
-    having?: ContainerOpTamScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: ContainerOpTamCountAggregateInputType | true
-    _avg?: ContainerOpTamAvgAggregateInputType
-    _sum?: ContainerOpTamSumAggregateInputType
-    _min?: ContainerOpTamMinAggregateInputType
-    _max?: ContainerOpTamMaxAggregateInputType
-  }
-
-  export type ContainerOpTamGroupByOutputType = {
-    idContainer: number
-    op: number
-    tam: string
-    _count: ContainerOpTamCountAggregateOutputType | null
-    _avg: ContainerOpTamAvgAggregateOutputType | null
-    _sum: ContainerOpTamSumAggregateOutputType | null
-    _min: ContainerOpTamMinAggregateOutputType | null
-    _max: ContainerOpTamMaxAggregateOutputType | null
-  }
-
-  type GetContainerOpTamGroupByPayload<T extends ContainerOpTamGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<ContainerOpTamGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof ContainerOpTamGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], ContainerOpTamGroupByOutputType[P]>
-            : GetScalarType<T[P], ContainerOpTamGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type ContainerOpTamSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    idContainer?: boolean
-    op?: boolean
-    tam?: boolean
-    ContainerOp?: boolean | ContainerOpDefaultArgs<ExtArgs>
-    OpTamanho?: boolean | OpTamanhoDefaultArgs<ExtArgs>
-    Conteudo?: boolean | ContainerOpTam$ConteudoArgs<ExtArgs>
-    _count?: boolean | ContainerOpTamCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["containerOpTam"]>
-
-
-
-  export type ContainerOpTamSelectScalar = {
-    idContainer?: boolean
-    op?: boolean
-    tam?: boolean
-  }
-
-  export type ContainerOpTamOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"idContainer" | "op" | "tam", ExtArgs["result"]["containerOpTam"]>
-  export type ContainerOpTamInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    ContainerOp?: boolean | ContainerOpDefaultArgs<ExtArgs>
-    OpTamanho?: boolean | OpTamanhoDefaultArgs<ExtArgs>
-    Conteudo?: boolean | ContainerOpTam$ConteudoArgs<ExtArgs>
-    _count?: boolean | ContainerOpTamCountOutputTypeDefaultArgs<ExtArgs>
-  }
-
-  export type $ContainerOpTamPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "ContainerOpTam"
-    objects: {
-      ContainerOp: Prisma.$ContainerOpPayload<ExtArgs>
-      OpTamanho: Prisma.$OpTamanhoPayload<ExtArgs>
-      Conteudo: Prisma.$ConteudoPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      idContainer: number
-      op: number
-      tam: string
-    }, ExtArgs["result"]["containerOpTam"]>
-    composites: {}
-  }
-
-  type ContainerOpTamGetPayload<S extends boolean | null | undefined | ContainerOpTamDefaultArgs> = $Result.GetResult<Prisma.$ContainerOpTamPayload, S>
-
-  type ContainerOpTamCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<ContainerOpTamFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: ContainerOpTamCountAggregateInputType | true
-    }
-
-  export interface ContainerOpTamDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ContainerOpTam'], meta: { name: 'ContainerOpTam' } }
-    /**
-     * Find zero or one ContainerOpTam that matches the filter.
-     * @param {ContainerOpTamFindUniqueArgs} args - Arguments to find a ContainerOpTam
-     * @example
-     * // Get one ContainerOpTam
-     * const containerOpTam = await prisma.containerOpTam.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends ContainerOpTamFindUniqueArgs>(args: SelectSubset<T, ContainerOpTamFindUniqueArgs<ExtArgs>>): Prisma__ContainerOpTamClient<$Result.GetResult<Prisma.$ContainerOpTamPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
-
-    /**
-     * Find one ContainerOpTam that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {ContainerOpTamFindUniqueOrThrowArgs} args - Arguments to find a ContainerOpTam
-     * @example
-     * // Get one ContainerOpTam
-     * const containerOpTam = await prisma.containerOpTam.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends ContainerOpTamFindUniqueOrThrowArgs>(args: SelectSubset<T, ContainerOpTamFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ContainerOpTamClient<$Result.GetResult<Prisma.$ContainerOpTamPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
-
-    /**
-     * Find the first ContainerOpTam that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ContainerOpTamFindFirstArgs} args - Arguments to find a ContainerOpTam
-     * @example
-     * // Get one ContainerOpTam
-     * const containerOpTam = await prisma.containerOpTam.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends ContainerOpTamFindFirstArgs>(args?: SelectSubset<T, ContainerOpTamFindFirstArgs<ExtArgs>>): Prisma__ContainerOpTamClient<$Result.GetResult<Prisma.$ContainerOpTamPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
-
-    /**
-     * Find the first ContainerOpTam that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ContainerOpTamFindFirstOrThrowArgs} args - Arguments to find a ContainerOpTam
-     * @example
-     * // Get one ContainerOpTam
-     * const containerOpTam = await prisma.containerOpTam.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends ContainerOpTamFindFirstOrThrowArgs>(args?: SelectSubset<T, ContainerOpTamFindFirstOrThrowArgs<ExtArgs>>): Prisma__ContainerOpTamClient<$Result.GetResult<Prisma.$ContainerOpTamPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
-
-    /**
-     * Find zero or more ContainerOpTams that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ContainerOpTamFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all ContainerOpTams
-     * const containerOpTams = await prisma.containerOpTam.findMany()
-     * 
-     * // Get first 10 ContainerOpTams
-     * const containerOpTams = await prisma.containerOpTam.findMany({ take: 10 })
-     * 
-     * // Only select the `idContainer`
-     * const containerOpTamWithIdContainerOnly = await prisma.containerOpTam.findMany({ select: { idContainer: true } })
-     * 
-     */
-    findMany<T extends ContainerOpTamFindManyArgs>(args?: SelectSubset<T, ContainerOpTamFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContainerOpTamPayload<ExtArgs>, T, "findMany", ClientOptions>>
-
-    /**
-     * Create a ContainerOpTam.
-     * @param {ContainerOpTamCreateArgs} args - Arguments to create a ContainerOpTam.
-     * @example
-     * // Create one ContainerOpTam
-     * const ContainerOpTam = await prisma.containerOpTam.create({
-     *   data: {
-     *     // ... data to create a ContainerOpTam
-     *   }
-     * })
-     * 
-     */
-    create<T extends ContainerOpTamCreateArgs>(args: SelectSubset<T, ContainerOpTamCreateArgs<ExtArgs>>): Prisma__ContainerOpTamClient<$Result.GetResult<Prisma.$ContainerOpTamPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
-
-    /**
-     * Create many ContainerOpTams.
-     * @param {ContainerOpTamCreateManyArgs} args - Arguments to create many ContainerOpTams.
-     * @example
-     * // Create many ContainerOpTams
-     * const containerOpTam = await prisma.containerOpTam.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends ContainerOpTamCreateManyArgs>(args?: SelectSubset<T, ContainerOpTamCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a ContainerOpTam.
-     * @param {ContainerOpTamDeleteArgs} args - Arguments to delete one ContainerOpTam.
-     * @example
-     * // Delete one ContainerOpTam
-     * const ContainerOpTam = await prisma.containerOpTam.delete({
-     *   where: {
-     *     // ... filter to delete one ContainerOpTam
-     *   }
-     * })
-     * 
-     */
-    delete<T extends ContainerOpTamDeleteArgs>(args: SelectSubset<T, ContainerOpTamDeleteArgs<ExtArgs>>): Prisma__ContainerOpTamClient<$Result.GetResult<Prisma.$ContainerOpTamPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
-
-    /**
-     * Update one ContainerOpTam.
-     * @param {ContainerOpTamUpdateArgs} args - Arguments to update one ContainerOpTam.
-     * @example
-     * // Update one ContainerOpTam
-     * const containerOpTam = await prisma.containerOpTam.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends ContainerOpTamUpdateArgs>(args: SelectSubset<T, ContainerOpTamUpdateArgs<ExtArgs>>): Prisma__ContainerOpTamClient<$Result.GetResult<Prisma.$ContainerOpTamPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
-
-    /**
-     * Delete zero or more ContainerOpTams.
-     * @param {ContainerOpTamDeleteManyArgs} args - Arguments to filter ContainerOpTams to delete.
-     * @example
-     * // Delete a few ContainerOpTams
-     * const { count } = await prisma.containerOpTam.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends ContainerOpTamDeleteManyArgs>(args?: SelectSubset<T, ContainerOpTamDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more ContainerOpTams.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ContainerOpTamUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many ContainerOpTams
-     * const containerOpTam = await prisma.containerOpTam.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends ContainerOpTamUpdateManyArgs>(args: SelectSubset<T, ContainerOpTamUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one ContainerOpTam.
-     * @param {ContainerOpTamUpsertArgs} args - Arguments to update or create a ContainerOpTam.
-     * @example
-     * // Update or create a ContainerOpTam
-     * const containerOpTam = await prisma.containerOpTam.upsert({
-     *   create: {
-     *     // ... data to create a ContainerOpTam
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the ContainerOpTam we want to update
-     *   }
-     * })
-     */
-    upsert<T extends ContainerOpTamUpsertArgs>(args: SelectSubset<T, ContainerOpTamUpsertArgs<ExtArgs>>): Prisma__ContainerOpTamClient<$Result.GetResult<Prisma.$ContainerOpTamPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
-
-
-    /**
-     * Count the number of ContainerOpTams.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ContainerOpTamCountArgs} args - Arguments to filter ContainerOpTams to count.
-     * @example
-     * // Count the number of ContainerOpTams
-     * const count = await prisma.containerOpTam.count({
-     *   where: {
-     *     // ... the filter for the ContainerOpTams we want to count
-     *   }
-     * })
-    **/
-    count<T extends ContainerOpTamCountArgs>(
-      args?: Subset<T, ContainerOpTamCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], ContainerOpTamCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a ContainerOpTam.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ContainerOpTamAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends ContainerOpTamAggregateArgs>(args: Subset<T, ContainerOpTamAggregateArgs>): Prisma.PrismaPromise<GetContainerOpTamAggregateType<T>>
-
-    /**
-     * Group by ContainerOpTam.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ContainerOpTamGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends ContainerOpTamGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ContainerOpTamGroupByArgs['orderBy'] }
-        : { orderBy?: ContainerOpTamGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, ContainerOpTamGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetContainerOpTamGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the ContainerOpTam model
-   */
-  readonly fields: ContainerOpTamFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for ContainerOpTam.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__ContainerOpTamClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    ContainerOp<T extends ContainerOpDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ContainerOpDefaultArgs<ExtArgs>>): Prisma__ContainerOpClient<$Result.GetResult<Prisma.$ContainerOpPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
-    OpTamanho<T extends OpTamanhoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, OpTamanhoDefaultArgs<ExtArgs>>): Prisma__OpTamanhoClient<$Result.GetResult<Prisma.$OpTamanhoPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
-    Conteudo<T extends ContainerOpTam$ConteudoArgs<ExtArgs> = {}>(args?: Subset<T, ContainerOpTam$ConteudoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConteudoPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the ContainerOpTam model
-   */ 
-  interface ContainerOpTamFieldRefs {
-    readonly idContainer: FieldRef<"ContainerOpTam", 'Int'>
-    readonly op: FieldRef<"ContainerOpTam", 'Int'>
-    readonly tam: FieldRef<"ContainerOpTam", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * ContainerOpTam findUnique
-   */
-  export type ContainerOpTamFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ContainerOpTam
-     */
-    select?: ContainerOpTamSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ContainerOpTam
-     */
-    omit?: ContainerOpTamOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ContainerOpTamInclude<ExtArgs> | null
-    /**
-     * Filter, which ContainerOpTam to fetch.
-     */
-    where: ContainerOpTamWhereUniqueInput
-  }
-
-  /**
-   * ContainerOpTam findUniqueOrThrow
-   */
-  export type ContainerOpTamFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ContainerOpTam
-     */
-    select?: ContainerOpTamSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ContainerOpTam
-     */
-    omit?: ContainerOpTamOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ContainerOpTamInclude<ExtArgs> | null
-    /**
-     * Filter, which ContainerOpTam to fetch.
-     */
-    where: ContainerOpTamWhereUniqueInput
-  }
-
-  /**
-   * ContainerOpTam findFirst
-   */
-  export type ContainerOpTamFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ContainerOpTam
-     */
-    select?: ContainerOpTamSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ContainerOpTam
-     */
-    omit?: ContainerOpTamOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ContainerOpTamInclude<ExtArgs> | null
-    /**
-     * Filter, which ContainerOpTam to fetch.
-     */
-    where?: ContainerOpTamWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ContainerOpTams to fetch.
-     */
-    orderBy?: ContainerOpTamOrderByWithRelationInput | ContainerOpTamOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ContainerOpTams.
-     */
-    cursor?: ContainerOpTamWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ContainerOpTams from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ContainerOpTams.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ContainerOpTams.
-     */
-    distinct?: ContainerOpTamScalarFieldEnum | ContainerOpTamScalarFieldEnum[]
-  }
-
-  /**
-   * ContainerOpTam findFirstOrThrow
-   */
-  export type ContainerOpTamFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ContainerOpTam
-     */
-    select?: ContainerOpTamSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ContainerOpTam
-     */
-    omit?: ContainerOpTamOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ContainerOpTamInclude<ExtArgs> | null
-    /**
-     * Filter, which ContainerOpTam to fetch.
-     */
-    where?: ContainerOpTamWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ContainerOpTams to fetch.
-     */
-    orderBy?: ContainerOpTamOrderByWithRelationInput | ContainerOpTamOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ContainerOpTams.
-     */
-    cursor?: ContainerOpTamWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ContainerOpTams from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ContainerOpTams.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ContainerOpTams.
-     */
-    distinct?: ContainerOpTamScalarFieldEnum | ContainerOpTamScalarFieldEnum[]
-  }
-
-  /**
-   * ContainerOpTam findMany
-   */
-  export type ContainerOpTamFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ContainerOpTam
-     */
-    select?: ContainerOpTamSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ContainerOpTam
-     */
-    omit?: ContainerOpTamOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ContainerOpTamInclude<ExtArgs> | null
-    /**
-     * Filter, which ContainerOpTams to fetch.
-     */
-    where?: ContainerOpTamWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ContainerOpTams to fetch.
-     */
-    orderBy?: ContainerOpTamOrderByWithRelationInput | ContainerOpTamOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing ContainerOpTams.
-     */
-    cursor?: ContainerOpTamWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ContainerOpTams from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ContainerOpTams.
-     */
-    skip?: number
-    distinct?: ContainerOpTamScalarFieldEnum | ContainerOpTamScalarFieldEnum[]
-  }
-
-  /**
-   * ContainerOpTam create
-   */
-  export type ContainerOpTamCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ContainerOpTam
-     */
-    select?: ContainerOpTamSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ContainerOpTam
-     */
-    omit?: ContainerOpTamOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ContainerOpTamInclude<ExtArgs> | null
-    /**
-     * The data needed to create a ContainerOpTam.
-     */
-    data: XOR<ContainerOpTamCreateInput, ContainerOpTamUncheckedCreateInput>
-  }
-
-  /**
-   * ContainerOpTam createMany
-   */
-  export type ContainerOpTamCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many ContainerOpTams.
-     */
-    data: ContainerOpTamCreateManyInput | ContainerOpTamCreateManyInput[]
-  }
-
-  /**
-   * ContainerOpTam update
-   */
-  export type ContainerOpTamUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ContainerOpTam
-     */
-    select?: ContainerOpTamSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ContainerOpTam
-     */
-    omit?: ContainerOpTamOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ContainerOpTamInclude<ExtArgs> | null
-    /**
-     * The data needed to update a ContainerOpTam.
-     */
-    data: XOR<ContainerOpTamUpdateInput, ContainerOpTamUncheckedUpdateInput>
-    /**
-     * Choose, which ContainerOpTam to update.
-     */
-    where: ContainerOpTamWhereUniqueInput
-  }
-
-  /**
-   * ContainerOpTam updateMany
-   */
-  export type ContainerOpTamUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update ContainerOpTams.
-     */
-    data: XOR<ContainerOpTamUpdateManyMutationInput, ContainerOpTamUncheckedUpdateManyInput>
-    /**
-     * Filter which ContainerOpTams to update
-     */
-    where?: ContainerOpTamWhereInput
-  }
-
-  /**
-   * ContainerOpTam upsert
-   */
-  export type ContainerOpTamUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ContainerOpTam
-     */
-    select?: ContainerOpTamSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ContainerOpTam
-     */
-    omit?: ContainerOpTamOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ContainerOpTamInclude<ExtArgs> | null
-    /**
-     * The filter to search for the ContainerOpTam to update in case it exists.
-     */
-    where: ContainerOpTamWhereUniqueInput
-    /**
-     * In case the ContainerOpTam found by the `where` argument doesn't exist, create a new ContainerOpTam with this data.
-     */
-    create: XOR<ContainerOpTamCreateInput, ContainerOpTamUncheckedCreateInput>
-    /**
-     * In case the ContainerOpTam was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<ContainerOpTamUpdateInput, ContainerOpTamUncheckedUpdateInput>
-  }
-
-  /**
-   * ContainerOpTam delete
-   */
-  export type ContainerOpTamDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ContainerOpTam
-     */
-    select?: ContainerOpTamSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ContainerOpTam
-     */
-    omit?: ContainerOpTamOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ContainerOpTamInclude<ExtArgs> | null
-    /**
-     * Filter which ContainerOpTam to delete.
-     */
-    where: ContainerOpTamWhereUniqueInput
-  }
-
-  /**
-   * ContainerOpTam deleteMany
-   */
-  export type ContainerOpTamDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ContainerOpTams to delete
-     */
-    where?: ContainerOpTamWhereInput
-  }
-
-  /**
-   * ContainerOpTam.Conteudo
-   */
-  export type ContainerOpTam$ConteudoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Conteudo
-     */
-    select?: ConteudoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Conteudo
-     */
-    omit?: ConteudoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ConteudoInclude<ExtArgs> | null
-    where?: ConteudoWhereInput
-    orderBy?: ConteudoOrderByWithRelationInput | ConteudoOrderByWithRelationInput[]
-    cursor?: ConteudoWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ConteudoScalarFieldEnum | ConteudoScalarFieldEnum[]
-  }
-
-  /**
-   * ContainerOpTam without action
-   */
-  export type ContainerOpTamDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ContainerOpTam
-     */
-    select?: ContainerOpTamSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ContainerOpTam
-     */
-    omit?: ContainerOpTamOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ContainerOpTamInclude<ExtArgs> | null
   }
 
 
@@ -16385,6 +15433,7 @@ export namespace Prisma {
     pedido?: boolean
     norma?: boolean
     ContainerOp?: boolean | Op$ContainerOpArgs<ExtArgs>
+    Conteudo?: boolean | Op$ConteudoArgs<ExtArgs>
     OpTamanho?: boolean | Op$OpTamanhoArgs<ExtArgs>
     _count?: boolean | OpCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["op"]>
@@ -16404,6 +15453,7 @@ export namespace Prisma {
   export type OpOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"op" | "ref" | "modeloDesc" | "modelo" | "cor" | "pedido" | "norma", ExtArgs["result"]["op"]>
   export type OpInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ContainerOp?: boolean | Op$ContainerOpArgs<ExtArgs>
+    Conteudo?: boolean | Op$ConteudoArgs<ExtArgs>
     OpTamanho?: boolean | Op$OpTamanhoArgs<ExtArgs>
     _count?: boolean | OpCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -16412,6 +15462,7 @@ export namespace Prisma {
     name: "Op"
     objects: {
       ContainerOp: Prisma.$ContainerOpPayload<ExtArgs>[]
+      Conteudo: Prisma.$ConteudoPayload<ExtArgs>[]
       OpTamanho: Prisma.$OpTamanhoPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -16763,6 +15814,7 @@ export namespace Prisma {
   export interface Prisma__OpClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     ContainerOp<T extends Op$ContainerOpArgs<ExtArgs> = {}>(args?: Subset<T, Op$ContainerOpArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContainerOpPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
+    Conteudo<T extends Op$ConteudoArgs<ExtArgs> = {}>(args?: Subset<T, Op$ConteudoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConteudoPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
     OpTamanho<T extends Op$OpTamanhoArgs<ExtArgs> = {}>(args?: Subset<T, Op$OpTamanhoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OpTamanhoPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -17158,6 +16210,30 @@ export namespace Prisma {
   }
 
   /**
+   * Op.Conteudo
+   */
+  export type Op$ConteudoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Conteudo
+     */
+    select?: ConteudoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Conteudo
+     */
+    omit?: ConteudoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConteudoInclude<ExtArgs> | null
+    where?: ConteudoWhereInput
+    orderBy?: ConteudoOrderByWithRelationInput | ConteudoOrderByWithRelationInput[]
+    cursor?: ConteudoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ConteudoScalarFieldEnum | ConteudoScalarFieldEnum[]
+  }
+
+  /**
    * Op.OpTamanho
    */
   export type Op$OpTamanhoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -17398,7 +16474,7 @@ export namespace Prisma {
     tam?: boolean
     ordem?: boolean
     qtt?: boolean
-    ContainerOpTam?: boolean | OpTamanho$ContainerOpTamArgs<ExtArgs>
+    Conteudo?: boolean | OpTamanho$ConteudoArgs<ExtArgs>
     Op?: boolean | OpDefaultArgs<ExtArgs>
     _count?: boolean | OpTamanhoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["opTamanho"]>
@@ -17414,7 +16490,7 @@ export namespace Prisma {
 
   export type OpTamanhoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"op" | "tam" | "ordem" | "qtt", ExtArgs["result"]["opTamanho"]>
   export type OpTamanhoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    ContainerOpTam?: boolean | OpTamanho$ContainerOpTamArgs<ExtArgs>
+    Conteudo?: boolean | OpTamanho$ConteudoArgs<ExtArgs>
     Op?: boolean | OpDefaultArgs<ExtArgs>
     _count?: boolean | OpTamanhoCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -17422,7 +16498,7 @@ export namespace Prisma {
   export type $OpTamanhoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "OpTamanho"
     objects: {
-      ContainerOpTam: Prisma.$ContainerOpTamPayload<ExtArgs>[]
+      Conteudo: Prisma.$ConteudoPayload<ExtArgs>[]
       Op: Prisma.$OpPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -17770,7 +16846,7 @@ export namespace Prisma {
    */
   export interface Prisma__OpTamanhoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    ContainerOpTam<T extends OpTamanho$ContainerOpTamArgs<ExtArgs> = {}>(args?: Subset<T, OpTamanho$ContainerOpTamArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContainerOpTamPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
+    Conteudo<T extends OpTamanho$ConteudoArgs<ExtArgs> = {}>(args?: Subset<T, OpTamanho$ConteudoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConteudoPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
     Op<T extends OpDefaultArgs<ExtArgs> = {}>(args?: Subset<T, OpDefaultArgs<ExtArgs>>): Prisma__OpClient<$Result.GetResult<Prisma.$OpPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -18139,27 +17215,27 @@ export namespace Prisma {
   }
 
   /**
-   * OpTamanho.ContainerOpTam
+   * OpTamanho.Conteudo
    */
-  export type OpTamanho$ContainerOpTamArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type OpTamanho$ConteudoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ContainerOpTam
+     * Select specific fields to fetch from the Conteudo
      */
-    select?: ContainerOpTamSelect<ExtArgs> | null
+    select?: ConteudoSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ContainerOpTam
+     * Omit specific fields from the Conteudo
      */
-    omit?: ContainerOpTamOmit<ExtArgs> | null
+    omit?: ConteudoOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ContainerOpTamInclude<ExtArgs> | null
-    where?: ContainerOpTamWhereInput
-    orderBy?: ContainerOpTamOrderByWithRelationInput | ContainerOpTamOrderByWithRelationInput[]
-    cursor?: ContainerOpTamWhereUniqueInput
+    include?: ConteudoInclude<ExtArgs> | null
+    where?: ConteudoWhereInput
+    orderBy?: ConteudoOrderByWithRelationInput | ConteudoOrderByWithRelationInput[]
+    cursor?: ConteudoWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: ContainerOpTamScalarFieldEnum | ContainerOpTamScalarFieldEnum[]
+    distinct?: ConteudoScalarFieldEnum | ConteudoScalarFieldEnum[]
   }
 
   /**
@@ -18178,6 +17254,972 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: OpTamanhoInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Unidades
+   */
+
+  export type AggregateUnidades = {
+    _count: UnidadesCountAggregateOutputType | null
+    _avg: UnidadesAvgAggregateOutputType | null
+    _sum: UnidadesSumAggregateOutputType | null
+    _min: UnidadesMinAggregateOutputType | null
+    _max: UnidadesMaxAggregateOutputType | null
+  }
+
+  export type UnidadesAvgAggregateOutputType = {
+    idUnidades: number | null
+    idItem: number | null
+  }
+
+  export type UnidadesSumAggregateOutputType = {
+    idUnidades: number | null
+    idItem: number | null
+  }
+
+  export type UnidadesMinAggregateOutputType = {
+    idUnidades: number | null
+    idItem: number | null
+    descricaoUnidade: string | null
+  }
+
+  export type UnidadesMaxAggregateOutputType = {
+    idUnidades: number | null
+    idItem: number | null
+    descricaoUnidade: string | null
+  }
+
+  export type UnidadesCountAggregateOutputType = {
+    idUnidades: number
+    idItem: number
+    descricaoUnidade: number
+    _all: number
+  }
+
+
+  export type UnidadesAvgAggregateInputType = {
+    idUnidades?: true
+    idItem?: true
+  }
+
+  export type UnidadesSumAggregateInputType = {
+    idUnidades?: true
+    idItem?: true
+  }
+
+  export type UnidadesMinAggregateInputType = {
+    idUnidades?: true
+    idItem?: true
+    descricaoUnidade?: true
+  }
+
+  export type UnidadesMaxAggregateInputType = {
+    idUnidades?: true
+    idItem?: true
+    descricaoUnidade?: true
+  }
+
+  export type UnidadesCountAggregateInputType = {
+    idUnidades?: true
+    idItem?: true
+    descricaoUnidade?: true
+    _all?: true
+  }
+
+  export type UnidadesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Unidades to aggregate.
+     */
+    where?: UnidadesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Unidades to fetch.
+     */
+    orderBy?: UnidadesOrderByWithRelationInput | UnidadesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UnidadesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Unidades from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Unidades.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Unidades
+    **/
+    _count?: true | UnidadesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: UnidadesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UnidadesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UnidadesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UnidadesMaxAggregateInputType
+  }
+
+  export type GetUnidadesAggregateType<T extends UnidadesAggregateArgs> = {
+        [P in keyof T & keyof AggregateUnidades]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUnidades[P]>
+      : GetScalarType<T[P], AggregateUnidades[P]>
+  }
+
+
+
+
+  export type UnidadesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UnidadesWhereInput
+    orderBy?: UnidadesOrderByWithAggregationInput | UnidadesOrderByWithAggregationInput[]
+    by: UnidadesScalarFieldEnum[] | UnidadesScalarFieldEnum
+    having?: UnidadesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UnidadesCountAggregateInputType | true
+    _avg?: UnidadesAvgAggregateInputType
+    _sum?: UnidadesSumAggregateInputType
+    _min?: UnidadesMinAggregateInputType
+    _max?: UnidadesMaxAggregateInputType
+  }
+
+  export type UnidadesGroupByOutputType = {
+    idUnidades: number
+    idItem: number
+    descricaoUnidade: string
+    _count: UnidadesCountAggregateOutputType | null
+    _avg: UnidadesAvgAggregateOutputType | null
+    _sum: UnidadesSumAggregateOutputType | null
+    _min: UnidadesMinAggregateOutputType | null
+    _max: UnidadesMaxAggregateOutputType | null
+  }
+
+  type GetUnidadesGroupByPayload<T extends UnidadesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UnidadesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UnidadesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UnidadesGroupByOutputType[P]>
+            : GetScalarType<T[P], UnidadesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UnidadesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    idUnidades?: boolean
+    idItem?: boolean
+    descricaoUnidade?: boolean
+    Conteudo?: boolean | Unidades$ConteudoArgs<ExtArgs>
+    Item?: boolean | ItemDefaultArgs<ExtArgs>
+    _count?: boolean | UnidadesCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["unidades"]>
+
+
+
+  export type UnidadesSelectScalar = {
+    idUnidades?: boolean
+    idItem?: boolean
+    descricaoUnidade?: boolean
+  }
+
+  export type UnidadesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"idUnidades" | "idItem" | "descricaoUnidade", ExtArgs["result"]["unidades"]>
+  export type UnidadesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Conteudo?: boolean | Unidades$ConteudoArgs<ExtArgs>
+    Item?: boolean | ItemDefaultArgs<ExtArgs>
+    _count?: boolean | UnidadesCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $UnidadesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Unidades"
+    objects: {
+      Conteudo: Prisma.$ConteudoPayload<ExtArgs>[]
+      Item: Prisma.$ItemPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      idUnidades: number
+      idItem: number
+      descricaoUnidade: string
+    }, ExtArgs["result"]["unidades"]>
+    composites: {}
+  }
+
+  type UnidadesGetPayload<S extends boolean | null | undefined | UnidadesDefaultArgs> = $Result.GetResult<Prisma.$UnidadesPayload, S>
+
+  type UnidadesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UnidadesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UnidadesCountAggregateInputType | true
+    }
+
+  export interface UnidadesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Unidades'], meta: { name: 'Unidades' } }
+    /**
+     * Find zero or one Unidades that matches the filter.
+     * @param {UnidadesFindUniqueArgs} args - Arguments to find a Unidades
+     * @example
+     * // Get one Unidades
+     * const unidades = await prisma.unidades.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UnidadesFindUniqueArgs>(args: SelectSubset<T, UnidadesFindUniqueArgs<ExtArgs>>): Prisma__UnidadesClient<$Result.GetResult<Prisma.$UnidadesPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find one Unidades that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UnidadesFindUniqueOrThrowArgs} args - Arguments to find a Unidades
+     * @example
+     * // Get one Unidades
+     * const unidades = await prisma.unidades.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UnidadesFindUniqueOrThrowArgs>(args: SelectSubset<T, UnidadesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UnidadesClient<$Result.GetResult<Prisma.$UnidadesPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Unidades that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UnidadesFindFirstArgs} args - Arguments to find a Unidades
+     * @example
+     * // Get one Unidades
+     * const unidades = await prisma.unidades.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UnidadesFindFirstArgs>(args?: SelectSubset<T, UnidadesFindFirstArgs<ExtArgs>>): Prisma__UnidadesClient<$Result.GetResult<Prisma.$UnidadesPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Unidades that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UnidadesFindFirstOrThrowArgs} args - Arguments to find a Unidades
+     * @example
+     * // Get one Unidades
+     * const unidades = await prisma.unidades.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UnidadesFindFirstOrThrowArgs>(args?: SelectSubset<T, UnidadesFindFirstOrThrowArgs<ExtArgs>>): Prisma__UnidadesClient<$Result.GetResult<Prisma.$UnidadesPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find zero or more Unidades that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UnidadesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Unidades
+     * const unidades = await prisma.unidades.findMany()
+     * 
+     * // Get first 10 Unidades
+     * const unidades = await prisma.unidades.findMany({ take: 10 })
+     * 
+     * // Only select the `idUnidades`
+     * const unidadesWithIdUnidadesOnly = await prisma.unidades.findMany({ select: { idUnidades: true } })
+     * 
+     */
+    findMany<T extends UnidadesFindManyArgs>(args?: SelectSubset<T, UnidadesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UnidadesPayload<ExtArgs>, T, "findMany", ClientOptions>>
+
+    /**
+     * Create a Unidades.
+     * @param {UnidadesCreateArgs} args - Arguments to create a Unidades.
+     * @example
+     * // Create one Unidades
+     * const Unidades = await prisma.unidades.create({
+     *   data: {
+     *     // ... data to create a Unidades
+     *   }
+     * })
+     * 
+     */
+    create<T extends UnidadesCreateArgs>(args: SelectSubset<T, UnidadesCreateArgs<ExtArgs>>): Prisma__UnidadesClient<$Result.GetResult<Prisma.$UnidadesPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Create many Unidades.
+     * @param {UnidadesCreateManyArgs} args - Arguments to create many Unidades.
+     * @example
+     * // Create many Unidades
+     * const unidades = await prisma.unidades.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UnidadesCreateManyArgs>(args?: SelectSubset<T, UnidadesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Unidades.
+     * @param {UnidadesDeleteArgs} args - Arguments to delete one Unidades.
+     * @example
+     * // Delete one Unidades
+     * const Unidades = await prisma.unidades.delete({
+     *   where: {
+     *     // ... filter to delete one Unidades
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UnidadesDeleteArgs>(args: SelectSubset<T, UnidadesDeleteArgs<ExtArgs>>): Prisma__UnidadesClient<$Result.GetResult<Prisma.$UnidadesPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Update one Unidades.
+     * @param {UnidadesUpdateArgs} args - Arguments to update one Unidades.
+     * @example
+     * // Update one Unidades
+     * const unidades = await prisma.unidades.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UnidadesUpdateArgs>(args: SelectSubset<T, UnidadesUpdateArgs<ExtArgs>>): Prisma__UnidadesClient<$Result.GetResult<Prisma.$UnidadesPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Delete zero or more Unidades.
+     * @param {UnidadesDeleteManyArgs} args - Arguments to filter Unidades to delete.
+     * @example
+     * // Delete a few Unidades
+     * const { count } = await prisma.unidades.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UnidadesDeleteManyArgs>(args?: SelectSubset<T, UnidadesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Unidades.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UnidadesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Unidades
+     * const unidades = await prisma.unidades.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UnidadesUpdateManyArgs>(args: SelectSubset<T, UnidadesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Unidades.
+     * @param {UnidadesUpsertArgs} args - Arguments to update or create a Unidades.
+     * @example
+     * // Update or create a Unidades
+     * const unidades = await prisma.unidades.upsert({
+     *   create: {
+     *     // ... data to create a Unidades
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Unidades we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UnidadesUpsertArgs>(args: SelectSubset<T, UnidadesUpsertArgs<ExtArgs>>): Prisma__UnidadesClient<$Result.GetResult<Prisma.$UnidadesPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
+
+
+    /**
+     * Count the number of Unidades.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UnidadesCountArgs} args - Arguments to filter Unidades to count.
+     * @example
+     * // Count the number of Unidades
+     * const count = await prisma.unidades.count({
+     *   where: {
+     *     // ... the filter for the Unidades we want to count
+     *   }
+     * })
+    **/
+    count<T extends UnidadesCountArgs>(
+      args?: Subset<T, UnidadesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UnidadesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Unidades.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UnidadesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UnidadesAggregateArgs>(args: Subset<T, UnidadesAggregateArgs>): Prisma.PrismaPromise<GetUnidadesAggregateType<T>>
+
+    /**
+     * Group by Unidades.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UnidadesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UnidadesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UnidadesGroupByArgs['orderBy'] }
+        : { orderBy?: UnidadesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UnidadesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUnidadesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Unidades model
+   */
+  readonly fields: UnidadesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Unidades.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UnidadesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    Conteudo<T extends Unidades$ConteudoArgs<ExtArgs> = {}>(args?: Subset<T, Unidades$ConteudoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConteudoPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
+    Item<T extends ItemDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ItemDefaultArgs<ExtArgs>>): Prisma__ItemClient<$Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Unidades model
+   */ 
+  interface UnidadesFieldRefs {
+    readonly idUnidades: FieldRef<"Unidades", 'Int'>
+    readonly idItem: FieldRef<"Unidades", 'Int'>
+    readonly descricaoUnidade: FieldRef<"Unidades", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Unidades findUnique
+   */
+  export type UnidadesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Unidades
+     */
+    select?: UnidadesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Unidades
+     */
+    omit?: UnidadesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UnidadesInclude<ExtArgs> | null
+    /**
+     * Filter, which Unidades to fetch.
+     */
+    where: UnidadesWhereUniqueInput
+  }
+
+  /**
+   * Unidades findUniqueOrThrow
+   */
+  export type UnidadesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Unidades
+     */
+    select?: UnidadesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Unidades
+     */
+    omit?: UnidadesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UnidadesInclude<ExtArgs> | null
+    /**
+     * Filter, which Unidades to fetch.
+     */
+    where: UnidadesWhereUniqueInput
+  }
+
+  /**
+   * Unidades findFirst
+   */
+  export type UnidadesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Unidades
+     */
+    select?: UnidadesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Unidades
+     */
+    omit?: UnidadesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UnidadesInclude<ExtArgs> | null
+    /**
+     * Filter, which Unidades to fetch.
+     */
+    where?: UnidadesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Unidades to fetch.
+     */
+    orderBy?: UnidadesOrderByWithRelationInput | UnidadesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Unidades.
+     */
+    cursor?: UnidadesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Unidades from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Unidades.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Unidades.
+     */
+    distinct?: UnidadesScalarFieldEnum | UnidadesScalarFieldEnum[]
+  }
+
+  /**
+   * Unidades findFirstOrThrow
+   */
+  export type UnidadesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Unidades
+     */
+    select?: UnidadesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Unidades
+     */
+    omit?: UnidadesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UnidadesInclude<ExtArgs> | null
+    /**
+     * Filter, which Unidades to fetch.
+     */
+    where?: UnidadesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Unidades to fetch.
+     */
+    orderBy?: UnidadesOrderByWithRelationInput | UnidadesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Unidades.
+     */
+    cursor?: UnidadesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Unidades from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Unidades.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Unidades.
+     */
+    distinct?: UnidadesScalarFieldEnum | UnidadesScalarFieldEnum[]
+  }
+
+  /**
+   * Unidades findMany
+   */
+  export type UnidadesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Unidades
+     */
+    select?: UnidadesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Unidades
+     */
+    omit?: UnidadesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UnidadesInclude<ExtArgs> | null
+    /**
+     * Filter, which Unidades to fetch.
+     */
+    where?: UnidadesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Unidades to fetch.
+     */
+    orderBy?: UnidadesOrderByWithRelationInput | UnidadesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Unidades.
+     */
+    cursor?: UnidadesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Unidades from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Unidades.
+     */
+    skip?: number
+    distinct?: UnidadesScalarFieldEnum | UnidadesScalarFieldEnum[]
+  }
+
+  /**
+   * Unidades create
+   */
+  export type UnidadesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Unidades
+     */
+    select?: UnidadesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Unidades
+     */
+    omit?: UnidadesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UnidadesInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Unidades.
+     */
+    data: XOR<UnidadesCreateInput, UnidadesUncheckedCreateInput>
+  }
+
+  /**
+   * Unidades createMany
+   */
+  export type UnidadesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Unidades.
+     */
+    data: UnidadesCreateManyInput | UnidadesCreateManyInput[]
+  }
+
+  /**
+   * Unidades update
+   */
+  export type UnidadesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Unidades
+     */
+    select?: UnidadesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Unidades
+     */
+    omit?: UnidadesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UnidadesInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Unidades.
+     */
+    data: XOR<UnidadesUpdateInput, UnidadesUncheckedUpdateInput>
+    /**
+     * Choose, which Unidades to update.
+     */
+    where: UnidadesWhereUniqueInput
+  }
+
+  /**
+   * Unidades updateMany
+   */
+  export type UnidadesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Unidades.
+     */
+    data: XOR<UnidadesUpdateManyMutationInput, UnidadesUncheckedUpdateManyInput>
+    /**
+     * Filter which Unidades to update
+     */
+    where?: UnidadesWhereInput
+  }
+
+  /**
+   * Unidades upsert
+   */
+  export type UnidadesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Unidades
+     */
+    select?: UnidadesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Unidades
+     */
+    omit?: UnidadesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UnidadesInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Unidades to update in case it exists.
+     */
+    where: UnidadesWhereUniqueInput
+    /**
+     * In case the Unidades found by the `where` argument doesn't exist, create a new Unidades with this data.
+     */
+    create: XOR<UnidadesCreateInput, UnidadesUncheckedCreateInput>
+    /**
+     * In case the Unidades was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UnidadesUpdateInput, UnidadesUncheckedUpdateInput>
+  }
+
+  /**
+   * Unidades delete
+   */
+  export type UnidadesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Unidades
+     */
+    select?: UnidadesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Unidades
+     */
+    omit?: UnidadesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UnidadesInclude<ExtArgs> | null
+    /**
+     * Filter which Unidades to delete.
+     */
+    where: UnidadesWhereUniqueInput
+  }
+
+  /**
+   * Unidades deleteMany
+   */
+  export type UnidadesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Unidades to delete
+     */
+    where?: UnidadesWhereInput
+  }
+
+  /**
+   * Unidades.Conteudo
+   */
+  export type Unidades$ConteudoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Conteudo
+     */
+    select?: ConteudoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Conteudo
+     */
+    omit?: ConteudoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConteudoInclude<ExtArgs> | null
+    where?: ConteudoWhereInput
+    orderBy?: ConteudoOrderByWithRelationInput | ConteudoOrderByWithRelationInput[]
+    cursor?: ConteudoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ConteudoScalarFieldEnum | ConteudoScalarFieldEnum[]
+  }
+
+  /**
+   * Unidades without action
+   */
+  export type UnidadesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Unidades
+     */
+    select?: UnidadesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Unidades
+     */
+    omit?: UnidadesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UnidadesInclude<ExtArgs> | null
   }
 
 
@@ -18257,6 +18299,7 @@ export namespace Prisma {
     op: 'op',
     tam: 'tam',
     qtt: 'qtt',
+    idUnidades: 'idUnidades',
     peso: 'peso'
   };
 
@@ -18328,15 +18371,6 @@ export namespace Prisma {
   export type ContainerOpScalarFieldEnum = (typeof ContainerOpScalarFieldEnum)[keyof typeof ContainerOpScalarFieldEnum]
 
 
-  export const ContainerOpTamScalarFieldEnum: {
-    idContainer: 'idContainer',
-    op: 'op',
-    tam: 'tam'
-  };
-
-  export type ContainerOpTamScalarFieldEnum = (typeof ContainerOpTamScalarFieldEnum)[keyof typeof ContainerOpTamScalarFieldEnum]
-
-
   export const OpScalarFieldEnum: {
     op: 'op',
     ref: 'ref',
@@ -18358,6 +18392,15 @@ export namespace Prisma {
   };
 
   export type OpTamanhoScalarFieldEnum = (typeof OpTamanhoScalarFieldEnum)[keyof typeof OpTamanhoScalarFieldEnum]
+
+
+  export const UnidadesScalarFieldEnum: {
+    idUnidades: 'idUnidades',
+    idItem: 'idItem',
+    descricaoUnidade: 'descricaoUnidade'
+  };
+
+  export type UnidadesScalarFieldEnum = (typeof UnidadesScalarFieldEnum)[keyof typeof UnidadesScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -18727,11 +18770,14 @@ export namespace Prisma {
     op?: IntFilter<"Conteudo"> | number
     tam?: StringFilter<"Conteudo"> | string
     qtt?: FloatFilter<"Conteudo"> | number
+    idUnidades?: IntFilter<"Conteudo"> | number
     peso?: FloatFilter<"Conteudo"> | number
     Container?: XOR<ContainerScalarRelationFilter, ContainerWhereInput>
     ContainerOp?: XOR<ContainerOpScalarRelationFilter, ContainerOpWhereInput>
-    ContainerOpTam?: XOR<ContainerOpTamScalarRelationFilter, ContainerOpTamWhereInput>
     Item?: XOR<ItemScalarRelationFilter, ItemWhereInput>
+    Op?: XOR<OpScalarRelationFilter, OpWhereInput>
+    OpTamanho?: XOR<OpTamanhoScalarRelationFilter, OpTamanhoWhereInput>
+    Unidades?: XOR<UnidadesScalarRelationFilter, UnidadesWhereInput>
   }
 
   export type ConteudoOrderByWithRelationInput = {
@@ -18741,11 +18787,14 @@ export namespace Prisma {
     op?: SortOrder
     tam?: SortOrder
     qtt?: SortOrder
+    idUnidades?: SortOrder
     peso?: SortOrder
     Container?: ContainerOrderByWithRelationInput
     ContainerOp?: ContainerOpOrderByWithRelationInput
-    ContainerOpTam?: ContainerOpTamOrderByWithRelationInput
     Item?: ItemOrderByWithRelationInput
+    Op?: OpOrderByWithRelationInput
+    OpTamanho?: OpTamanhoOrderByWithRelationInput
+    Unidades?: UnidadesOrderByWithRelationInput
   }
 
   export type ConteudoWhereUniqueInput = Prisma.AtLeast<{
@@ -18759,11 +18808,14 @@ export namespace Prisma {
     op?: IntFilter<"Conteudo"> | number
     tam?: StringFilter<"Conteudo"> | string
     qtt?: FloatFilter<"Conteudo"> | number
+    idUnidades?: IntFilter<"Conteudo"> | number
     peso?: FloatFilter<"Conteudo"> | number
     Container?: XOR<ContainerScalarRelationFilter, ContainerWhereInput>
     ContainerOp?: XOR<ContainerOpScalarRelationFilter, ContainerOpWhereInput>
-    ContainerOpTam?: XOR<ContainerOpTamScalarRelationFilter, ContainerOpTamWhereInput>
     Item?: XOR<ItemScalarRelationFilter, ItemWhereInput>
+    Op?: XOR<OpScalarRelationFilter, OpWhereInput>
+    OpTamanho?: XOR<OpTamanhoScalarRelationFilter, OpTamanhoWhereInput>
+    Unidades?: XOR<UnidadesScalarRelationFilter, UnidadesWhereInput>
   }, "idConteudo_idContainer_op_tam">
 
   export type ConteudoOrderByWithAggregationInput = {
@@ -18773,6 +18825,7 @@ export namespace Prisma {
     op?: SortOrder
     tam?: SortOrder
     qtt?: SortOrder
+    idUnidades?: SortOrder
     peso?: SortOrder
     _count?: ConteudoCountOrderByAggregateInput
     _avg?: ConteudoAvgOrderByAggregateInput
@@ -18791,6 +18844,7 @@ export namespace Prisma {
     op?: IntWithAggregatesFilter<"Conteudo"> | number
     tam?: StringWithAggregatesFilter<"Conteudo"> | string
     qtt?: FloatWithAggregatesFilter<"Conteudo"> | number
+    idUnidades?: IntWithAggregatesFilter<"Conteudo"> | number
     peso?: FloatWithAggregatesFilter<"Conteudo"> | number
   }
 
@@ -18923,6 +18977,7 @@ export namespace Prisma {
     Conteudo?: ConteudoListRelationFilter
     ItemTraduzido?: ItemTraduzidoListRelationFilter
     TipoContainer?: XOR<TipoContainerNullableScalarRelationFilter, TipoContainerWhereInput> | null
+    Unidades?: XOR<UnidadesNullableScalarRelationFilter, UnidadesWhereInput> | null
   }
 
   export type ItemOrderByWithRelationInput = {
@@ -18931,6 +18986,7 @@ export namespace Prisma {
     Conteudo?: ConteudoOrderByRelationAggregateInput
     ItemTraduzido?: ItemTraduzidoOrderByRelationAggregateInput
     TipoContainer?: TipoContainerOrderByWithRelationInput
+    Unidades?: UnidadesOrderByWithRelationInput
   }
 
   export type ItemWhereUniqueInput = Prisma.AtLeast<{
@@ -18942,6 +18998,7 @@ export namespace Prisma {
     Conteudo?: ConteudoListRelationFilter
     ItemTraduzido?: ItemTraduzidoListRelationFilter
     TipoContainer?: XOR<TipoContainerNullableScalarRelationFilter, TipoContainerWhereInput> | null
+    Unidades?: XOR<UnidadesNullableScalarRelationFilter, UnidadesWhereInput> | null
   }, "idItem">
 
   export type ItemOrderByWithAggregationInput = {
@@ -19121,7 +19178,6 @@ export namespace Prisma {
     op?: IntFilter<"ContainerOp"> | number
     Container?: XOR<ContainerScalarRelationFilter, ContainerWhereInput>
     Op?: XOR<OpScalarRelationFilter, OpWhereInput>
-    ContainerOpTam?: ContainerOpTamListRelationFilter
     Conteudo?: ConteudoListRelationFilter
   }
 
@@ -19130,7 +19186,6 @@ export namespace Prisma {
     op?: SortOrder
     Container?: ContainerOrderByWithRelationInput
     Op?: OpOrderByWithRelationInput
-    ContainerOpTam?: ContainerOpTamOrderByRelationAggregateInput
     Conteudo?: ConteudoOrderByRelationAggregateInput
   }
 
@@ -19143,7 +19198,6 @@ export namespace Prisma {
     op?: IntFilter<"ContainerOp"> | number
     Container?: XOR<ContainerScalarRelationFilter, ContainerWhereInput>
     Op?: XOR<OpScalarRelationFilter, OpWhereInput>
-    ContainerOpTam?: ContainerOpTamListRelationFilter
     Conteudo?: ConteudoListRelationFilter
   }, "idContainer_op">
 
@@ -19165,60 +19219,6 @@ export namespace Prisma {
     op?: IntWithAggregatesFilter<"ContainerOp"> | number
   }
 
-  export type ContainerOpTamWhereInput = {
-    AND?: ContainerOpTamWhereInput | ContainerOpTamWhereInput[]
-    OR?: ContainerOpTamWhereInput[]
-    NOT?: ContainerOpTamWhereInput | ContainerOpTamWhereInput[]
-    idContainer?: IntFilter<"ContainerOpTam"> | number
-    op?: IntFilter<"ContainerOpTam"> | number
-    tam?: StringFilter<"ContainerOpTam"> | string
-    ContainerOp?: XOR<ContainerOpScalarRelationFilter, ContainerOpWhereInput>
-    OpTamanho?: XOR<OpTamanhoScalarRelationFilter, OpTamanhoWhereInput>
-    Conteudo?: ConteudoListRelationFilter
-  }
-
-  export type ContainerOpTamOrderByWithRelationInput = {
-    idContainer?: SortOrder
-    op?: SortOrder
-    tam?: SortOrder
-    ContainerOp?: ContainerOpOrderByWithRelationInput
-    OpTamanho?: OpTamanhoOrderByWithRelationInput
-    Conteudo?: ConteudoOrderByRelationAggregateInput
-  }
-
-  export type ContainerOpTamWhereUniqueInput = Prisma.AtLeast<{
-    idContainer_op_tam?: ContainerOpTamIdContainerOpTamCompoundUniqueInput
-    AND?: ContainerOpTamWhereInput | ContainerOpTamWhereInput[]
-    OR?: ContainerOpTamWhereInput[]
-    NOT?: ContainerOpTamWhereInput | ContainerOpTamWhereInput[]
-    idContainer?: IntFilter<"ContainerOpTam"> | number
-    op?: IntFilter<"ContainerOpTam"> | number
-    tam?: StringFilter<"ContainerOpTam"> | string
-    ContainerOp?: XOR<ContainerOpScalarRelationFilter, ContainerOpWhereInput>
-    OpTamanho?: XOR<OpTamanhoScalarRelationFilter, OpTamanhoWhereInput>
-    Conteudo?: ConteudoListRelationFilter
-  }, "idContainer_op_tam">
-
-  export type ContainerOpTamOrderByWithAggregationInput = {
-    idContainer?: SortOrder
-    op?: SortOrder
-    tam?: SortOrder
-    _count?: ContainerOpTamCountOrderByAggregateInput
-    _avg?: ContainerOpTamAvgOrderByAggregateInput
-    _max?: ContainerOpTamMaxOrderByAggregateInput
-    _min?: ContainerOpTamMinOrderByAggregateInput
-    _sum?: ContainerOpTamSumOrderByAggregateInput
-  }
-
-  export type ContainerOpTamScalarWhereWithAggregatesInput = {
-    AND?: ContainerOpTamScalarWhereWithAggregatesInput | ContainerOpTamScalarWhereWithAggregatesInput[]
-    OR?: ContainerOpTamScalarWhereWithAggregatesInput[]
-    NOT?: ContainerOpTamScalarWhereWithAggregatesInput | ContainerOpTamScalarWhereWithAggregatesInput[]
-    idContainer?: IntWithAggregatesFilter<"ContainerOpTam"> | number
-    op?: IntWithAggregatesFilter<"ContainerOpTam"> | number
-    tam?: StringWithAggregatesFilter<"ContainerOpTam"> | string
-  }
-
   export type OpWhereInput = {
     AND?: OpWhereInput | OpWhereInput[]
     OR?: OpWhereInput[]
@@ -19231,6 +19231,7 @@ export namespace Prisma {
     pedido?: StringFilter<"Op"> | string
     norma?: StringFilter<"Op"> | string
     ContainerOp?: ContainerOpListRelationFilter
+    Conteudo?: ConteudoListRelationFilter
     OpTamanho?: OpTamanhoListRelationFilter
   }
 
@@ -19243,6 +19244,7 @@ export namespace Prisma {
     pedido?: SortOrder
     norma?: SortOrder
     ContainerOp?: ContainerOpOrderByRelationAggregateInput
+    Conteudo?: ConteudoOrderByRelationAggregateInput
     OpTamanho?: OpTamanhoOrderByRelationAggregateInput
   }
 
@@ -19258,6 +19260,7 @@ export namespace Prisma {
     pedido?: StringFilter<"Op"> | string
     norma?: StringFilter<"Op"> | string
     ContainerOp?: ContainerOpListRelationFilter
+    Conteudo?: ConteudoListRelationFilter
     OpTamanho?: OpTamanhoListRelationFilter
   }, "op">
 
@@ -19297,7 +19300,7 @@ export namespace Prisma {
     tam?: StringFilter<"OpTamanho"> | string
     ordem?: IntFilter<"OpTamanho"> | number
     qtt?: IntFilter<"OpTamanho"> | number
-    ContainerOpTam?: ContainerOpTamListRelationFilter
+    Conteudo?: ConteudoListRelationFilter
     Op?: XOR<OpScalarRelationFilter, OpWhereInput>
   }
 
@@ -19306,7 +19309,7 @@ export namespace Prisma {
     tam?: SortOrder
     ordem?: SortOrder
     qtt?: SortOrder
-    ContainerOpTam?: ContainerOpTamOrderByRelationAggregateInput
+    Conteudo?: ConteudoOrderByRelationAggregateInput
     Op?: OpOrderByWithRelationInput
   }
 
@@ -19319,7 +19322,7 @@ export namespace Prisma {
     tam?: StringFilter<"OpTamanho"> | string
     ordem?: IntFilter<"OpTamanho"> | number
     qtt?: IntFilter<"OpTamanho"> | number
-    ContainerOpTam?: ContainerOpTamListRelationFilter
+    Conteudo?: ConteudoListRelationFilter
     Op?: XOR<OpScalarRelationFilter, OpWhereInput>
   }, "op_tam">
 
@@ -19343,6 +19346,56 @@ export namespace Prisma {
     tam?: StringWithAggregatesFilter<"OpTamanho"> | string
     ordem?: IntWithAggregatesFilter<"OpTamanho"> | number
     qtt?: IntWithAggregatesFilter<"OpTamanho"> | number
+  }
+
+  export type UnidadesWhereInput = {
+    AND?: UnidadesWhereInput | UnidadesWhereInput[]
+    OR?: UnidadesWhereInput[]
+    NOT?: UnidadesWhereInput | UnidadesWhereInput[]
+    idUnidades?: IntFilter<"Unidades"> | number
+    idItem?: IntFilter<"Unidades"> | number
+    descricaoUnidade?: StringFilter<"Unidades"> | string
+    Conteudo?: ConteudoListRelationFilter
+    Item?: XOR<ItemScalarRelationFilter, ItemWhereInput>
+  }
+
+  export type UnidadesOrderByWithRelationInput = {
+    idUnidades?: SortOrder
+    idItem?: SortOrder
+    descricaoUnidade?: SortOrder
+    Conteudo?: ConteudoOrderByRelationAggregateInput
+    Item?: ItemOrderByWithRelationInput
+  }
+
+  export type UnidadesWhereUniqueInput = Prisma.AtLeast<{
+    idUnidades?: number
+    idItem?: number
+    AND?: UnidadesWhereInput | UnidadesWhereInput[]
+    OR?: UnidadesWhereInput[]
+    NOT?: UnidadesWhereInput | UnidadesWhereInput[]
+    descricaoUnidade?: StringFilter<"Unidades"> | string
+    Conteudo?: ConteudoListRelationFilter
+    Item?: XOR<ItemScalarRelationFilter, ItemWhereInput>
+  }, "idUnidades" | "idItem">
+
+  export type UnidadesOrderByWithAggregationInput = {
+    idUnidades?: SortOrder
+    idItem?: SortOrder
+    descricaoUnidade?: SortOrder
+    _count?: UnidadesCountOrderByAggregateInput
+    _avg?: UnidadesAvgOrderByAggregateInput
+    _max?: UnidadesMaxOrderByAggregateInput
+    _min?: UnidadesMinOrderByAggregateInput
+    _sum?: UnidadesSumOrderByAggregateInput
+  }
+
+  export type UnidadesScalarWhereWithAggregatesInput = {
+    AND?: UnidadesScalarWhereWithAggregatesInput | UnidadesScalarWhereWithAggregatesInput[]
+    OR?: UnidadesScalarWhereWithAggregatesInput[]
+    NOT?: UnidadesScalarWhereWithAggregatesInput | UnidadesScalarWhereWithAggregatesInput[]
+    idUnidades?: IntWithAggregatesFilter<"Unidades"> | number
+    idItem?: IntWithAggregatesFilter<"Unidades"> | number
+    descricaoUnidade?: StringWithAggregatesFilter<"Unidades"> | string
   }
 
   export type PapeisCreateInput = {
@@ -19632,8 +19685,10 @@ export namespace Prisma {
     peso: number
     Container: ContainerCreateNestedOneWithoutConteudoInput
     ContainerOp: ContainerOpCreateNestedOneWithoutConteudoInput
-    ContainerOpTam: ContainerOpTamCreateNestedOneWithoutConteudoInput
     Item: ItemCreateNestedOneWithoutConteudoInput
+    Op: OpCreateNestedOneWithoutConteudoInput
+    OpTamanho: OpTamanhoCreateNestedOneWithoutConteudoInput
+    Unidades: UnidadesCreateNestedOneWithoutConteudoInput
   }
 
   export type ConteudoUncheckedCreateInput = {
@@ -19643,6 +19698,7 @@ export namespace Prisma {
     op: number
     tam: string
     qtt: number
+    idUnidades: number
     peso: number
   }
 
@@ -19652,8 +19708,10 @@ export namespace Prisma {
     peso?: FloatFieldUpdateOperationsInput | number
     Container?: ContainerUpdateOneRequiredWithoutConteudoNestedInput
     ContainerOp?: ContainerOpUpdateOneRequiredWithoutConteudoNestedInput
-    ContainerOpTam?: ContainerOpTamUpdateOneRequiredWithoutConteudoNestedInput
     Item?: ItemUpdateOneRequiredWithoutConteudoNestedInput
+    Op?: OpUpdateOneRequiredWithoutConteudoNestedInput
+    OpTamanho?: OpTamanhoUpdateOneRequiredWithoutConteudoNestedInput
+    Unidades?: UnidadesUpdateOneRequiredWithoutConteudoNestedInput
   }
 
   export type ConteudoUncheckedUpdateInput = {
@@ -19663,6 +19721,7 @@ export namespace Prisma {
     op?: IntFieldUpdateOperationsInput | number
     tam?: StringFieldUpdateOperationsInput | string
     qtt?: FloatFieldUpdateOperationsInput | number
+    idUnidades?: IntFieldUpdateOperationsInput | number
     peso?: FloatFieldUpdateOperationsInput | number
   }
 
@@ -19672,6 +19731,7 @@ export namespace Prisma {
     op: number
     tam: string
     qtt: number
+    idUnidades: number
     peso: number
   }
 
@@ -19688,6 +19748,7 @@ export namespace Prisma {
     op?: IntFieldUpdateOperationsInput | number
     tam?: StringFieldUpdateOperationsInput | string
     qtt?: FloatFieldUpdateOperationsInput | number
+    idUnidades?: IntFieldUpdateOperationsInput | number
     peso?: FloatFieldUpdateOperationsInput | number
   }
 
@@ -19811,6 +19872,7 @@ export namespace Prisma {
     Conteudo?: ConteudoCreateNestedManyWithoutItemInput
     ItemTraduzido?: ItemTraduzidoCreateNestedManyWithoutItemInput
     TipoContainer?: TipoContainerCreateNestedOneWithoutItemInput
+    Unidades?: UnidadesCreateNestedOneWithoutItemInput
   }
 
   export type ItemUncheckedCreateInput = {
@@ -19819,6 +19881,7 @@ export namespace Prisma {
     Conteudo?: ConteudoUncheckedCreateNestedManyWithoutItemInput
     ItemTraduzido?: ItemTraduzidoUncheckedCreateNestedManyWithoutItemInput
     TipoContainer?: TipoContainerUncheckedCreateNestedOneWithoutItemInput
+    Unidades?: UnidadesUncheckedCreateNestedOneWithoutItemInput
   }
 
   export type ItemUpdateInput = {
@@ -19826,6 +19889,7 @@ export namespace Prisma {
     Conteudo?: ConteudoUpdateManyWithoutItemNestedInput
     ItemTraduzido?: ItemTraduzidoUpdateManyWithoutItemNestedInput
     TipoContainer?: TipoContainerUpdateOneWithoutItemNestedInput
+    Unidades?: UnidadesUpdateOneWithoutItemNestedInput
   }
 
   export type ItemUncheckedUpdateInput = {
@@ -19834,6 +19898,7 @@ export namespace Prisma {
     Conteudo?: ConteudoUncheckedUpdateManyWithoutItemNestedInput
     ItemTraduzido?: ItemTraduzidoUncheckedUpdateManyWithoutItemNestedInput
     TipoContainer?: TipoContainerUncheckedUpdateOneWithoutItemNestedInput
+    Unidades?: UnidadesUncheckedUpdateOneWithoutItemNestedInput
   }
 
   export type ItemCreateManyInput = {
@@ -19974,28 +20039,24 @@ export namespace Prisma {
   export type ContainerOpCreateInput = {
     Container: ContainerCreateNestedOneWithoutContainerOpInput
     Op: OpCreateNestedOneWithoutContainerOpInput
-    ContainerOpTam?: ContainerOpTamCreateNestedManyWithoutContainerOpInput
     Conteudo?: ConteudoCreateNestedManyWithoutContainerOpInput
   }
 
   export type ContainerOpUncheckedCreateInput = {
     idContainer: number
     op: number
-    ContainerOpTam?: ContainerOpTamUncheckedCreateNestedManyWithoutContainerOpInput
     Conteudo?: ConteudoUncheckedCreateNestedManyWithoutContainerOpInput
   }
 
   export type ContainerOpUpdateInput = {
     Container?: ContainerUpdateOneRequiredWithoutContainerOpNestedInput
     Op?: OpUpdateOneRequiredWithoutContainerOpNestedInput
-    ContainerOpTam?: ContainerOpTamUpdateManyWithoutContainerOpNestedInput
     Conteudo?: ConteudoUpdateManyWithoutContainerOpNestedInput
   }
 
   export type ContainerOpUncheckedUpdateInput = {
     idContainer?: IntFieldUpdateOperationsInput | number
     op?: IntFieldUpdateOperationsInput | number
-    ContainerOpTam?: ContainerOpTamUncheckedUpdateManyWithoutContainerOpNestedInput
     Conteudo?: ConteudoUncheckedUpdateManyWithoutContainerOpNestedInput
   }
 
@@ -20013,48 +20074,6 @@ export namespace Prisma {
     op?: IntFieldUpdateOperationsInput | number
   }
 
-  export type ContainerOpTamCreateInput = {
-    ContainerOp: ContainerOpCreateNestedOneWithoutContainerOpTamInput
-    OpTamanho: OpTamanhoCreateNestedOneWithoutContainerOpTamInput
-    Conteudo?: ConteudoCreateNestedManyWithoutContainerOpTamInput
-  }
-
-  export type ContainerOpTamUncheckedCreateInput = {
-    idContainer: number
-    op: number
-    tam: string
-    Conteudo?: ConteudoUncheckedCreateNestedManyWithoutContainerOpTamInput
-  }
-
-  export type ContainerOpTamUpdateInput = {
-    ContainerOp?: ContainerOpUpdateOneRequiredWithoutContainerOpTamNestedInput
-    OpTamanho?: OpTamanhoUpdateOneRequiredWithoutContainerOpTamNestedInput
-    Conteudo?: ConteudoUpdateManyWithoutContainerOpTamNestedInput
-  }
-
-  export type ContainerOpTamUncheckedUpdateInput = {
-    idContainer?: IntFieldUpdateOperationsInput | number
-    op?: IntFieldUpdateOperationsInput | number
-    tam?: StringFieldUpdateOperationsInput | string
-    Conteudo?: ConteudoUncheckedUpdateManyWithoutContainerOpTamNestedInput
-  }
-
-  export type ContainerOpTamCreateManyInput = {
-    idContainer: number
-    op: number
-    tam: string
-  }
-
-  export type ContainerOpTamUpdateManyMutationInput = {
-
-  }
-
-  export type ContainerOpTamUncheckedUpdateManyInput = {
-    idContainer?: IntFieldUpdateOperationsInput | number
-    op?: IntFieldUpdateOperationsInput | number
-    tam?: StringFieldUpdateOperationsInput | string
-  }
-
   export type OpCreateInput = {
     op: number
     ref: string
@@ -20064,6 +20083,7 @@ export namespace Prisma {
     pedido: string
     norma: string
     ContainerOp?: ContainerOpCreateNestedManyWithoutOpInput
+    Conteudo?: ConteudoCreateNestedManyWithoutOpInput
     OpTamanho?: OpTamanhoCreateNestedManyWithoutOpInput
   }
 
@@ -20076,6 +20096,7 @@ export namespace Prisma {
     pedido: string
     norma: string
     ContainerOp?: ContainerOpUncheckedCreateNestedManyWithoutOpInput
+    Conteudo?: ConteudoUncheckedCreateNestedManyWithoutOpInput
     OpTamanho?: OpTamanhoUncheckedCreateNestedManyWithoutOpInput
   }
 
@@ -20088,6 +20109,7 @@ export namespace Prisma {
     pedido?: StringFieldUpdateOperationsInput | string
     norma?: StringFieldUpdateOperationsInput | string
     ContainerOp?: ContainerOpUpdateManyWithoutOpNestedInput
+    Conteudo?: ConteudoUpdateManyWithoutOpNestedInput
     OpTamanho?: OpTamanhoUpdateManyWithoutOpNestedInput
   }
 
@@ -20100,6 +20122,7 @@ export namespace Prisma {
     pedido?: StringFieldUpdateOperationsInput | string
     norma?: StringFieldUpdateOperationsInput | string
     ContainerOp?: ContainerOpUncheckedUpdateManyWithoutOpNestedInput
+    Conteudo?: ConteudoUncheckedUpdateManyWithoutOpNestedInput
     OpTamanho?: OpTamanhoUncheckedUpdateManyWithoutOpNestedInput
   }
 
@@ -20137,7 +20160,7 @@ export namespace Prisma {
     tam: string
     ordem: number
     qtt: number
-    ContainerOpTam?: ContainerOpTamCreateNestedManyWithoutOpTamanhoInput
+    Conteudo?: ConteudoCreateNestedManyWithoutOpTamanhoInput
     Op: OpCreateNestedOneWithoutOpTamanhoInput
   }
 
@@ -20146,14 +20169,14 @@ export namespace Prisma {
     tam: string
     ordem: number
     qtt: number
-    ContainerOpTam?: ContainerOpTamUncheckedCreateNestedManyWithoutOpTamanhoInput
+    Conteudo?: ConteudoUncheckedCreateNestedManyWithoutOpTamanhoInput
   }
 
   export type OpTamanhoUpdateInput = {
     tam?: StringFieldUpdateOperationsInput | string
     ordem?: IntFieldUpdateOperationsInput | number
     qtt?: IntFieldUpdateOperationsInput | number
-    ContainerOpTam?: ContainerOpTamUpdateManyWithoutOpTamanhoNestedInput
+    Conteudo?: ConteudoUpdateManyWithoutOpTamanhoNestedInput
     Op?: OpUpdateOneRequiredWithoutOpTamanhoNestedInput
   }
 
@@ -20162,7 +20185,7 @@ export namespace Prisma {
     tam?: StringFieldUpdateOperationsInput | string
     ordem?: IntFieldUpdateOperationsInput | number
     qtt?: IntFieldUpdateOperationsInput | number
-    ContainerOpTam?: ContainerOpTamUncheckedUpdateManyWithoutOpTamanhoNestedInput
+    Conteudo?: ConteudoUncheckedUpdateManyWithoutOpTamanhoNestedInput
   }
 
   export type OpTamanhoCreateManyInput = {
@@ -20183,6 +20206,47 @@ export namespace Prisma {
     tam?: StringFieldUpdateOperationsInput | string
     ordem?: IntFieldUpdateOperationsInput | number
     qtt?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type UnidadesCreateInput = {
+    descricaoUnidade: string
+    Conteudo?: ConteudoCreateNestedManyWithoutUnidadesInput
+    Item: ItemCreateNestedOneWithoutUnidadesInput
+  }
+
+  export type UnidadesUncheckedCreateInput = {
+    idUnidades?: number
+    idItem: number
+    descricaoUnidade: string
+    Conteudo?: ConteudoUncheckedCreateNestedManyWithoutUnidadesInput
+  }
+
+  export type UnidadesUpdateInput = {
+    descricaoUnidade?: StringFieldUpdateOperationsInput | string
+    Conteudo?: ConteudoUpdateManyWithoutUnidadesNestedInput
+    Item?: ItemUpdateOneRequiredWithoutUnidadesNestedInput
+  }
+
+  export type UnidadesUncheckedUpdateInput = {
+    idUnidades?: IntFieldUpdateOperationsInput | number
+    idItem?: IntFieldUpdateOperationsInput | number
+    descricaoUnidade?: StringFieldUpdateOperationsInput | string
+    Conteudo?: ConteudoUncheckedUpdateManyWithoutUnidadesNestedInput
+  }
+
+  export type UnidadesCreateManyInput = {
+    idItem: number
+    descricaoUnidade: string
+  }
+
+  export type UnidadesUpdateManyMutationInput = {
+    descricaoUnidade?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type UnidadesUncheckedUpdateManyInput = {
+    idUnidades?: IntFieldUpdateOperationsInput | number
+    idItem?: IntFieldUpdateOperationsInput | number
+    descricaoUnidade?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -20609,14 +20673,24 @@ export namespace Prisma {
     isNot?: ContainerOpWhereInput
   }
 
-  export type ContainerOpTamScalarRelationFilter = {
-    is?: ContainerOpTamWhereInput
-    isNot?: ContainerOpTamWhereInput
-  }
-
   export type ItemScalarRelationFilter = {
     is?: ItemWhereInput
     isNot?: ItemWhereInput
+  }
+
+  export type OpScalarRelationFilter = {
+    is?: OpWhereInput
+    isNot?: OpWhereInput
+  }
+
+  export type OpTamanhoScalarRelationFilter = {
+    is?: OpTamanhoWhereInput
+    isNot?: OpTamanhoWhereInput
+  }
+
+  export type UnidadesScalarRelationFilter = {
+    is?: UnidadesWhereInput
+    isNot?: UnidadesWhereInput
   }
 
   export type ConteudoIdConteudoIdContainerOpTamCompoundUniqueInput = {
@@ -20633,6 +20707,7 @@ export namespace Prisma {
     op?: SortOrder
     tam?: SortOrder
     qtt?: SortOrder
+    idUnidades?: SortOrder
     peso?: SortOrder
   }
 
@@ -20642,6 +20717,7 @@ export namespace Prisma {
     idItem?: SortOrder
     op?: SortOrder
     qtt?: SortOrder
+    idUnidades?: SortOrder
     peso?: SortOrder
   }
 
@@ -20652,6 +20728,7 @@ export namespace Prisma {
     op?: SortOrder
     tam?: SortOrder
     qtt?: SortOrder
+    idUnidades?: SortOrder
     peso?: SortOrder
   }
 
@@ -20662,6 +20739,7 @@ export namespace Prisma {
     op?: SortOrder
     tam?: SortOrder
     qtt?: SortOrder
+    idUnidades?: SortOrder
     peso?: SortOrder
   }
 
@@ -20671,6 +20749,7 @@ export namespace Prisma {
     idItem?: SortOrder
     op?: SortOrder
     qtt?: SortOrder
+    idUnidades?: SortOrder
     peso?: SortOrder
   }
 
@@ -20808,6 +20887,11 @@ export namespace Prisma {
     isNot?: TipoContainerWhereInput | null
   }
 
+  export type UnidadesNullableScalarRelationFilter = {
+    is?: UnidadesWhereInput | null
+    isNot?: UnidadesWhereInput | null
+  }
+
   export type ItemCountOrderByAggregateInput = {
     idItem?: SortOrder
     Descricao?: SortOrder
@@ -20935,21 +21019,6 @@ export namespace Prisma {
     idIdioma?: SortOrder
   }
 
-  export type OpScalarRelationFilter = {
-    is?: OpWhereInput
-    isNot?: OpWhereInput
-  }
-
-  export type ContainerOpTamListRelationFilter = {
-    every?: ContainerOpTamWhereInput
-    some?: ContainerOpTamWhereInput
-    none?: ContainerOpTamWhereInput
-  }
-
-  export type ContainerOpTamOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type ContainerOpIdContainerOpCompoundUniqueInput = {
     idContainer: number
     op: number
@@ -20976,45 +21045,6 @@ export namespace Prisma {
   }
 
   export type ContainerOpSumOrderByAggregateInput = {
-    idContainer?: SortOrder
-    op?: SortOrder
-  }
-
-  export type OpTamanhoScalarRelationFilter = {
-    is?: OpTamanhoWhereInput
-    isNot?: OpTamanhoWhereInput
-  }
-
-  export type ContainerOpTamIdContainerOpTamCompoundUniqueInput = {
-    idContainer: number
-    op: number
-    tam: string
-  }
-
-  export type ContainerOpTamCountOrderByAggregateInput = {
-    idContainer?: SortOrder
-    op?: SortOrder
-    tam?: SortOrder
-  }
-
-  export type ContainerOpTamAvgOrderByAggregateInput = {
-    idContainer?: SortOrder
-    op?: SortOrder
-  }
-
-  export type ContainerOpTamMaxOrderByAggregateInput = {
-    idContainer?: SortOrder
-    op?: SortOrder
-    tam?: SortOrder
-  }
-
-  export type ContainerOpTamMinOrderByAggregateInput = {
-    idContainer?: SortOrder
-    op?: SortOrder
-    tam?: SortOrder
-  }
-
-  export type ContainerOpTamSumOrderByAggregateInput = {
     idContainer?: SortOrder
     op?: SortOrder
   }
@@ -21103,6 +21133,34 @@ export namespace Prisma {
     op?: SortOrder
     ordem?: SortOrder
     qtt?: SortOrder
+  }
+
+  export type UnidadesCountOrderByAggregateInput = {
+    idUnidades?: SortOrder
+    idItem?: SortOrder
+    descricaoUnidade?: SortOrder
+  }
+
+  export type UnidadesAvgOrderByAggregateInput = {
+    idUnidades?: SortOrder
+    idItem?: SortOrder
+  }
+
+  export type UnidadesMaxOrderByAggregateInput = {
+    idUnidades?: SortOrder
+    idItem?: SortOrder
+    descricaoUnidade?: SortOrder
+  }
+
+  export type UnidadesMinOrderByAggregateInput = {
+    idUnidades?: SortOrder
+    idItem?: SortOrder
+    descricaoUnidade?: SortOrder
+  }
+
+  export type UnidadesSumOrderByAggregateInput = {
+    idUnidades?: SortOrder
+    idItem?: SortOrder
   }
 
   export type UserPapeisCreateNestedManyWithoutPapeisInput = {
@@ -21439,16 +21497,28 @@ export namespace Prisma {
     connect?: ContainerOpWhereUniqueInput
   }
 
-  export type ContainerOpTamCreateNestedOneWithoutConteudoInput = {
-    create?: XOR<ContainerOpTamCreateWithoutConteudoInput, ContainerOpTamUncheckedCreateWithoutConteudoInput>
-    connectOrCreate?: ContainerOpTamCreateOrConnectWithoutConteudoInput
-    connect?: ContainerOpTamWhereUniqueInput
-  }
-
   export type ItemCreateNestedOneWithoutConteudoInput = {
     create?: XOR<ItemCreateWithoutConteudoInput, ItemUncheckedCreateWithoutConteudoInput>
     connectOrCreate?: ItemCreateOrConnectWithoutConteudoInput
     connect?: ItemWhereUniqueInput
+  }
+
+  export type OpCreateNestedOneWithoutConteudoInput = {
+    create?: XOR<OpCreateWithoutConteudoInput, OpUncheckedCreateWithoutConteudoInput>
+    connectOrCreate?: OpCreateOrConnectWithoutConteudoInput
+    connect?: OpWhereUniqueInput
+  }
+
+  export type OpTamanhoCreateNestedOneWithoutConteudoInput = {
+    create?: XOR<OpTamanhoCreateWithoutConteudoInput, OpTamanhoUncheckedCreateWithoutConteudoInput>
+    connectOrCreate?: OpTamanhoCreateOrConnectWithoutConteudoInput
+    connect?: OpTamanhoWhereUniqueInput
+  }
+
+  export type UnidadesCreateNestedOneWithoutConteudoInput = {
+    create?: XOR<UnidadesCreateWithoutConteudoInput, UnidadesUncheckedCreateWithoutConteudoInput>
+    connectOrCreate?: UnidadesCreateOrConnectWithoutConteudoInput
+    connect?: UnidadesWhereUniqueInput
   }
 
   export type ContainerUpdateOneRequiredWithoutConteudoNestedInput = {
@@ -21467,20 +21537,36 @@ export namespace Prisma {
     update?: XOR<XOR<ContainerOpUpdateToOneWithWhereWithoutConteudoInput, ContainerOpUpdateWithoutConteudoInput>, ContainerOpUncheckedUpdateWithoutConteudoInput>
   }
 
-  export type ContainerOpTamUpdateOneRequiredWithoutConteudoNestedInput = {
-    create?: XOR<ContainerOpTamCreateWithoutConteudoInput, ContainerOpTamUncheckedCreateWithoutConteudoInput>
-    connectOrCreate?: ContainerOpTamCreateOrConnectWithoutConteudoInput
-    upsert?: ContainerOpTamUpsertWithoutConteudoInput
-    connect?: ContainerOpTamWhereUniqueInput
-    update?: XOR<XOR<ContainerOpTamUpdateToOneWithWhereWithoutConteudoInput, ContainerOpTamUpdateWithoutConteudoInput>, ContainerOpTamUncheckedUpdateWithoutConteudoInput>
-  }
-
   export type ItemUpdateOneRequiredWithoutConteudoNestedInput = {
     create?: XOR<ItemCreateWithoutConteudoInput, ItemUncheckedCreateWithoutConteudoInput>
     connectOrCreate?: ItemCreateOrConnectWithoutConteudoInput
     upsert?: ItemUpsertWithoutConteudoInput
     connect?: ItemWhereUniqueInput
     update?: XOR<XOR<ItemUpdateToOneWithWhereWithoutConteudoInput, ItemUpdateWithoutConteudoInput>, ItemUncheckedUpdateWithoutConteudoInput>
+  }
+
+  export type OpUpdateOneRequiredWithoutConteudoNestedInput = {
+    create?: XOR<OpCreateWithoutConteudoInput, OpUncheckedCreateWithoutConteudoInput>
+    connectOrCreate?: OpCreateOrConnectWithoutConteudoInput
+    upsert?: OpUpsertWithoutConteudoInput
+    connect?: OpWhereUniqueInput
+    update?: XOR<XOR<OpUpdateToOneWithWhereWithoutConteudoInput, OpUpdateWithoutConteudoInput>, OpUncheckedUpdateWithoutConteudoInput>
+  }
+
+  export type OpTamanhoUpdateOneRequiredWithoutConteudoNestedInput = {
+    create?: XOR<OpTamanhoCreateWithoutConteudoInput, OpTamanhoUncheckedCreateWithoutConteudoInput>
+    connectOrCreate?: OpTamanhoCreateOrConnectWithoutConteudoInput
+    upsert?: OpTamanhoUpsertWithoutConteudoInput
+    connect?: OpTamanhoWhereUniqueInput
+    update?: XOR<XOR<OpTamanhoUpdateToOneWithWhereWithoutConteudoInput, OpTamanhoUpdateWithoutConteudoInput>, OpTamanhoUncheckedUpdateWithoutConteudoInput>
+  }
+
+  export type UnidadesUpdateOneRequiredWithoutConteudoNestedInput = {
+    create?: XOR<UnidadesCreateWithoutConteudoInput, UnidadesUncheckedCreateWithoutConteudoInput>
+    connectOrCreate?: UnidadesCreateOrConnectWithoutConteudoInput
+    upsert?: UnidadesUpsertWithoutConteudoInput
+    connect?: UnidadesWhereUniqueInput
+    update?: XOR<XOR<UnidadesUpdateToOneWithWhereWithoutConteudoInput, UnidadesUpdateWithoutConteudoInput>, UnidadesUncheckedUpdateWithoutConteudoInput>
   }
 
   export type ContainerCreateNestedManyWithoutEnvioInput = {
@@ -21651,6 +21737,12 @@ export namespace Prisma {
     connect?: TipoContainerWhereUniqueInput
   }
 
+  export type UnidadesCreateNestedOneWithoutItemInput = {
+    create?: XOR<UnidadesCreateWithoutItemInput, UnidadesUncheckedCreateWithoutItemInput>
+    connectOrCreate?: UnidadesCreateOrConnectWithoutItemInput
+    connect?: UnidadesWhereUniqueInput
+  }
+
   export type ConteudoUncheckedCreateNestedManyWithoutItemInput = {
     create?: XOR<ConteudoCreateWithoutItemInput, ConteudoUncheckedCreateWithoutItemInput> | ConteudoCreateWithoutItemInput[] | ConteudoUncheckedCreateWithoutItemInput[]
     connectOrCreate?: ConteudoCreateOrConnectWithoutItemInput | ConteudoCreateOrConnectWithoutItemInput[]
@@ -21669,6 +21761,12 @@ export namespace Prisma {
     create?: XOR<TipoContainerCreateWithoutItemInput, TipoContainerUncheckedCreateWithoutItemInput>
     connectOrCreate?: TipoContainerCreateOrConnectWithoutItemInput
     connect?: TipoContainerWhereUniqueInput
+  }
+
+  export type UnidadesUncheckedCreateNestedOneWithoutItemInput = {
+    create?: XOR<UnidadesCreateWithoutItemInput, UnidadesUncheckedCreateWithoutItemInput>
+    connectOrCreate?: UnidadesCreateOrConnectWithoutItemInput
+    connect?: UnidadesWhereUniqueInput
   }
 
   export type ConteudoUpdateManyWithoutItemNestedInput = {
@@ -21709,6 +21807,16 @@ export namespace Prisma {
     update?: XOR<XOR<TipoContainerUpdateToOneWithWhereWithoutItemInput, TipoContainerUpdateWithoutItemInput>, TipoContainerUncheckedUpdateWithoutItemInput>
   }
 
+  export type UnidadesUpdateOneWithoutItemNestedInput = {
+    create?: XOR<UnidadesCreateWithoutItemInput, UnidadesUncheckedCreateWithoutItemInput>
+    connectOrCreate?: UnidadesCreateOrConnectWithoutItemInput
+    upsert?: UnidadesUpsertWithoutItemInput
+    disconnect?: UnidadesWhereInput | boolean
+    delete?: UnidadesWhereInput | boolean
+    connect?: UnidadesWhereUniqueInput
+    update?: XOR<XOR<UnidadesUpdateToOneWithWhereWithoutItemInput, UnidadesUpdateWithoutItemInput>, UnidadesUncheckedUpdateWithoutItemInput>
+  }
+
   export type ConteudoUncheckedUpdateManyWithoutItemNestedInput = {
     create?: XOR<ConteudoCreateWithoutItemInput, ConteudoUncheckedCreateWithoutItemInput> | ConteudoCreateWithoutItemInput[] | ConteudoUncheckedCreateWithoutItemInput[]
     connectOrCreate?: ConteudoCreateOrConnectWithoutItemInput | ConteudoCreateOrConnectWithoutItemInput[]
@@ -21745,6 +21853,16 @@ export namespace Prisma {
     delete?: TipoContainerWhereInput | boolean
     connect?: TipoContainerWhereUniqueInput
     update?: XOR<XOR<TipoContainerUpdateToOneWithWhereWithoutItemInput, TipoContainerUpdateWithoutItemInput>, TipoContainerUncheckedUpdateWithoutItemInput>
+  }
+
+  export type UnidadesUncheckedUpdateOneWithoutItemNestedInput = {
+    create?: XOR<UnidadesCreateWithoutItemInput, UnidadesUncheckedCreateWithoutItemInput>
+    connectOrCreate?: UnidadesCreateOrConnectWithoutItemInput
+    upsert?: UnidadesUpsertWithoutItemInput
+    disconnect?: UnidadesWhereInput | boolean
+    delete?: UnidadesWhereInput | boolean
+    connect?: UnidadesWhereUniqueInput
+    update?: XOR<XOR<UnidadesUpdateToOneWithWhereWithoutItemInput, UnidadesUpdateWithoutItemInput>, UnidadesUncheckedUpdateWithoutItemInput>
   }
 
   export type IdiomasCreateNestedOneWithoutItemTraduzidoInput = {
@@ -21899,25 +22017,11 @@ export namespace Prisma {
     connect?: OpWhereUniqueInput
   }
 
-  export type ContainerOpTamCreateNestedManyWithoutContainerOpInput = {
-    create?: XOR<ContainerOpTamCreateWithoutContainerOpInput, ContainerOpTamUncheckedCreateWithoutContainerOpInput> | ContainerOpTamCreateWithoutContainerOpInput[] | ContainerOpTamUncheckedCreateWithoutContainerOpInput[]
-    connectOrCreate?: ContainerOpTamCreateOrConnectWithoutContainerOpInput | ContainerOpTamCreateOrConnectWithoutContainerOpInput[]
-    createMany?: ContainerOpTamCreateManyContainerOpInputEnvelope
-    connect?: ContainerOpTamWhereUniqueInput | ContainerOpTamWhereUniqueInput[]
-  }
-
   export type ConteudoCreateNestedManyWithoutContainerOpInput = {
     create?: XOR<ConteudoCreateWithoutContainerOpInput, ConteudoUncheckedCreateWithoutContainerOpInput> | ConteudoCreateWithoutContainerOpInput[] | ConteudoUncheckedCreateWithoutContainerOpInput[]
     connectOrCreate?: ConteudoCreateOrConnectWithoutContainerOpInput | ConteudoCreateOrConnectWithoutContainerOpInput[]
     createMany?: ConteudoCreateManyContainerOpInputEnvelope
     connect?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
-  }
-
-  export type ContainerOpTamUncheckedCreateNestedManyWithoutContainerOpInput = {
-    create?: XOR<ContainerOpTamCreateWithoutContainerOpInput, ContainerOpTamUncheckedCreateWithoutContainerOpInput> | ContainerOpTamCreateWithoutContainerOpInput[] | ContainerOpTamUncheckedCreateWithoutContainerOpInput[]
-    connectOrCreate?: ContainerOpTamCreateOrConnectWithoutContainerOpInput | ContainerOpTamCreateOrConnectWithoutContainerOpInput[]
-    createMany?: ContainerOpTamCreateManyContainerOpInputEnvelope
-    connect?: ContainerOpTamWhereUniqueInput | ContainerOpTamWhereUniqueInput[]
   }
 
   export type ConteudoUncheckedCreateNestedManyWithoutContainerOpInput = {
@@ -21943,20 +22047,6 @@ export namespace Prisma {
     update?: XOR<XOR<OpUpdateToOneWithWhereWithoutContainerOpInput, OpUpdateWithoutContainerOpInput>, OpUncheckedUpdateWithoutContainerOpInput>
   }
 
-  export type ContainerOpTamUpdateManyWithoutContainerOpNestedInput = {
-    create?: XOR<ContainerOpTamCreateWithoutContainerOpInput, ContainerOpTamUncheckedCreateWithoutContainerOpInput> | ContainerOpTamCreateWithoutContainerOpInput[] | ContainerOpTamUncheckedCreateWithoutContainerOpInput[]
-    connectOrCreate?: ContainerOpTamCreateOrConnectWithoutContainerOpInput | ContainerOpTamCreateOrConnectWithoutContainerOpInput[]
-    upsert?: ContainerOpTamUpsertWithWhereUniqueWithoutContainerOpInput | ContainerOpTamUpsertWithWhereUniqueWithoutContainerOpInput[]
-    createMany?: ContainerOpTamCreateManyContainerOpInputEnvelope
-    set?: ContainerOpTamWhereUniqueInput | ContainerOpTamWhereUniqueInput[]
-    disconnect?: ContainerOpTamWhereUniqueInput | ContainerOpTamWhereUniqueInput[]
-    delete?: ContainerOpTamWhereUniqueInput | ContainerOpTamWhereUniqueInput[]
-    connect?: ContainerOpTamWhereUniqueInput | ContainerOpTamWhereUniqueInput[]
-    update?: ContainerOpTamUpdateWithWhereUniqueWithoutContainerOpInput | ContainerOpTamUpdateWithWhereUniqueWithoutContainerOpInput[]
-    updateMany?: ContainerOpTamUpdateManyWithWhereWithoutContainerOpInput | ContainerOpTamUpdateManyWithWhereWithoutContainerOpInput[]
-    deleteMany?: ContainerOpTamScalarWhereInput | ContainerOpTamScalarWhereInput[]
-  }
-
   export type ConteudoUpdateManyWithoutContainerOpNestedInput = {
     create?: XOR<ConteudoCreateWithoutContainerOpInput, ConteudoUncheckedCreateWithoutContainerOpInput> | ConteudoCreateWithoutContainerOpInput[] | ConteudoUncheckedCreateWithoutContainerOpInput[]
     connectOrCreate?: ConteudoCreateOrConnectWithoutContainerOpInput | ConteudoCreateOrConnectWithoutContainerOpInput[]
@@ -21969,20 +22059,6 @@ export namespace Prisma {
     update?: ConteudoUpdateWithWhereUniqueWithoutContainerOpInput | ConteudoUpdateWithWhereUniqueWithoutContainerOpInput[]
     updateMany?: ConteudoUpdateManyWithWhereWithoutContainerOpInput | ConteudoUpdateManyWithWhereWithoutContainerOpInput[]
     deleteMany?: ConteudoScalarWhereInput | ConteudoScalarWhereInput[]
-  }
-
-  export type ContainerOpTamUncheckedUpdateManyWithoutContainerOpNestedInput = {
-    create?: XOR<ContainerOpTamCreateWithoutContainerOpInput, ContainerOpTamUncheckedCreateWithoutContainerOpInput> | ContainerOpTamCreateWithoutContainerOpInput[] | ContainerOpTamUncheckedCreateWithoutContainerOpInput[]
-    connectOrCreate?: ContainerOpTamCreateOrConnectWithoutContainerOpInput | ContainerOpTamCreateOrConnectWithoutContainerOpInput[]
-    upsert?: ContainerOpTamUpsertWithWhereUniqueWithoutContainerOpInput | ContainerOpTamUpsertWithWhereUniqueWithoutContainerOpInput[]
-    createMany?: ContainerOpTamCreateManyContainerOpInputEnvelope
-    set?: ContainerOpTamWhereUniqueInput | ContainerOpTamWhereUniqueInput[]
-    disconnect?: ContainerOpTamWhereUniqueInput | ContainerOpTamWhereUniqueInput[]
-    delete?: ContainerOpTamWhereUniqueInput | ContainerOpTamWhereUniqueInput[]
-    connect?: ContainerOpTamWhereUniqueInput | ContainerOpTamWhereUniqueInput[]
-    update?: ContainerOpTamUpdateWithWhereUniqueWithoutContainerOpInput | ContainerOpTamUpdateWithWhereUniqueWithoutContainerOpInput[]
-    updateMany?: ContainerOpTamUpdateManyWithWhereWithoutContainerOpInput | ContainerOpTamUpdateManyWithWhereWithoutContainerOpInput[]
-    deleteMany?: ContainerOpTamScalarWhereInput | ContainerOpTamScalarWhereInput[]
   }
 
   export type ConteudoUncheckedUpdateManyWithoutContainerOpNestedInput = {
@@ -21999,81 +22075,18 @@ export namespace Prisma {
     deleteMany?: ConteudoScalarWhereInput | ConteudoScalarWhereInput[]
   }
 
-  export type ContainerOpCreateNestedOneWithoutContainerOpTamInput = {
-    create?: XOR<ContainerOpCreateWithoutContainerOpTamInput, ContainerOpUncheckedCreateWithoutContainerOpTamInput>
-    connectOrCreate?: ContainerOpCreateOrConnectWithoutContainerOpTamInput
-    connect?: ContainerOpWhereUniqueInput
-  }
-
-  export type OpTamanhoCreateNestedOneWithoutContainerOpTamInput = {
-    create?: XOR<OpTamanhoCreateWithoutContainerOpTamInput, OpTamanhoUncheckedCreateWithoutContainerOpTamInput>
-    connectOrCreate?: OpTamanhoCreateOrConnectWithoutContainerOpTamInput
-    connect?: OpTamanhoWhereUniqueInput
-  }
-
-  export type ConteudoCreateNestedManyWithoutContainerOpTamInput = {
-    create?: XOR<ConteudoCreateWithoutContainerOpTamInput, ConteudoUncheckedCreateWithoutContainerOpTamInput> | ConteudoCreateWithoutContainerOpTamInput[] | ConteudoUncheckedCreateWithoutContainerOpTamInput[]
-    connectOrCreate?: ConteudoCreateOrConnectWithoutContainerOpTamInput | ConteudoCreateOrConnectWithoutContainerOpTamInput[]
-    createMany?: ConteudoCreateManyContainerOpTamInputEnvelope
-    connect?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
-  }
-
-  export type ConteudoUncheckedCreateNestedManyWithoutContainerOpTamInput = {
-    create?: XOR<ConteudoCreateWithoutContainerOpTamInput, ConteudoUncheckedCreateWithoutContainerOpTamInput> | ConteudoCreateWithoutContainerOpTamInput[] | ConteudoUncheckedCreateWithoutContainerOpTamInput[]
-    connectOrCreate?: ConteudoCreateOrConnectWithoutContainerOpTamInput | ConteudoCreateOrConnectWithoutContainerOpTamInput[]
-    createMany?: ConteudoCreateManyContainerOpTamInputEnvelope
-    connect?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
-  }
-
-  export type ContainerOpUpdateOneRequiredWithoutContainerOpTamNestedInput = {
-    create?: XOR<ContainerOpCreateWithoutContainerOpTamInput, ContainerOpUncheckedCreateWithoutContainerOpTamInput>
-    connectOrCreate?: ContainerOpCreateOrConnectWithoutContainerOpTamInput
-    upsert?: ContainerOpUpsertWithoutContainerOpTamInput
-    connect?: ContainerOpWhereUniqueInput
-    update?: XOR<XOR<ContainerOpUpdateToOneWithWhereWithoutContainerOpTamInput, ContainerOpUpdateWithoutContainerOpTamInput>, ContainerOpUncheckedUpdateWithoutContainerOpTamInput>
-  }
-
-  export type OpTamanhoUpdateOneRequiredWithoutContainerOpTamNestedInput = {
-    create?: XOR<OpTamanhoCreateWithoutContainerOpTamInput, OpTamanhoUncheckedCreateWithoutContainerOpTamInput>
-    connectOrCreate?: OpTamanhoCreateOrConnectWithoutContainerOpTamInput
-    upsert?: OpTamanhoUpsertWithoutContainerOpTamInput
-    connect?: OpTamanhoWhereUniqueInput
-    update?: XOR<XOR<OpTamanhoUpdateToOneWithWhereWithoutContainerOpTamInput, OpTamanhoUpdateWithoutContainerOpTamInput>, OpTamanhoUncheckedUpdateWithoutContainerOpTamInput>
-  }
-
-  export type ConteudoUpdateManyWithoutContainerOpTamNestedInput = {
-    create?: XOR<ConteudoCreateWithoutContainerOpTamInput, ConteudoUncheckedCreateWithoutContainerOpTamInput> | ConteudoCreateWithoutContainerOpTamInput[] | ConteudoUncheckedCreateWithoutContainerOpTamInput[]
-    connectOrCreate?: ConteudoCreateOrConnectWithoutContainerOpTamInput | ConteudoCreateOrConnectWithoutContainerOpTamInput[]
-    upsert?: ConteudoUpsertWithWhereUniqueWithoutContainerOpTamInput | ConteudoUpsertWithWhereUniqueWithoutContainerOpTamInput[]
-    createMany?: ConteudoCreateManyContainerOpTamInputEnvelope
-    set?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
-    disconnect?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
-    delete?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
-    connect?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
-    update?: ConteudoUpdateWithWhereUniqueWithoutContainerOpTamInput | ConteudoUpdateWithWhereUniqueWithoutContainerOpTamInput[]
-    updateMany?: ConteudoUpdateManyWithWhereWithoutContainerOpTamInput | ConteudoUpdateManyWithWhereWithoutContainerOpTamInput[]
-    deleteMany?: ConteudoScalarWhereInput | ConteudoScalarWhereInput[]
-  }
-
-  export type ConteudoUncheckedUpdateManyWithoutContainerOpTamNestedInput = {
-    create?: XOR<ConteudoCreateWithoutContainerOpTamInput, ConteudoUncheckedCreateWithoutContainerOpTamInput> | ConteudoCreateWithoutContainerOpTamInput[] | ConteudoUncheckedCreateWithoutContainerOpTamInput[]
-    connectOrCreate?: ConteudoCreateOrConnectWithoutContainerOpTamInput | ConteudoCreateOrConnectWithoutContainerOpTamInput[]
-    upsert?: ConteudoUpsertWithWhereUniqueWithoutContainerOpTamInput | ConteudoUpsertWithWhereUniqueWithoutContainerOpTamInput[]
-    createMany?: ConteudoCreateManyContainerOpTamInputEnvelope
-    set?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
-    disconnect?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
-    delete?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
-    connect?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
-    update?: ConteudoUpdateWithWhereUniqueWithoutContainerOpTamInput | ConteudoUpdateWithWhereUniqueWithoutContainerOpTamInput[]
-    updateMany?: ConteudoUpdateManyWithWhereWithoutContainerOpTamInput | ConteudoUpdateManyWithWhereWithoutContainerOpTamInput[]
-    deleteMany?: ConteudoScalarWhereInput | ConteudoScalarWhereInput[]
-  }
-
   export type ContainerOpCreateNestedManyWithoutOpInput = {
     create?: XOR<ContainerOpCreateWithoutOpInput, ContainerOpUncheckedCreateWithoutOpInput> | ContainerOpCreateWithoutOpInput[] | ContainerOpUncheckedCreateWithoutOpInput[]
     connectOrCreate?: ContainerOpCreateOrConnectWithoutOpInput | ContainerOpCreateOrConnectWithoutOpInput[]
     createMany?: ContainerOpCreateManyOpInputEnvelope
     connect?: ContainerOpWhereUniqueInput | ContainerOpWhereUniqueInput[]
+  }
+
+  export type ConteudoCreateNestedManyWithoutOpInput = {
+    create?: XOR<ConteudoCreateWithoutOpInput, ConteudoUncheckedCreateWithoutOpInput> | ConteudoCreateWithoutOpInput[] | ConteudoUncheckedCreateWithoutOpInput[]
+    connectOrCreate?: ConteudoCreateOrConnectWithoutOpInput | ConteudoCreateOrConnectWithoutOpInput[]
+    createMany?: ConteudoCreateManyOpInputEnvelope
+    connect?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
   }
 
   export type OpTamanhoCreateNestedManyWithoutOpInput = {
@@ -22088,6 +22101,13 @@ export namespace Prisma {
     connectOrCreate?: ContainerOpCreateOrConnectWithoutOpInput | ContainerOpCreateOrConnectWithoutOpInput[]
     createMany?: ContainerOpCreateManyOpInputEnvelope
     connect?: ContainerOpWhereUniqueInput | ContainerOpWhereUniqueInput[]
+  }
+
+  export type ConteudoUncheckedCreateNestedManyWithoutOpInput = {
+    create?: XOR<ConteudoCreateWithoutOpInput, ConteudoUncheckedCreateWithoutOpInput> | ConteudoCreateWithoutOpInput[] | ConteudoUncheckedCreateWithoutOpInput[]
+    connectOrCreate?: ConteudoCreateOrConnectWithoutOpInput | ConteudoCreateOrConnectWithoutOpInput[]
+    createMany?: ConteudoCreateManyOpInputEnvelope
+    connect?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
   }
 
   export type OpTamanhoUncheckedCreateNestedManyWithoutOpInput = {
@@ -22109,6 +22129,20 @@ export namespace Prisma {
     update?: ContainerOpUpdateWithWhereUniqueWithoutOpInput | ContainerOpUpdateWithWhereUniqueWithoutOpInput[]
     updateMany?: ContainerOpUpdateManyWithWhereWithoutOpInput | ContainerOpUpdateManyWithWhereWithoutOpInput[]
     deleteMany?: ContainerOpScalarWhereInput | ContainerOpScalarWhereInput[]
+  }
+
+  export type ConteudoUpdateManyWithoutOpNestedInput = {
+    create?: XOR<ConteudoCreateWithoutOpInput, ConteudoUncheckedCreateWithoutOpInput> | ConteudoCreateWithoutOpInput[] | ConteudoUncheckedCreateWithoutOpInput[]
+    connectOrCreate?: ConteudoCreateOrConnectWithoutOpInput | ConteudoCreateOrConnectWithoutOpInput[]
+    upsert?: ConteudoUpsertWithWhereUniqueWithoutOpInput | ConteudoUpsertWithWhereUniqueWithoutOpInput[]
+    createMany?: ConteudoCreateManyOpInputEnvelope
+    set?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
+    disconnect?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
+    delete?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
+    connect?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
+    update?: ConteudoUpdateWithWhereUniqueWithoutOpInput | ConteudoUpdateWithWhereUniqueWithoutOpInput[]
+    updateMany?: ConteudoUpdateManyWithWhereWithoutOpInput | ConteudoUpdateManyWithWhereWithoutOpInput[]
+    deleteMany?: ConteudoScalarWhereInput | ConteudoScalarWhereInput[]
   }
 
   export type OpTamanhoUpdateManyWithoutOpNestedInput = {
@@ -22139,6 +22173,20 @@ export namespace Prisma {
     deleteMany?: ContainerOpScalarWhereInput | ContainerOpScalarWhereInput[]
   }
 
+  export type ConteudoUncheckedUpdateManyWithoutOpNestedInput = {
+    create?: XOR<ConteudoCreateWithoutOpInput, ConteudoUncheckedCreateWithoutOpInput> | ConteudoCreateWithoutOpInput[] | ConteudoUncheckedCreateWithoutOpInput[]
+    connectOrCreate?: ConteudoCreateOrConnectWithoutOpInput | ConteudoCreateOrConnectWithoutOpInput[]
+    upsert?: ConteudoUpsertWithWhereUniqueWithoutOpInput | ConteudoUpsertWithWhereUniqueWithoutOpInput[]
+    createMany?: ConteudoCreateManyOpInputEnvelope
+    set?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
+    disconnect?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
+    delete?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
+    connect?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
+    update?: ConteudoUpdateWithWhereUniqueWithoutOpInput | ConteudoUpdateWithWhereUniqueWithoutOpInput[]
+    updateMany?: ConteudoUpdateManyWithWhereWithoutOpInput | ConteudoUpdateManyWithWhereWithoutOpInput[]
+    deleteMany?: ConteudoScalarWhereInput | ConteudoScalarWhereInput[]
+  }
+
   export type OpTamanhoUncheckedUpdateManyWithoutOpNestedInput = {
     create?: XOR<OpTamanhoCreateWithoutOpInput, OpTamanhoUncheckedCreateWithoutOpInput> | OpTamanhoCreateWithoutOpInput[] | OpTamanhoUncheckedCreateWithoutOpInput[]
     connectOrCreate?: OpTamanhoCreateOrConnectWithoutOpInput | OpTamanhoCreateOrConnectWithoutOpInput[]
@@ -22153,11 +22201,11 @@ export namespace Prisma {
     deleteMany?: OpTamanhoScalarWhereInput | OpTamanhoScalarWhereInput[]
   }
 
-  export type ContainerOpTamCreateNestedManyWithoutOpTamanhoInput = {
-    create?: XOR<ContainerOpTamCreateWithoutOpTamanhoInput, ContainerOpTamUncheckedCreateWithoutOpTamanhoInput> | ContainerOpTamCreateWithoutOpTamanhoInput[] | ContainerOpTamUncheckedCreateWithoutOpTamanhoInput[]
-    connectOrCreate?: ContainerOpTamCreateOrConnectWithoutOpTamanhoInput | ContainerOpTamCreateOrConnectWithoutOpTamanhoInput[]
-    createMany?: ContainerOpTamCreateManyOpTamanhoInputEnvelope
-    connect?: ContainerOpTamWhereUniqueInput | ContainerOpTamWhereUniqueInput[]
+  export type ConteudoCreateNestedManyWithoutOpTamanhoInput = {
+    create?: XOR<ConteudoCreateWithoutOpTamanhoInput, ConteudoUncheckedCreateWithoutOpTamanhoInput> | ConteudoCreateWithoutOpTamanhoInput[] | ConteudoUncheckedCreateWithoutOpTamanhoInput[]
+    connectOrCreate?: ConteudoCreateOrConnectWithoutOpTamanhoInput | ConteudoCreateOrConnectWithoutOpTamanhoInput[]
+    createMany?: ConteudoCreateManyOpTamanhoInputEnvelope
+    connect?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
   }
 
   export type OpCreateNestedOneWithoutOpTamanhoInput = {
@@ -22166,25 +22214,25 @@ export namespace Prisma {
     connect?: OpWhereUniqueInput
   }
 
-  export type ContainerOpTamUncheckedCreateNestedManyWithoutOpTamanhoInput = {
-    create?: XOR<ContainerOpTamCreateWithoutOpTamanhoInput, ContainerOpTamUncheckedCreateWithoutOpTamanhoInput> | ContainerOpTamCreateWithoutOpTamanhoInput[] | ContainerOpTamUncheckedCreateWithoutOpTamanhoInput[]
-    connectOrCreate?: ContainerOpTamCreateOrConnectWithoutOpTamanhoInput | ContainerOpTamCreateOrConnectWithoutOpTamanhoInput[]
-    createMany?: ContainerOpTamCreateManyOpTamanhoInputEnvelope
-    connect?: ContainerOpTamWhereUniqueInput | ContainerOpTamWhereUniqueInput[]
+  export type ConteudoUncheckedCreateNestedManyWithoutOpTamanhoInput = {
+    create?: XOR<ConteudoCreateWithoutOpTamanhoInput, ConteudoUncheckedCreateWithoutOpTamanhoInput> | ConteudoCreateWithoutOpTamanhoInput[] | ConteudoUncheckedCreateWithoutOpTamanhoInput[]
+    connectOrCreate?: ConteudoCreateOrConnectWithoutOpTamanhoInput | ConteudoCreateOrConnectWithoutOpTamanhoInput[]
+    createMany?: ConteudoCreateManyOpTamanhoInputEnvelope
+    connect?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
   }
 
-  export type ContainerOpTamUpdateManyWithoutOpTamanhoNestedInput = {
-    create?: XOR<ContainerOpTamCreateWithoutOpTamanhoInput, ContainerOpTamUncheckedCreateWithoutOpTamanhoInput> | ContainerOpTamCreateWithoutOpTamanhoInput[] | ContainerOpTamUncheckedCreateWithoutOpTamanhoInput[]
-    connectOrCreate?: ContainerOpTamCreateOrConnectWithoutOpTamanhoInput | ContainerOpTamCreateOrConnectWithoutOpTamanhoInput[]
-    upsert?: ContainerOpTamUpsertWithWhereUniqueWithoutOpTamanhoInput | ContainerOpTamUpsertWithWhereUniqueWithoutOpTamanhoInput[]
-    createMany?: ContainerOpTamCreateManyOpTamanhoInputEnvelope
-    set?: ContainerOpTamWhereUniqueInput | ContainerOpTamWhereUniqueInput[]
-    disconnect?: ContainerOpTamWhereUniqueInput | ContainerOpTamWhereUniqueInput[]
-    delete?: ContainerOpTamWhereUniqueInput | ContainerOpTamWhereUniqueInput[]
-    connect?: ContainerOpTamWhereUniqueInput | ContainerOpTamWhereUniqueInput[]
-    update?: ContainerOpTamUpdateWithWhereUniqueWithoutOpTamanhoInput | ContainerOpTamUpdateWithWhereUniqueWithoutOpTamanhoInput[]
-    updateMany?: ContainerOpTamUpdateManyWithWhereWithoutOpTamanhoInput | ContainerOpTamUpdateManyWithWhereWithoutOpTamanhoInput[]
-    deleteMany?: ContainerOpTamScalarWhereInput | ContainerOpTamScalarWhereInput[]
+  export type ConteudoUpdateManyWithoutOpTamanhoNestedInput = {
+    create?: XOR<ConteudoCreateWithoutOpTamanhoInput, ConteudoUncheckedCreateWithoutOpTamanhoInput> | ConteudoCreateWithoutOpTamanhoInput[] | ConteudoUncheckedCreateWithoutOpTamanhoInput[]
+    connectOrCreate?: ConteudoCreateOrConnectWithoutOpTamanhoInput | ConteudoCreateOrConnectWithoutOpTamanhoInput[]
+    upsert?: ConteudoUpsertWithWhereUniqueWithoutOpTamanhoInput | ConteudoUpsertWithWhereUniqueWithoutOpTamanhoInput[]
+    createMany?: ConteudoCreateManyOpTamanhoInputEnvelope
+    set?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
+    disconnect?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
+    delete?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
+    connect?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
+    update?: ConteudoUpdateWithWhereUniqueWithoutOpTamanhoInput | ConteudoUpdateWithWhereUniqueWithoutOpTamanhoInput[]
+    updateMany?: ConteudoUpdateManyWithWhereWithoutOpTamanhoInput | ConteudoUpdateManyWithWhereWithoutOpTamanhoInput[]
+    deleteMany?: ConteudoScalarWhereInput | ConteudoScalarWhereInput[]
   }
 
   export type OpUpdateOneRequiredWithoutOpTamanhoNestedInput = {
@@ -22195,18 +22243,74 @@ export namespace Prisma {
     update?: XOR<XOR<OpUpdateToOneWithWhereWithoutOpTamanhoInput, OpUpdateWithoutOpTamanhoInput>, OpUncheckedUpdateWithoutOpTamanhoInput>
   }
 
-  export type ContainerOpTamUncheckedUpdateManyWithoutOpTamanhoNestedInput = {
-    create?: XOR<ContainerOpTamCreateWithoutOpTamanhoInput, ContainerOpTamUncheckedCreateWithoutOpTamanhoInput> | ContainerOpTamCreateWithoutOpTamanhoInput[] | ContainerOpTamUncheckedCreateWithoutOpTamanhoInput[]
-    connectOrCreate?: ContainerOpTamCreateOrConnectWithoutOpTamanhoInput | ContainerOpTamCreateOrConnectWithoutOpTamanhoInput[]
-    upsert?: ContainerOpTamUpsertWithWhereUniqueWithoutOpTamanhoInput | ContainerOpTamUpsertWithWhereUniqueWithoutOpTamanhoInput[]
-    createMany?: ContainerOpTamCreateManyOpTamanhoInputEnvelope
-    set?: ContainerOpTamWhereUniqueInput | ContainerOpTamWhereUniqueInput[]
-    disconnect?: ContainerOpTamWhereUniqueInput | ContainerOpTamWhereUniqueInput[]
-    delete?: ContainerOpTamWhereUniqueInput | ContainerOpTamWhereUniqueInput[]
-    connect?: ContainerOpTamWhereUniqueInput | ContainerOpTamWhereUniqueInput[]
-    update?: ContainerOpTamUpdateWithWhereUniqueWithoutOpTamanhoInput | ContainerOpTamUpdateWithWhereUniqueWithoutOpTamanhoInput[]
-    updateMany?: ContainerOpTamUpdateManyWithWhereWithoutOpTamanhoInput | ContainerOpTamUpdateManyWithWhereWithoutOpTamanhoInput[]
-    deleteMany?: ContainerOpTamScalarWhereInput | ContainerOpTamScalarWhereInput[]
+  export type ConteudoUncheckedUpdateManyWithoutOpTamanhoNestedInput = {
+    create?: XOR<ConteudoCreateWithoutOpTamanhoInput, ConteudoUncheckedCreateWithoutOpTamanhoInput> | ConteudoCreateWithoutOpTamanhoInput[] | ConteudoUncheckedCreateWithoutOpTamanhoInput[]
+    connectOrCreate?: ConteudoCreateOrConnectWithoutOpTamanhoInput | ConteudoCreateOrConnectWithoutOpTamanhoInput[]
+    upsert?: ConteudoUpsertWithWhereUniqueWithoutOpTamanhoInput | ConteudoUpsertWithWhereUniqueWithoutOpTamanhoInput[]
+    createMany?: ConteudoCreateManyOpTamanhoInputEnvelope
+    set?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
+    disconnect?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
+    delete?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
+    connect?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
+    update?: ConteudoUpdateWithWhereUniqueWithoutOpTamanhoInput | ConteudoUpdateWithWhereUniqueWithoutOpTamanhoInput[]
+    updateMany?: ConteudoUpdateManyWithWhereWithoutOpTamanhoInput | ConteudoUpdateManyWithWhereWithoutOpTamanhoInput[]
+    deleteMany?: ConteudoScalarWhereInput | ConteudoScalarWhereInput[]
+  }
+
+  export type ConteudoCreateNestedManyWithoutUnidadesInput = {
+    create?: XOR<ConteudoCreateWithoutUnidadesInput, ConteudoUncheckedCreateWithoutUnidadesInput> | ConteudoCreateWithoutUnidadesInput[] | ConteudoUncheckedCreateWithoutUnidadesInput[]
+    connectOrCreate?: ConteudoCreateOrConnectWithoutUnidadesInput | ConteudoCreateOrConnectWithoutUnidadesInput[]
+    createMany?: ConteudoCreateManyUnidadesInputEnvelope
+    connect?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
+  }
+
+  export type ItemCreateNestedOneWithoutUnidadesInput = {
+    create?: XOR<ItemCreateWithoutUnidadesInput, ItemUncheckedCreateWithoutUnidadesInput>
+    connectOrCreate?: ItemCreateOrConnectWithoutUnidadesInput
+    connect?: ItemWhereUniqueInput
+  }
+
+  export type ConteudoUncheckedCreateNestedManyWithoutUnidadesInput = {
+    create?: XOR<ConteudoCreateWithoutUnidadesInput, ConteudoUncheckedCreateWithoutUnidadesInput> | ConteudoCreateWithoutUnidadesInput[] | ConteudoUncheckedCreateWithoutUnidadesInput[]
+    connectOrCreate?: ConteudoCreateOrConnectWithoutUnidadesInput | ConteudoCreateOrConnectWithoutUnidadesInput[]
+    createMany?: ConteudoCreateManyUnidadesInputEnvelope
+    connect?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
+  }
+
+  export type ConteudoUpdateManyWithoutUnidadesNestedInput = {
+    create?: XOR<ConteudoCreateWithoutUnidadesInput, ConteudoUncheckedCreateWithoutUnidadesInput> | ConteudoCreateWithoutUnidadesInput[] | ConteudoUncheckedCreateWithoutUnidadesInput[]
+    connectOrCreate?: ConteudoCreateOrConnectWithoutUnidadesInput | ConteudoCreateOrConnectWithoutUnidadesInput[]
+    upsert?: ConteudoUpsertWithWhereUniqueWithoutUnidadesInput | ConteudoUpsertWithWhereUniqueWithoutUnidadesInput[]
+    createMany?: ConteudoCreateManyUnidadesInputEnvelope
+    set?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
+    disconnect?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
+    delete?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
+    connect?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
+    update?: ConteudoUpdateWithWhereUniqueWithoutUnidadesInput | ConteudoUpdateWithWhereUniqueWithoutUnidadesInput[]
+    updateMany?: ConteudoUpdateManyWithWhereWithoutUnidadesInput | ConteudoUpdateManyWithWhereWithoutUnidadesInput[]
+    deleteMany?: ConteudoScalarWhereInput | ConteudoScalarWhereInput[]
+  }
+
+  export type ItemUpdateOneRequiredWithoutUnidadesNestedInput = {
+    create?: XOR<ItemCreateWithoutUnidadesInput, ItemUncheckedCreateWithoutUnidadesInput>
+    connectOrCreate?: ItemCreateOrConnectWithoutUnidadesInput
+    upsert?: ItemUpsertWithoutUnidadesInput
+    connect?: ItemWhereUniqueInput
+    update?: XOR<XOR<ItemUpdateToOneWithWhereWithoutUnidadesInput, ItemUpdateWithoutUnidadesInput>, ItemUncheckedUpdateWithoutUnidadesInput>
+  }
+
+  export type ConteudoUncheckedUpdateManyWithoutUnidadesNestedInput = {
+    create?: XOR<ConteudoCreateWithoutUnidadesInput, ConteudoUncheckedCreateWithoutUnidadesInput> | ConteudoCreateWithoutUnidadesInput[] | ConteudoUncheckedCreateWithoutUnidadesInput[]
+    connectOrCreate?: ConteudoCreateOrConnectWithoutUnidadesInput | ConteudoCreateOrConnectWithoutUnidadesInput[]
+    upsert?: ConteudoUpsertWithWhereUniqueWithoutUnidadesInput | ConteudoUpsertWithWhereUniqueWithoutUnidadesInput[]
+    createMany?: ConteudoCreateManyUnidadesInputEnvelope
+    set?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
+    disconnect?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
+    delete?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
+    connect?: ConteudoWhereUniqueInput | ConteudoWhereUniqueInput[]
+    update?: ConteudoUpdateWithWhereUniqueWithoutUnidadesInput | ConteudoUpdateWithWhereUniqueWithoutUnidadesInput[]
+    updateMany?: ConteudoUpdateManyWithWhereWithoutUnidadesInput | ConteudoUpdateManyWithWhereWithoutUnidadesInput[]
+    deleteMany?: ConteudoScalarWhereInput | ConteudoScalarWhereInput[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -22717,13 +22821,11 @@ export namespace Prisma {
 
   export type ContainerOpCreateWithoutContainerInput = {
     Op: OpCreateNestedOneWithoutContainerOpInput
-    ContainerOpTam?: ContainerOpTamCreateNestedManyWithoutContainerOpInput
     Conteudo?: ConteudoCreateNestedManyWithoutContainerOpInput
   }
 
   export type ContainerOpUncheckedCreateWithoutContainerInput = {
     op: number
-    ContainerOpTam?: ContainerOpTamUncheckedCreateNestedManyWithoutContainerOpInput
     Conteudo?: ConteudoUncheckedCreateNestedManyWithoutContainerOpInput
   }
 
@@ -22741,8 +22843,10 @@ export namespace Prisma {
     qtt: number
     peso: number
     ContainerOp: ContainerOpCreateNestedOneWithoutConteudoInput
-    ContainerOpTam: ContainerOpTamCreateNestedOneWithoutConteudoInput
     Item: ItemCreateNestedOneWithoutConteudoInput
+    Op: OpCreateNestedOneWithoutConteudoInput
+    OpTamanho: OpTamanhoCreateNestedOneWithoutConteudoInput
+    Unidades: UnidadesCreateNestedOneWithoutConteudoInput
   }
 
   export type ConteudoUncheckedCreateWithoutContainerInput = {
@@ -22751,6 +22855,7 @@ export namespace Prisma {
     op: number
     tam: string
     qtt: number
+    idUnidades: number
     peso: number
   }
 
@@ -22930,6 +23035,7 @@ export namespace Prisma {
     op?: IntFilter<"Conteudo"> | number
     tam?: StringFilter<"Conteudo"> | string
     qtt?: FloatFilter<"Conteudo"> | number
+    idUnidades?: IntFilter<"Conteudo"> | number
     peso?: FloatFilter<"Conteudo"> | number
   }
 
@@ -22964,13 +23070,11 @@ export namespace Prisma {
   export type ContainerOpCreateWithoutConteudoInput = {
     Container: ContainerCreateNestedOneWithoutContainerOpInput
     Op: OpCreateNestedOneWithoutContainerOpInput
-    ContainerOpTam?: ContainerOpTamCreateNestedManyWithoutContainerOpInput
   }
 
   export type ContainerOpUncheckedCreateWithoutConteudoInput = {
     idContainer: number
     op: number
-    ContainerOpTam?: ContainerOpTamUncheckedCreateNestedManyWithoutContainerOpInput
   }
 
   export type ContainerOpCreateOrConnectWithoutConteudoInput = {
@@ -22978,26 +23082,11 @@ export namespace Prisma {
     create: XOR<ContainerOpCreateWithoutConteudoInput, ContainerOpUncheckedCreateWithoutConteudoInput>
   }
 
-  export type ContainerOpTamCreateWithoutConteudoInput = {
-    ContainerOp: ContainerOpCreateNestedOneWithoutContainerOpTamInput
-    OpTamanho: OpTamanhoCreateNestedOneWithoutContainerOpTamInput
-  }
-
-  export type ContainerOpTamUncheckedCreateWithoutConteudoInput = {
-    idContainer: number
-    op: number
-    tam: string
-  }
-
-  export type ContainerOpTamCreateOrConnectWithoutConteudoInput = {
-    where: ContainerOpTamWhereUniqueInput
-    create: XOR<ContainerOpTamCreateWithoutConteudoInput, ContainerOpTamUncheckedCreateWithoutConteudoInput>
-  }
-
   export type ItemCreateWithoutConteudoInput = {
     Descricao: string
     ItemTraduzido?: ItemTraduzidoCreateNestedManyWithoutItemInput
     TipoContainer?: TipoContainerCreateNestedOneWithoutItemInput
+    Unidades?: UnidadesCreateNestedOneWithoutItemInput
   }
 
   export type ItemUncheckedCreateWithoutConteudoInput = {
@@ -23005,11 +23094,76 @@ export namespace Prisma {
     Descricao: string
     ItemTraduzido?: ItemTraduzidoUncheckedCreateNestedManyWithoutItemInput
     TipoContainer?: TipoContainerUncheckedCreateNestedOneWithoutItemInput
+    Unidades?: UnidadesUncheckedCreateNestedOneWithoutItemInput
   }
 
   export type ItemCreateOrConnectWithoutConteudoInput = {
     where: ItemWhereUniqueInput
     create: XOR<ItemCreateWithoutConteudoInput, ItemUncheckedCreateWithoutConteudoInput>
+  }
+
+  export type OpCreateWithoutConteudoInput = {
+    op: number
+    ref: string
+    modeloDesc: string
+    modelo: string
+    cor: string
+    pedido: string
+    norma: string
+    ContainerOp?: ContainerOpCreateNestedManyWithoutOpInput
+    OpTamanho?: OpTamanhoCreateNestedManyWithoutOpInput
+  }
+
+  export type OpUncheckedCreateWithoutConteudoInput = {
+    op: number
+    ref: string
+    modeloDesc: string
+    modelo: string
+    cor: string
+    pedido: string
+    norma: string
+    ContainerOp?: ContainerOpUncheckedCreateNestedManyWithoutOpInput
+    OpTamanho?: OpTamanhoUncheckedCreateNestedManyWithoutOpInput
+  }
+
+  export type OpCreateOrConnectWithoutConteudoInput = {
+    where: OpWhereUniqueInput
+    create: XOR<OpCreateWithoutConteudoInput, OpUncheckedCreateWithoutConteudoInput>
+  }
+
+  export type OpTamanhoCreateWithoutConteudoInput = {
+    tam: string
+    ordem: number
+    qtt: number
+    Op: OpCreateNestedOneWithoutOpTamanhoInput
+  }
+
+  export type OpTamanhoUncheckedCreateWithoutConteudoInput = {
+    op: number
+    tam: string
+    ordem: number
+    qtt: number
+  }
+
+  export type OpTamanhoCreateOrConnectWithoutConteudoInput = {
+    where: OpTamanhoWhereUniqueInput
+    create: XOR<OpTamanhoCreateWithoutConteudoInput, OpTamanhoUncheckedCreateWithoutConteudoInput>
+  }
+
+  export type UnidadesCreateWithoutConteudoInput = {
+    descricaoUnidade: string
+    Item: ItemCreateNestedOneWithoutUnidadesInput
+  }
+
+  export type UnidadesUncheckedCreateWithoutConteudoInput = {
+    idUnidades?: number
+    idItem: number
+    descricaoUnidade: string
+  }
+
+  export type UnidadesCreateOrConnectWithoutConteudoInput = {
+    where: UnidadesWhereUniqueInput
+    create: XOR<UnidadesCreateWithoutConteudoInput, UnidadesUncheckedCreateWithoutConteudoInput>
   }
 
   export type ContainerUpsertWithoutConteudoInput = {
@@ -23060,35 +23214,11 @@ export namespace Prisma {
   export type ContainerOpUpdateWithoutConteudoInput = {
     Container?: ContainerUpdateOneRequiredWithoutContainerOpNestedInput
     Op?: OpUpdateOneRequiredWithoutContainerOpNestedInput
-    ContainerOpTam?: ContainerOpTamUpdateManyWithoutContainerOpNestedInput
   }
 
   export type ContainerOpUncheckedUpdateWithoutConteudoInput = {
     idContainer?: IntFieldUpdateOperationsInput | number
     op?: IntFieldUpdateOperationsInput | number
-    ContainerOpTam?: ContainerOpTamUncheckedUpdateManyWithoutContainerOpNestedInput
-  }
-
-  export type ContainerOpTamUpsertWithoutConteudoInput = {
-    update: XOR<ContainerOpTamUpdateWithoutConteudoInput, ContainerOpTamUncheckedUpdateWithoutConteudoInput>
-    create: XOR<ContainerOpTamCreateWithoutConteudoInput, ContainerOpTamUncheckedCreateWithoutConteudoInput>
-    where?: ContainerOpTamWhereInput
-  }
-
-  export type ContainerOpTamUpdateToOneWithWhereWithoutConteudoInput = {
-    where?: ContainerOpTamWhereInput
-    data: XOR<ContainerOpTamUpdateWithoutConteudoInput, ContainerOpTamUncheckedUpdateWithoutConteudoInput>
-  }
-
-  export type ContainerOpTamUpdateWithoutConteudoInput = {
-    ContainerOp?: ContainerOpUpdateOneRequiredWithoutContainerOpTamNestedInput
-    OpTamanho?: OpTamanhoUpdateOneRequiredWithoutContainerOpTamNestedInput
-  }
-
-  export type ContainerOpTamUncheckedUpdateWithoutConteudoInput = {
-    idContainer?: IntFieldUpdateOperationsInput | number
-    op?: IntFieldUpdateOperationsInput | number
-    tam?: StringFieldUpdateOperationsInput | string
   }
 
   export type ItemUpsertWithoutConteudoInput = {
@@ -23106,6 +23236,7 @@ export namespace Prisma {
     Descricao?: StringFieldUpdateOperationsInput | string
     ItemTraduzido?: ItemTraduzidoUpdateManyWithoutItemNestedInput
     TipoContainer?: TipoContainerUpdateOneWithoutItemNestedInput
+    Unidades?: UnidadesUpdateOneWithoutItemNestedInput
   }
 
   export type ItemUncheckedUpdateWithoutConteudoInput = {
@@ -23113,6 +23244,89 @@ export namespace Prisma {
     Descricao?: StringFieldUpdateOperationsInput | string
     ItemTraduzido?: ItemTraduzidoUncheckedUpdateManyWithoutItemNestedInput
     TipoContainer?: TipoContainerUncheckedUpdateOneWithoutItemNestedInput
+    Unidades?: UnidadesUncheckedUpdateOneWithoutItemNestedInput
+  }
+
+  export type OpUpsertWithoutConteudoInput = {
+    update: XOR<OpUpdateWithoutConteudoInput, OpUncheckedUpdateWithoutConteudoInput>
+    create: XOR<OpCreateWithoutConteudoInput, OpUncheckedCreateWithoutConteudoInput>
+    where?: OpWhereInput
+  }
+
+  export type OpUpdateToOneWithWhereWithoutConteudoInput = {
+    where?: OpWhereInput
+    data: XOR<OpUpdateWithoutConteudoInput, OpUncheckedUpdateWithoutConteudoInput>
+  }
+
+  export type OpUpdateWithoutConteudoInput = {
+    op?: IntFieldUpdateOperationsInput | number
+    ref?: StringFieldUpdateOperationsInput | string
+    modeloDesc?: StringFieldUpdateOperationsInput | string
+    modelo?: StringFieldUpdateOperationsInput | string
+    cor?: StringFieldUpdateOperationsInput | string
+    pedido?: StringFieldUpdateOperationsInput | string
+    norma?: StringFieldUpdateOperationsInput | string
+    ContainerOp?: ContainerOpUpdateManyWithoutOpNestedInput
+    OpTamanho?: OpTamanhoUpdateManyWithoutOpNestedInput
+  }
+
+  export type OpUncheckedUpdateWithoutConteudoInput = {
+    op?: IntFieldUpdateOperationsInput | number
+    ref?: StringFieldUpdateOperationsInput | string
+    modeloDesc?: StringFieldUpdateOperationsInput | string
+    modelo?: StringFieldUpdateOperationsInput | string
+    cor?: StringFieldUpdateOperationsInput | string
+    pedido?: StringFieldUpdateOperationsInput | string
+    norma?: StringFieldUpdateOperationsInput | string
+    ContainerOp?: ContainerOpUncheckedUpdateManyWithoutOpNestedInput
+    OpTamanho?: OpTamanhoUncheckedUpdateManyWithoutOpNestedInput
+  }
+
+  export type OpTamanhoUpsertWithoutConteudoInput = {
+    update: XOR<OpTamanhoUpdateWithoutConteudoInput, OpTamanhoUncheckedUpdateWithoutConteudoInput>
+    create: XOR<OpTamanhoCreateWithoutConteudoInput, OpTamanhoUncheckedCreateWithoutConteudoInput>
+    where?: OpTamanhoWhereInput
+  }
+
+  export type OpTamanhoUpdateToOneWithWhereWithoutConteudoInput = {
+    where?: OpTamanhoWhereInput
+    data: XOR<OpTamanhoUpdateWithoutConteudoInput, OpTamanhoUncheckedUpdateWithoutConteudoInput>
+  }
+
+  export type OpTamanhoUpdateWithoutConteudoInput = {
+    tam?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
+    qtt?: IntFieldUpdateOperationsInput | number
+    Op?: OpUpdateOneRequiredWithoutOpTamanhoNestedInput
+  }
+
+  export type OpTamanhoUncheckedUpdateWithoutConteudoInput = {
+    op?: IntFieldUpdateOperationsInput | number
+    tam?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
+    qtt?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type UnidadesUpsertWithoutConteudoInput = {
+    update: XOR<UnidadesUpdateWithoutConteudoInput, UnidadesUncheckedUpdateWithoutConteudoInput>
+    create: XOR<UnidadesCreateWithoutConteudoInput, UnidadesUncheckedCreateWithoutConteudoInput>
+    where?: UnidadesWhereInput
+  }
+
+  export type UnidadesUpdateToOneWithWhereWithoutConteudoInput = {
+    where?: UnidadesWhereInput
+    data: XOR<UnidadesUpdateWithoutConteudoInput, UnidadesUncheckedUpdateWithoutConteudoInput>
+  }
+
+  export type UnidadesUpdateWithoutConteudoInput = {
+    descricaoUnidade?: StringFieldUpdateOperationsInput | string
+    Item?: ItemUpdateOneRequiredWithoutUnidadesNestedInput
+  }
+
+  export type UnidadesUncheckedUpdateWithoutConteudoInput = {
+    idUnidades?: IntFieldUpdateOperationsInput | number
+    idItem?: IntFieldUpdateOperationsInput | number
+    descricaoUnidade?: StringFieldUpdateOperationsInput | string
   }
 
   export type ContainerCreateWithoutEnvioInput = {
@@ -23296,7 +23510,9 @@ export namespace Prisma {
     peso: number
     Container: ContainerCreateNestedOneWithoutConteudoInput
     ContainerOp: ContainerOpCreateNestedOneWithoutConteudoInput
-    ContainerOpTam: ContainerOpTamCreateNestedOneWithoutConteudoInput
+    Op: OpCreateNestedOneWithoutConteudoInput
+    OpTamanho: OpTamanhoCreateNestedOneWithoutConteudoInput
+    Unidades: UnidadesCreateNestedOneWithoutConteudoInput
   }
 
   export type ConteudoUncheckedCreateWithoutItemInput = {
@@ -23305,6 +23521,7 @@ export namespace Prisma {
     op: number
     tam: string
     qtt: number
+    idUnidades: number
     peso: number
   }
 
@@ -23350,6 +23567,22 @@ export namespace Prisma {
   export type TipoContainerCreateOrConnectWithoutItemInput = {
     where: TipoContainerWhereUniqueInput
     create: XOR<TipoContainerCreateWithoutItemInput, TipoContainerUncheckedCreateWithoutItemInput>
+  }
+
+  export type UnidadesCreateWithoutItemInput = {
+    descricaoUnidade: string
+    Conteudo?: ConteudoCreateNestedManyWithoutUnidadesInput
+  }
+
+  export type UnidadesUncheckedCreateWithoutItemInput = {
+    idUnidades?: number
+    descricaoUnidade: string
+    Conteudo?: ConteudoUncheckedCreateNestedManyWithoutUnidadesInput
+  }
+
+  export type UnidadesCreateOrConnectWithoutItemInput = {
+    where: UnidadesWhereUniqueInput
+    create: XOR<UnidadesCreateWithoutItemInput, UnidadesUncheckedCreateWithoutItemInput>
   }
 
   export type ConteudoUpsertWithWhereUniqueWithoutItemInput = {
@@ -23406,6 +23639,28 @@ export namespace Prisma {
     Container?: ContainerUncheckedUpdateManyWithoutTipoContainerNestedInput
   }
 
+  export type UnidadesUpsertWithoutItemInput = {
+    update: XOR<UnidadesUpdateWithoutItemInput, UnidadesUncheckedUpdateWithoutItemInput>
+    create: XOR<UnidadesCreateWithoutItemInput, UnidadesUncheckedCreateWithoutItemInput>
+    where?: UnidadesWhereInput
+  }
+
+  export type UnidadesUpdateToOneWithWhereWithoutItemInput = {
+    where?: UnidadesWhereInput
+    data: XOR<UnidadesUpdateWithoutItemInput, UnidadesUncheckedUpdateWithoutItemInput>
+  }
+
+  export type UnidadesUpdateWithoutItemInput = {
+    descricaoUnidade?: StringFieldUpdateOperationsInput | string
+    Conteudo?: ConteudoUpdateManyWithoutUnidadesNestedInput
+  }
+
+  export type UnidadesUncheckedUpdateWithoutItemInput = {
+    idUnidades?: IntFieldUpdateOperationsInput | number
+    descricaoUnidade?: StringFieldUpdateOperationsInput | string
+    Conteudo?: ConteudoUncheckedUpdateManyWithoutUnidadesNestedInput
+  }
+
   export type IdiomasCreateWithoutItemTraduzidoInput = {
     nomeIdioma: string
     Destinos?: DestinosCreateNestedManyWithoutIdiomasInput
@@ -23426,6 +23681,7 @@ export namespace Prisma {
     Descricao: string
     Conteudo?: ConteudoCreateNestedManyWithoutItemInput
     TipoContainer?: TipoContainerCreateNestedOneWithoutItemInput
+    Unidades?: UnidadesCreateNestedOneWithoutItemInput
   }
 
   export type ItemUncheckedCreateWithoutItemTraduzidoInput = {
@@ -23433,6 +23689,7 @@ export namespace Prisma {
     Descricao: string
     Conteudo?: ConteudoUncheckedCreateNestedManyWithoutItemInput
     TipoContainer?: TipoContainerUncheckedCreateNestedOneWithoutItemInput
+    Unidades?: UnidadesUncheckedCreateNestedOneWithoutItemInput
   }
 
   export type ItemCreateOrConnectWithoutItemTraduzidoInput = {
@@ -23477,6 +23734,7 @@ export namespace Prisma {
     Descricao?: StringFieldUpdateOperationsInput | string
     Conteudo?: ConteudoUpdateManyWithoutItemNestedInput
     TipoContainer?: TipoContainerUpdateOneWithoutItemNestedInput
+    Unidades?: UnidadesUpdateOneWithoutItemNestedInput
   }
 
   export type ItemUncheckedUpdateWithoutItemTraduzidoInput = {
@@ -23484,6 +23742,7 @@ export namespace Prisma {
     Descricao?: StringFieldUpdateOperationsInput | string
     Conteudo?: ConteudoUncheckedUpdateManyWithoutItemNestedInput
     TipoContainer?: TipoContainerUncheckedUpdateOneWithoutItemNestedInput
+    Unidades?: UnidadesUncheckedUpdateOneWithoutItemNestedInput
   }
 
   export type ContainerCreateWithoutTipoContainerInput = {
@@ -23522,6 +23781,7 @@ export namespace Prisma {
     Descricao: string
     Conteudo?: ConteudoCreateNestedManyWithoutItemInput
     ItemTraduzido?: ItemTraduzidoCreateNestedManyWithoutItemInput
+    Unidades?: UnidadesCreateNestedOneWithoutItemInput
   }
 
   export type ItemUncheckedCreateWithoutTipoContainerInput = {
@@ -23529,6 +23789,7 @@ export namespace Prisma {
     Descricao: string
     Conteudo?: ConteudoUncheckedCreateNestedManyWithoutItemInput
     ItemTraduzido?: ItemTraduzidoUncheckedCreateNestedManyWithoutItemInput
+    Unidades?: UnidadesUncheckedCreateNestedOneWithoutItemInput
   }
 
   export type ItemCreateOrConnectWithoutTipoContainerInput = {
@@ -23567,6 +23828,7 @@ export namespace Prisma {
     Descricao?: StringFieldUpdateOperationsInput | string
     Conteudo?: ConteudoUpdateManyWithoutItemNestedInput
     ItemTraduzido?: ItemTraduzidoUpdateManyWithoutItemNestedInput
+    Unidades?: UnidadesUpdateOneWithoutItemNestedInput
   }
 
   export type ItemUncheckedUpdateWithoutTipoContainerInput = {
@@ -23574,6 +23836,7 @@ export namespace Prisma {
     Descricao?: StringFieldUpdateOperationsInput | string
     Conteudo?: ConteudoUncheckedUpdateManyWithoutItemNestedInput
     ItemTraduzido?: ItemTraduzidoUncheckedUpdateManyWithoutItemNestedInput
+    Unidades?: UnidadesUncheckedUpdateOneWithoutItemNestedInput
   }
 
   export type IdiomasCreateWithoutDestinosInput = {
@@ -23710,6 +23973,7 @@ export namespace Prisma {
     cor: string
     pedido: string
     norma: string
+    Conteudo?: ConteudoCreateNestedManyWithoutOpInput
     OpTamanho?: OpTamanhoCreateNestedManyWithoutOpInput
   }
 
@@ -23721,6 +23985,7 @@ export namespace Prisma {
     cor: string
     pedido: string
     norma: string
+    Conteudo?: ConteudoUncheckedCreateNestedManyWithoutOpInput
     OpTamanho?: OpTamanhoUncheckedCreateNestedManyWithoutOpInput
   }
 
@@ -23729,32 +23994,15 @@ export namespace Prisma {
     create: XOR<OpCreateWithoutContainerOpInput, OpUncheckedCreateWithoutContainerOpInput>
   }
 
-  export type ContainerOpTamCreateWithoutContainerOpInput = {
-    OpTamanho: OpTamanhoCreateNestedOneWithoutContainerOpTamInput
-    Conteudo?: ConteudoCreateNestedManyWithoutContainerOpTamInput
-  }
-
-  export type ContainerOpTamUncheckedCreateWithoutContainerOpInput = {
-    tam: string
-    Conteudo?: ConteudoUncheckedCreateNestedManyWithoutContainerOpTamInput
-  }
-
-  export type ContainerOpTamCreateOrConnectWithoutContainerOpInput = {
-    where: ContainerOpTamWhereUniqueInput
-    create: XOR<ContainerOpTamCreateWithoutContainerOpInput, ContainerOpTamUncheckedCreateWithoutContainerOpInput>
-  }
-
-  export type ContainerOpTamCreateManyContainerOpInputEnvelope = {
-    data: ContainerOpTamCreateManyContainerOpInput | ContainerOpTamCreateManyContainerOpInput[]
-  }
-
   export type ConteudoCreateWithoutContainerOpInput = {
     idConteudo?: number
     qtt: number
     peso: number
     Container: ContainerCreateNestedOneWithoutConteudoInput
-    ContainerOpTam: ContainerOpTamCreateNestedOneWithoutConteudoInput
     Item: ItemCreateNestedOneWithoutConteudoInput
+    Op: OpCreateNestedOneWithoutConteudoInput
+    OpTamanho: OpTamanhoCreateNestedOneWithoutConteudoInput
+    Unidades: UnidadesCreateNestedOneWithoutConteudoInput
   }
 
   export type ConteudoUncheckedCreateWithoutContainerOpInput = {
@@ -23762,6 +24010,7 @@ export namespace Prisma {
     idItem: number
     tam: string
     qtt: number
+    idUnidades: number
     peso: number
   }
 
@@ -23827,6 +24076,7 @@ export namespace Prisma {
     cor?: StringFieldUpdateOperationsInput | string
     pedido?: StringFieldUpdateOperationsInput | string
     norma?: StringFieldUpdateOperationsInput | string
+    Conteudo?: ConteudoUpdateManyWithoutOpNestedInput
     OpTamanho?: OpTamanhoUpdateManyWithoutOpNestedInput
   }
 
@@ -23838,32 +24088,8 @@ export namespace Prisma {
     cor?: StringFieldUpdateOperationsInput | string
     pedido?: StringFieldUpdateOperationsInput | string
     norma?: StringFieldUpdateOperationsInput | string
+    Conteudo?: ConteudoUncheckedUpdateManyWithoutOpNestedInput
     OpTamanho?: OpTamanhoUncheckedUpdateManyWithoutOpNestedInput
-  }
-
-  export type ContainerOpTamUpsertWithWhereUniqueWithoutContainerOpInput = {
-    where: ContainerOpTamWhereUniqueInput
-    update: XOR<ContainerOpTamUpdateWithoutContainerOpInput, ContainerOpTamUncheckedUpdateWithoutContainerOpInput>
-    create: XOR<ContainerOpTamCreateWithoutContainerOpInput, ContainerOpTamUncheckedCreateWithoutContainerOpInput>
-  }
-
-  export type ContainerOpTamUpdateWithWhereUniqueWithoutContainerOpInput = {
-    where: ContainerOpTamWhereUniqueInput
-    data: XOR<ContainerOpTamUpdateWithoutContainerOpInput, ContainerOpTamUncheckedUpdateWithoutContainerOpInput>
-  }
-
-  export type ContainerOpTamUpdateManyWithWhereWithoutContainerOpInput = {
-    where: ContainerOpTamScalarWhereInput
-    data: XOR<ContainerOpTamUpdateManyMutationInput, ContainerOpTamUncheckedUpdateManyWithoutContainerOpInput>
-  }
-
-  export type ContainerOpTamScalarWhereInput = {
-    AND?: ContainerOpTamScalarWhereInput | ContainerOpTamScalarWhereInput[]
-    OR?: ContainerOpTamScalarWhereInput[]
-    NOT?: ContainerOpTamScalarWhereInput | ContainerOpTamScalarWhereInput[]
-    idContainer?: IntFilter<"ContainerOpTam"> | number
-    op?: IntFilter<"ContainerOpTam"> | number
-    tam?: StringFilter<"ContainerOpTam"> | string
   }
 
   export type ConteudoUpsertWithWhereUniqueWithoutContainerOpInput = {
@@ -23882,140 +24108,13 @@ export namespace Prisma {
     data: XOR<ConteudoUpdateManyMutationInput, ConteudoUncheckedUpdateManyWithoutContainerOpInput>
   }
 
-  export type ContainerOpCreateWithoutContainerOpTamInput = {
-    Container: ContainerCreateNestedOneWithoutContainerOpInput
-    Op: OpCreateNestedOneWithoutContainerOpInput
-    Conteudo?: ConteudoCreateNestedManyWithoutContainerOpInput
-  }
-
-  export type ContainerOpUncheckedCreateWithoutContainerOpTamInput = {
-    idContainer: number
-    op: number
-    Conteudo?: ConteudoUncheckedCreateNestedManyWithoutContainerOpInput
-  }
-
-  export type ContainerOpCreateOrConnectWithoutContainerOpTamInput = {
-    where: ContainerOpWhereUniqueInput
-    create: XOR<ContainerOpCreateWithoutContainerOpTamInput, ContainerOpUncheckedCreateWithoutContainerOpTamInput>
-  }
-
-  export type OpTamanhoCreateWithoutContainerOpTamInput = {
-    tam: string
-    ordem: number
-    qtt: number
-    Op: OpCreateNestedOneWithoutOpTamanhoInput
-  }
-
-  export type OpTamanhoUncheckedCreateWithoutContainerOpTamInput = {
-    op: number
-    tam: string
-    ordem: number
-    qtt: number
-  }
-
-  export type OpTamanhoCreateOrConnectWithoutContainerOpTamInput = {
-    where: OpTamanhoWhereUniqueInput
-    create: XOR<OpTamanhoCreateWithoutContainerOpTamInput, OpTamanhoUncheckedCreateWithoutContainerOpTamInput>
-  }
-
-  export type ConteudoCreateWithoutContainerOpTamInput = {
-    idConteudo?: number
-    qtt: number
-    peso: number
-    Container: ContainerCreateNestedOneWithoutConteudoInput
-    ContainerOp: ContainerOpCreateNestedOneWithoutConteudoInput
-    Item: ItemCreateNestedOneWithoutConteudoInput
-  }
-
-  export type ConteudoUncheckedCreateWithoutContainerOpTamInput = {
-    idConteudo?: number
-    idItem: number
-    qtt: number
-    peso: number
-  }
-
-  export type ConteudoCreateOrConnectWithoutContainerOpTamInput = {
-    where: ConteudoWhereUniqueInput
-    create: XOR<ConteudoCreateWithoutContainerOpTamInput, ConteudoUncheckedCreateWithoutContainerOpTamInput>
-  }
-
-  export type ConteudoCreateManyContainerOpTamInputEnvelope = {
-    data: ConteudoCreateManyContainerOpTamInput | ConteudoCreateManyContainerOpTamInput[]
-  }
-
-  export type ContainerOpUpsertWithoutContainerOpTamInput = {
-    update: XOR<ContainerOpUpdateWithoutContainerOpTamInput, ContainerOpUncheckedUpdateWithoutContainerOpTamInput>
-    create: XOR<ContainerOpCreateWithoutContainerOpTamInput, ContainerOpUncheckedCreateWithoutContainerOpTamInput>
-    where?: ContainerOpWhereInput
-  }
-
-  export type ContainerOpUpdateToOneWithWhereWithoutContainerOpTamInput = {
-    where?: ContainerOpWhereInput
-    data: XOR<ContainerOpUpdateWithoutContainerOpTamInput, ContainerOpUncheckedUpdateWithoutContainerOpTamInput>
-  }
-
-  export type ContainerOpUpdateWithoutContainerOpTamInput = {
-    Container?: ContainerUpdateOneRequiredWithoutContainerOpNestedInput
-    Op?: OpUpdateOneRequiredWithoutContainerOpNestedInput
-    Conteudo?: ConteudoUpdateManyWithoutContainerOpNestedInput
-  }
-
-  export type ContainerOpUncheckedUpdateWithoutContainerOpTamInput = {
-    idContainer?: IntFieldUpdateOperationsInput | number
-    op?: IntFieldUpdateOperationsInput | number
-    Conteudo?: ConteudoUncheckedUpdateManyWithoutContainerOpNestedInput
-  }
-
-  export type OpTamanhoUpsertWithoutContainerOpTamInput = {
-    update: XOR<OpTamanhoUpdateWithoutContainerOpTamInput, OpTamanhoUncheckedUpdateWithoutContainerOpTamInput>
-    create: XOR<OpTamanhoCreateWithoutContainerOpTamInput, OpTamanhoUncheckedCreateWithoutContainerOpTamInput>
-    where?: OpTamanhoWhereInput
-  }
-
-  export type OpTamanhoUpdateToOneWithWhereWithoutContainerOpTamInput = {
-    where?: OpTamanhoWhereInput
-    data: XOR<OpTamanhoUpdateWithoutContainerOpTamInput, OpTamanhoUncheckedUpdateWithoutContainerOpTamInput>
-  }
-
-  export type OpTamanhoUpdateWithoutContainerOpTamInput = {
-    tam?: StringFieldUpdateOperationsInput | string
-    ordem?: IntFieldUpdateOperationsInput | number
-    qtt?: IntFieldUpdateOperationsInput | number
-    Op?: OpUpdateOneRequiredWithoutOpTamanhoNestedInput
-  }
-
-  export type OpTamanhoUncheckedUpdateWithoutContainerOpTamInput = {
-    op?: IntFieldUpdateOperationsInput | number
-    tam?: StringFieldUpdateOperationsInput | string
-    ordem?: IntFieldUpdateOperationsInput | number
-    qtt?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type ConteudoUpsertWithWhereUniqueWithoutContainerOpTamInput = {
-    where: ConteudoWhereUniqueInput
-    update: XOR<ConteudoUpdateWithoutContainerOpTamInput, ConteudoUncheckedUpdateWithoutContainerOpTamInput>
-    create: XOR<ConteudoCreateWithoutContainerOpTamInput, ConteudoUncheckedCreateWithoutContainerOpTamInput>
-  }
-
-  export type ConteudoUpdateWithWhereUniqueWithoutContainerOpTamInput = {
-    where: ConteudoWhereUniqueInput
-    data: XOR<ConteudoUpdateWithoutContainerOpTamInput, ConteudoUncheckedUpdateWithoutContainerOpTamInput>
-  }
-
-  export type ConteudoUpdateManyWithWhereWithoutContainerOpTamInput = {
-    where: ConteudoScalarWhereInput
-    data: XOR<ConteudoUpdateManyMutationInput, ConteudoUncheckedUpdateManyWithoutContainerOpTamInput>
-  }
-
   export type ContainerOpCreateWithoutOpInput = {
     Container: ContainerCreateNestedOneWithoutContainerOpInput
-    ContainerOpTam?: ContainerOpTamCreateNestedManyWithoutContainerOpInput
     Conteudo?: ConteudoCreateNestedManyWithoutContainerOpInput
   }
 
   export type ContainerOpUncheckedCreateWithoutOpInput = {
     idContainer: number
-    ContainerOpTam?: ContainerOpTamUncheckedCreateNestedManyWithoutContainerOpInput
     Conteudo?: ConteudoUncheckedCreateNestedManyWithoutContainerOpInput
   }
 
@@ -24028,18 +24127,48 @@ export namespace Prisma {
     data: ContainerOpCreateManyOpInput | ContainerOpCreateManyOpInput[]
   }
 
+  export type ConteudoCreateWithoutOpInput = {
+    idConteudo?: number
+    qtt: number
+    peso: number
+    Container: ContainerCreateNestedOneWithoutConteudoInput
+    ContainerOp: ContainerOpCreateNestedOneWithoutConteudoInput
+    Item: ItemCreateNestedOneWithoutConteudoInput
+    OpTamanho: OpTamanhoCreateNestedOneWithoutConteudoInput
+    Unidades: UnidadesCreateNestedOneWithoutConteudoInput
+  }
+
+  export type ConteudoUncheckedCreateWithoutOpInput = {
+    idConteudo?: number
+    idContainer: number
+    idItem: number
+    tam: string
+    qtt: number
+    idUnidades: number
+    peso: number
+  }
+
+  export type ConteudoCreateOrConnectWithoutOpInput = {
+    where: ConteudoWhereUniqueInput
+    create: XOR<ConteudoCreateWithoutOpInput, ConteudoUncheckedCreateWithoutOpInput>
+  }
+
+  export type ConteudoCreateManyOpInputEnvelope = {
+    data: ConteudoCreateManyOpInput | ConteudoCreateManyOpInput[]
+  }
+
   export type OpTamanhoCreateWithoutOpInput = {
     tam: string
     ordem: number
     qtt: number
-    ContainerOpTam?: ContainerOpTamCreateNestedManyWithoutOpTamanhoInput
+    Conteudo?: ConteudoCreateNestedManyWithoutOpTamanhoInput
   }
 
   export type OpTamanhoUncheckedCreateWithoutOpInput = {
     tam: string
     ordem: number
     qtt: number
-    ContainerOpTam?: ContainerOpTamUncheckedCreateNestedManyWithoutOpTamanhoInput
+    Conteudo?: ConteudoUncheckedCreateNestedManyWithoutOpTamanhoInput
   }
 
   export type OpTamanhoCreateOrConnectWithoutOpInput = {
@@ -24065,6 +24194,22 @@ export namespace Prisma {
   export type ContainerOpUpdateManyWithWhereWithoutOpInput = {
     where: ContainerOpScalarWhereInput
     data: XOR<ContainerOpUpdateManyMutationInput, ContainerOpUncheckedUpdateManyWithoutOpInput>
+  }
+
+  export type ConteudoUpsertWithWhereUniqueWithoutOpInput = {
+    where: ConteudoWhereUniqueInput
+    update: XOR<ConteudoUpdateWithoutOpInput, ConteudoUncheckedUpdateWithoutOpInput>
+    create: XOR<ConteudoCreateWithoutOpInput, ConteudoUncheckedCreateWithoutOpInput>
+  }
+
+  export type ConteudoUpdateWithWhereUniqueWithoutOpInput = {
+    where: ConteudoWhereUniqueInput
+    data: XOR<ConteudoUpdateWithoutOpInput, ConteudoUncheckedUpdateWithoutOpInput>
+  }
+
+  export type ConteudoUpdateManyWithWhereWithoutOpInput = {
+    where: ConteudoScalarWhereInput
+    data: XOR<ConteudoUpdateManyMutationInput, ConteudoUncheckedUpdateManyWithoutOpInput>
   }
 
   export type OpTamanhoUpsertWithWhereUniqueWithoutOpInput = {
@@ -24093,23 +24238,33 @@ export namespace Prisma {
     qtt?: IntFilter<"OpTamanho"> | number
   }
 
-  export type ContainerOpTamCreateWithoutOpTamanhoInput = {
-    ContainerOp: ContainerOpCreateNestedOneWithoutContainerOpTamInput
-    Conteudo?: ConteudoCreateNestedManyWithoutContainerOpTamInput
+  export type ConteudoCreateWithoutOpTamanhoInput = {
+    idConteudo?: number
+    qtt: number
+    peso: number
+    Container: ContainerCreateNestedOneWithoutConteudoInput
+    ContainerOp: ContainerOpCreateNestedOneWithoutConteudoInput
+    Item: ItemCreateNestedOneWithoutConteudoInput
+    Op: OpCreateNestedOneWithoutConteudoInput
+    Unidades: UnidadesCreateNestedOneWithoutConteudoInput
   }
 
-  export type ContainerOpTamUncheckedCreateWithoutOpTamanhoInput = {
+  export type ConteudoUncheckedCreateWithoutOpTamanhoInput = {
+    idConteudo?: number
     idContainer: number
-    Conteudo?: ConteudoUncheckedCreateNestedManyWithoutContainerOpTamInput
+    idItem: number
+    qtt: number
+    idUnidades: number
+    peso: number
   }
 
-  export type ContainerOpTamCreateOrConnectWithoutOpTamanhoInput = {
-    where: ContainerOpTamWhereUniqueInput
-    create: XOR<ContainerOpTamCreateWithoutOpTamanhoInput, ContainerOpTamUncheckedCreateWithoutOpTamanhoInput>
+  export type ConteudoCreateOrConnectWithoutOpTamanhoInput = {
+    where: ConteudoWhereUniqueInput
+    create: XOR<ConteudoCreateWithoutOpTamanhoInput, ConteudoUncheckedCreateWithoutOpTamanhoInput>
   }
 
-  export type ContainerOpTamCreateManyOpTamanhoInputEnvelope = {
-    data: ContainerOpTamCreateManyOpTamanhoInput | ContainerOpTamCreateManyOpTamanhoInput[]
+  export type ConteudoCreateManyOpTamanhoInputEnvelope = {
+    data: ConteudoCreateManyOpTamanhoInput | ConteudoCreateManyOpTamanhoInput[]
   }
 
   export type OpCreateWithoutOpTamanhoInput = {
@@ -24121,6 +24276,7 @@ export namespace Prisma {
     pedido: string
     norma: string
     ContainerOp?: ContainerOpCreateNestedManyWithoutOpInput
+    Conteudo?: ConteudoCreateNestedManyWithoutOpInput
   }
 
   export type OpUncheckedCreateWithoutOpTamanhoInput = {
@@ -24132,6 +24288,7 @@ export namespace Prisma {
     pedido: string
     norma: string
     ContainerOp?: ContainerOpUncheckedCreateNestedManyWithoutOpInput
+    Conteudo?: ConteudoUncheckedCreateNestedManyWithoutOpInput
   }
 
   export type OpCreateOrConnectWithoutOpTamanhoInput = {
@@ -24139,20 +24296,20 @@ export namespace Prisma {
     create: XOR<OpCreateWithoutOpTamanhoInput, OpUncheckedCreateWithoutOpTamanhoInput>
   }
 
-  export type ContainerOpTamUpsertWithWhereUniqueWithoutOpTamanhoInput = {
-    where: ContainerOpTamWhereUniqueInput
-    update: XOR<ContainerOpTamUpdateWithoutOpTamanhoInput, ContainerOpTamUncheckedUpdateWithoutOpTamanhoInput>
-    create: XOR<ContainerOpTamCreateWithoutOpTamanhoInput, ContainerOpTamUncheckedCreateWithoutOpTamanhoInput>
+  export type ConteudoUpsertWithWhereUniqueWithoutOpTamanhoInput = {
+    where: ConteudoWhereUniqueInput
+    update: XOR<ConteudoUpdateWithoutOpTamanhoInput, ConteudoUncheckedUpdateWithoutOpTamanhoInput>
+    create: XOR<ConteudoCreateWithoutOpTamanhoInput, ConteudoUncheckedCreateWithoutOpTamanhoInput>
   }
 
-  export type ContainerOpTamUpdateWithWhereUniqueWithoutOpTamanhoInput = {
-    where: ContainerOpTamWhereUniqueInput
-    data: XOR<ContainerOpTamUpdateWithoutOpTamanhoInput, ContainerOpTamUncheckedUpdateWithoutOpTamanhoInput>
+  export type ConteudoUpdateWithWhereUniqueWithoutOpTamanhoInput = {
+    where: ConteudoWhereUniqueInput
+    data: XOR<ConteudoUpdateWithoutOpTamanhoInput, ConteudoUncheckedUpdateWithoutOpTamanhoInput>
   }
 
-  export type ContainerOpTamUpdateManyWithWhereWithoutOpTamanhoInput = {
-    where: ContainerOpTamScalarWhereInput
-    data: XOR<ContainerOpTamUpdateManyMutationInput, ContainerOpTamUncheckedUpdateManyWithoutOpTamanhoInput>
+  export type ConteudoUpdateManyWithWhereWithoutOpTamanhoInput = {
+    where: ConteudoScalarWhereInput
+    data: XOR<ConteudoUpdateManyMutationInput, ConteudoUncheckedUpdateManyWithoutOpTamanhoInput>
   }
 
   export type OpUpsertWithoutOpTamanhoInput = {
@@ -24175,6 +24332,7 @@ export namespace Prisma {
     pedido?: StringFieldUpdateOperationsInput | string
     norma?: StringFieldUpdateOperationsInput | string
     ContainerOp?: ContainerOpUpdateManyWithoutOpNestedInput
+    Conteudo?: ConteudoUpdateManyWithoutOpNestedInput
   }
 
   export type OpUncheckedUpdateWithoutOpTamanhoInput = {
@@ -24186,6 +24344,99 @@ export namespace Prisma {
     pedido?: StringFieldUpdateOperationsInput | string
     norma?: StringFieldUpdateOperationsInput | string
     ContainerOp?: ContainerOpUncheckedUpdateManyWithoutOpNestedInput
+    Conteudo?: ConteudoUncheckedUpdateManyWithoutOpNestedInput
+  }
+
+  export type ConteudoCreateWithoutUnidadesInput = {
+    idConteudo?: number
+    qtt: number
+    peso: number
+    Container: ContainerCreateNestedOneWithoutConteudoInput
+    ContainerOp: ContainerOpCreateNestedOneWithoutConteudoInput
+    Item: ItemCreateNestedOneWithoutConteudoInput
+    Op: OpCreateNestedOneWithoutConteudoInput
+    OpTamanho: OpTamanhoCreateNestedOneWithoutConteudoInput
+  }
+
+  export type ConteudoUncheckedCreateWithoutUnidadesInput = {
+    idConteudo?: number
+    idContainer: number
+    idItem: number
+    op: number
+    tam: string
+    qtt: number
+    peso: number
+  }
+
+  export type ConteudoCreateOrConnectWithoutUnidadesInput = {
+    where: ConteudoWhereUniqueInput
+    create: XOR<ConteudoCreateWithoutUnidadesInput, ConteudoUncheckedCreateWithoutUnidadesInput>
+  }
+
+  export type ConteudoCreateManyUnidadesInputEnvelope = {
+    data: ConteudoCreateManyUnidadesInput | ConteudoCreateManyUnidadesInput[]
+  }
+
+  export type ItemCreateWithoutUnidadesInput = {
+    Descricao: string
+    Conteudo?: ConteudoCreateNestedManyWithoutItemInput
+    ItemTraduzido?: ItemTraduzidoCreateNestedManyWithoutItemInput
+    TipoContainer?: TipoContainerCreateNestedOneWithoutItemInput
+  }
+
+  export type ItemUncheckedCreateWithoutUnidadesInput = {
+    idItem?: number
+    Descricao: string
+    Conteudo?: ConteudoUncheckedCreateNestedManyWithoutItemInput
+    ItemTraduzido?: ItemTraduzidoUncheckedCreateNestedManyWithoutItemInput
+    TipoContainer?: TipoContainerUncheckedCreateNestedOneWithoutItemInput
+  }
+
+  export type ItemCreateOrConnectWithoutUnidadesInput = {
+    where: ItemWhereUniqueInput
+    create: XOR<ItemCreateWithoutUnidadesInput, ItemUncheckedCreateWithoutUnidadesInput>
+  }
+
+  export type ConteudoUpsertWithWhereUniqueWithoutUnidadesInput = {
+    where: ConteudoWhereUniqueInput
+    update: XOR<ConteudoUpdateWithoutUnidadesInput, ConteudoUncheckedUpdateWithoutUnidadesInput>
+    create: XOR<ConteudoCreateWithoutUnidadesInput, ConteudoUncheckedCreateWithoutUnidadesInput>
+  }
+
+  export type ConteudoUpdateWithWhereUniqueWithoutUnidadesInput = {
+    where: ConteudoWhereUniqueInput
+    data: XOR<ConteudoUpdateWithoutUnidadesInput, ConteudoUncheckedUpdateWithoutUnidadesInput>
+  }
+
+  export type ConteudoUpdateManyWithWhereWithoutUnidadesInput = {
+    where: ConteudoScalarWhereInput
+    data: XOR<ConteudoUpdateManyMutationInput, ConteudoUncheckedUpdateManyWithoutUnidadesInput>
+  }
+
+  export type ItemUpsertWithoutUnidadesInput = {
+    update: XOR<ItemUpdateWithoutUnidadesInput, ItemUncheckedUpdateWithoutUnidadesInput>
+    create: XOR<ItemCreateWithoutUnidadesInput, ItemUncheckedCreateWithoutUnidadesInput>
+    where?: ItemWhereInput
+  }
+
+  export type ItemUpdateToOneWithWhereWithoutUnidadesInput = {
+    where?: ItemWhereInput
+    data: XOR<ItemUpdateWithoutUnidadesInput, ItemUncheckedUpdateWithoutUnidadesInput>
+  }
+
+  export type ItemUpdateWithoutUnidadesInput = {
+    Descricao?: StringFieldUpdateOperationsInput | string
+    Conteudo?: ConteudoUpdateManyWithoutItemNestedInput
+    ItemTraduzido?: ItemTraduzidoUpdateManyWithoutItemNestedInput
+    TipoContainer?: TipoContainerUpdateOneWithoutItemNestedInput
+  }
+
+  export type ItemUncheckedUpdateWithoutUnidadesInput = {
+    idItem?: IntFieldUpdateOperationsInput | number
+    Descricao?: StringFieldUpdateOperationsInput | string
+    Conteudo?: ConteudoUncheckedUpdateManyWithoutItemNestedInput
+    ItemTraduzido?: ItemTraduzidoUncheckedUpdateManyWithoutItemNestedInput
+    TipoContainer?: TipoContainerUncheckedUpdateOneWithoutItemNestedInput
   }
 
   export type UserPapeisCreateManyPapeisInput = {
@@ -24237,6 +24488,7 @@ export namespace Prisma {
     op: number
     tam: string
     qtt: number
+    idUnidades: number
     peso: number
   }
 
@@ -24274,13 +24526,11 @@ export namespace Prisma {
 
   export type ContainerOpUpdateWithoutContainerInput = {
     Op?: OpUpdateOneRequiredWithoutContainerOpNestedInput
-    ContainerOpTam?: ContainerOpTamUpdateManyWithoutContainerOpNestedInput
     Conteudo?: ConteudoUpdateManyWithoutContainerOpNestedInput
   }
 
   export type ContainerOpUncheckedUpdateWithoutContainerInput = {
     op?: IntFieldUpdateOperationsInput | number
-    ContainerOpTam?: ContainerOpTamUncheckedUpdateManyWithoutContainerOpNestedInput
     Conteudo?: ConteudoUncheckedUpdateManyWithoutContainerOpNestedInput
   }
 
@@ -24293,8 +24543,10 @@ export namespace Prisma {
     qtt?: FloatFieldUpdateOperationsInput | number
     peso?: FloatFieldUpdateOperationsInput | number
     ContainerOp?: ContainerOpUpdateOneRequiredWithoutConteudoNestedInput
-    ContainerOpTam?: ContainerOpTamUpdateOneRequiredWithoutConteudoNestedInput
     Item?: ItemUpdateOneRequiredWithoutConteudoNestedInput
+    Op?: OpUpdateOneRequiredWithoutConteudoNestedInput
+    OpTamanho?: OpTamanhoUpdateOneRequiredWithoutConteudoNestedInput
+    Unidades?: UnidadesUpdateOneRequiredWithoutConteudoNestedInput
   }
 
   export type ConteudoUncheckedUpdateWithoutContainerInput = {
@@ -24303,6 +24555,7 @@ export namespace Prisma {
     op?: IntFieldUpdateOperationsInput | number
     tam?: StringFieldUpdateOperationsInput | string
     qtt?: FloatFieldUpdateOperationsInput | number
+    idUnidades?: IntFieldUpdateOperationsInput | number
     peso?: FloatFieldUpdateOperationsInput | number
   }
 
@@ -24312,6 +24565,7 @@ export namespace Prisma {
     op?: IntFieldUpdateOperationsInput | number
     tam?: StringFieldUpdateOperationsInput | string
     qtt?: FloatFieldUpdateOperationsInput | number
+    idUnidades?: IntFieldUpdateOperationsInput | number
     peso?: FloatFieldUpdateOperationsInput | number
   }
 
@@ -24400,6 +24654,7 @@ export namespace Prisma {
     op: number
     tam: string
     qtt: number
+    idUnidades: number
     peso: number
   }
 
@@ -24414,7 +24669,9 @@ export namespace Prisma {
     peso?: FloatFieldUpdateOperationsInput | number
     Container?: ContainerUpdateOneRequiredWithoutConteudoNestedInput
     ContainerOp?: ContainerOpUpdateOneRequiredWithoutConteudoNestedInput
-    ContainerOpTam?: ContainerOpTamUpdateOneRequiredWithoutConteudoNestedInput
+    Op?: OpUpdateOneRequiredWithoutConteudoNestedInput
+    OpTamanho?: OpTamanhoUpdateOneRequiredWithoutConteudoNestedInput
+    Unidades?: UnidadesUpdateOneRequiredWithoutConteudoNestedInput
   }
 
   export type ConteudoUncheckedUpdateWithoutItemInput = {
@@ -24423,6 +24680,7 @@ export namespace Prisma {
     op?: IntFieldUpdateOperationsInput | number
     tam?: StringFieldUpdateOperationsInput | string
     qtt?: FloatFieldUpdateOperationsInput | number
+    idUnidades?: IntFieldUpdateOperationsInput | number
     peso?: FloatFieldUpdateOperationsInput | number
   }
 
@@ -24432,6 +24690,7 @@ export namespace Prisma {
     op?: IntFieldUpdateOperationsInput | number
     tam?: StringFieldUpdateOperationsInput | string
     qtt?: FloatFieldUpdateOperationsInput | number
+    idUnidades?: IntFieldUpdateOperationsInput | number
     peso?: FloatFieldUpdateOperationsInput | number
   }
 
@@ -24530,29 +24789,12 @@ export namespace Prisma {
     nomeUser?: StringFieldUpdateOperationsInput | string
   }
 
-  export type ContainerOpTamCreateManyContainerOpInput = {
-    tam: string
-  }
-
   export type ConteudoCreateManyContainerOpInput = {
     idItem: number
     tam: string
     qtt: number
+    idUnidades: number
     peso: number
-  }
-
-  export type ContainerOpTamUpdateWithoutContainerOpInput = {
-    OpTamanho?: OpTamanhoUpdateOneRequiredWithoutContainerOpTamNestedInput
-    Conteudo?: ConteudoUpdateManyWithoutContainerOpTamNestedInput
-  }
-
-  export type ContainerOpTamUncheckedUpdateWithoutContainerOpInput = {
-    tam?: StringFieldUpdateOperationsInput | string
-    Conteudo?: ConteudoUncheckedUpdateManyWithoutContainerOpTamNestedInput
-  }
-
-  export type ContainerOpTamUncheckedUpdateManyWithoutContainerOpInput = {
-    tam?: StringFieldUpdateOperationsInput | string
   }
 
   export type ConteudoUpdateWithoutContainerOpInput = {
@@ -24560,8 +24802,10 @@ export namespace Prisma {
     qtt?: FloatFieldUpdateOperationsInput | number
     peso?: FloatFieldUpdateOperationsInput | number
     Container?: ContainerUpdateOneRequiredWithoutConteudoNestedInput
-    ContainerOpTam?: ContainerOpTamUpdateOneRequiredWithoutConteudoNestedInput
     Item?: ItemUpdateOneRequiredWithoutConteudoNestedInput
+    Op?: OpUpdateOneRequiredWithoutConteudoNestedInput
+    OpTamanho?: OpTamanhoUpdateOneRequiredWithoutConteudoNestedInput
+    Unidades?: UnidadesUpdateOneRequiredWithoutConteudoNestedInput
   }
 
   export type ConteudoUncheckedUpdateWithoutContainerOpInput = {
@@ -24569,6 +24813,7 @@ export namespace Prisma {
     idItem?: IntFieldUpdateOperationsInput | number
     tam?: StringFieldUpdateOperationsInput | string
     qtt?: FloatFieldUpdateOperationsInput | number
+    idUnidades?: IntFieldUpdateOperationsInput | number
     peso?: FloatFieldUpdateOperationsInput | number
   }
 
@@ -24577,40 +24822,21 @@ export namespace Prisma {
     idItem?: IntFieldUpdateOperationsInput | number
     tam?: StringFieldUpdateOperationsInput | string
     qtt?: FloatFieldUpdateOperationsInput | number
-    peso?: FloatFieldUpdateOperationsInput | number
-  }
-
-  export type ConteudoCreateManyContainerOpTamInput = {
-    idItem: number
-    qtt: number
-    peso: number
-  }
-
-  export type ConteudoUpdateWithoutContainerOpTamInput = {
-    idConteudo?: IntFieldUpdateOperationsInput | number
-    qtt?: FloatFieldUpdateOperationsInput | number
-    peso?: FloatFieldUpdateOperationsInput | number
-    Container?: ContainerUpdateOneRequiredWithoutConteudoNestedInput
-    ContainerOp?: ContainerOpUpdateOneRequiredWithoutConteudoNestedInput
-    Item?: ItemUpdateOneRequiredWithoutConteudoNestedInput
-  }
-
-  export type ConteudoUncheckedUpdateWithoutContainerOpTamInput = {
-    idConteudo?: IntFieldUpdateOperationsInput | number
-    idItem?: IntFieldUpdateOperationsInput | number
-    qtt?: FloatFieldUpdateOperationsInput | number
-    peso?: FloatFieldUpdateOperationsInput | number
-  }
-
-  export type ConteudoUncheckedUpdateManyWithoutContainerOpTamInput = {
-    idConteudo?: IntFieldUpdateOperationsInput | number
-    idItem?: IntFieldUpdateOperationsInput | number
-    qtt?: FloatFieldUpdateOperationsInput | number
+    idUnidades?: IntFieldUpdateOperationsInput | number
     peso?: FloatFieldUpdateOperationsInput | number
   }
 
   export type ContainerOpCreateManyOpInput = {
     idContainer: number
+  }
+
+  export type ConteudoCreateManyOpInput = {
+    idContainer: number
+    idItem: number
+    tam: string
+    qtt: number
+    idUnidades: number
+    peso: number
   }
 
   export type OpTamanhoCreateManyOpInput = {
@@ -24621,13 +24847,11 @@ export namespace Prisma {
 
   export type ContainerOpUpdateWithoutOpInput = {
     Container?: ContainerUpdateOneRequiredWithoutContainerOpNestedInput
-    ContainerOpTam?: ContainerOpTamUpdateManyWithoutContainerOpNestedInput
     Conteudo?: ConteudoUpdateManyWithoutContainerOpNestedInput
   }
 
   export type ContainerOpUncheckedUpdateWithoutOpInput = {
     idContainer?: IntFieldUpdateOperationsInput | number
-    ContainerOpTam?: ContainerOpTamUncheckedUpdateManyWithoutContainerOpNestedInput
     Conteudo?: ConteudoUncheckedUpdateManyWithoutContainerOpNestedInput
   }
 
@@ -24635,18 +24859,49 @@ export namespace Prisma {
     idContainer?: IntFieldUpdateOperationsInput | number
   }
 
+  export type ConteudoUpdateWithoutOpInput = {
+    idConteudo?: IntFieldUpdateOperationsInput | number
+    qtt?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
+    Container?: ContainerUpdateOneRequiredWithoutConteudoNestedInput
+    ContainerOp?: ContainerOpUpdateOneRequiredWithoutConteudoNestedInput
+    Item?: ItemUpdateOneRequiredWithoutConteudoNestedInput
+    OpTamanho?: OpTamanhoUpdateOneRequiredWithoutConteudoNestedInput
+    Unidades?: UnidadesUpdateOneRequiredWithoutConteudoNestedInput
+  }
+
+  export type ConteudoUncheckedUpdateWithoutOpInput = {
+    idConteudo?: IntFieldUpdateOperationsInput | number
+    idContainer?: IntFieldUpdateOperationsInput | number
+    idItem?: IntFieldUpdateOperationsInput | number
+    tam?: StringFieldUpdateOperationsInput | string
+    qtt?: FloatFieldUpdateOperationsInput | number
+    idUnidades?: IntFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type ConteudoUncheckedUpdateManyWithoutOpInput = {
+    idConteudo?: IntFieldUpdateOperationsInput | number
+    idContainer?: IntFieldUpdateOperationsInput | number
+    idItem?: IntFieldUpdateOperationsInput | number
+    tam?: StringFieldUpdateOperationsInput | string
+    qtt?: FloatFieldUpdateOperationsInput | number
+    idUnidades?: IntFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
+  }
+
   export type OpTamanhoUpdateWithoutOpInput = {
     tam?: StringFieldUpdateOperationsInput | string
     ordem?: IntFieldUpdateOperationsInput | number
     qtt?: IntFieldUpdateOperationsInput | number
-    ContainerOpTam?: ContainerOpTamUpdateManyWithoutOpTamanhoNestedInput
+    Conteudo?: ConteudoUpdateManyWithoutOpTamanhoNestedInput
   }
 
   export type OpTamanhoUncheckedUpdateWithoutOpInput = {
     tam?: StringFieldUpdateOperationsInput | string
     ordem?: IntFieldUpdateOperationsInput | number
     qtt?: IntFieldUpdateOperationsInput | number
-    ContainerOpTam?: ContainerOpTamUncheckedUpdateManyWithoutOpTamanhoNestedInput
+    Conteudo?: ConteudoUncheckedUpdateManyWithoutOpTamanhoNestedInput
   }
 
   export type OpTamanhoUncheckedUpdateManyWithoutOpInput = {
@@ -24655,22 +24910,81 @@ export namespace Prisma {
     qtt?: IntFieldUpdateOperationsInput | number
   }
 
-  export type ContainerOpTamCreateManyOpTamanhoInput = {
+  export type ConteudoCreateManyOpTamanhoInput = {
     idContainer: number
+    idItem: number
+    qtt: number
+    idUnidades: number
+    peso: number
   }
 
-  export type ContainerOpTamUpdateWithoutOpTamanhoInput = {
-    ContainerOp?: ContainerOpUpdateOneRequiredWithoutContainerOpTamNestedInput
-    Conteudo?: ConteudoUpdateManyWithoutContainerOpTamNestedInput
+  export type ConteudoUpdateWithoutOpTamanhoInput = {
+    idConteudo?: IntFieldUpdateOperationsInput | number
+    qtt?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
+    Container?: ContainerUpdateOneRequiredWithoutConteudoNestedInput
+    ContainerOp?: ContainerOpUpdateOneRequiredWithoutConteudoNestedInput
+    Item?: ItemUpdateOneRequiredWithoutConteudoNestedInput
+    Op?: OpUpdateOneRequiredWithoutConteudoNestedInput
+    Unidades?: UnidadesUpdateOneRequiredWithoutConteudoNestedInput
   }
 
-  export type ContainerOpTamUncheckedUpdateWithoutOpTamanhoInput = {
+  export type ConteudoUncheckedUpdateWithoutOpTamanhoInput = {
+    idConteudo?: IntFieldUpdateOperationsInput | number
     idContainer?: IntFieldUpdateOperationsInput | number
-    Conteudo?: ConteudoUncheckedUpdateManyWithoutContainerOpTamNestedInput
+    idItem?: IntFieldUpdateOperationsInput | number
+    qtt?: FloatFieldUpdateOperationsInput | number
+    idUnidades?: IntFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
   }
 
-  export type ContainerOpTamUncheckedUpdateManyWithoutOpTamanhoInput = {
+  export type ConteudoUncheckedUpdateManyWithoutOpTamanhoInput = {
+    idConteudo?: IntFieldUpdateOperationsInput | number
     idContainer?: IntFieldUpdateOperationsInput | number
+    idItem?: IntFieldUpdateOperationsInput | number
+    qtt?: FloatFieldUpdateOperationsInput | number
+    idUnidades?: IntFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type ConteudoCreateManyUnidadesInput = {
+    idContainer: number
+    idItem: number
+    op: number
+    tam: string
+    qtt: number
+    peso: number
+  }
+
+  export type ConteudoUpdateWithoutUnidadesInput = {
+    idConteudo?: IntFieldUpdateOperationsInput | number
+    qtt?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
+    Container?: ContainerUpdateOneRequiredWithoutConteudoNestedInput
+    ContainerOp?: ContainerOpUpdateOneRequiredWithoutConteudoNestedInput
+    Item?: ItemUpdateOneRequiredWithoutConteudoNestedInput
+    Op?: OpUpdateOneRequiredWithoutConteudoNestedInput
+    OpTamanho?: OpTamanhoUpdateOneRequiredWithoutConteudoNestedInput
+  }
+
+  export type ConteudoUncheckedUpdateWithoutUnidadesInput = {
+    idConteudo?: IntFieldUpdateOperationsInput | number
+    idContainer?: IntFieldUpdateOperationsInput | number
+    idItem?: IntFieldUpdateOperationsInput | number
+    op?: IntFieldUpdateOperationsInput | number
+    tam?: StringFieldUpdateOperationsInput | string
+    qtt?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type ConteudoUncheckedUpdateManyWithoutUnidadesInput = {
+    idConteudo?: IntFieldUpdateOperationsInput | number
+    idContainer?: IntFieldUpdateOperationsInput | number
+    idItem?: IntFieldUpdateOperationsInput | number
+    op?: IntFieldUpdateOperationsInput | number
+    tam?: StringFieldUpdateOperationsInput | string
+    qtt?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
   }
 
 

@@ -5,6 +5,8 @@ import PrismaSingleton from '@services/prisma';
 import { ApiResponseBody, ResponseHandler } from '@utils/api-response-body';
 import HttpStatusCode from '@utils/http-status-code';
 
+import { AuxEnvios } from './aux';
+
 export async function insiroOpContainer(
   opRecebida: PostOpDto,
 ): Promise<ApiResponseBody<RespostaDto>> {
@@ -14,57 +16,53 @@ export async function insiroOpContainer(
   //console.log('resBody:', id, op);
 
   try {
-    await prisma.$transaction(async (transaction) => {
-      const existingContainerOp = await transaction.containerOp.findUnique({
-        where: {
-          idContainer_op: {
-            idContainer: id,
-            op,
-          },
-        },
-      });
-
-      if (existingContainerOp) {
-        return ResponseHandler.BadRequest('OP already exists in the container');
-      }
-
-      const existingOp = await transaction.op.findUnique({
-        where: { op },
-      });
-
-      if (!existingOp) {
-        const procedureResult: RespostaDto =
-          await transaction.$queryRaw`exec inserirOp ${op}`;
-        //console.log('procedureResult: ', procedureResult);
-        const resposta = RespostaRecebidaSchema.parse(procedureResult);
-        //console.log('procedureResult: ', resposta);
-        if (resposta && resposta[0].status !== 'ok') {
-          //console.log('procedureResult: ', 'n Ok');
-          return ResponseHandler.BadRequest(
-            'Failed to execute stored procedure inserirOp',
-          );
-        }
-      }
-
-      await transaction.containerOp.create({
-        data: {
+    const existingContainerOp = await prisma.containerOp.findUnique({
+      where: {
+        idContainer_op: {
           idContainer: id,
           op,
         },
-      });
+      },
+    });
 
-      const tamanhos = await transaction.opTamanho.findMany({
-        where: { op },
-      });
+    const existingOp = await prisma.op.findUnique({
+      where: { op },
+    });
 
-      const containerOpTamData = tamanhos.map((tamanho) => ({
-        idContainer: id,
-        op,
-        tam: tamanho.tam,
-      }));
+    if (existingContainerOp) {
+      return ResponseHandler.BadRequest('OP already exists in the container');
+    }
 
-      await transaction.containerOpTam.createMany({
-        data: containerOpTamData,
+    if (!existingOp) {
+      const procedureResult: RespostaDto =
+        await prisma.$queryRaw`exec inserirOp ${op}`;
+      console.log('procedureResult: ', procedureResult);
+      const resposta = RespostaRecebidaSchema.parse(procedureResult);
+      //console.log('procedureResult: ', resposta);
+      if (resposta && resposta[0].status !== 'ok') {
+        console.log('procedureResult: ', 'n Ok');
+        return ResponseHandler.BadRequest(
+          'Failed to execute stored procedure inserirOp',
+        );
+      }
+    }
+
+    //saber os filhos
+    const getTodosContainersIdContainer =
+      await AuxEnvios.getTodosContainersIdContainer(id);
+
+    //console.log('insiroOpContainer : ', getTodosContainersIdContainer);
+
+    // Inserir muitas ops nos containers
+    const dadosAInserir = getTodosContainersIdContainer.map((c) => ({
+      idContainer: c,
+      op: op,
+    }));
+    await prisma.$transaction(async (tx) => {
+      //console.log('dadosAInserir dadosAInserir : ', dadosAInserir);
+
+      await tx.containerOp.createMany({
+        data: dadosAInserir,
       });
 
       resBody.data = { status: 'ok', errorMessage: null };

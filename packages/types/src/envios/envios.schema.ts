@@ -11,11 +11,17 @@ export const item = z.object({
   Descricao: z.string().max(100),
 });
 
-export const conteudo = z.object({
-  idConteudo: z.number().int().nonnegative(),
-  idContainer: z.number().int().nonnegative(),
+export const UnidadeSchema = z.object({
+  idUnidades: z.number().int().nonnegative(),
   idItem: z.number().int().nonnegative(),
-  Item: item,
+  descricaoUnidade: z.string().max(100),
+});
+
+export const OpTamanhoSchema = z.object({
+  op: z.number().int().nonnegative(),
+  tam: z.string().max(25),
+  ordem: z.number().int().nonnegative(),
+  qtt: z.number().int().nonnegative(),
 });
 
 export const OpSchema = z.object({
@@ -26,22 +32,35 @@ export const OpSchema = z.object({
   cor: z.string().max(50),
   pedido: z.string().max(50),
   norma: z.string().max(50),
+  OpTamanho: z.array(OpTamanhoSchema).optional(),
 });
-export const ContainerOpTamSchema = z.object({
+
+export const conteudo = z.object({
+  idConteudo: z.number().int().nonnegative(),
+  idContainer: z.number().int().nonnegative(),
+  idItem: z.number().int().nonnegative(),
+  Item: item,
+  op: z.number().int().nonnegative(),
+  Op: OpSchema,
   tam: z.string().max(25),
-  OpTamanho: z.object({
-    tam: z.string().max(25),
-    ordem: z.number().int().nonnegative(),
-    qtt: z.number().int().nonnegative(),
-  }),
+  qtt: z.number().nonnegative(),
+  Unidades: UnidadeSchema,
 });
+
 export const ContainerOpSchema = z.object({
   op: z.number().int().nonnegative(),
   Op: OpSchema,
-  ContainerOpTam: z.array(ContainerOpTamSchema),
 });
 
 export const ContainerOpsSchemas = z.array(ContainerOpSchema).optional();
+export const TipoContainerSchema = z
+  .object({
+    idItem: z.number().int().nonnegative(),
+    Item: z.object({
+      Descricao: z.string().max(100),
+    }),
+  })
+  .optional();
 
 export const baseContainerSchema = z.object({
   idContainer: z.number().int().nonnegative(),
@@ -50,14 +69,7 @@ export const baseContainerSchema = z.object({
   ordem: z.number().int().nonnegative(),
   nContainer: z.number().int().nonnegative(),
   altura: z.number().nonnegative(),
-  TipoContainer: z
-    .object({
-      idItem: z.number().int().nonnegative(),
-      Item: z.object({
-        Descricao: z.string().max(100),
-      }),
-    })
-    .optional(),
+  TipoContainer: TipoContainerSchema,
   ContainerOp: ContainerOpsSchemas,
   Conteudo: z.array(conteudo).optional(),
 });
@@ -73,7 +85,16 @@ export const ContainerEnvio: z.ZodType<Container> = baseContainerSchema.extend({
 });
 
 const ListaDeContainersEnvio = z.array(ContainerEnvio).optional();
+const ItensSchema = z
+  .array(
+    z.object({
+      idItem: z.number().int().nonnegative(),
+      Descricao: z.string().max(100),
+    })
+  )
+  .optional();
 
+const UnidadesSchema = z.array(UnidadeSchema);
 export const EnvioSchema = z.object({
   idEnvio: z.number().int().nonnegative(),
   nomeEnvio: z.string().max(50),
@@ -92,6 +113,8 @@ export const EnvioSchema = z.object({
     .transform((val) => val ?? null),
   nomeUser: z.string().max(100),
   Container: ListaDeContainersEnvio,
+  Itens: ItensSchema,
+  Unidades: UnidadesSchema.optional(),
 });
 
 export const EnviosListSchema = z.object({
@@ -109,3 +132,5 @@ export type ConteudoDto = z.infer<typeof conteudo>;
 export type ListaDeContainersEnvioDto = z.infer<typeof ListaDeContainersEnvio>;
 
 export type ContainerOpsSchemasDto = z.infer<typeof ContainerOpsSchemas>;
+
+export type UnidadesSchemaDto = z.infer<typeof UnidadesSchema>;

@@ -7,7 +7,7 @@ import PrismaSingleton from '@services/prisma';
 import { ApiResponseBody } from '@utils/api-response-body';
 import HttpStatusCode from '@utils/http-status-code';
 
-import { AuthEnvios } from './aux';
+import { AuxEnvios } from './aux';
 
 export async function getEnvios(
   body: DadosParaPesquisaComPaginacaoEOrdemDto,
@@ -41,7 +41,7 @@ export async function getEnvios(
         take,
         orderBy: { createdAt: ordem },
       }),
-      AuthEnvios.numeroDeEnvios(fechado),
+      AuxEnvios.numeroDeEnvios(fechado),
     ]);
 
     resBody.data = {

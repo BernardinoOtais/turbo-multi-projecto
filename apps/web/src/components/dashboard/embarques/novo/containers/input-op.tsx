@@ -18,14 +18,21 @@ type InputOpProps = {
   idContainer: number;
   setScroll: (data: boolean) => void;
   setOp: (data: PostOpDto) => void;
+  op: PostOpDto;
 };
-const InputOp = ({ isSaving, idContainer, setScroll, setOp }: InputOpProps) => {
+const InputOp = ({
+  isSaving,
+  idContainer,
+  setScroll,
+  setOp,
+  op,
+}: InputOpProps) => {
   const form = useForm<PostOpDto>({
     resolver: zodResolver(PostOpSchema),
     defaultValues: {
       PostOp: {
         id: idContainer,
-        op: 0,
+        op: op.PostOp.op,
       },
     },
   });
@@ -48,6 +55,7 @@ const InputOp = ({ isSaving, idContainer, setScroll, setOp }: InputOpProps) => {
     return unsubscribe;
   }, [form, idContainer, setOp, setScroll]);
 
+  //console.log("InputOp: ", op);
   return (
     <Form {...form}>
       <form>
@@ -71,7 +79,7 @@ const InputOp = ({ isSaving, idContainer, setScroll, setOp }: InputOpProps) => {
                     <Input
                       className="w-16 text-center"
                       {...field}
-                      value={field.value === 0 ? "" : field.value} // Display nothing if the value is 0
+                      value={op.PostOp.op == 0 ? "" : op.PostOp.op} // Display nothing if the value is 0
                       placeholder="..."
                       disabled={isSaving}
                     />

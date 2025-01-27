@@ -1,7 +1,7 @@
 "use server";
-import { revalidatePath } from "next/cache";
 import { getSession } from "../actions/auth/sessions";
 import { BACKEND_URL } from "../constants";
+import { resposta } from "./fetch-aux";
 
 export interface FetchOptions extends RequestInit {
   headers?: Record<string, string>;
@@ -22,7 +22,7 @@ export const fetchPost = async (
       "Content-Type": "application/json",
       Authorization: `Bearer ${session?.accessToken}`,
     };
-    console.log("fetchPost url", requestUrl);
+    //console.log("fetchPost url", requestUrl);
     const response = await fetch(requestUrl, {
       ...options,
       method: "POST",
@@ -30,15 +30,12 @@ export const fetchPost = async (
       credentials: "include",
     });
 
-    if (!response.ok) {
-      console.error("Fetch POST failed:", response);
-      return null;
-    }
-
-    if (revalida) revalidatePath(revalida);
-    return await response.json();
+    return await resposta(response, revalida);
   } catch (error) {
     console.error("Error in fetchPost:", error);
-    return null;
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : "Unknown error occurred",
+    };
   }
 };

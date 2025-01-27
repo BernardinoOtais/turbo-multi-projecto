@@ -21,3 +21,5 @@ sidebar
 - src/components/ui/input.tsx
 
   // "prebuild": "mkdir -p dist/prisma/generated && cp -R prisma/generated/\* dist/prisma/generated",
+
+sm:bg-red-400 md:bg-slate-400 lg:bg-yellow-300 xl:bg-blue-700 2xl:bg-purple-700

@@ -1,4 +1,5 @@
 import type {
+  IdContainerOpSchemaDto,
   IdOrdemDto,
   PostAlturaDto,
   PostContainerSchemaDto,
@@ -6,6 +7,7 @@ import type {
 } from '@repo/types';
 import {
   DadosParaPesquisaComPaginacaoEOrdem,
+  IdContainerOpSchema,
   IdNumeroInteiroNaoNegativoSchema,
   IdOrdemSchema,
   PostAlturaSchema,
@@ -28,6 +30,7 @@ EnvioRotas.get(
     const parameters = DadosParaPesquisaComPaginacaoEOrdem.parse(req.query);
     try {
       const envio = await EnviosRepository.getEnvios(parameters);
+
       res
         .status(envio.error ? envio.error.code : HttpStatusCode.OK)
         .json(envio);
@@ -129,6 +132,21 @@ EnvioRotas.post(
     const body: PostOpDto = PostOpSchema.parse(req.body);
     try {
       const resBody = await EnviosRepository.insiroOpContainer(body);
+      res
+        .status(resBody.error ? resBody.error.code : HttpStatusCode.OK)
+        .json(resBody);
+    } catch (err) {
+      next(err);
+    }
+  },
+);
+EnvioRotas.delete(
+  '/containerOpApaga',
+  validaSchema(IdContainerOpSchema, 'query'),
+  async (req: Request, res: Response, next: NextFunction) => {
+    const query = IdContainerOpSchema.parse(req.query);
+    try {
+      const resBody = await EnviosRepository.apagoOpContainer(query);
       res
         .status(resBody.error ? resBody.error.code : HttpStatusCode.OK)
         .json(resBody);

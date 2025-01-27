@@ -164,6 +164,7 @@ exports.Prisma.ConteudoScalarFieldEnum = {
   op: 'op',
   tam: 'tam',
   qtt: 'qtt',
+  idUnidades: 'idUnidades',
   peso: 'peso'
 };
 
@@ -211,12 +212,6 @@ exports.Prisma.ContainerOpScalarFieldEnum = {
   op: 'op'
 };
 
-exports.Prisma.ContainerOpTamScalarFieldEnum = {
-  idContainer: 'idContainer',
-  op: 'op',
-  tam: 'tam'
-};
-
 exports.Prisma.OpScalarFieldEnum = {
   op: 'op',
   ref: 'ref',
@@ -232,6 +227,12 @@ exports.Prisma.OpTamanhoScalarFieldEnum = {
   tam: 'tam',
   ordem: 'ordem',
   qtt: 'qtt'
+};
+
+exports.Prisma.UnidadesScalarFieldEnum = {
+  idUnidades: 'idUnidades',
+  idItem: 'idItem',
+  descricaoUnidade: 'descricaoUnidade'
 };
 
 exports.Prisma.SortOrder = {
@@ -259,9 +260,9 @@ exports.Prisma.ModelName = {
   TipoContainer: 'TipoContainer',
   Destinos: 'Destinos',
   ContainerOp: 'ContainerOp',
-  ContainerOpTam: 'ContainerOpTam',
   Op: 'Op',
-  OpTamanho: 'OpTamanho'
+  OpTamanho: 'OpTamanho',
+  Unidades: 'Unidades'
 };
 
 /**

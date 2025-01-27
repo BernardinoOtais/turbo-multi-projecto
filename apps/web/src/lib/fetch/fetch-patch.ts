@@ -1,7 +1,8 @@
 "use server";
-import { revalidatePath } from "next/cache";
+
 import { getSession } from "../actions/auth/sessions";
 import { BACKEND_URL } from "../constants";
+import { resposta } from "./fetch-aux";
 
 export interface FetchOptions extends RequestInit {
   headers?: Record<string, string>;
@@ -30,16 +31,12 @@ export const fetchPatch = async (
       credentials: "include",
     });
 
-    if (!response.ok) {
-      console.error("Fetch PATCH failed:", response);
-      return null;
-    }
-
-    if (path) revalidatePath(path);
-
-    return await response.json();
+    return await resposta(response, path);
   } catch (error) {
-    console.error("Error in fetchPatch:", error);
-    return null;
+    console.error("Error in fetchPost:", error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : "Unknown error occurred",
+    };
   }
 };

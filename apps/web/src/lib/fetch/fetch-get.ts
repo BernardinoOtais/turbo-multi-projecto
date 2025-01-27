@@ -16,6 +16,8 @@ export const fetchGet = async (
 
     let requestUrl = `${BACKEND_URL}${url}`;
 
+    //console.log("fetchGet", url);
+
     if (Object.keys(queryParams).length > 0) {
       const queryString = new URLSearchParams(
         Object.entries(queryParams).reduce(
@@ -29,7 +31,7 @@ export const fetchGet = async (
       requestUrl += `?${queryString}`;
     }
 
-    console.log("Url get antes: ", requestUrl);
+    //console.log("Url get antes: ", requestUrl);
     options.headers = {
       ...options.headers,
       Authorization: `Bearer ${session?.accessToken}`,

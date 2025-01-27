@@ -62,17 +62,20 @@ model Container {
 }
 
 model Conteudo {
-  idConteudo     Int            @default(autoincrement())
-  idContainer    Int
-  idItem         Int
-  op             Int
-  tam            String         @db.NVarChar(25)
-  qtt            Float
-  peso           Float
-  Container      Container      @relation(fields: [idContainer], references: [idContainer], onUpdate: NoAction, map: "FK_Conteudo_Container")
-  ContainerOp    ContainerOp    @relation(fields: [idContainer, op], references: [idContainer, op], onUpdate: NoAction, map: "FK_Conteudo_ContainerOp")
-  ContainerOpTam ContainerOpTam @relation(fields: [idContainer, op, tam], references: [idContainer, op, tam], onUpdate: NoAction, map: "FK_Conteudo_ContainerOpTam")
-  Item           Item           @relation(fields: [idItem], references: [idItem], onUpdate: NoAction, map: "FK_Conteudo_Item")
+  idConteudo  Int         @default(autoincrement())
+  idContainer Int
+  idItem      Int
+  op          Int
+  tam         String      @db.NVarChar(25)
+  qtt         Float
+  idUnidades  Int
+  peso        Float
+  Container   Container   @relation(fields: [idContainer], references: [idContainer], onUpdate: NoAction, map: "FK_Conteudo_Container")
+  ContainerOp ContainerOp @relation(fields: [idContainer, op], references: [idContainer, op], onUpdate: NoAction, map: "FK_Conteudo_ContainerOp")
+  Item        Item        @relation(fields: [idItem], references: [idItem], onUpdate: NoAction, map: "FK_Conteudo_Item")
+  Op          Op          @relation(fields: [op], references: [op], onUpdate: NoAction, map: "FK_Conteudo_Op")
+  OpTamanho   OpTamanho   @relation(fields: [op, tam], references: [op, tam], onUpdate: NoAction, map: "FK_Conteudo_OpTamanho")
+  Unidades    Unidades    @relation(fields: [idUnidades], references: [idUnidades], onUpdate: NoAction, map: "FK_Conteudo_Unidades")
 
   @@id([idConteudo, idContainer, op, tam], map: "PK_Conteudo")
 }
@@ -99,10 +102,11 @@ model Idiomas {
 
 model Item {
   idItem        Int             @id(map: "PK_Item") @default(autoincrement())
-  Descricao     String          @db.NChar(100)
+  Descricao     String          @db.NVarChar(100)
   Conteudo      Conteudo[]
   ItemTraduzido ItemTraduzido[]
   TipoContainer TipoContainer?
+  Unidades      Unidades?
 }
 
 model ItemTraduzido {
@@ -132,25 +136,13 @@ model Destinos {
 }
 
 model ContainerOp {
-  idContainer    Int
-  op             Int
-  Container      Container        @relation(fields: [idContainer], references: [idContainer], onUpdate: NoAction, map: "FK_ContainerOp_Container")
-  Op             Op               @relation(fields: [op], references: [op], onUpdate: NoAction, map: "FK_ContainerOp_Op")
-  ContainerOpTam ContainerOpTam[]
-  Conteudo       Conteudo[]
-
-  @@id([idContainer, op], map: "PK_ContainerOp")
-}
-
-model ContainerOpTam {
   idContainer Int
   op          Int
-  tam         String      @db.NVarChar(25)
-  ContainerOp ContainerOp @relation(fields: [idContainer, op], references: [idContainer, op], onUpdate: NoAction, map: "FK_ContainerOpTam_ContainerOp")
-  OpTamanho   OpTamanho   @relation(fields: [op, tam], references: [op, tam], onUpdate: NoAction, map: "FK_ContainerOpTam_OpTamanho")
+  Container   Container  @relation(fields: [idContainer], references: [idContainer], onUpdate: NoAction, map: "FK_ContainerOp_Container")
+  Op          Op         @relation(fields: [op], references: [op], onUpdate: NoAction, map: "FK_ContainerOp_Op")
   Conteudo    Conteudo[]
 
-  @@id([idContainer, op, tam], map: "PK_ContainerOpTam")
+  @@id([idContainer, op], map: "PK_ContainerOp")
 }
 
 model Op {
@@ -162,16 +154,25 @@ model Op {
   pedido      String        @db.NVarChar(50)
   norma       String        @db.NVarChar(100)
   ContainerOp ContainerOp[]
+  Conteudo    Conteudo[]
   OpTamanho   OpTamanho[]
 }
 
 model OpTamanho {
-  op             Int
-  tam            String           @db.NVarChar(25)
-  ordem          Int
-  qtt            Int
-  ContainerOpTam ContainerOpTam[]
-  Op             Op               @relation(fields: [op], references: [op], onUpdate: NoAction, map: "FK_OpTamanho_Op")
+  op       Int
+  tam      String     @db.NVarChar(25)
+  ordem    Int
+  qtt      Int
+  Conteudo Conteudo[]
+  Op       Op         @relation(fields: [op], references: [op], onUpdate: NoAction, map: "FK_OpTamanho_Op")
 
   @@id([op, tam], map: "PK_OpTamanho")
+}
+
+model Unidades {
+  idUnidades       Int        @id(map: "PK_Unidades") @default(autoincrement())
+  idItem           Int        @unique(map: "UQ_Unidades_Iditem")
+  descricaoUnidade String     @db.NVarChar(100)
+  Conteudo         Conteudo[]
+  Item             Item       @relation(fields: [idItem], references: [idItem], onUpdate: NoAction, map: "FK_Unidades_Item")
 }

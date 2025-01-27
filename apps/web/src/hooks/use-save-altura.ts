@@ -1,7 +1,9 @@
 import { PostAlturaDto } from "@repo/types";
 import useDebounce from "./use-debounce";
 import { useEffect, useState } from "react";
-import { fetchPost } from "@/lib/fetch/fetch-post";
+
+import { toast } from "sonner";
+import { insiroAltura } from "@/lib/actions/dashboard/embarques/novo";
 
 export default function useSaveAltura(alturaSchema: PostAlturaDto) {
   const debounceAltura = useDebounce(alturaSchema, 1500);
@@ -19,21 +21,35 @@ export default function useSaveAltura(alturaSchema: PostAlturaDto) {
 
   useEffect(() => {
     async function save() {
-      try {
-        setIsSaving(true);
-        setIsError(false);
-        const newData = structuredClone(debounceAltura);
+      setIsSaving(true);
+      setIsError(false);
+      const newData = structuredClone(debounceAltura);
 
-        await fetchPost("envios/containerAltura", newData);
-        //console.log("dadosPost::::", dadosPost);
+      insiroAltura(newData)
+        .then(resultado => {
+          if (!resultado.success)
+            toast.error(
+              `Erro ao inserir altura na Pallet: ${alturaSchema.PostAltura.id}`,
+              {
+                description: resultado.error,
+              },
+            );
 
-        setLastSavedData(newData);
-      } catch (error) {
-        setIsError(true);
-        console.error(error);
-      } finally {
-        setIsSaving(false);
-      }
+          toast.info(
+            `Altura de ${alturaSchema.PostAltura.altura} Mt inserida na Pallet: ${alturaSchema.PostAltura.id}`,
+            {
+              description: "Sucesso",
+            },
+          );
+
+          setLastSavedData(newData);
+        })
+        .catch(error => {
+          console.error(error);
+          setIsError(true);
+          console.error(error);
+        })
+        .finally(() => setIsSaving(false));
     }
 
     const hasUnsavedChanges =
@@ -42,7 +58,7 @@ export default function useSaveAltura(alturaSchema: PostAlturaDto) {
     if (hasUnsavedChanges && debounceAltura && !isSaving && !isError) {
       save();
     }
-  }, [debounceAltura, isError, isSaving, lastSavedData]);
+  }, [alturaSchema, debounceAltura, isError, isSaving, lastSavedData]);
 
   return {
     isSaving,

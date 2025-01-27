@@ -4,13 +4,13 @@ import PrismaSingleton from '@services/prisma';
 import { ApiResponseBody, ResponseHandler } from '@utils/api-response-body';
 import HttpStatusCode from '@utils/http-status-code';
 
-import { AuthEnvios } from './aux';
+import { AuxEnvios } from './aux';
 
 export async function containerApagar(
   idContainer: number,
 ): Promise<ApiResponseBody<ContainerSchemaDto | undefined>> {
   const temSubContainers =
-    await AuthEnvios.verificoSeContainerTemSubContainers(idContainer);
+    await AuxEnvios.verificoSeContainerTemSubContainers(idContainer);
   if (temSubContainers.length > 0) {
     return ResponseHandler.BadRequest(
       'Não pode ser apagado pois tem SubContainers...',
@@ -18,7 +18,7 @@ export async function containerApagar(
   }
 
   const temConteudo =
-    await AuthEnvios.verificoSeContainerTemConteudo(idContainer);
+    await AuxEnvios.verificoSeContainerTemConteudo(idContainer);
   if (temConteudo.length > 0) {
     return ResponseHandler.BadRequest(
       'Não pode ser apagado pois tem Conteudo...',
@@ -30,6 +30,10 @@ export async function containerApagar(
 
   try {
     const resultadoDaTransaction = await prisma.$transaction(async (tx) => {
+      await tx.containerOp.deleteMany({
+        where: { idContainer },
+      });
+
       // Delete the container
       const containerApagado = await tx.container.delete({
         where: { idContainer },

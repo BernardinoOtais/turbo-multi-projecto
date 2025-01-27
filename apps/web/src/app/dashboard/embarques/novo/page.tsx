@@ -2,12 +2,13 @@ import { fetchGet } from "@/lib/fetch/fetch-get";
 
 import { Metadata } from "next";
 import React from "react";
-import { ConteudoDto, EnvioSchema } from "@repo/types";
+import { ContainerOpsSchemasDto, ConteudoDto, EnvioSchema } from "@repo/types";
 import { z } from "zod";
 import ContainerBreadCrumbs from "@/components/dashboard/embarques/novo/container-bread-combes";
 import { cn } from "@/lib/utils";
 import { NIVEIS_INICIAIS } from "@/lib/constants";
 import MainEFooterEmbarqueNovo from "@/components/dashboard/embarques/novo/main-e-footer-embarque-novo";
+import { deleteSession } from "@/lib/actions/auth/sessions";
 
 const niveis = z.object({
   nivel: z
@@ -33,6 +34,7 @@ const NovoEmbarque = async ({ searchParams }: PageProps) => {
 
   const niveisValidados = nivelParse.success ? nivelParse.data.nivel : [];
 
+  //console.log("niveisValidados", niveisValidados);
   const nIdEnvio = idEnvio ? parseInt(idEnvio as string) : null;
 
   if (!nIdEnvio) {
@@ -54,6 +56,16 @@ const NovoEmbarque = async ({ searchParams }: PageProps) => {
   }
 
   const dadosEnvio = envioValidado.data;
+
+  const itens = dadosEnvio.Itens;
+  const unidades = dadosEnvio.Unidades;
+
+  if (!itens || !unidades) {
+    deleteSession();
+    return;
+  }
+
+  //console.log(itens, unidades);
 
   let container = dadosEnvio.Container;
 
@@ -80,6 +92,9 @@ const NovoEmbarque = async ({ searchParams }: PageProps) => {
   );*/
 
   let conteudo: ConteudoDto[] | undefined = [];
+  let dadosDisponiveisParaInserir: ContainerOpsSchemasDto = [];
+  let idTipoContainer: number | undefined = 0;
+
   if (temContainersSeleccionadados) {
     for (const nivel of niveisValidados) {
       const conteudoPai = container?.find(con => con.idContainer === nivel);
@@ -87,10 +102,13 @@ const NovoEmbarque = async ({ searchParams }: PageProps) => {
       const badge = conteudoPai?.other_Container?.filter(
         oc => oc.idContainer !== nivel,
       ).length;
-
       container = conteudoPai?.other_Container;
 
       conteudo = conteudoPai?.Conteudo;
+
+      dadosDisponiveisParaInserir = conteudoPai?.ContainerOp;
+
+      idTipoContainer = conteudoPai?.idTipoContainer;
 
       listaDeContainers.push({
         id: nivel,
@@ -99,6 +117,10 @@ const NovoEmbarque = async ({ searchParams }: PageProps) => {
         numero: conteudoPai?.ordem || 0,
       });
     }
+
+    //console.log("idTipoContainer: ", idTipoContainer);
+
+    //console.log(nivel, dadosDisponiveisParaInserir);
   }
 
   return (
@@ -143,6 +165,9 @@ const NovoEmbarque = async ({ searchParams }: PageProps) => {
         }
         containers={container}
         conteudos={conteudo}
+        dadosDisponiveisParaInserir={dadosDisponiveisParaInserir}
+        idTipoContainer={idTipoContainer}
+        unidades={unidades}
       />
     </>
   );

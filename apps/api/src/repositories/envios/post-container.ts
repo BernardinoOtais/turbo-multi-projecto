@@ -4,7 +4,7 @@ import { ApiResponseBody, ResponseHandler } from '@utils/api-response-body';
 import HttpStatusCode from '@utils/http-status-code';
 import { permiteSubcontainer } from '@utils/utils';
 
-import { AuthEnvios } from './aux';
+import { AuxEnvios } from './aux';
 
 export async function postContainer(container: PostContainerSchemaDto) {
   const resBody = new ApiResponseBody<ContainerSchemaDto>();
@@ -15,16 +15,16 @@ export async function postContainer(container: PostContainerSchemaDto) {
       const munmeroMinimoParacontainerInicial = 3;
       if (idTipoContainer <= munmeroMinimoParacontainerInicial) {
         const containerPrincipalJaExiste =
-          await AuthEnvios.exitisEsteContainerPrincipal(container);
+          await AuxEnvios.exitisEsteContainerPrincipal(container);
         if (containerPrincipalJaExiste.length > 0) {
           return ResponseHandler.BadRequest(
             `Já existe este container Principal`,
           );
         }
         const ordem =
-          await AuthEnvios.numeroOrdemContainerSeSubContainer(container);
+          await AuxEnvios.numeroOrdemContainerSeSubContainer(container);
         const containerSeguinte = ordem + 1;
-        const containerInserido = await AuthEnvios.insereContainer(
+        const containerInserido = await AuxEnvios.insereContainer(
           container,
           containerSeguinte,
           1, //vai ser sempre número 1
@@ -35,7 +35,7 @@ export async function postContainer(container: PostContainerSchemaDto) {
       return ResponseHandler.BadRequest(`Não pode inserir este container`);
     }
 
-    const containerPai = await AuthEnvios.devolveContainerPorId(idContainerPai);
+    const containerPai = await AuxEnvios.devolveContainerPorId(idContainerPai);
     const idTipoContainerPai =
       containerPai?.idTipoContainer as keyof typeof permiteSubcontainer;
 
@@ -57,18 +57,18 @@ export async function postContainer(container: PostContainerSchemaDto) {
     }
 
     const nContainer =
-      await AuthEnvios.numeroOrdemContainerSeSubContainerTipo(container);
-    const ordem =
-      await AuthEnvios.numeroOrdemContainerSeSubContainer(container);
+      await AuxEnvios.numeroOrdemContainerSeSubContainerTipo(container);
+    const ordem = await AuxEnvios.numeroOrdemContainerSeSubContainer(container);
 
     const containerSeguinte = ordem + 1;
     const nContainerSeguinte = nContainer + 1;
 
-    const containerInserido = await AuthEnvios.insereContainer(
+    const containerInserido = await AuxEnvios.insereContainer(
       container,
       containerSeguinte,
       nContainerSeguinte,
     );
+
     resBody.data = containerInserido;
     return resBody;
   } catch (error) {

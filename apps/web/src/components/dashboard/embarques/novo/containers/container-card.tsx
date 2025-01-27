@@ -24,7 +24,7 @@ import useSaveAltura from "@/hooks/use-save-altura";
 import useUnloadWarning from "@/hooks/use-unload-warning";
 import useSaveOpContainer from "@/hooks/use-save-op-container";
 import InputOp from "./input-op";
-import ApagaOpDContainer from "./apaga-op-do-container";
+import ApagaOpDoContainer from "./apaga-op-do-container";
 
 type ContainerCardProps = {
   container: ContainerSchemaDto;
@@ -33,7 +33,9 @@ type ContainerCardProps = {
   referencia: React.RefObject<HTMLDivElement | null> | null;
   setScroll: (data: boolean) => void;
   apagaCardEstado: boolean;
-  setApgaCardEstado: (data: boolean) => void;
+  setApagaCardEstado: (data: boolean) => void;
+  apagaOpEstado: boolean;
+  setApagaOpEstado: (data: boolean) => void;
 };
 const ContainerCard = ({
   container,
@@ -42,7 +44,9 @@ const ContainerCard = ({
   referencia,
   setScroll,
   apagaCardEstado,
-  setApgaCardEstado,
+  setApagaCardEstado,
+  apagaOpEstado,
+  setApagaOpEstado,
 }: ContainerCardProps) => {
   const {
     attributes,
@@ -58,15 +62,21 @@ const ContainerCard = ({
   });
   const { isSaving, hasUnsavedChanges } = useSaveAltura(altura);
 
-  const valorOriginalOp = {
+  const valorOriginalOp: PostOpDto = {
     PostOp: { id: container.idContainer, op: 0 },
   };
 
   const [op, setOp] = useState<PostOpDto>(valorOriginalOp);
 
-  const { isSavingOP, hasUnsavedChangesOp } = useSaveOpContainer(op);
+  const { isSavingOP, hasUnsavedChangesOp } = useSaveOpContainer(op, setOp);
 
   useUnloadWarning(hasUnsavedChanges || hasUnsavedChangesOp);
+
+  const naoTemConteudo = container.Conteudo?.length == 0 || !container.Conteudo;
+
+  const naoTemSubContainers =
+    container.other_Container?.length == 0 ||
+    !container.other_Container?.length;
 
   return (
     <>
@@ -109,7 +119,7 @@ const ContainerCard = ({
         </CardHeader>
         <CardContent
           ref={referencia}
-          className="flex flex-col items-center justify-start gap-y-1 md:flex-row md:items-end"
+          className="flex flex-col items-center justify-start md:flex-row md:items-end"
         >
           <div className="flex flex-row gap-1 px-1">
             {container.idTipoContainer === 4 ? (
@@ -133,25 +143,36 @@ const ContainerCard = ({
                 idContainer={container.idContainer}
                 setScroll={setScroll}
                 setOp={setOp}
+                op={op}
               />
             )}
           </div>
-          <div className="flex flex-row justify-center">
-            {container.ContainerOp?.map(op => {
-              return <ApagaOpDContainer key={op.op} op={op.op} />;
-            })}
+          <div className="flex flex-grow">
+            <div className="mr-auto">
+              {niveisValidados.length === 1 &&
+                container.ContainerOp?.map(op => (
+                  <ApagaOpDoContainer
+                    key={op.op}
+                    op={op.op}
+                    idContainer={container.idContainer}
+                    apagaOpEstado={apagaOpEstado}
+                    setApagaOpEstado={setApagaOpEstado}
+                    setScroll={setScroll}
+                  />
+                ))}
+            </div>
           </div>
         </CardContent>
-        {container.other_Container?.length == 0 &&
-          container.Conteudo?.length == 0 && (
-            <BotaoApagaContainer
-              idContainer={container.idContainer}
-              className="absolute bottom-2 right-2"
-              setScroll={setScroll}
-              apagaCardEstado={apagaCardEstado}
-              setApgaCardEstado={setApgaCardEstado}
-            />
-          )}
+        {naoTemConteudo && naoTemSubContainers && (
+          <BotaoApagaContainer
+            idContainer={container.idContainer}
+            className="absolute bottom-2 right-2"
+            setScroll={setScroll}
+            apagaCardEstado={apagaCardEstado}
+            setApagaCardEstado={setApagaCardEstado}
+            nomeContainer={container.TipoContainer?.Item.Descricao || ""}
+          />
+        )}
       </Card>
     </>
   );

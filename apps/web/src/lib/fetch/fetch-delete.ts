@@ -1,5 +1,6 @@
 import { getSession } from "../actions/auth/sessions";
 import { BACKEND_URL } from "../constants";
+import { resposta } from "./fetch-aux";
 
 export interface FetchOptions extends RequestInit {
   headers?: Record<string, string>;
@@ -38,14 +39,12 @@ export const fetchDelete = async (
       credentials: "include",
     });
 
-    if (!response.ok) {
-      console.error("Fetch DELETE failed:", response);
-      return null;
-    }
-
-    return await response.json();
+    return await resposta(response);
   } catch (error) {
     console.error("Error in fetchDelete:", error);
-    return null;
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : "Unknown error occurred",
+    };
   }
 };

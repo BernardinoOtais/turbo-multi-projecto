@@ -106,23 +106,25 @@ export const PostAlturaSchema = z.object({
   }),
 });
 
+export const IdContainerOpSchema = z.object({
+  id: z.coerce
+    .number({
+      required_error: "Tem que inserrir números...",
+      invalid_type_error: "Formato de número errado...",
+    })
+    .int({ message: "Tem que ser inteiro...." })
+    .nonnegative({ message: "Tem que ser positivo..." }),
+  op: z.coerce
+    .number({
+      required_error: "Tem que inserrir números...",
+      invalid_type_error: "Formato de número errado...",
+    })
+    .int({ message: "Tem que ser inteiro...." })
+    .nonnegative({ message: "Tem que ser positivo..." }),
+});
+
 export const PostOpSchema = z.object({
-  PostOp: z.object({
-    id: z.coerce
-      .number({
-        required_error: "Tem que inserrir números...",
-        invalid_type_error: "Formato de número errado...",
-      })
-      .int({ message: "Tem que ser inteiro...." })
-      .nonnegative({ message: "Tem que ser positivo..." }),
-    op: z.coerce
-      .number({
-        required_error: "Tem que inserrir números...",
-        invalid_type_error: "Formato de número errado...",
-      })
-      .int({ message: "Tem que ser inteiro...." })
-      .nonnegative({ message: "Tem que ser positivo..." }),
-  }),
+  PostOp: IdContainerOpSchema,
 });
 
 export const RespostaSchema = z.object({
@@ -142,3 +144,5 @@ export type PostOpDto = z.infer<typeof PostOpSchema>;
 export type RespostaDto = z.infer<typeof RespostaSchema>;
 
 export type RespostaRecebidaDto = z.infer<typeof RespostaRecebidaSchema>;
+
+export type IdContainerOpSchemaDto = z.infer<typeof IdContainerOpSchema>;
