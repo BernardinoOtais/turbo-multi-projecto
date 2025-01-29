@@ -96,7 +96,7 @@ const ContainerCard = ({
           <GripHorizontal
             {...attributes}
             {...listeners}
-            className="absolute right-2 top-2 size-5 cursor-grab text-muted-foreground focus:outline-none"
+            className="absolute right-2 top-2 size-5 cursor-grab text-muted-foreground focus:outline-hidden"
           />
         )}
         <CardHeader className="pb-0 pt-1">
@@ -147,7 +147,7 @@ const ContainerCard = ({
               />
             )}
           </div>
-          <div className="flex flex-grow">
+          <div className="flex grow">
             <div className="mr-auto">
               {niveisValidados.length === 1 &&
                 container.ContainerOp?.map(op => (

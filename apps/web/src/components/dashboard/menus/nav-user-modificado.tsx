@@ -1,5 +1,4 @@
 "use client";
-
 import { ChevronsUpDown } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -25,33 +24,37 @@ type UserRecebido = {
   avatar: string;
 };
 
+/*
+
+*/
 export function NavUser({ name, apelido, email, avatar }: UserRecebido) {
   const { isMobile } = useSidebar();
-  const avataoPorLetras = name[0] + apelido[0];
+  const avatarPorLetras = name[0] + apelido[0];
   return (
-    <SidebarMenu>
-      <SidebarMenuItem>
+    <SidebarMenu className="">
+      <SidebarMenuItem className="">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <Avatar className="h-8 w-8 rounded-lg">
+              <Avatar className="-ml-3 h-8 w-10 rounded-lg text-left">
                 <AvatarImage src={avatar} alt={name} />
                 <AvatarFallback className="rounded-lg">
-                  {avataoPorLetras}
+                  {avatarPorLetras}
                 </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-semibold">{name}</span>
                 <span className="truncate text-xs">{email}</span>
               </div>
+
               <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
-            className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+            className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
             side={isMobile ? "bottom" : "right"}
             align="end"
             sideOffset={4}
@@ -61,7 +64,7 @@ export function NavUser({ name, apelido, email, avatar }: UserRecebido) {
                 <Avatar className="h-8 w-8 rounded-lg">
                   <AvatarImage src={avatar} alt={name} />
                   <AvatarFallback className="rounded-lg">
-                    {avataoPorLetras}
+                    {avatarPorLetras}
                   </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
@@ -79,3 +82,8 @@ export function NavUser({ name, apelido, email, avatar }: UserRecebido) {
     </SidebarMenu>
   );
 }
+
+/*
+
+
+*/

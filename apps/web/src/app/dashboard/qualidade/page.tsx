@@ -16,7 +16,7 @@ const Qualidade = async () => {
 */
   console.log("Qaulidade");
   return (
-    <div className="flex flex-col">
+    <div>
       <div>{JSON.stringify("response")}</div>;
     </div>
   );

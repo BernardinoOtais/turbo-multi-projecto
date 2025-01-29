@@ -14,12 +14,12 @@ export default async function Page({
   const defaultOpen =
     (await cookieStore).get("sidebar:state")?.value === "true";
   return (
-    <SidebarProvider defaultOpen={defaultOpen} title="sidebar-provider">
+    <SidebarProvider defaultOpen={defaultOpen}>
       <AppSidebar />
       <SidebarInset>
         <Header />
         <main className="flex grow flex-col gap-2 p-2 pt-0">
-          <div className="flex grow flex-col rounded-xl bg-muted/50">
+          <div className="bg-muted/50 flex grow flex-col rounded-xl">
             {children}
           </div>
         </main>
@@ -27,15 +27,3 @@ export default async function Page({
     </SidebarProvider>
   );
 }
-
-//BREADCRUMBS https://www.youtube.com/watch?v=bvHi0jr9oGk&ab_channel=CodeWithOsvaldas
-
-/*
-//Original
-
-        <main className="flex flex-1 flex-col gap-2 p-2 pt-0">
-          <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min">
-            {children}
-          </div>
-        </main>
-*/

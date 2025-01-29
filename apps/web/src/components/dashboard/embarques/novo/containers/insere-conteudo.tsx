@@ -37,7 +37,7 @@ const InsereConteudo = ({
     setUnidadeFiltrada(filtered);
   }, [searchValue, selectedValue, unidades]);
 
-  console.log("dadosDisponiveisParaInserir: ", dadosDisponiveisParaInserir);
+  //console.log("dadosDisponiveisParaInserir: ", dadosDisponiveisParaInserir);
 
   return (
     <AutoComplete

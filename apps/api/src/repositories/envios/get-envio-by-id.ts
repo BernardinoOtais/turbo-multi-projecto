@@ -180,6 +180,9 @@ export async function getEnvioById(idEnvio: number) {
                           },
                           op: true,
                           tam: true,
+                          OpTamanho: {
+                            select: { ordem: true },
+                          },
                           qtt: true,
                           Unidades: {
                             select: {
@@ -190,6 +193,15 @@ export async function getEnvioById(idEnvio: number) {
                           },
                           peso: true,
                         },
+                        orderBy: [
+                          { op: 'asc' },
+                          { idItem: 'asc' },
+                          {
+                            OpTamanho: {
+                              ordem: 'asc',
+                            },
+                          },
+                        ],
                       },
                       //Container Sub sub sub
                       other_Container: {

@@ -43,8 +43,10 @@ export const conteudo = z.object({
   op: z.number().int().nonnegative(),
   Op: OpSchema,
   tam: z.string().max(25),
+  OpTamanho: z.object({ ordem: z.number().int().nonnegative() }),
   qtt: z.number().nonnegative(),
   Unidades: UnidadeSchema,
+  peso: z.number().nonnegative(),
 });
 
 export const ContainerOpSchema = z.object({

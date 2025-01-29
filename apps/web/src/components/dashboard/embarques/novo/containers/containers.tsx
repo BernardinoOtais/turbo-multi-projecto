@@ -210,38 +210,3 @@ const Containers = ({
 };
 
 export default Containers;
-
-/*
-
-      //Post
-      try {
-        const dadosParaPost = updatedItemsFinal.map(item => ({
-          id: item.idContainer,
-          ordem: item.ordem,
-        }));
-
-        const response = await fetchPatch("envios/containerOrdem", {
-          idOrdem: dadosParaPost,
-        });
-
-        console.log("response: ", response);
-
-        setItems(prevItems =>
-          prevItems.map(item => {
-            const updatedItem = response.data.find(
-              (resItem: { id: number }) => resItem.id === item.idContainer,
-            );
-            return updatedItem
-              ? {
-                  ...item,
-                  ordem: updatedItem.ordem,
-                  nContainer: updatedItem.nContainer,
-                }
-              : item;
-          }),
-        );
-      } catch (error) {
-        setItems(estadoInicial);
-        console.error("Error updating order:", error);
-      }
-*/

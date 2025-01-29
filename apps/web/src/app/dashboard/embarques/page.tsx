@@ -68,7 +68,7 @@ const Embarques = async ({ searchParams }: PageProps) => {
         </div>
       </header>
       <main className="relative grow">
-        <div className="absolute bottom-0 top-0 flex w-full">
+        <div className="absolute top-0 bottom-0 flex w-full">
           <div className="flex flex-col">
             {enviosRecebidos.map(envio => {
               return <div key={envio.idEnvio}>{envio.nomeEnvio}</div>;

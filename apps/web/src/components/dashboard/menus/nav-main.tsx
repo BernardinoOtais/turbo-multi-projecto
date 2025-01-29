@@ -58,7 +58,7 @@ export async function NavMain() {
                       <span className="sr-only">Toggle</span>
                     </SidebarMenuAction>
                   </CollapsibleTrigger>
-                  <CollapsibleContent className="overflow-hidden data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
+                  <CollapsibleContent className="data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down overflow-hidden">
                     <SidebarMenuSub>
                       {item.subMenuItems?.map(subItem => (
                         <SidebarMenuSubItem key={subItem.nome}>

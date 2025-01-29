@@ -8,6 +8,7 @@ import {
   UnidadesSchemaDto,
 } from "@repo/types";
 import InsereConteudo from "./containers/insere-conteudo";
+import ConteudoExistente from "./containers/conteudo-existente";
 
 type MainEFooterEmbarqueNovoProps = {
   idEnvio: number;
@@ -48,15 +49,12 @@ const MainEFooterEmbarqueNovo = ({
   return (
     <>
       <main className="relative grow">
-        <div className="absolute bottom-0 top-0 flex w-full">
+        <div className="absolute top-0 bottom-0 flex w-full">
           <div className="w-full overflow-auto">
-            {conteudos?.map(conteudoItem => {
-              return (
-                <div key={conteudoItem.idConteudo} className="bg-red-500">
-                  {conteudoItem.Unidades.descricaoUnidade}
-                </div>
-              );
-            })}
+            {conteudos && conteudos.length !== 0 && (
+              <ConteudoExistente conteudos={conteudos} />
+            )}
+
             {mostraContainers ? (
               <Containers
                 containers={containers}

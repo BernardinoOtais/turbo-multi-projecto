@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import React from "react";
 import { ContainerOpsSchemasDto, ConteudoDto, EnvioSchema } from "@repo/types";
 import { z } from "zod";
-import ContainerBreadCrumbs from "@/components/dashboard/embarques/novo/container-bread-combes";
+import ContainerBreadCrumbs from "@/components/dashboard/embarques/novo/container-bread-crumbes";
 import { cn } from "@/lib/utils";
 import { NIVEIS_INICIAIS } from "@/lib/constants";
 import MainEFooterEmbarqueNovo from "@/components/dashboard/embarques/novo/main-e-footer-embarque-novo";
