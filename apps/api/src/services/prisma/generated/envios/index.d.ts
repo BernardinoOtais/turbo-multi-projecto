@@ -18798,11 +18798,11 @@ export namespace Prisma {
   }
 
   export type ConteudoWhereUniqueInput = Prisma.AtLeast<{
+    idConteudo?: number
     idConteudo_idContainer_op_tam?: ConteudoIdConteudoIdContainerOpTamCompoundUniqueInput
     AND?: ConteudoWhereInput | ConteudoWhereInput[]
     OR?: ConteudoWhereInput[]
     NOT?: ConteudoWhereInput | ConteudoWhereInput[]
-    idConteudo?: IntFilter<"Conteudo"> | number
     idContainer?: IntFilter<"Conteudo"> | number
     idItem?: IntFilter<"Conteudo"> | number
     op?: IntFilter<"Conteudo"> | number
@@ -18816,7 +18816,7 @@ export namespace Prisma {
     Op?: XOR<OpScalarRelationFilter, OpWhereInput>
     OpTamanho?: XOR<OpTamanhoScalarRelationFilter, OpTamanhoWhereInput>
     Unidades?: XOR<UnidadesScalarRelationFilter, UnidadesWhereInput>
-  }, "idConteudo_idContainer_op_tam">
+  }, "idConteudo_idContainer_op_tam" | "idConteudo">
 
   export type ConteudoOrderByWithAggregationInput = {
     idConteudo?: SortOrder
@@ -19703,7 +19703,6 @@ export namespace Prisma {
   }
 
   export type ConteudoUpdateInput = {
-    idConteudo?: IntFieldUpdateOperationsInput | number
     qtt?: FloatFieldUpdateOperationsInput | number
     peso?: FloatFieldUpdateOperationsInput | number
     Container?: ContainerUpdateOneRequiredWithoutConteudoNestedInput
@@ -19736,7 +19735,6 @@ export namespace Prisma {
   }
 
   export type ConteudoUpdateManyMutationInput = {
-    idConteudo?: IntFieldUpdateOperationsInput | number
     qtt?: FloatFieldUpdateOperationsInput | number
     peso?: FloatFieldUpdateOperationsInput | number
   }
@@ -24539,7 +24537,6 @@ export namespace Prisma {
   }
 
   export type ConteudoUpdateWithoutContainerInput = {
-    idConteudo?: IntFieldUpdateOperationsInput | number
     qtt?: FloatFieldUpdateOperationsInput | number
     peso?: FloatFieldUpdateOperationsInput | number
     ContainerOp?: ContainerOpUpdateOneRequiredWithoutConteudoNestedInput
@@ -24664,7 +24661,6 @@ export namespace Prisma {
   }
 
   export type ConteudoUpdateWithoutItemInput = {
-    idConteudo?: IntFieldUpdateOperationsInput | number
     qtt?: FloatFieldUpdateOperationsInput | number
     peso?: FloatFieldUpdateOperationsInput | number
     Container?: ContainerUpdateOneRequiredWithoutConteudoNestedInput
@@ -24798,7 +24794,6 @@ export namespace Prisma {
   }
 
   export type ConteudoUpdateWithoutContainerOpInput = {
-    idConteudo?: IntFieldUpdateOperationsInput | number
     qtt?: FloatFieldUpdateOperationsInput | number
     peso?: FloatFieldUpdateOperationsInput | number
     Container?: ContainerUpdateOneRequiredWithoutConteudoNestedInput
@@ -24860,7 +24855,6 @@ export namespace Prisma {
   }
 
   export type ConteudoUpdateWithoutOpInput = {
-    idConteudo?: IntFieldUpdateOperationsInput | number
     qtt?: FloatFieldUpdateOperationsInput | number
     peso?: FloatFieldUpdateOperationsInput | number
     Container?: ContainerUpdateOneRequiredWithoutConteudoNestedInput
@@ -24919,7 +24913,6 @@ export namespace Prisma {
   }
 
   export type ConteudoUpdateWithoutOpTamanhoInput = {
-    idConteudo?: IntFieldUpdateOperationsInput | number
     qtt?: FloatFieldUpdateOperationsInput | number
     peso?: FloatFieldUpdateOperationsInput | number
     Container?: ContainerUpdateOneRequiredWithoutConteudoNestedInput
@@ -24957,7 +24950,6 @@ export namespace Prisma {
   }
 
   export type ConteudoUpdateWithoutUnidadesInput = {
-    idConteudo?: IntFieldUpdateOperationsInput | number
     qtt?: FloatFieldUpdateOperationsInput | number
     peso?: FloatFieldUpdateOperationsInput | number
     Container?: ContainerUpdateOneRequiredWithoutConteudoNestedInput

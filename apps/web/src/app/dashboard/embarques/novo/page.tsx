@@ -2,13 +2,19 @@ import { fetchGet } from "@/lib/fetch/fetch-get";
 
 import { Metadata } from "next";
 import React from "react";
-import { ContainerOpsSchemasDto, ConteudoDto, EnvioSchema } from "@repo/types";
+import {
+  ContainerOpsSchemasDto,
+  ConteudoDto,
+  EnvioSchema,
+  ItensSchemaDto,
+} from "@repo/types";
 import { z } from "zod";
 import ContainerBreadCrumbs from "@/components/dashboard/embarques/novo/container-bread-crumbes";
 import { cn } from "@/lib/utils";
 import { NIVEIS_INICIAIS } from "@/lib/constants";
 import MainEFooterEmbarqueNovo from "@/components/dashboard/embarques/novo/main-e-footer-embarque-novo";
 import { deleteSession } from "@/lib/actions/auth/sessions";
+import DestinosDesteEnvio from "@/components/dashboard/embarques/destinos-deste-envio";
 
 const niveis = z.object({
   nivel: z
@@ -28,11 +34,15 @@ export const metadata: Metadata = {
 };
 
 const NovoEmbarque = async ({ searchParams }: PageProps) => {
-  const { idEnvio, nivel } = await searchParams;
+  const { idEnvio, nivel, idConteudo } = await searchParams;
 
   const nivelParse = niveis.safeParse({ nivel });
 
   const niveisValidados = nivelParse.success ? nivelParse.data.nivel : [];
+
+  const idConteudoRecebido = idConteudo
+    ? parseInt(idConteudo as string)
+    : undefined;
 
   //console.log("niveisValidados", niveisValidados);
   const nIdEnvio = idEnvio ? parseInt(idEnvio as string) : null;
@@ -92,7 +102,7 @@ const NovoEmbarque = async ({ searchParams }: PageProps) => {
   );*/
 
   let conteudo: ConteudoDto[] | undefined = [];
-  let dadosDisponiveisParaInserir: ContainerOpsSchemasDto = [];
+  let containerOpsTamanhosDiponiveis: ContainerOpsSchemasDto = [];
   let idTipoContainer: number | undefined = 0;
 
   if (temContainersSeleccionadados) {
@@ -106,7 +116,7 @@ const NovoEmbarque = async ({ searchParams }: PageProps) => {
 
       conteudo = conteudoPai?.Conteudo;
 
-      dadosDisponiveisParaInserir = conteudoPai?.ContainerOp;
+      containerOpsTamanhosDiponiveis = conteudoPai?.ContainerOp;
 
       idTipoContainer = conteudoPai?.idTipoContainer;
 
@@ -123,6 +133,8 @@ const NovoEmbarque = async ({ searchParams }: PageProps) => {
     //console.log(nivel, dadosDisponiveisParaInserir);
   }
 
+  const itensDisponiveis: ItensSchemaDto = dadosEnvio.Itens ?? [];
+
   return (
     <>
       <header className="x-1 space-y-1.5 border-b py-3 text-center">
@@ -130,12 +142,15 @@ const NovoEmbarque = async ({ searchParams }: PageProps) => {
           Envio:{" "}
           <span className="font-medium">{envioValidado.data.nomeEnvio}</span>
         </h1>
-        <h2 className="text-md font-semibold">
-          Destino:{" "}
-          <span className="font-medium">
-            {envioValidado.data.Destinos.nomeDestino}
-          </span>
-        </h2>
+        <div className="flex items-center justify-center">
+          <h2 className="text-md font-semibold">Destino:</h2>
+          <DestinosDesteEnvio
+            idEnvio={envioValidado.data.idEnvio}
+            idDestino={envioValidado.data.Destinos.idDestino}
+            destinosDisponiveis={envioValidado.data.DestinosDisponiveis || []}
+          />
+        </div>
+
         <h3
           className={cn(
             "flex items-center justify-center pt-3",
@@ -165,9 +180,11 @@ const NovoEmbarque = async ({ searchParams }: PageProps) => {
         }
         containers={container}
         conteudos={conteudo}
-        dadosDisponiveisParaInserir={dadosDisponiveisParaInserir}
+        containerOpsTamanhosDiponiveis={containerOpsTamanhosDiponiveis}
         idTipoContainer={idTipoContainer}
         unidades={unidades}
+        itensDisponiveis={itensDisponiveis}
+        idConteudo={idConteudoRecebido}
       />
     </>
   );

@@ -93,8 +93,13 @@ export class AuthRepository {
         return ResponseHandler.Unauthorized('Credentials Error');
       }
 
+      const papeis = user.UserPapeis.map((papel) => papel.Papeis.descPapel);
+
       // Generate tokens
-      const { accessToken, refreshToken } = await geraTokens(payload.nomeUser);
+      const { accessToken, refreshToken } = await geraTokens(
+        payload.nomeUser,
+        papeis,
+      );
 
       // Hash and store the refresh token
       const hashedRefreshToken = await hash(refreshToken);
@@ -111,7 +116,7 @@ export class AuthRepository {
         email: user.email,
         accessToken,
         refreshToken,
-        papeis: user.UserPapeis.map((papel) => papel.Papeis.descPapel),
+        papeis: papeis,
       };
 
       // Assign data to response body
@@ -179,9 +184,13 @@ export class AuthRepository {
         return ResponseHandler.Unauthorized('Invalid refresh token provided.');
       }
 
+      const papeis = user.UserPapeis.map((papel) => papel.Papeis.descPapel);
+
       // Generate new tokens
-      const { accessToken, refreshToken: newRefreshToken } =
-        await geraTokens(normalizedSub);
+      const { accessToken, refreshToken: newRefreshToken } = await geraTokens(
+        normalizedSub,
+        papeis,
+      );
 
       // Hash and update the new refresh token
       const hashedRefreshToken = await hash(newRefreshToken);

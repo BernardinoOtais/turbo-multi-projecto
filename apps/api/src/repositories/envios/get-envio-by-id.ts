@@ -6,269 +6,280 @@ import HttpStatusCode from '@utils/http-status-code';
 
 export async function getEnvioById(idEnvio: number) {
   const resBody = new ApiResponseBody<EnvioDto>();
+  const prisma = PrismaSingleton.getEnviosPrisma();
 
   try {
-    const [dadosEnvio, itens, unidades] = await Promise.all([
-      PrismaSingleton.getEnviosPrisma().envio.findUnique({
-        where: { idEnvio },
-        select: {
-          idEnvio: true,
-          nomeEnvio: true,
-          Destinos: {
-            select: {
-              idDestino: true,
-              idIdioma: true,
-              nomeDestino: true,
+    const [dadosEnvio, itens, unidades, destinosDisponiveis] =
+      await Promise.all([
+        prisma.envio.findUnique({
+          where: { idEnvio },
+          select: {
+            idEnvio: true,
+            nomeEnvio: true,
+            Destinos: {
+              select: {
+                idDestino: true,
+                idIdioma: true,
+                nomeDestino: true,
+              },
             },
-          },
-          fechado: true,
-          createdAt: true,
-          endDate: true,
-          obs: true,
-          nomeUser: true,
-          //Container principal
-          Container: {
-            where: { idContainerPai: null },
-            select: {
-              idContainer: true,
-              idContainerPai: true,
-              idTipoContainer: true,
-              ordem: true,
-              nContainer: true,
-              altura: true,
-              TipoContainer: {
-                select: {
-                  idItem: true,
-                  Item: {
-                    select: {
-                      Descricao: true,
-                    },
-                  },
-                },
-              },
-              ContainerOp: {
-                select: {
-                  op: true,
-                  Op: {
-                    select: {
-                      op: true,
-                      ref: true,
-                      modeloDesc: true,
-                      modelo: true,
-                      cor: true,
-                      pedido: true,
-                      norma: true,
-                      OpTamanho: {
-                        select: {
-                          op: true,
-                          tam: true,
-                          ordem: true,
-                          qtt: true,
-                        },
+            fechado: true,
+            createdAt: true,
+            endDate: true,
+            obs: true,
+            nomeUser: true,
+            //Container principal
+            Container: {
+              where: { idContainerPai: null },
+              select: {
+                idContainer: true,
+                idContainerPai: true,
+                idTipoContainer: true,
+                ordem: true,
+                nContainer: true,
+                altura: true,
+                TipoContainer: {
+                  select: {
+                    idItem: true,
+                    Item: {
+                      select: {
+                        Descricao: true,
                       },
                     },
                   },
                 },
-              },
-              //Container Sub
-              other_Container: {
-                select: {
-                  idContainer: true,
-                  idContainerPai: true,
-                  idTipoContainer: true,
-                  ordem: true,
-                  nContainer: true,
-                  altura: true,
-                  TipoContainer: {
-                    select: {
-                      idItem: true,
-                      Item: {
-                        select: {
-                          Descricao: true,
-                        },
-                      },
-                    },
-                  },
-                  ContainerOp: {
-                    select: {
-                      op: true,
-                      Op: {
-                        select: {
-                          op: true,
-                          ref: true,
-                          modeloDesc: true,
-                          modelo: true,
-                          cor: true,
-                          pedido: true,
-                          norma: true,
-                          OpTamanho: {
-                            select: {
-                              op: true,
-                              tam: true,
-                              ordem: true,
-                              qtt: true,
-                            },
+                ContainerOp: {
+                  select: {
+                    op: true,
+                    Op: {
+                      select: {
+                        op: true,
+                        ref: true,
+                        modeloDesc: true,
+                        modelo: true,
+                        cor: true,
+                        pedido: true,
+                        norma: true,
+                        OpTamanho: {
+                          select: {
+                            op: true,
+                            tam: true,
+                            ordem: true,
+                            qtt: true,
                           },
                         },
                       },
                     },
                   },
-                  //Container Sub sub
-                  other_Container: {
-                    select: {
-                      idContainer: true,
-                      idContainerPai: true,
-                      idTipoContainer: true,
-                      ordem: true,
-                      nContainer: true,
-                      altura: true,
-                      ContainerOp: {
-                        select: {
-                          op: true,
-                          Op: {
-                            select: {
-                              op: true,
-                              ref: true,
-                              modeloDesc: true,
-                              modelo: true,
-                              cor: true,
-                              pedido: true,
-                              norma: true,
-                              OpTamanho: {
-                                select: {
-                                  op: true,
-                                  tam: true,
-                                  ordem: true,
-                                  qtt: true,
-                                },
+                },
+                //Container Sub
+                other_Container: {
+                  select: {
+                    idContainer: true,
+                    idContainerPai: true,
+                    idTipoContainer: true,
+                    ordem: true,
+                    nContainer: true,
+                    altura: true,
+                    TipoContainer: {
+                      select: {
+                        idItem: true,
+                        Item: {
+                          select: {
+                            Descricao: true,
+                          },
+                        },
+                      },
+                    },
+                    ContainerOp: {
+                      select: {
+                        op: true,
+                        Op: {
+                          select: {
+                            op: true,
+                            ref: true,
+                            modeloDesc: true,
+                            modelo: true,
+                            cor: true,
+                            pedido: true,
+                            norma: true,
+                            OpTamanho: {
+                              select: {
+                                op: true,
+                                tam: true,
+                                ordem: true,
+                                qtt: true,
                               },
                             },
                           },
                         },
                       },
-                      TipoContainer: {
-                        select: {
-                          idItem: true,
-                          Item: {
-                            select: {
-                              Descricao: true,
-                            },
-                          },
-                        },
-                      },
-                      Conteudo: {
-                        select: {
-                          idConteudo: true,
-                          idContainer: true,
-                          idItem: true,
-                          Item: {
-                            select: {
-                              idItem: true,
-                              Descricao: true,
-                            },
-                          },
-                          Op: {
-                            select: {
-                              op: true,
-                              ref: true,
-                              modeloDesc: true,
-                              modelo: true,
-                              cor: true,
-                              pedido: true,
-                              norma: true,
-                            },
-                          },
-                          op: true,
-                          tam: true,
-                          OpTamanho: {
-                            select: { ordem: true },
-                          },
-                          qtt: true,
-                          Unidades: {
-                            select: {
-                              idUnidades: true,
-                              idItem: true,
-                              descricaoUnidade: true,
-                            },
-                          },
-                          peso: true,
-                        },
-                        orderBy: [
-                          { op: 'asc' },
-                          { idItem: 'asc' },
-                          {
-                            OpTamanho: {
-                              ordem: 'asc',
-                            },
-                          },
-                        ],
-                      },
-                      //Container Sub sub sub
-                      other_Container: {
-                        select: {
-                          idContainer: true,
-                          idContainerPai: true,
-                          idTipoContainer: true,
-                          ordem: true,
-                          nContainer: true,
-                          altura: true,
-                          ContainerOp: {
-                            select: {
-                              op: true,
-                              Op: {
-                                select: {
-                                  op: true,
-                                  ref: true,
-                                  modeloDesc: true,
-                                  modelo: true,
-                                  cor: true,
-                                  pedido: true,
-                                  norma: true,
-                                  OpTamanho: {
-                                    select: {
-                                      op: true,
-                                      tam: true,
-                                      ordem: true,
-                                      qtt: true,
-                                    },
+                    },
+                    //Container Sub sub
+                    other_Container: {
+                      select: {
+                        idContainer: true,
+                        idContainerPai: true,
+                        idTipoContainer: true,
+                        ordem: true,
+                        nContainer: true,
+                        altura: true,
+                        ContainerOp: {
+                          select: {
+                            op: true,
+                            Op: {
+                              select: {
+                                op: true,
+                                ref: true,
+                                modeloDesc: true,
+                                modelo: true,
+                                cor: true,
+                                pedido: true,
+                                norma: true,
+                                OpTamanho: {
+                                  select: {
+                                    op: true,
+                                    tam: true,
+                                    ordem: true,
+                                    qtt: true,
                                   },
                                 },
                               },
                             },
                           },
-                          TipoContainer: {
-                            select: {
-                              idItem: true,
-                              Item: {
-                                select: {
-                                  Descricao: true,
-                                },
+                        },
+                        TipoContainer: {
+                          select: {
+                            idItem: true,
+                            Item: {
+                              select: {
+                                Descricao: true,
                               },
                             },
                           },
                         },
-                        orderBy: [{ idTipoContainer: 'asc' }, { ordem: 'asc' }],
+                        Conteudo: {
+                          select: {
+                            idConteudo: true,
+                            idContainer: true,
+                            idItem: true,
+                            Item: {
+                              select: {
+                                idItem: true,
+                                Descricao: true,
+                              },
+                            },
+                            Op: {
+                              select: {
+                                op: true,
+                                ref: true,
+                                modeloDesc: true,
+                                modelo: true,
+                                cor: true,
+                                pedido: true,
+                                norma: true,
+                              },
+                            },
+                            op: true,
+                            tam: true,
+                            OpTamanho: {
+                              select: { ordem: true },
+                            },
+                            qtt: true,
+                            Unidades: {
+                              select: {
+                                idUnidades: true,
+                                idItem: true,
+                                descricaoUnidade: true,
+                              },
+                            },
+                            peso: true,
+                          },
+                          orderBy: [
+                            { op: 'asc' },
+                            { idItem: 'asc' },
+                            {
+                              OpTamanho: {
+                                ordem: 'asc',
+                              },
+                            },
+                          ],
+                        },
+                        //Container Sub sub sub
+                        other_Container: {
+                          select: {
+                            idContainer: true,
+                            idContainerPai: true,
+                            idTipoContainer: true,
+                            ordem: true,
+                            nContainer: true,
+                            altura: true,
+                            ContainerOp: {
+                              select: {
+                                op: true,
+                                Op: {
+                                  select: {
+                                    op: true,
+                                    ref: true,
+                                    modeloDesc: true,
+                                    modelo: true,
+                                    cor: true,
+                                    pedido: true,
+                                    norma: true,
+                                    OpTamanho: {
+                                      select: {
+                                        op: true,
+                                        tam: true,
+                                        ordem: true,
+                                        qtt: true,
+                                      },
+                                    },
+                                  },
+                                },
+                              },
+                            },
+                            TipoContainer: {
+                              select: {
+                                idItem: true,
+                                Item: {
+                                  select: {
+                                    Descricao: true,
+                                  },
+                                },
+                              },
+                            },
+                          },
+                          orderBy: [
+                            { idTipoContainer: 'asc' },
+                            { ordem: 'asc' },
+                          ],
+                        },
+                        //Container Sub sub sub
                       },
-                      //Container Sub sub sub
+                      orderBy: [{ ordem: 'asc' }],
                     },
-                    orderBy: [{ ordem: 'asc' }],
+                    //Container Sub sub
                   },
-                  //Container Sub sub
+                  orderBy: [{ ordem: 'asc' }],
                 },
-                orderBy: [{ ordem: 'asc' }],
+                //Container Sub
               },
-              //Container Sub
+              orderBy: [{ ordem: 'asc' }],
             },
-            orderBy: [{ ordem: 'asc' }],
+            //Container principal
           },
-          //Container principal
-        },
-      }),
-      PrismaSingleton.getEnviosPrisma().item.findMany({
-        where: { idItem: { gt: 199 } },
-      }),
-      PrismaSingleton.getEnviosPrisma().unidades.findMany(),
-    ]);
+        }),
+        prisma.item.findMany({
+          where: { idItem: { gt: 199 } },
+        }),
+        prisma.unidades.findMany(),
+        prisma.$queryRaw<{ value: number; label: string }[]>`
+        SELECT 
+          idDestino AS value, 
+          nomeDestino AS label 
+        FROM 
+          Destinos`,
+      ]);
 
     if (!dadosEnvio) {
       resBody.error = {
@@ -278,7 +289,12 @@ export async function getEnvioById(idEnvio: number) {
       return resBody;
     }
 
-    resBody.data = { ...dadosEnvio, Itens: itens, Unidades: unidades };
+    resBody.data = {
+      ...dadosEnvio,
+      Itens: itens,
+      Unidades: unidades,
+      DestinosDisponiveis: destinosDisponiveis,
+    };
     return resBody;
   } catch (error) {
     resBody.error = {

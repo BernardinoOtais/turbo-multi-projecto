@@ -62,7 +62,7 @@ model Container {
 }
 
 model Conteudo {
-  idConteudo  Int         @default(autoincrement())
+  idConteudo  Int         @unique(map: "UQ_Conteudo_idConteudo") @default(autoincrement())
   idContainer Int
   idItem      Int
   op          Int

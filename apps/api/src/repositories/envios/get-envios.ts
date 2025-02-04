@@ -14,11 +14,12 @@ export async function getEnvios(
 ): Promise<ApiResponseBody<EnviosListDto>> {
   const resBody = new ApiResponseBody<EnviosListDto>();
   const { skip, take, fechado, ordem } = body;
+  const prisma = PrismaSingleton.getEnviosPrisma();
 
   try {
     // Fetch the data and count in parallel for efficiency
-    const [dados, tamanhoLista] = await Promise.all([
-      PrismaSingleton.getEnviosPrisma().envio.findMany({
+    const [dados, tamanhoLista, DestinosDisponiveis] = await Promise.all([
+      prisma.envio.findMany({
         where: { fechado: fechado },
         select: {
           idEnvio: true,
@@ -35,18 +36,25 @@ export async function getEnvios(
           endDate: true,
           obs: true,
           nomeUser: true,
+          _count: { select: { Container: true } },
         },
-
         skip,
         take,
         orderBy: { createdAt: ordem },
       }),
       AuxEnvios.numeroDeEnvios(fechado),
+      prisma.$queryRaw<{ value: number; label: string }[]>`
+      SELECT 
+        idDestino AS value, 
+        nomeDestino AS label 
+      FROM 
+        Destinos`,
     ]);
 
     resBody.data = {
       lista: dados,
       tamanhoLista,
+      DestinosDisponiveis,
     };
 
     return resBody;

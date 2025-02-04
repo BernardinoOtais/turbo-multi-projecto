@@ -1,8 +1,11 @@
 import type {
-  IdContainerOpSchemaDto,
   IdOrdemDto,
   PostAlturaDto,
   PostContainerSchemaDto,
+  PostConteudoDto,
+  PostDestinoSchemaDto,
+  PostNomeEnviochemaDto,
+  PostNovoEnvioSchemaDto,
   PostOpDto,
 } from '@repo/types';
 import {
@@ -12,16 +15,23 @@ import {
   IdOrdemSchema,
   PostAlturaSchema,
   PostContainerSchema,
+  PostConteudoSchema,
+  PostDestinoSchema,
+  PostNomeEnviochema,
+  PostNovoEnvioSchema,
   PostOpSchema,
 } from '@repo/types';
 import { Router } from 'express';
 import type { NextFunction, Request, Response } from 'express';
 
+import { enviosAuthenticator } from '@middlewares/envios-authenticator';
 import { validaSchema } from '@middlewares/valida-schema';
 import { EnviosRepository } from '@repositories/envios';
 import HttpStatusCode from '@utils/http-status-code';
 
 const EnvioRotas = Router();
+
+EnvioRotas.use(enviosAuthenticator);
 
 EnvioRotas.get(
   '/',
@@ -156,4 +166,101 @@ EnvioRotas.delete(
   },
 );
 
+EnvioRotas.delete(
+  '/conteudoApaga',
+  validaSchema(IdNumeroInteiroNaoNegativoSchema, 'query'),
+  async (req: Request, res: Response, next: NextFunction) => {
+    const idRecebido = IdNumeroInteiroNaoNegativoSchema.parse(req.query);
+    const idConteudo = idRecebido.id;
+    try {
+      const resBody = await EnviosRepository.apagoConteudo(idConteudo);
+      res
+        .status(resBody.error ? resBody.error.code : HttpStatusCode.OK)
+        .json(resBody);
+    } catch (err) {
+      next(err);
+    }
+  },
+);
+
+EnvioRotas.post(
+  '/conteudo',
+  validaSchema(PostConteudoSchema),
+  async (req: Request, res: Response, next: NextFunction) => {
+    const body: PostConteudoDto = PostConteudoSchema.parse(req.body);
+    try {
+      const resBody = await EnviosRepository.insiroConteudo(body);
+      res
+        .status(resBody.error ? resBody.error.code : HttpStatusCode.OK)
+        .json(resBody);
+    } catch (err) {
+      next(err);
+    }
+  },
+);
+
+EnvioRotas.patch(
+  '/patchFornecedor',
+  validaSchema(PostDestinoSchema),
+  async (req: Request, res: Response, next: NextFunction) => {
+    const body: PostDestinoSchemaDto = req.body;
+    try {
+      const resBody = await EnviosRepository.patchFornecedor(body);
+      res
+        .status(resBody.error ? resBody.error.code : HttpStatusCode.OK)
+        .json(resBody);
+    } catch (err) {
+      next(err);
+    }
+  },
+);
+
+EnvioRotas.delete(
+  '/envioApaga',
+  validaSchema(IdNumeroInteiroNaoNegativoSchema, 'query'),
+  async (req: Request, res: Response, next: NextFunction) => {
+    const idRecebido = IdNumeroInteiroNaoNegativoSchema.parse(req.query);
+    const idEnvio = idRecebido.id;
+    try {
+      const resBody = await EnviosRepository.apagoEnvio(idEnvio);
+      res
+        .status(resBody.error ? resBody.error.code : HttpStatusCode.OK)
+        .json(resBody);
+    } catch (err) {
+      next(err);
+    }
+  },
+);
+
+EnvioRotas.patch(
+  '/patchNomeEnvio',
+  validaSchema(PostNomeEnviochema),
+  async (req: Request, res: Response, next: NextFunction) => {
+    const body: PostNomeEnviochemaDto = req.body;
+    try {
+      const resBody = await EnviosRepository.patchNomeEnvio(body);
+      res
+        .status(resBody.error ? resBody.error.code : HttpStatusCode.OK)
+        .json(resBody);
+    } catch (err) {
+      next(err);
+    }
+  },
+);
+
+EnvioRotas.post(
+  '/novoEnvio',
+  validaSchema(PostNovoEnvioSchema),
+  async (req: Request, res: Response, next: NextFunction) => {
+    const body: PostNovoEnvioSchemaDto = PostNovoEnvioSchema.parse(req.body);
+    try {
+      const resBody = await EnviosRepository.novoEnvioOUPatch(body);
+      res
+        .status(resBody.error ? resBody.error.code : HttpStatusCode.OK)
+        .json(resBody);
+    } catch (err) {
+      next(err);
+    }
+  },
+);
 export default EnvioRotas;

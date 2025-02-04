@@ -4,11 +4,12 @@ import RodaPe from "./rodape";
 import {
   ContainerOpsSchemasDto,
   ConteudoDto,
+  ItensSchemaDto,
   ListaDeContainersEnvioDto,
   UnidadesSchemaDto,
 } from "@repo/types";
-import InsereConteudo from "./containers/insere-conteudo";
-import ConteudoExistente from "./containers/conteudo-existente";
+import ConteudoExistente from "./containers/conteudo/conteudo-existente";
+import InsereConteudoWrapper from "./containers/insere-conteudo-wrapper";
 
 type MainEFooterEmbarqueNovoProps = {
   idEnvio: number;
@@ -18,12 +19,14 @@ type MainEFooterEmbarqueNovoProps = {
   idContainerPai: number | null;
   containers: ListaDeContainersEnvioDto;
   conteudos: ConteudoDto[] | undefined;
-  dadosDisponiveisParaInserir: ContainerOpsSchemasDto;
+  containerOpsTamanhosDiponiveis: ContainerOpsSchemasDto;
   idTipoContainer: number | undefined;
   unidades: UnidadesSchemaDto;
+  itensDisponiveis: ItensSchemaDto;
+  idConteudo: number | undefined;
 };
 
-const MainEFooterEmbarqueNovo = ({
+const MainEFooterEmbarqueNovo = async ({
   idEnvio,
   niveisValidados,
   listaDeContainersNivelUmDisponivelParaInserir,
@@ -31,26 +34,23 @@ const MainEFooterEmbarqueNovo = ({
   idContainerPai,
   containers,
   conteudos,
-  dadosDisponiveisParaInserir,
+  containerOpsTamanhosDiponiveis,
   idTipoContainer,
   unidades,
+  itensDisponiveis,
+  idConteudo,
 }: MainEFooterEmbarqueNovoProps) => {
-  //console.log("footer", dadosDisponiveisParaInserir);
+  //console.log("footer", containerOpsTamanhosDiponiveis);
   //console.log("idTipoContainer: ", idTipoContainer);
 
   const mostraContainers =
     idTipoContainer === undefined || idTipoContainer <= 4;
 
-  const unidadeParaAutoComplete = unidades.map(item => ({
-    value: item.idUnidades.toString(),
-    label: item.descricaoUnidade,
-  }));
-
   return (
     <>
       <main className="relative grow">
         <div className="absolute top-0 bottom-0 flex w-full">
-          <div className="w-full overflow-auto">
+          <div className="flex w-full flex-col gap-1 overflow-auto">
             {conteudos && conteudos.length !== 0 && (
               <ConteudoExistente conteudos={conteudos} />
             )}
@@ -62,9 +62,12 @@ const MainEFooterEmbarqueNovo = ({
                 niveisValidados={niveisValidados}
               />
             ) : (
-              <InsereConteudo
-                dadosDisponiveisParaInserir={dadosDisponiveisParaInserir}
-                unidades={unidadeParaAutoComplete}
+              <InsereConteudoWrapper
+                idConteudo={idConteudo}
+                idContainerPai={idContainerPai || 0}
+                unidades={unidades}
+                containerOpsTamanhosDiponiveis={containerOpsTamanhosDiponiveis}
+                itensDisponiveis={itensDisponiveis}
               />
             )}
           </div>

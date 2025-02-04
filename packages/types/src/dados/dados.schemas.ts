@@ -1,126 +1,102 @@
 import z from "zod";
+const inteiroNaoNegativo = z.coerce
+  .number({
+    required_error: "Tem que inserrir números...",
+    invalid_type_error: "Formato errado...",
+  })
+  .int({ message: "Tem que ser inteiro...." })
+  .nonnegative({ message: "Tem que ser positivo..." });
 
-export const DadosParaPesquisaComPaginacaoEOrdem = z.object({
-  skip: z.coerce
-    .number({
-      required_error: "Tem que inserrir números...",
-      invalid_type_error: "Formato de número errado...",
-    })
-    .int({ message: "Tem que ser inteiro...." }),
+const float = z
+  .union([z.string(), z.number()]) // Accept both strings and numbers
+  .transform((value) => {
+    if (typeof value === "string") {
+      const trimmed = value.trim();
+      if (trimmed === "") return undefined; // Treat empty string as undefined to trigger "Obrigatório"
+      return trimmed.replace(",", ".");
+    }
+    return value;
+  }) // Normalize strings (replace commas with dots)
+  .refine((value) => value !== undefined, {
+    message: "Obrigatório", // Required error message
+  })
+  .refine((value) => !isNaN(parseFloat(value as string)), {
+    message: "Formato de número errado...",
+  }) // Ensure valid number format
+  .transform((value) => parseFloat(value as string)) // Convert to number
+  .refine((value) => value > 0, {
+    message: "> 0...",
+  });
 
-  take: z.coerce
-    .number({
-      required_error: "Tem que inserrir números...",
-      invalid_type_error: "Formato de número errado...",
-    })
-    .int({ message: "Tem que ser inteiro...." }),
-  fechado: z.string().transform((val) => {
-    if (val === "true") return true;
-    if (val === "false") return false;
-    throw new Error("Invalid boolean value");
-  }),
-  ordem: z.enum(["asc", "desc"]).optional(),
-});
-
-export type DadosParaPesquisaComPaginacaoEOrdemDto = z.infer<
-  typeof DadosParaPesquisaComPaginacaoEOrdem
->;
+const floatZero = z
+  .union([z.string(), z.number()]) // Accept both strings and numbers
+  .transform((value) => {
+    if (typeof value === "string") {
+      const trimmed = value.trim();
+      if (trimmed === "") return undefined; // Treat empty string as undefined to trigger "Obrigatório"
+      return trimmed.replace(",", ".");
+    }
+    return value;
+  }) // Normalize strings (replace commas with dots)
+  .refine((value) => value !== undefined, {
+    message: "Obrigatório", // Required error message
+  })
+  .refine((value) => !isNaN(parseFloat(value as string)), {
+    message: "Formato de número errado...",
+  }) // Ensure valid number format
+  .transform((value) => parseFloat(value as string))
+  .refine((value) => value >= 0, {
+    message: ">= 0...",
+  }); // Convert to number
 
 export const IdNumeroInteiroNaoNegativoSchema = z.object({
-  id: z.coerce
-    .number({
-      required_error: "Tem que inserrir números...",
-      invalid_type_error: "Formato de número errado...",
-    })
-    .int({ message: "Tem que ser inteiro...." })
-    .nonnegative({ message: "Tem que ser positivo..." }),
+  id: inteiroNaoNegativo,
+});
+
+const verdadeiroOuFalso = z.string().transform((val) => {
+  if (val === "true") return true;
+  if (val === "false") return false;
+  throw new Error("Invalid boolean value");
+});
+
+const nomeEnvio = z
+  .string()
+  .min(3, { message: "Tem que ter pelo menos 3 caracteres..." })
+  .max(50, { message: "Máximo 50 caracteres" });
+
+export const DadosParaPesquisaComPaginacaoEOrdem = z.object({
+  skip: inteiroNaoNegativo,
+
+  take: inteiroNaoNegativo,
+  fechado: verdadeiroOuFalso,
+  ordem: z.enum(["asc", "desc"]).optional(),
 });
 
 export const IdOrdemSchema = z.object({
   idOrdem: z.array(
     z.object({
-      id: z.coerce
-        .number({
-          required_error: "Tem que inserrir números...",
-          invalid_type_error: "Formato de número errado...",
-        })
-        .int({ message: "Tem que ser inteiro...." })
-        .nonnegative({ message: "Tem que ser positivo..." }),
-      ordem: z.coerce
-        .number({
-          required_error: "Tem que inserrir números...",
-          invalid_type_error: "Formato de número errado...",
-        })
-        .int({ message: "Tem que ser inteiro...." })
-        .nonnegative({ message: "Tem que ser positivo..." }),
+      id: inteiroNaoNegativo,
+      ordem: inteiroNaoNegativo,
     })
   ),
 });
 
 export const PostContainerSchema = z.object({
-  idEnvio: z.coerce
-    .number({
-      required_error: "Tem que inserrir números...",
-      invalid_type_error: "Formato de número errado...",
-    })
-    .int({ message: "Tem que ser inteiro...." })
-    .nonnegative({ message: "Tem que ser positivo..." }),
-  idContainerPai: z.coerce
-    .number({
-      required_error: "Tem que inserrir números...",
-      invalid_type_error: "Formato de número errado...",
-    })
-    .int({ message: "Tem que ser inteiro...." })
-    .nonnegative({ message: "Tem que ser positivo..." })
-    .nullable(),
-  idTipoContainer: z.coerce
-    .number({
-      required_error: "Tem que inserrir números...",
-      invalid_type_error: "Formato de número errado...",
-    })
-    .int({ message: "Tem que ser inteiro...." })
-    .nonnegative({ message: "Tem que ser positivo..." }),
+  idEnvio: inteiroNaoNegativo,
+  idContainerPai: inteiroNaoNegativo.nullable(),
+  idTipoContainer: inteiroNaoNegativo,
 });
 
 export const PostAlturaSchema = z.object({
   PostAltura: z.object({
-    id: z.coerce
-      .number({
-        required_error: "Tem que inserrir números...",
-        invalid_type_error: "Formato de número errado...",
-      })
-      .int({ message: "Tem que ser inteiro...." })
-      .nonnegative({ message: "Tem que ser positivo..." }),
-    altura: z
-      .union([z.string(), z.number()]) // Accept string or number
-      .transform((value) =>
-        typeof value === "string" ? value.trim().replace(",", ".") : value
-      ) // Normalize strings (replace commas with dots)
-      .refine((value) => !isNaN(parseFloat(value.toString())), {
-        message: "Formato de número errado...",
-      }) // Ensure valid number format
-      .transform((value) => parseFloat(value.toString())) // Convert to number
-      .refine((value) => value > 0, {
-        message: "Tem ser maior que 0...",
-      }), // Ensure non-negative
+    id: inteiroNaoNegativo,
+    altura: float,
   }),
 });
 
 export const IdContainerOpSchema = z.object({
-  id: z.coerce
-    .number({
-      required_error: "Tem que inserrir números...",
-      invalid_type_error: "Formato de número errado...",
-    })
-    .int({ message: "Tem que ser inteiro...." })
-    .nonnegative({ message: "Tem que ser positivo..." }),
-  op: z.coerce
-    .number({
-      required_error: "Tem que inserrir números...",
-      invalid_type_error: "Formato de número errado...",
-    })
-    .int({ message: "Tem que ser inteiro...." })
-    .nonnegative({ message: "Tem que ser positivo..." }),
+  id: inteiroNaoNegativo,
+  op: inteiroNaoNegativo,
 });
 
 export const PostOpSchema = z.object({
@@ -130,8 +106,42 @@ export const PostOpSchema = z.object({
 export const RespostaSchema = z.object({
   status: z.string(),
   errorMessage: z.string().nullable(),
+  id: inteiroNaoNegativo.optional(),
 });
+
 export const RespostaRecebidaSchema = z.array(RespostaSchema);
+
+const tamanhosQttPeso = z.object({
+  tam: z.string().max(25, { message: "Máximo 25 caracteres" }),
+  qtt: floatZero,
+  peso: floatZero,
+});
+export const PostConteudoSchema = z.object({
+  conteudo: z.object({
+    idContainer: inteiroNaoNegativo,
+    idItem: inteiroNaoNegativo,
+    op: inteiroNaoNegativo,
+    idUnidades: inteiroNaoNegativo,
+    TamanhosQttPeso: z.array(tamanhosQttPeso),
+  }),
+});
+
+export const PostDestinoSchema = z.object({
+  idEnvio: inteiroNaoNegativo,
+  idDestino: inteiroNaoNegativo,
+});
+export const PostNomeEnviochema = z.object({
+  idEnvio: inteiroNaoNegativo,
+  nomeEnvio,
+});
+
+export const PostNovoEnvioSchema = z.object({
+  idEnvio: inteiroNaoNegativo.optional(),
+  nomeEnvio,
+  idDestino: inteiroNaoNegativo,
+  obs: z.string().optional(),
+  nomeUser: z.string().optional(),
+});
 
 export type PostContainerSchemaDto = z.infer<typeof PostContainerSchema>;
 
@@ -146,3 +156,15 @@ export type RespostaDto = z.infer<typeof RespostaSchema>;
 export type RespostaRecebidaDto = z.infer<typeof RespostaRecebidaSchema>;
 
 export type IdContainerOpSchemaDto = z.infer<typeof IdContainerOpSchema>;
+
+export type DadosParaPesquisaComPaginacaoEOrdemDto = z.infer<
+  typeof DadosParaPesquisaComPaginacaoEOrdem
+>;
+
+export type PostConteudoDto = z.infer<typeof PostConteudoSchema>;
+
+export type PostDestinoSchemaDto = z.infer<typeof PostDestinoSchema>;
+
+export type PostNovoEnvioSchemaDto = z.infer<typeof PostNovoEnvioSchema>;
+
+export type PostNomeEnviochemaDto = z.infer<typeof PostNomeEnviochema>;

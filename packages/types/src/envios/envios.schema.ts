@@ -87,16 +87,15 @@ export const ContainerEnvio: z.ZodType<Container> = baseContainerSchema.extend({
 });
 
 const ListaDeContainersEnvio = z.array(ContainerEnvio).optional();
-const ItensSchema = z
-  .array(
-    z.object({
-      idItem: z.number().int().nonnegative(),
-      Descricao: z.string().max(100),
-    })
-  )
-  .optional();
+const ItensSchema = z.array(
+  z.object({
+    idItem: z.number().int().nonnegative(),
+    Descricao: z.string().max(100),
+  })
+);
 
 const UnidadesSchema = z.array(UnidadeSchema);
+
 export const EnvioSchema = z.object({
   idEnvio: z.number().int().nonnegative(),
   nomeEnvio: z.string().max(50),
@@ -114,17 +113,35 @@ export const EnvioSchema = z.object({
     .optional()
     .transform((val) => val ?? null),
   nomeUser: z.string().max(100),
+  _count: z.object({ Container: z.number().int().nonnegative() }).optional(),
   Container: ListaDeContainersEnvio,
-  Itens: ItensSchema,
+  Itens: ItensSchema.optional(),
   Unidades: UnidadesSchema.optional(),
+  DestinosDisponiveis: z
+    .array(
+      z.object({
+        value: z.number().int().nonnegative(),
+        label: z.string().max(100),
+      })
+    )
+    .optional(),
 });
 
 export const EnviosListSchema = z.object({
   lista: z.array(EnvioSchema),
   tamanhoLista: z.number().int().nonnegative(),
+  DestinosDisponiveis: z
+    .array(
+      z.object({
+        value: z.number().int().nonnegative(),
+        label: z.string().max(100),
+      })
+    )
+    .optional(),
 });
 
 export type EnvioDto = z.infer<typeof EnvioSchema>;
+
 export type EnviosListDto = z.infer<typeof EnviosListSchema>;
 
 export type ContainerSchemaDto = z.infer<typeof ContainerEnvio>;
@@ -136,3 +153,9 @@ export type ListaDeContainersEnvioDto = z.infer<typeof ListaDeContainersEnvio>;
 export type ContainerOpsSchemasDto = z.infer<typeof ContainerOpsSchemas>;
 
 export type UnidadesSchemaDto = z.infer<typeof UnidadesSchema>;
+
+export type ItensSchemaDto = z.infer<typeof ItensSchema>;
+
+export type OpTamanhoDto = z.infer<typeof OpTamanhoSchema>;
+
+export type OpSchemaDto = z.infer<typeof OpSchema>;

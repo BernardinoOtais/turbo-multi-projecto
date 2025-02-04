@@ -2,8 +2,8 @@ import jwt from 'jsonwebtoken';
 
 import { server } from '@config/config';
 
-export const geraTokens = async (nomeUser: string) => {
-  const payload = { sub: nomeUser };
+export const geraTokens = async (nomeUser: string, papeis: string[]) => {
+  const payload = { sub: nomeUser, papeis };
 
   const [accessToken, refreshToken] = await Promise.all([
     jwt.sign(payload, server.JWT_SECRET as string, {

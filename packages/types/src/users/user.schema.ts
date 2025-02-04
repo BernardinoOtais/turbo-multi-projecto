@@ -58,6 +58,13 @@ export const Papeis = z.object({
   ),
 });
 
+export const UserMiddlewareSchema = z.object({
+  sub: z.string(),
+  papeis: z.array(z.string()),
+  iat: z.number(),
+  exp: z.number(),
+});
+
 export type RefreshTokenDto = z.infer<typeof RefreshToken>;
 
 export type CriaUserDto = z.infer<typeof CriaUser>;
