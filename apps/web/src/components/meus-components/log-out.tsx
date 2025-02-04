@@ -1,8 +1,10 @@
 "use client";
-import React from "react";
-import { DropdownMenuItem } from "../ui/dropdown-menu";
 import { LogOut } from "lucide-react";
+import React from "react";
+
 import { deleteSession } from "@/lib/actions/auth/sessions";
+
+import { DropdownMenuItem } from "../ui/dropdown-menu";
 
 const LogOutBotao = () => {
   return (

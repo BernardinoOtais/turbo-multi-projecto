@@ -1,4 +1,5 @@
 import { ChevronRight } from "lucide-react";
+import { redirect } from "next/navigation";
 
 import {
   Collapsible,
@@ -17,7 +18,7 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar-modificada";
 import { getSession } from "@/lib/actions/auth/sessions";
-import { redirect } from "next/navigation";
+
 import { Menu, MenusExistentes, MenusTodos } from "./menus-e-seus-tipos";
 
 export async function NavMain() {

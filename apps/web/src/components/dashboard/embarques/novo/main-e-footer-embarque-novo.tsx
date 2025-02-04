@@ -1,6 +1,3 @@
-import React from "react";
-import Containers from "./containers/containers";
-import RodaPe from "./rodape";
 import {
   ContainerOpsSchemasDto,
   ConteudoDto,
@@ -8,8 +5,12 @@ import {
   ListaDeContainersEnvioDto,
   UnidadesSchemaDto,
 } from "@repo/types";
+import React from "react";
+
+import Containers from "./containers/containers";
 import ConteudoExistente from "./containers/conteudo/conteudo-existente";
 import InsereConteudoWrapper from "./containers/insere-conteudo-wrapper";
+import RodaPe from "./rodape";
 
 type MainEFooterEmbarqueNovoProps = {
   idEnvio: number;

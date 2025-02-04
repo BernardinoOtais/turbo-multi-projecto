@@ -1,8 +1,9 @@
-import { SidebarTrigger } from "@/components/ui/sidebar-modificada";
 import { Separator } from "@radix-ui/react-separator";
 import React from "react";
-import BreadCrumb from "./bread-crumbs";
 
+import { SidebarTrigger } from "@/components/ui/sidebar-modificada";
+
+import BreadCrumb from "./bread-crumbs";
 import HeaderRight from "./header-right";
 
 const Header = () => {

@@ -1,9 +1,4 @@
 "use client";
-
-import dynamic from "next/dynamic";
-import { ListaDeContainersEnvioDto, ContainerSchemaDto } from "@repo/types";
-import React, { useEffect, useRef, useState } from "react";
-
 import {
   closestCenter,
   DragEndEvent,
@@ -12,16 +7,19 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import {
   SortableContext,
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import { ListaDeContainersEnvioDto, ContainerSchemaDto } from "@repo/types";
+import dynamic from "next/dynamic";
+import React, { useEffect, useRef, useState } from "react";
+
+import { reordenaContainer } from "@/lib/actions/dashboard/embarques/novo";
 
 import ContainerCard from "./container-card";
-import { reordenaContainer } from "@/lib/actions/dashboard/embarques/novo";
 
 const DndContextWithNoSSR = dynamic(
   () => import("@dnd-kit/core").then(mod => mod.DndContext),

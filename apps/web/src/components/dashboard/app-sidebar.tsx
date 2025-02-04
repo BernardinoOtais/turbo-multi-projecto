@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+
 import { NavMain } from "@/components/dashboard/menus/nav-main";
 import {
   Sidebar,
@@ -11,8 +12,9 @@ import {
   SidebarMenuSkeleton,
   SidebarRail,
 } from "@/components/ui/sidebar-modificada";
-import NavUserPai from "./menus/nav-user-pai";
+
 import BotaoHeader from "./menus/botao-header";
+import NavUserPai from "./menus/nav-user-pai";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (

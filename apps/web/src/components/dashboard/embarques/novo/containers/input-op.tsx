@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
-import { PostOpDto, PostOpSchema } from "@repo/types";
-import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { PostOpDto, PostOpSchema } from "@repo/types";
+import { Loader2 } from "lucide-react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
+
 import {
   Form,
   FormControl,
@@ -11,7 +12,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Loader2 } from "lucide-react";
+import { Input } from "@/components/ui/input";
 
 type InputOpProps = {
   isSaving: boolean;
@@ -61,7 +62,7 @@ const InputOp = ({
       <form>
         <div className="relative">
           {isSaving && (
-            <div className="absolute inset-0 z-10 flex items-center justify-center bg-white bg-opacity-50">
+            <div className="bg-opacity-50 absolute inset-0 z-10 flex items-center justify-center bg-white">
               <Loader2 className="animate-spin" />
             </div>
           )}

@@ -1,6 +1,7 @@
 "use client";
 import { ChevronsUpDown } from "lucide-react";
 
+import LogOutBotao from "@/components/meus-components/log-out";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -15,7 +16,6 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar-modificada";
-import LogOutBotao from "@/components/meus-components/log-out";
 
 type UserRecebido = {
   name: string;

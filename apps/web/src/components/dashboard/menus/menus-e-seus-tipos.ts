@@ -1,4 +1,5 @@
 import { Move3D, PlaneIcon, Settings, Truck } from "lucide-react";
+
 type IconType = React.FC<React.SVGProps<SVGSVGElement>>;
 
 export type LoggedUser = {

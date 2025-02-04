@@ -1,8 +1,10 @@
 "use client";
 import React from "react";
-import FmodaIcon from "./fmoda-icon";
+
 import { ModeToggle } from "@/components/mode-toggle";
 import { useSidebar } from "@/components/ui/sidebar-modificada";
+
+import FmodaIcon from "./fmoda-icon";
 
 const HeaderRight = () => {
   const { openMobile } = useSidebar();

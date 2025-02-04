@@ -1,4 +1,5 @@
 import { jwtDecode } from "jwt-decode";
+
 export function isTokenExpired(accessToken: string) {
   try {
     const decoded = jwtDecode(accessToken); // Synchronous

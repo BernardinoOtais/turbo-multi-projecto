@@ -1,5 +1,7 @@
+import Link from "next/link";
 import React, { Fragment } from "react";
 
+import { Badge } from "@/components/ui/badge";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -8,9 +10,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb-modificada";
-
-import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 
 type DadosBreadCrumbProps = {
   crumbs: EmbarqueBreadCrumbContainers[];
@@ -42,7 +41,7 @@ const ContainerBreadCrumbs = ({
                 {naoELink ? (
                   <BreadcrumbPage className="group relative">
                     <span>{`${crumb.nome} nº ${crumb.numero}`}</span>
-                    <Badge className="absolute right-[-20px] top-[-18px] h-5 w-5 items-center justify-center rounded-full text-xs font-bold">
+                    <Badge className="absolute top-[-18px] right-[-20px] h-5 w-5 items-center justify-center rounded-full text-xs font-bold">
                       {crumb.badge}
                     </Badge>
                   </BreadcrumbPage>
@@ -62,12 +61,12 @@ const ContainerBreadCrumbs = ({
                       }}
                     >
                       <span>{`${crumb.nome} nº ${crumb.numero}`}</span>
-                      <Badge className="absolute right-[-20px] top-[-18px] h-5 w-5 items-center justify-center rounded-full text-xs font-bold">
+                      <Badge className="absolute top-[-18px] right-[-20px] h-5 w-5 items-center justify-center rounded-full text-xs font-bold">
                         {crumb.badge}
                       </Badge>
                       <Badge
                         variant="destructive"
-                        className="absolute right-[-20px] top-[-18px] hidden h-5 w-5 items-center justify-center rounded-full text-xs font-bold group-hover:flex"
+                        className="absolute top-[-18px] right-[-20px] hidden h-5 w-5 items-center justify-center rounded-full text-xs font-bold group-hover:flex"
                       >
                         {"x"}
                       </Badge>

@@ -1,20 +1,20 @@
-import { fetchGet } from "@/lib/fetch/fetch-get";
-
-import { Metadata } from "next";
-import React from "react";
 import {
   ContainerOpsSchemasDto,
   ConteudoDto,
   EnvioSchema,
   ItensSchemaDto,
 } from "@repo/types";
+import { Metadata } from "next";
+import React from "react";
 import { z } from "zod";
+
+import DestinosDesteEnvio from "@/components/dashboard/embarques/destinos-deste-envio";
 import ContainerBreadCrumbs from "@/components/dashboard/embarques/novo/container-bread-crumbes";
-import { cn } from "@/lib/utils";
-import { NIVEIS_INICIAIS } from "@/lib/constants";
 import MainEFooterEmbarqueNovo from "@/components/dashboard/embarques/novo/main-e-footer-embarque-novo";
 import { deleteSession } from "@/lib/actions/auth/sessions";
-import DestinosDesteEnvio from "@/components/dashboard/embarques/destinos-deste-envio";
+import { NIVEIS_INICIAIS } from "@/lib/constants";
+import { fetchGet } from "@/lib/fetch/fetch-get";
+import { cn } from "@/lib/utils";
 
 const niveis = z.object({
   nivel: z

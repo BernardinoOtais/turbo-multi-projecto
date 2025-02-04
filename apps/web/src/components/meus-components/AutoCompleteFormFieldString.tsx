@@ -1,6 +1,16 @@
 "use client";
+import { AutocompleteStringDto } from "@repo/types";
 import { ChevronsUpDown, Check } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { useState } from "react";
+import {
+  ControllerRenderProps,
+  FieldValues,
+  Path,
+  PathValue,
+  UseFormReturn,
+} from "react-hook-form";
+
+import { Button } from "@/components/ui/button";
 import {
   Command,
   CommandEmpty,
@@ -9,12 +19,6 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { Button } from "@/components/ui/button";
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-} from "@/components/ui/popover";
 import {
   FormControl,
   FormField,
@@ -23,14 +27,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import {
-  ControllerRenderProps,
-  FieldValues,
-  Path,
-  PathValue,
-  UseFormReturn,
-} from "react-hook-form";
-import { AutocompleteStringDto } from "@repo/types";
-import { useState } from "react";
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
 
 type AutoCompleteFormFieldStringProps<T extends FieldValues> = {
   form: UseFormReturn<T>;

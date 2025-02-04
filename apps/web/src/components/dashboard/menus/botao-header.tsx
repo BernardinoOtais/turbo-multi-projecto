@@ -1,7 +1,8 @@
 "use client";
-import { useSidebar } from "@/components/ui/sidebar-modificada";
 import Image from "next/image";
 import React from "react";
+
+import { useSidebar } from "@/components/ui/sidebar-modificada";
 
 const BotaoHeader = () => {
   const { isMobile, state, openMobile } = useSidebar();

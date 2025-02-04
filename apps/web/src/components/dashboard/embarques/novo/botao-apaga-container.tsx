@@ -1,11 +1,11 @@
 "use client";
-import { Button } from "@/components/ui/button";
-
-import { apagaContainer } from "@/lib/actions/dashboard/embarques/novo";
-import { cn } from "@/lib/utils";
 import { Loader2, Trash2 } from "lucide-react";
 import React from "react";
 import { toast } from "sonner";
+
+import { Button } from "@/components/ui/button";
+import { apagaContainer } from "@/lib/actions/dashboard/embarques/novo";
+import { cn } from "@/lib/utils";
 
 type BotaoApagaContainerProps = {
   idContainer: number;

@@ -1,4 +1,10 @@
 "use client";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { LoginDto, LoginZ } from "@repo/types";
+import Link from "next/link";
+import React from "react";
+import { useForm } from "react-hook-form";
+
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -8,13 +14,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import Link from "next/link";
-import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
-import React from "react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { LoginDto, LoginZ } from "@repo/types";
-
 import { login } from "@/lib/actions/auth";
 
 const Login = () => {

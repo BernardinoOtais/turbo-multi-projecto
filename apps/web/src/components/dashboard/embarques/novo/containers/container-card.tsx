@@ -1,4 +1,9 @@
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import { ContainerSchemaDto, PostOpDto } from "@repo/types";
+import { PostAlturaDto } from "@repo/types";
+import { GripHorizontal } from "lucide-react";
+import Link from "next/link";
 import React, { useState } from "react";
 
 import {
@@ -8,23 +13,16 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
 import { Separator } from "@/components/ui/separator";
-import { GripHorizontal } from "lucide-react";
-
-import { useSortable } from "@dnd-kit/sortable";
-
-import { CSS } from "@dnd-kit/utilities";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
-import BotaoApagaContainer from "../botao-apaga-container";
-import InputAltura from "./input-altura";
-import { PostAlturaDto } from "@repo/types";
 import useSaveAltura from "@/hooks/use-save-altura";
-import useUnloadWarning from "@/hooks/use-unload-warning";
 import useSaveOpContainer from "@/hooks/use-save-op-container";
-import InputOp from "./input-op";
+import useUnloadWarning from "@/hooks/use-unload-warning";
+import { cn } from "@/lib/utils";
+
+import BotaoApagaContainer from "../botao-apaga-container";
 import ApagaOpDoContainer from "./apaga-op-do-container";
+import InputAltura from "./input-altura";
+import InputOp from "./input-op";
 
 type ContainerCardProps = {
   container: ContainerSchemaDto;
@@ -96,10 +94,10 @@ const ContainerCard = ({
           <GripHorizontal
             {...attributes}
             {...listeners}
-            className="absolute right-2 top-2 size-5 cursor-grab text-muted-foreground focus:outline-hidden"
+            className="text-muted-foreground absolute top-2 right-2 size-5 cursor-grab focus:outline-hidden"
           />
         )}
-        <CardHeader className="pb-0 pt-1">
+        <CardHeader className="pt-1 pb-0">
           <div className="mx-auto">
             <Link
               href={{
@@ -166,7 +164,7 @@ const ContainerCard = ({
         {naoTemConteudo && naoTemSubContainers && (
           <BotaoApagaContainer
             idContainer={container.idContainer}
-            className="absolute bottom-2 right-2"
+            className="absolute right-2 bottom-2"
             setScroll={setScroll}
             apagaCardEstado={apagaCardEstado}
             setApagaCardEstado={setApagaCardEstado}

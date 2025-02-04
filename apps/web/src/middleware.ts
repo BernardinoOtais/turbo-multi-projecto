@@ -1,12 +1,12 @@
+import { UserDto } from "@repo/types";
 import { NextRequest, NextResponse } from "next/server";
+
 import {
   createSessionComResposta,
   deleteSession,
   getSession,
 } from "./lib/actions/auth/sessions";
-
 import { BACKEND_URL } from "./lib/constants";
-import { UserDto } from "@repo/types";
 import { isTokenExpired } from "./lib/my-utils";
 
 export default async function middleware(

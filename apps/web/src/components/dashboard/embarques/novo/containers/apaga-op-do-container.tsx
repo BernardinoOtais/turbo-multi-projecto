@@ -1,11 +1,11 @@
+import { IdContainerOpSchemaDto } from "@repo/types";
+import { Loader2 } from "lucide-react";
+import React from "react";
+import { toast } from "sonner";
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { apagaOpContainer } from "@/lib/actions/dashboard/embarques/novo";
-import { IdContainerOpSchemaDto } from "@repo/types";
-import { Loader2 } from "lucide-react";
-
-import React from "react";
-import { toast } from "sonner";
 
 type ApagaOpDoContainerProps = {
   op: number;
@@ -51,7 +51,7 @@ const ApagaOpDoContainer = ({
       {apagaOpEstado && <Loader2 className="absolute animate-spin" />}
       <Badge
         variant="destructive"
-        className="absolute right-[-10px] top-[-14px] hidden h-5 w-5 items-center justify-center rounded-full text-xs font-bold group-hover:flex"
+        className="absolute top-[-14px] right-[-10px] hidden h-5 w-5 items-center justify-center rounded-full text-xs font-bold group-hover:flex"
       >
         {"x"}
       </Badge>

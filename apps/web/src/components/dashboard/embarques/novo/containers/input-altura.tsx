@@ -1,8 +1,9 @@
-import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import { PostAlturaSchema, PostAlturaDto } from "@repo/types";
+import { Loader2 } from "lucide-react";
 import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+
 import {
   Form,
   FormControl,
@@ -11,7 +12,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Loader2 } from "lucide-react";
+import { Input } from "@/components/ui/input";
 
 type InputAlturaProps = {
   isSaving: boolean;
@@ -55,7 +56,7 @@ const InputAltura = ({
       <form>
         <div className="relative">
           {isSaving && (
-            <div className="absolute inset-0 z-10 flex items-center justify-center bg-white bg-opacity-60">
+            <div className="bg-opacity-60 absolute inset-0 z-10 flex items-center justify-center bg-white">
               <Loader2 className="animate-spin" />
             </div>
           )}

@@ -1,8 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import {
   AutocompleteDto,
   ContainerOpsSchemasDto,
@@ -10,6 +8,12 @@ import {
   PostConteudoDto,
   PostConteudoSchema,
 } from "@repo/types";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+
+import { AutoCompleteFormField } from "@/components/meus-components/AutoCompleteFormField";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -18,15 +22,11 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { AutoCompleteFormField } from "@/components/meus-components/AutoCompleteFormField";
-
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { insiroConteudo } from "@/lib/actions/dashboard/embarques/novo";
-import { toast } from "sonner";
 
 type InsereConteudoClienteProps = {
   idConteudo?: number;

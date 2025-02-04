@@ -1,8 +1,10 @@
 "use client";
-import { TableCell, TableRow } from "@/components/ui/table";
-import React, { Fragment, useState } from "react";
-import ApagaConteudo from "./apaga-conteudo";
 import { ConteudoDto } from "@repo/types";
+import React, { Fragment, useState } from "react";
+
+import { TableCell, TableRow } from "@/components/ui/table";
+
+import ApagaConteudo from "./apaga-conteudo";
 
 type ConteudoClienteProps = {
   conteudos: ConteudoDto[] | undefined;

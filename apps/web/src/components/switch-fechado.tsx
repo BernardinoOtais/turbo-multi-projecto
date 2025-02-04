@@ -1,8 +1,9 @@
 "use client";
-import { useState, useEffect } from "react";
-import { Switch } from "./ui/switch";
-import { Label } from "./ui/label";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { useState, useEffect } from "react";
+
+import { Label } from "./ui/label";
+import { Switch } from "./ui/switch";
 
 type SwitchFechadoProps = {
   fechado: boolean;

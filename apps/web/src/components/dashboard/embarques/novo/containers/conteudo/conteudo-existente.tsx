@@ -1,3 +1,6 @@
+import { ConteudoDto } from "@repo/types";
+import React from "react";
+
 import {
   Table,
   TableBody,
@@ -8,8 +11,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { ConteudoDto } from "@repo/types";
-import React from "react";
+
 import ConteudoCliente from "./conteudo-cliente";
 
 type ConteudoExistenteProps = {

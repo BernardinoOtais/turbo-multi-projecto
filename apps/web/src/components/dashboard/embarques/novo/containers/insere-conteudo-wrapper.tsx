@@ -4,8 +4,10 @@ import {
   UnidadesSchemaDto,
 } from "@repo/types";
 import React from "react";
-import InsereConteudoCliente from "./conteudo/aux-insere-conteudo-wrapper/insere-conteudo-cliente";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+import InsereConteudoCliente from "./conteudo/aux-insere-conteudo-wrapper/insere-conteudo-cliente";
 
 type InsereConteudoWrapperProps = {
   idConteudo?: number;

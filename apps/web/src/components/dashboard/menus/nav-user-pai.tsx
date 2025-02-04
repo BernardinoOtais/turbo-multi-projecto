@@ -1,6 +1,8 @@
-import { getSession } from "@/lib/actions/auth/sessions";
 import { redirect } from "next/navigation";
 import React from "react";
+
+import { getSession } from "@/lib/actions/auth/sessions";
+
 import { NavUser } from "./nav-user-modificado";
 
 const NavUserPai = async () => {

@@ -1,5 +1,8 @@
 "use client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React, { Fragment } from "react";
+
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -8,9 +11,8 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb-modificada";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { capitalizeFirstLetter } from "@/lib/my-utils";
+
 const BreadCrumb = () => {
   const paths = usePathname();
 
