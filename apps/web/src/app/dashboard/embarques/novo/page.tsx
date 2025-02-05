@@ -5,16 +5,18 @@ import {
   ItensSchemaDto,
 } from "@repo/types";
 import { Metadata } from "next";
+import { redirect } from "next/navigation";
 import React from "react";
 import { z } from "zod";
 
-import DestinosDesteEnvio from "@/components/dashboard/embarques/destinos-deste-envio";
-import ContainerBreadCrumbs from "@/components/dashboard/embarques/novo/container-bread-crumbes";
-import MainEFooterEmbarqueNovo from "@/components/dashboard/embarques/novo/main-e-footer-embarque-novo";
 import { deleteSession } from "@/lib/actions/auth/sessions";
 import { NIVEIS_INICIAIS } from "@/lib/constants";
 import { fetchGet } from "@/lib/fetch/fetch-get";
 import { cn } from "@/lib/utils";
+
+import DestinosDesteEnvio from "../destinos-deste-envio";
+import ContainerBreadCrumbs from "./container-bread-crumbes";
+import MainEFooterEmbarqueNovo from "./main-e-footer-embarque-novo";
 
 const niveis = z.object({
   nivel: z
@@ -58,6 +60,10 @@ const NovoEmbarque = async ({ searchParams }: PageProps) => {
   const dadosGetEnvio = { id: nIdEnvio };
 
   const envios = await fetchGet("envios/envio", dadosGetEnvio);
+  //console.log(envios);
+  if (!envios) {
+    redirect("/dashboard");
+  }
 
   const envioValidado = EnvioSchema.safeParse(envios.data);
 

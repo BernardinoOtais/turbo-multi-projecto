@@ -2,7 +2,7 @@ import { PostOpDto } from "@repo/types";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
-import { insiroOpEmContainer } from "@/lib/actions/dashboard/embarques/novo";
+import { insiroOpEmContainer } from "@/lib/actions/dashboard/embarques";
 
 import useDebounce from "./use-debounce";
 

@@ -418,7 +418,7 @@ export namespace Prisma {
   export type DecimalJsLike = runtime.DecimalJsLike
 
   /**
-   * Metrics 
+   * Metrics
    */
   export type Metrics = runtime.Metrics
   export type Metric<T> = runtime.Metric<T>
@@ -436,14 +436,14 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.2.1
-   * Query Engine version: 4123509d24aa4dede1e864b46351bf2790323b69
+   * Prisma Client JS version: 6.3.1
+   * Query Engine version: acc0b9dd43eb689cbd20c9470515d719db10d0b0
    */
   export type PrismaVersion = {
     client: string
   }
 
-  export const prismaVersion: PrismaVersion 
+  export const prismaVersion: PrismaVersion
 
   /**
    * Utility Types
@@ -459,15 +459,15 @@ export namespace Prisma {
 
   /**
    * Types of the values used to represent different kinds of `null` values when working with JSON fields.
-   * 
+   *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
   namespace NullTypes {
     /**
     * Type of `Prisma.DbNull`.
-    * 
+    *
     * You cannot use other instances of this class. Please use the `Prisma.DbNull` value.
-    * 
+    *
     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
     */
     class DbNull {
@@ -477,9 +477,9 @@ export namespace Prisma {
 
     /**
     * Type of `Prisma.JsonNull`.
-    * 
+    *
     * You cannot use other instances of this class. Please use the `Prisma.JsonNull` value.
-    * 
+    *
     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
     */
     class JsonNull {
@@ -489,9 +489,9 @@ export namespace Prisma {
 
     /**
     * Type of `Prisma.AnyNull`.
-    * 
+    *
     * You cannot use other instances of this class. Please use the `Prisma.AnyNull` value.
-    * 
+    *
     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
     */
     class AnyNull {
@@ -502,21 +502,21 @@ export namespace Prisma {
 
   /**
    * Helper for filtering JSON entries that have `null` on the database (empty on the db)
-   * 
+   *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
   export const DbNull: NullTypes.DbNull
 
   /**
    * Helper for filtering JSON entries that have JSON `null` values (not empty on the db)
-   * 
+   *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
   export const JsonNull: NullTypes.JsonNull
 
   /**
    * Helper for filtering JSON entries that are `Prisma.DbNull` or `Prisma.JsonNull`
-   * 
+   *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
   export const AnyNull: NullTypes.AnyNull
@@ -3334,6 +3334,10 @@ export namespace Prisma {
      * Filter which Papeis to update
      */
     where?: PapeisWhereInput
+    /**
+     * Limit how many Papeis to update.
+     */
+    limit?: number
   }
 
   /**
@@ -3396,6 +3400,10 @@ export namespace Prisma {
      * Filter which Papeis to delete
      */
     where?: PapeisWhereInput
+    /**
+     * Limit how many Papeis to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -4285,6 +4293,10 @@ export namespace Prisma {
      * Filter which sysdiagrams to update
      */
     where?: sysdiagramsWhereInput
+    /**
+     * Limit how many sysdiagrams to update.
+     */
+    limit?: number
   }
 
   /**
@@ -4339,6 +4351,10 @@ export namespace Prisma {
      * Filter which sysdiagrams to delete
      */
     where?: sysdiagramsWhereInput
+    /**
+     * Limit how many sysdiagrams to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -5228,6 +5244,10 @@ export namespace Prisma {
      * Filter which Users to update
      */
     where?: UserWhereInput
+    /**
+     * Limit how many Users to update.
+     */
+    limit?: number
   }
 
   /**
@@ -5290,6 +5310,10 @@ export namespace Prisma {
      * Filter which Users to delete
      */
     where?: UserWhereInput
+    /**
+     * Limit how many Users to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -6143,6 +6167,10 @@ export namespace Prisma {
      * Filter which UserPapeis to update
      */
     where?: UserPapeisWhereInput
+    /**
+     * Limit how many UserPapeis to update.
+     */
+    limit?: number
   }
 
   /**
@@ -6205,6 +6233,10 @@ export namespace Prisma {
      * Filter which UserPapeis to delete
      */
     where?: UserPapeisWhereInput
+    /**
+     * Limit how many UserPapeis to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -7165,6 +7197,10 @@ export namespace Prisma {
      * Filter which Containers to update
      */
     where?: ContainerWhereInput
+    /**
+     * Limit how many Containers to update.
+     */
+    limit?: number
   }
 
   /**
@@ -7227,6 +7263,10 @@ export namespace Prisma {
      * Filter which Containers to delete
      */
     where?: ContainerWhereInput
+    /**
+     * Limit how many Containers to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -8287,6 +8327,10 @@ export namespace Prisma {
      * Filter which Conteudos to update
      */
     where?: ConteudoWhereInput
+    /**
+     * Limit how many Conteudos to update.
+     */
+    limit?: number
   }
 
   /**
@@ -8349,6 +8393,10 @@ export namespace Prisma {
      * Filter which Conteudos to delete
      */
     where?: ConteudoWhereInput
+    /**
+     * Limit how many Conteudos to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -8384,18 +8432,16 @@ export namespace Prisma {
 
   export type EnvioAvgAggregateOutputType = {
     idEnvio: number | null
-    idDestino: number | null
   }
 
   export type EnvioSumAggregateOutputType = {
     idEnvio: number | null
-    idDestino: number | null
   }
 
   export type EnvioMinAggregateOutputType = {
     idEnvio: number | null
     nomeEnvio: string | null
-    idDestino: number | null
+    idDestino: string | null
     fechado: boolean | null
     createdAt: Date | null
     endDate: Date | null
@@ -8406,7 +8452,7 @@ export namespace Prisma {
   export type EnvioMaxAggregateOutputType = {
     idEnvio: number | null
     nomeEnvio: string | null
-    idDestino: number | null
+    idDestino: string | null
     fechado: boolean | null
     createdAt: Date | null
     endDate: Date | null
@@ -8429,12 +8475,10 @@ export namespace Prisma {
 
   export type EnvioAvgAggregateInputType = {
     idEnvio?: true
-    idDestino?: true
   }
 
   export type EnvioSumAggregateInputType = {
     idEnvio?: true
-    idDestino?: true
   }
 
   export type EnvioMinAggregateInputType = {
@@ -8560,7 +8604,7 @@ export namespace Prisma {
   export type EnvioGroupByOutputType = {
     idEnvio: number
     nomeEnvio: string
-    idDestino: number
+    idDestino: string
     fechado: boolean
     createdAt: Date
     endDate: Date | null
@@ -8630,7 +8674,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       idEnvio: number
       nomeEnvio: string
-      idDestino: number
+      idDestino: string
       fechado: boolean
       createdAt: Date
       endDate: Date | null
@@ -9009,7 +9053,7 @@ export namespace Prisma {
   interface EnvioFieldRefs {
     readonly idEnvio: FieldRef<"Envio", 'Int'>
     readonly nomeEnvio: FieldRef<"Envio", 'String'>
-    readonly idDestino: FieldRef<"Envio", 'Int'>
+    readonly idDestino: FieldRef<"Envio", 'String'>
     readonly fechado: FieldRef<"Envio", 'Boolean'>
     readonly createdAt: FieldRef<"Envio", 'DateTime'>
     readonly endDate: FieldRef<"Envio", 'DateTime'>
@@ -9284,6 +9328,10 @@ export namespace Prisma {
      * Filter which Envios to update
      */
     where?: EnvioWhereInput
+    /**
+     * Limit how many Envios to update.
+     */
+    limit?: number
   }
 
   /**
@@ -9346,6 +9394,10 @@ export namespace Prisma {
      * Filter which Envios to delete
      */
     where?: EnvioWhereInput
+    /**
+     * Limit how many Envios to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -10235,6 +10287,10 @@ export namespace Prisma {
      * Filter which Idiomas to update
      */
     where?: IdiomasWhereInput
+    /**
+     * Limit how many Idiomas to update.
+     */
+    limit?: number
   }
 
   /**
@@ -10297,6 +10353,10 @@ export namespace Prisma {
      * Filter which Idiomas to delete
      */
     where?: IdiomasWhereInput
+    /**
+     * Limit how many Idiomas to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -11218,6 +11278,10 @@ export namespace Prisma {
      * Filter which Items to update
      */
     where?: ItemWhereInput
+    /**
+     * Limit how many Items to update.
+     */
+    limit?: number
   }
 
   /**
@@ -11280,6 +11344,10 @@ export namespace Prisma {
      * Filter which Items to delete
      */
     where?: ItemWhereInput
+    /**
+     * Limit how many Items to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -12244,6 +12312,10 @@ export namespace Prisma {
      * Filter which ItemTraduzidos to update
      */
     where?: ItemTraduzidoWhereInput
+    /**
+     * Limit how many ItemTraduzidos to update.
+     */
+    limit?: number
   }
 
   /**
@@ -12306,6 +12378,10 @@ export namespace Prisma {
      * Filter which ItemTraduzidos to delete
      */
     where?: ItemTraduzidoWhereInput
+    /**
+     * Limit how many ItemTraduzidos to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -13186,6 +13262,10 @@ export namespace Prisma {
      * Filter which TipoContainers to update
      */
     where?: TipoContainerWhereInput
+    /**
+     * Limit how many TipoContainers to update.
+     */
+    limit?: number
   }
 
   /**
@@ -13248,6 +13328,10 @@ export namespace Prisma {
      * Filter which TipoContainers to delete
      */
     where?: TipoContainerWhereInput
+    /**
+     * Limit how many TipoContainers to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -13306,42 +13390,50 @@ export namespace Prisma {
   }
 
   export type DestinosAvgAggregateOutputType = {
-    idDestino: number | null
     idIdioma: number | null
   }
 
   export type DestinosSumAggregateOutputType = {
-    idDestino: number | null
     idIdioma: number | null
   }
 
   export type DestinosMinAggregateOutputType = {
-    idDestino: number | null
+    idDestino: string | null
     idIdioma: number | null
     nomeDestino: string | null
+    morada: string | null
+    localMorada: string | null
+    codigoPostal: string | null
+    nacionalidade: string | null
   }
 
   export type DestinosMaxAggregateOutputType = {
-    idDestino: number | null
+    idDestino: string | null
     idIdioma: number | null
     nomeDestino: string | null
+    morada: string | null
+    localMorada: string | null
+    codigoPostal: string | null
+    nacionalidade: string | null
   }
 
   export type DestinosCountAggregateOutputType = {
     idDestino: number
     idIdioma: number
     nomeDestino: number
+    morada: number
+    localMorada: number
+    codigoPostal: number
+    nacionalidade: number
     _all: number
   }
 
 
   export type DestinosAvgAggregateInputType = {
-    idDestino?: true
     idIdioma?: true
   }
 
   export type DestinosSumAggregateInputType = {
-    idDestino?: true
     idIdioma?: true
   }
 
@@ -13349,18 +13441,30 @@ export namespace Prisma {
     idDestino?: true
     idIdioma?: true
     nomeDestino?: true
+    morada?: true
+    localMorada?: true
+    codigoPostal?: true
+    nacionalidade?: true
   }
 
   export type DestinosMaxAggregateInputType = {
     idDestino?: true
     idIdioma?: true
     nomeDestino?: true
+    morada?: true
+    localMorada?: true
+    codigoPostal?: true
+    nacionalidade?: true
   }
 
   export type DestinosCountAggregateInputType = {
     idDestino?: true
     idIdioma?: true
     nomeDestino?: true
+    morada?: true
+    localMorada?: true
+    codigoPostal?: true
+    nacionalidade?: true
     _all?: true
   }
 
@@ -13451,9 +13555,13 @@ export namespace Prisma {
   }
 
   export type DestinosGroupByOutputType = {
-    idDestino: number
+    idDestino: string
     idIdioma: number
     nomeDestino: string
+    morada: string | null
+    localMorada: string | null
+    codigoPostal: string | null
+    nacionalidade: string | null
     _count: DestinosCountAggregateOutputType | null
     _avg: DestinosAvgAggregateOutputType | null
     _sum: DestinosSumAggregateOutputType | null
@@ -13479,6 +13587,10 @@ export namespace Prisma {
     idDestino?: boolean
     idIdioma?: boolean
     nomeDestino?: boolean
+    morada?: boolean
+    localMorada?: boolean
+    codigoPostal?: boolean
+    nacionalidade?: boolean
     Idiomas?: boolean | IdiomasDefaultArgs<ExtArgs>
     Envio?: boolean | Destinos$EnvioArgs<ExtArgs>
     _count?: boolean | DestinosCountOutputTypeDefaultArgs<ExtArgs>
@@ -13490,9 +13602,13 @@ export namespace Prisma {
     idDestino?: boolean
     idIdioma?: boolean
     nomeDestino?: boolean
+    morada?: boolean
+    localMorada?: boolean
+    codigoPostal?: boolean
+    nacionalidade?: boolean
   }
 
-  export type DestinosOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"idDestino" | "idIdioma" | "nomeDestino", ExtArgs["result"]["destinos"]>
+  export type DestinosOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"idDestino" | "idIdioma" | "nomeDestino" | "morada" | "localMorada" | "codigoPostal" | "nacionalidade", ExtArgs["result"]["destinos"]>
   export type DestinosInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Idiomas?: boolean | IdiomasDefaultArgs<ExtArgs>
     Envio?: boolean | Destinos$EnvioArgs<ExtArgs>
@@ -13506,9 +13622,13 @@ export namespace Prisma {
       Envio: Prisma.$EnvioPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      idDestino: number
+      idDestino: string
       idIdioma: number
       nomeDestino: string
+      morada: string | null
+      localMorada: string | null
+      codigoPostal: string | null
+      nacionalidade: string | null
     }, ExtArgs["result"]["destinos"]>
     composites: {}
   }
@@ -13880,9 +14000,13 @@ export namespace Prisma {
    * Fields of the Destinos model
    */ 
   interface DestinosFieldRefs {
-    readonly idDestino: FieldRef<"Destinos", 'Int'>
+    readonly idDestino: FieldRef<"Destinos", 'String'>
     readonly idIdioma: FieldRef<"Destinos", 'Int'>
     readonly nomeDestino: FieldRef<"Destinos", 'String'>
+    readonly morada: FieldRef<"Destinos", 'String'>
+    readonly localMorada: FieldRef<"Destinos", 'String'>
+    readonly codigoPostal: FieldRef<"Destinos", 'String'>
+    readonly nacionalidade: FieldRef<"Destinos", 'String'>
   }
     
 
@@ -14152,6 +14276,10 @@ export namespace Prisma {
      * Filter which Destinos to update
      */
     where?: DestinosWhereInput
+    /**
+     * Limit how many Destinos to update.
+     */
+    limit?: number
   }
 
   /**
@@ -14214,6 +14342,10 @@ export namespace Prisma {
      * Filter which Destinos to delete
      */
     where?: DestinosWhereInput
+    /**
+     * Limit how many Destinos to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -15111,6 +15243,10 @@ export namespace Prisma {
      * Filter which ContainerOps to update
      */
     where?: ContainerOpWhereInput
+    /**
+     * Limit how many ContainerOps to update.
+     */
+    limit?: number
   }
 
   /**
@@ -15173,6 +15309,10 @@ export namespace Prisma {
      * Filter which ContainerOps to delete
      */
     where?: ContainerOpWhereInput
+    /**
+     * Limit how many ContainerOps to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -16121,6 +16261,10 @@ export namespace Prisma {
      * Filter which Ops to update
      */
     where?: OpWhereInput
+    /**
+     * Limit how many Ops to update.
+     */
+    limit?: number
   }
 
   /**
@@ -16183,6 +16327,10 @@ export namespace Prisma {
      * Filter which Ops to delete
      */
     where?: OpWhereInput
+    /**
+     * Limit how many Ops to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -17150,6 +17298,10 @@ export namespace Prisma {
      * Filter which OpTamanhos to update
      */
     where?: OpTamanhoWhereInput
+    /**
+     * Limit how many OpTamanhos to update.
+     */
+    limit?: number
   }
 
   /**
@@ -17212,6 +17364,10 @@ export namespace Prisma {
      * Filter which OpTamanhos to delete
      */
     where?: OpTamanhoWhereInput
+    /**
+     * Limit how many OpTamanhos to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -18116,6 +18272,10 @@ export namespace Prisma {
      * Filter which Unidades to update
      */
     where?: UnidadesWhereInput
+    /**
+     * Limit how many Unidades to update.
+     */
+    limit?: number
   }
 
   /**
@@ -18178,6 +18338,10 @@ export namespace Prisma {
      * Filter which Unidades to delete
      */
     where?: UnidadesWhereInput
+    /**
+     * Limit how many Unidades to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -18357,7 +18521,11 @@ export namespace Prisma {
   export const DestinosScalarFieldEnum: {
     idDestino: 'idDestino',
     idIdioma: 'idIdioma',
-    nomeDestino: 'nomeDestino'
+    nomeDestino: 'nomeDestino',
+    morada: 'morada',
+    localMorada: 'localMorada',
+    codigoPostal: 'codigoPostal',
+    nacionalidade: 'nacionalidade'
   };
 
   export type DestinosScalarFieldEnum = (typeof DestinosScalarFieldEnum)[keyof typeof DestinosScalarFieldEnum]
@@ -18854,7 +19022,7 @@ export namespace Prisma {
     NOT?: EnvioWhereInput | EnvioWhereInput[]
     idEnvio?: IntFilter<"Envio"> | number
     nomeEnvio?: StringFilter<"Envio"> | string
-    idDestino?: IntFilter<"Envio"> | number
+    idDestino?: StringFilter<"Envio"> | string
     fechado?: BoolFilter<"Envio"> | boolean
     createdAt?: DateTimeFilter<"Envio"> | Date | string
     endDate?: DateTimeNullableFilter<"Envio"> | Date | string | null
@@ -18883,7 +19051,7 @@ export namespace Prisma {
     OR?: EnvioWhereInput[]
     NOT?: EnvioWhereInput | EnvioWhereInput[]
     nomeEnvio?: StringFilter<"Envio"> | string
-    idDestino?: IntFilter<"Envio"> | number
+    idDestino?: StringFilter<"Envio"> | string
     fechado?: BoolFilter<"Envio"> | boolean
     createdAt?: DateTimeFilter<"Envio"> | Date | string
     endDate?: DateTimeNullableFilter<"Envio"> | Date | string | null
@@ -18915,7 +19083,7 @@ export namespace Prisma {
     NOT?: EnvioScalarWhereWithAggregatesInput | EnvioScalarWhereWithAggregatesInput[]
     idEnvio?: IntWithAggregatesFilter<"Envio"> | number
     nomeEnvio?: StringWithAggregatesFilter<"Envio"> | string
-    idDestino?: IntWithAggregatesFilter<"Envio"> | number
+    idDestino?: StringWithAggregatesFilter<"Envio"> | string
     fechado?: BoolWithAggregatesFilter<"Envio"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Envio"> | Date | string
     endDate?: DateTimeNullableWithAggregatesFilter<"Envio"> | Date | string | null
@@ -19124,9 +19292,13 @@ export namespace Prisma {
     AND?: DestinosWhereInput | DestinosWhereInput[]
     OR?: DestinosWhereInput[]
     NOT?: DestinosWhereInput | DestinosWhereInput[]
-    idDestino?: IntFilter<"Destinos"> | number
+    idDestino?: StringFilter<"Destinos"> | string
     idIdioma?: IntFilter<"Destinos"> | number
     nomeDestino?: StringFilter<"Destinos"> | string
+    morada?: StringNullableFilter<"Destinos"> | string | null
+    localMorada?: StringNullableFilter<"Destinos"> | string | null
+    codigoPostal?: StringNullableFilter<"Destinos"> | string | null
+    nacionalidade?: StringNullableFilter<"Destinos"> | string | null
     Idiomas?: XOR<IdiomasScalarRelationFilter, IdiomasWhereInput>
     Envio?: EnvioListRelationFilter
   }
@@ -19135,17 +19307,25 @@ export namespace Prisma {
     idDestino?: SortOrder
     idIdioma?: SortOrder
     nomeDestino?: SortOrder
+    morada?: SortOrderInput | SortOrder
+    localMorada?: SortOrderInput | SortOrder
+    codigoPostal?: SortOrderInput | SortOrder
+    nacionalidade?: SortOrderInput | SortOrder
     Idiomas?: IdiomasOrderByWithRelationInput
     Envio?: EnvioOrderByRelationAggregateInput
   }
 
   export type DestinosWhereUniqueInput = Prisma.AtLeast<{
-    idDestino?: number
+    idDestino?: string
     AND?: DestinosWhereInput | DestinosWhereInput[]
     OR?: DestinosWhereInput[]
     NOT?: DestinosWhereInput | DestinosWhereInput[]
     idIdioma?: IntFilter<"Destinos"> | number
     nomeDestino?: StringFilter<"Destinos"> | string
+    morada?: StringNullableFilter<"Destinos"> | string | null
+    localMorada?: StringNullableFilter<"Destinos"> | string | null
+    codigoPostal?: StringNullableFilter<"Destinos"> | string | null
+    nacionalidade?: StringNullableFilter<"Destinos"> | string | null
     Idiomas?: XOR<IdiomasScalarRelationFilter, IdiomasWhereInput>
     Envio?: EnvioListRelationFilter
   }, "idDestino">
@@ -19154,6 +19334,10 @@ export namespace Prisma {
     idDestino?: SortOrder
     idIdioma?: SortOrder
     nomeDestino?: SortOrder
+    morada?: SortOrderInput | SortOrder
+    localMorada?: SortOrderInput | SortOrder
+    codigoPostal?: SortOrderInput | SortOrder
+    nacionalidade?: SortOrderInput | SortOrder
     _count?: DestinosCountOrderByAggregateInput
     _avg?: DestinosAvgOrderByAggregateInput
     _max?: DestinosMaxOrderByAggregateInput
@@ -19165,9 +19349,13 @@ export namespace Prisma {
     AND?: DestinosScalarWhereWithAggregatesInput | DestinosScalarWhereWithAggregatesInput[]
     OR?: DestinosScalarWhereWithAggregatesInput[]
     NOT?: DestinosScalarWhereWithAggregatesInput | DestinosScalarWhereWithAggregatesInput[]
-    idDestino?: IntWithAggregatesFilter<"Destinos"> | number
+    idDestino?: StringWithAggregatesFilter<"Destinos"> | string
     idIdioma?: IntWithAggregatesFilter<"Destinos"> | number
     nomeDestino?: StringWithAggregatesFilter<"Destinos"> | string
+    morada?: StringNullableWithAggregatesFilter<"Destinos"> | string | null
+    localMorada?: StringNullableWithAggregatesFilter<"Destinos"> | string | null
+    codigoPostal?: StringNullableWithAggregatesFilter<"Destinos"> | string | null
+    nacionalidade?: StringNullableWithAggregatesFilter<"Destinos"> | string | null
   }
 
   export type ContainerOpWhereInput = {
@@ -19764,7 +19952,7 @@ export namespace Prisma {
   export type EnvioUncheckedCreateInput = {
     idEnvio?: number
     nomeEnvio: string
-    idDestino: number
+    idDestino: string
     fechado?: boolean
     createdAt?: Date | string
     endDate?: Date | string | null
@@ -19787,7 +19975,7 @@ export namespace Prisma {
   export type EnvioUncheckedUpdateInput = {
     idEnvio?: IntFieldUpdateOperationsInput | number
     nomeEnvio?: StringFieldUpdateOperationsInput | string
-    idDestino?: IntFieldUpdateOperationsInput | number
+    idDestino?: StringFieldUpdateOperationsInput | string
     fechado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -19798,7 +19986,7 @@ export namespace Prisma {
 
   export type EnvioCreateManyInput = {
     nomeEnvio: string
-    idDestino: number
+    idDestino: string
     fechado?: boolean
     createdAt?: Date | string
     endDate?: Date | string | null
@@ -19818,7 +20006,7 @@ export namespace Prisma {
   export type EnvioUncheckedUpdateManyInput = {
     idEnvio?: IntFieldUpdateOperationsInput | number
     nomeEnvio?: StringFieldUpdateOperationsInput | string
-    idDestino?: IntFieldUpdateOperationsInput | number
+    idDestino?: StringFieldUpdateOperationsInput | string
     fechado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -19994,44 +20182,76 @@ export namespace Prisma {
   }
 
   export type DestinosCreateInput = {
+    idDestino: string
     nomeDestino: string
+    morada?: string | null
+    localMorada?: string | null
+    codigoPostal?: string | null
+    nacionalidade?: string | null
     Idiomas: IdiomasCreateNestedOneWithoutDestinosInput
     Envio?: EnvioCreateNestedManyWithoutDestinosInput
   }
 
   export type DestinosUncheckedCreateInput = {
-    idDestino?: number
+    idDestino: string
     idIdioma: number
     nomeDestino: string
+    morada?: string | null
+    localMorada?: string | null
+    codigoPostal?: string | null
+    nacionalidade?: string | null
     Envio?: EnvioUncheckedCreateNestedManyWithoutDestinosInput
   }
 
   export type DestinosUpdateInput = {
+    idDestino?: StringFieldUpdateOperationsInput | string
     nomeDestino?: StringFieldUpdateOperationsInput | string
+    morada?: NullableStringFieldUpdateOperationsInput | string | null
+    localMorada?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoPostal?: NullableStringFieldUpdateOperationsInput | string | null
+    nacionalidade?: NullableStringFieldUpdateOperationsInput | string | null
     Idiomas?: IdiomasUpdateOneRequiredWithoutDestinosNestedInput
     Envio?: EnvioUpdateManyWithoutDestinosNestedInput
   }
 
   export type DestinosUncheckedUpdateInput = {
-    idDestino?: IntFieldUpdateOperationsInput | number
+    idDestino?: StringFieldUpdateOperationsInput | string
     idIdioma?: IntFieldUpdateOperationsInput | number
     nomeDestino?: StringFieldUpdateOperationsInput | string
+    morada?: NullableStringFieldUpdateOperationsInput | string | null
+    localMorada?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoPostal?: NullableStringFieldUpdateOperationsInput | string | null
+    nacionalidade?: NullableStringFieldUpdateOperationsInput | string | null
     Envio?: EnvioUncheckedUpdateManyWithoutDestinosNestedInput
   }
 
   export type DestinosCreateManyInput = {
+    idDestino: string
     idIdioma: number
     nomeDestino: string
+    morada?: string | null
+    localMorada?: string | null
+    codigoPostal?: string | null
+    nacionalidade?: string | null
   }
 
   export type DestinosUpdateManyMutationInput = {
+    idDestino?: StringFieldUpdateOperationsInput | string
     nomeDestino?: StringFieldUpdateOperationsInput | string
+    morada?: NullableStringFieldUpdateOperationsInput | string | null
+    localMorada?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoPostal?: NullableStringFieldUpdateOperationsInput | string | null
+    nacionalidade?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type DestinosUncheckedUpdateManyInput = {
-    idDestino?: IntFieldUpdateOperationsInput | number
+    idDestino?: StringFieldUpdateOperationsInput | string
     idIdioma?: IntFieldUpdateOperationsInput | number
     nomeDestino?: StringFieldUpdateOperationsInput | string
+    morada?: NullableStringFieldUpdateOperationsInput | string | null
+    localMorada?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoPostal?: NullableStringFieldUpdateOperationsInput | string | null
+    nacionalidade?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ContainerOpCreateInput = {
@@ -20785,7 +21005,6 @@ export namespace Prisma {
 
   export type EnvioAvgOrderByAggregateInput = {
     idEnvio?: SortOrder
-    idDestino?: SortOrder
   }
 
   export type EnvioMaxOrderByAggregateInput = {
@@ -20812,7 +21031,6 @@ export namespace Prisma {
 
   export type EnvioSumOrderByAggregateInput = {
     idEnvio?: SortOrder
-    idDestino?: SortOrder
   }
 
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -20993,10 +21211,13 @@ export namespace Prisma {
     idDestino?: SortOrder
     idIdioma?: SortOrder
     nomeDestino?: SortOrder
+    morada?: SortOrder
+    localMorada?: SortOrder
+    codigoPostal?: SortOrder
+    nacionalidade?: SortOrder
   }
 
   export type DestinosAvgOrderByAggregateInput = {
-    idDestino?: SortOrder
     idIdioma?: SortOrder
   }
 
@@ -21004,16 +21225,23 @@ export namespace Prisma {
     idDestino?: SortOrder
     idIdioma?: SortOrder
     nomeDestino?: SortOrder
+    morada?: SortOrder
+    localMorada?: SortOrder
+    codigoPostal?: SortOrder
+    nacionalidade?: SortOrder
   }
 
   export type DestinosMinOrderByAggregateInput = {
     idDestino?: SortOrder
     idIdioma?: SortOrder
     nomeDestino?: SortOrder
+    morada?: SortOrder
+    localMorada?: SortOrder
+    codigoPostal?: SortOrder
+    nacionalidade?: SortOrder
   }
 
   export type DestinosSumOrderByAggregateInput = {
-    idDestino?: SortOrder
     idIdioma?: SortOrder
   }
 
@@ -22788,7 +23016,7 @@ export namespace Prisma {
   export type EnvioUncheckedCreateWithoutContainerInput = {
     idEnvio?: number
     nomeEnvio: string
-    idDestino: number
+    idDestino: string
     fechado?: boolean
     createdAt?: Date | string
     endDate?: Date | string | null
@@ -22953,7 +23181,7 @@ export namespace Prisma {
   export type EnvioUncheckedUpdateWithoutContainerInput = {
     idEnvio?: IntFieldUpdateOperationsInput | number
     nomeEnvio?: StringFieldUpdateOperationsInput | string
-    idDestino?: IntFieldUpdateOperationsInput | number
+    idDestino?: StringFieldUpdateOperationsInput | string
     fechado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -23360,14 +23588,23 @@ export namespace Prisma {
   }
 
   export type DestinosCreateWithoutEnvioInput = {
+    idDestino: string
     nomeDestino: string
+    morada?: string | null
+    localMorada?: string | null
+    codigoPostal?: string | null
+    nacionalidade?: string | null
     Idiomas: IdiomasCreateNestedOneWithoutDestinosInput
   }
 
   export type DestinosUncheckedCreateWithoutEnvioInput = {
-    idDestino?: number
+    idDestino: string
     idIdioma: number
     nomeDestino: string
+    morada?: string | null
+    localMorada?: string | null
+    codigoPostal?: string | null
+    nacionalidade?: string | null
   }
 
   export type DestinosCreateOrConnectWithoutEnvioInput = {
@@ -23403,24 +23640,42 @@ export namespace Prisma {
   }
 
   export type DestinosUpdateWithoutEnvioInput = {
+    idDestino?: StringFieldUpdateOperationsInput | string
     nomeDestino?: StringFieldUpdateOperationsInput | string
+    morada?: NullableStringFieldUpdateOperationsInput | string | null
+    localMorada?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoPostal?: NullableStringFieldUpdateOperationsInput | string | null
+    nacionalidade?: NullableStringFieldUpdateOperationsInput | string | null
     Idiomas?: IdiomasUpdateOneRequiredWithoutDestinosNestedInput
   }
 
   export type DestinosUncheckedUpdateWithoutEnvioInput = {
-    idDestino?: IntFieldUpdateOperationsInput | number
+    idDestino?: StringFieldUpdateOperationsInput | string
     idIdioma?: IntFieldUpdateOperationsInput | number
     nomeDestino?: StringFieldUpdateOperationsInput | string
+    morada?: NullableStringFieldUpdateOperationsInput | string | null
+    localMorada?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoPostal?: NullableStringFieldUpdateOperationsInput | string | null
+    nacionalidade?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type DestinosCreateWithoutIdiomasInput = {
+    idDestino: string
     nomeDestino: string
+    morada?: string | null
+    localMorada?: string | null
+    codigoPostal?: string | null
+    nacionalidade?: string | null
     Envio?: EnvioCreateNestedManyWithoutDestinosInput
   }
 
   export type DestinosUncheckedCreateWithoutIdiomasInput = {
-    idDestino?: number
+    idDestino: string
     nomeDestino: string
+    morada?: string | null
+    localMorada?: string | null
+    codigoPostal?: string | null
+    nacionalidade?: string | null
     Envio?: EnvioUncheckedCreateNestedManyWithoutDestinosInput
   }
 
@@ -23472,9 +23727,13 @@ export namespace Prisma {
     AND?: DestinosScalarWhereInput | DestinosScalarWhereInput[]
     OR?: DestinosScalarWhereInput[]
     NOT?: DestinosScalarWhereInput | DestinosScalarWhereInput[]
-    idDestino?: IntFilter<"Destinos"> | number
+    idDestino?: StringFilter<"Destinos"> | string
     idIdioma?: IntFilter<"Destinos"> | number
     nomeDestino?: StringFilter<"Destinos"> | string
+    morada?: StringNullableFilter<"Destinos"> | string | null
+    localMorada?: StringNullableFilter<"Destinos"> | string | null
+    codigoPostal?: StringNullableFilter<"Destinos"> | string | null
+    nacionalidade?: StringNullableFilter<"Destinos"> | string | null
   }
 
   export type ItemTraduzidoUpsertWithWhereUniqueWithoutIdiomasInput = {
@@ -23927,7 +24186,7 @@ export namespace Prisma {
     NOT?: EnvioScalarWhereInput | EnvioScalarWhereInput[]
     idEnvio?: IntFilter<"Envio"> | number
     nomeEnvio?: StringFilter<"Envio"> | string
-    idDestino?: IntFilter<"Envio"> | number
+    idDestino?: StringFilter<"Envio"> | string
     fechado?: BoolFilter<"Envio"> | boolean
     createdAt?: DateTimeFilter<"Envio"> | Date | string
     endDate?: DateTimeNullableFilter<"Envio"> | Date | string | null
@@ -24607,7 +24866,12 @@ export namespace Prisma {
   }
 
   export type DestinosCreateManyIdiomasInput = {
+    idDestino: string
     nomeDestino: string
+    morada?: string | null
+    localMorada?: string | null
+    codigoPostal?: string | null
+    nacionalidade?: string | null
   }
 
   export type ItemTraduzidoCreateManyIdiomasInput = {
@@ -24616,19 +24880,32 @@ export namespace Prisma {
   }
 
   export type DestinosUpdateWithoutIdiomasInput = {
+    idDestino?: StringFieldUpdateOperationsInput | string
     nomeDestino?: StringFieldUpdateOperationsInput | string
+    morada?: NullableStringFieldUpdateOperationsInput | string | null
+    localMorada?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoPostal?: NullableStringFieldUpdateOperationsInput | string | null
+    nacionalidade?: NullableStringFieldUpdateOperationsInput | string | null
     Envio?: EnvioUpdateManyWithoutDestinosNestedInput
   }
 
   export type DestinosUncheckedUpdateWithoutIdiomasInput = {
-    idDestino?: IntFieldUpdateOperationsInput | number
+    idDestino?: StringFieldUpdateOperationsInput | string
     nomeDestino?: StringFieldUpdateOperationsInput | string
+    morada?: NullableStringFieldUpdateOperationsInput | string | null
+    localMorada?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoPostal?: NullableStringFieldUpdateOperationsInput | string | null
+    nacionalidade?: NullableStringFieldUpdateOperationsInput | string | null
     Envio?: EnvioUncheckedUpdateManyWithoutDestinosNestedInput
   }
 
   export type DestinosUncheckedUpdateManyWithoutIdiomasInput = {
-    idDestino?: IntFieldUpdateOperationsInput | number
+    idDestino?: StringFieldUpdateOperationsInput | string
     nomeDestino?: StringFieldUpdateOperationsInput | string
+    morada?: NullableStringFieldUpdateOperationsInput | string | null
+    localMorada?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoPostal?: NullableStringFieldUpdateOperationsInput | string | null
+    nacionalidade?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ItemTraduzidoUpdateWithoutIdiomasInput = {

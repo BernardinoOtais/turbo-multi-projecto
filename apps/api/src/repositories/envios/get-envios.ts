@@ -43,7 +43,7 @@ export async function getEnvios(
         orderBy: { createdAt: ordem },
       }),
       AuxEnvios.numeroDeEnvios(fechado),
-      prisma.$queryRaw<{ value: number; label: string }[]>`
+      prisma.$queryRaw<{ value: string; label: string }[]>`
       SELECT 
         idDestino AS value, 
         nomeDestino AS label 

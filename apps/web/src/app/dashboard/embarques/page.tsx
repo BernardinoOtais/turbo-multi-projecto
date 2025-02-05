@@ -7,13 +7,14 @@ import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import React from "react";
 
-import EnviosWrapper from "@/components/dashboard/embarques/novo/envios-wrapper";
-import NovoEnvio from "@/components/dashboard/embarques/novo-envio";
+import NovoEnvio from "@/app/dashboard/embarques/novo-envio";
 import NItensPorPagina from "@/components/meus-components/n-itens-por-pagina";
 import Paginacao from "@/components/meus-components/paginacao";
 import SwitchFechado from "@/components/switch-fechado";
 import { fetchGet } from "@/lib/fetch/fetch-get";
 import { validadoValorNumeroItensPorPagina } from "@/lib/my-utils";
+
+import EnviosWrapper from "./novo/envios-wrapper";
 
 type PageProps = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;

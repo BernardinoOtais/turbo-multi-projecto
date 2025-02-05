@@ -49,6 +49,11 @@ const floatZero = z
     message: ">= 0...",
   }); // Convert to number
 
+const chavePhc = z
+  .string()
+  .max(25, { message: "Não pode ter mais 25 caracteres..." })
+  .min(23, { message: "Não pode ter menos 23 caracteres..." });
+
 export const IdNumeroInteiroNaoNegativoSchema = z.object({
   id: inteiroNaoNegativo,
 });
@@ -128,7 +133,7 @@ export const PostConteudoSchema = z.object({
 
 export const PostDestinoSchema = z.object({
   idEnvio: inteiroNaoNegativo,
-  idDestino: inteiroNaoNegativo,
+  idDestino: chavePhc,
 });
 export const PostNomeEnviochema = z.object({
   idEnvio: inteiroNaoNegativo,
@@ -138,7 +143,7 @@ export const PostNomeEnviochema = z.object({
 export const PostNovoEnvioSchema = z.object({
   idEnvio: inteiroNaoNegativo.optional(),
   nomeEnvio,
-  idDestino: inteiroNaoNegativo,
+  idDestino: chavePhc,
   obs: z.string().optional(),
   nomeUser: z.string().optional(),
 });

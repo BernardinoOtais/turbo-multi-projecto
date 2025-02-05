@@ -83,7 +83,7 @@ model Conteudo {
 model Envio {
   idEnvio   Int         @id(map: "PK_Envio") @default(autoincrement())
   nomeEnvio String      @db.NVarChar(50)
-  idDestino Int
+  idDestino String      @db.Char(25)
   fechado   Boolean     @default(false, map: "DF_Envio_fechado")
   createdAt DateTime    @default(dbgenerated("sysdatetime()"), map: "DF__Envio__createdAt__1940BAED")
   endDate   DateTime?
@@ -128,11 +128,15 @@ model TipoContainer {
 }
 
 model Destinos {
-  idDestino   Int     @id(map: "PK_Destinos") @default(autoincrement())
-  idIdioma    Int
-  nomeDestino String  @db.NVarChar(60)
-  Idiomas     Idiomas @relation(fields: [idIdioma], references: [idIdioma], onUpdate: NoAction, map: "FK_Destinos_Idiomas")
-  Envio       Envio[]
+  idDestino     String  @id(map: "PK_Destinos") @db.Char(25)
+  idIdioma      Int
+  nomeDestino   String  @db.NVarChar(60)
+  morada        String? @db.VarChar(55)
+  localMorada   String? @db.VarChar(43)
+  codigoPostal  String? @db.VarChar(45)
+  nacionalidade String? @db.VarChar(20)
+  Idiomas       Idiomas @relation(fields: [idIdioma], references: [idIdioma], onUpdate: NoAction, map: "FK_Destinos_Idiomas")
+  Envio         Envio[]
 }
 
 model ContainerOp {

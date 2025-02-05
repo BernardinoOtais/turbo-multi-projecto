@@ -42,6 +42,7 @@ type AutoCompleteFormFieldStringProps<T extends FieldValues> = {
   label?: string;
   disable?: boolean;
   largura?: string;
+  mostraErro?: boolean;
 };
 
 export function AutoCompleteFormFieldString<T extends FieldValues>({
@@ -53,8 +54,10 @@ export function AutoCompleteFormFieldString<T extends FieldValues>({
   label,
   disable = false,
   largura = "w-[200px]",
+  mostraErro = true,
 }: AutoCompleteFormFieldStringProps<T>) {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  //elips tambem no lable
   return (
     <FormField
       control={form.control}
@@ -84,14 +87,19 @@ export function AutoCompleteFormFieldString<T extends FieldValues>({
                     largura,
                   )}
                 >
-                  {field.value
-                    ? options.find(opt => opt.value === field.value)?.label
-                    : placeholder}
+                  <span className="max-w-[90%] truncate overflow-hidden text-ellipsis">
+                    {field.value
+                      ? options.find(opt => opt.value === field.value)?.label
+                      : placeholder}
+                  </span>
                   <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                 </Button>
               </FormControl>
             </PopoverTrigger>
-            <PopoverContent className={cn("p-0", largura)}>
+            <PopoverContent
+              className={cn("p-0", largura)}
+              style={{ pointerEvents: "auto" }}
+            >
               <Command>
                 <CommandInput placeholder="Pesquisa..." disabled={disable} />
                 <CommandList>
@@ -99,6 +107,7 @@ export function AutoCompleteFormFieldString<T extends FieldValues>({
                   <CommandGroup>
                     {options.map(option => (
                       <CommandItem
+                        className=""
                         key={option.value}
                         disabled={disable}
                         value={option.label}
@@ -110,7 +119,9 @@ export function AutoCompleteFormFieldString<T extends FieldValues>({
                           setIsPopoverOpen(false);
                         }}
                       >
-                        {option.label}
+                        <span className="max-w-[90%] truncate overflow-hidden text-ellipsis">
+                          {option.label}
+                        </span>
                         <Check
                           className={cn(
                             "ml-auto",
@@ -126,7 +137,11 @@ export function AutoCompleteFormFieldString<T extends FieldValues>({
               </Command>
             </PopoverContent>
           </Popover>
-          <FormMessage />
+          {mostraErro && (
+            <div className="h-5">
+              <FormMessage />
+            </div>
+          )}
         </FormItem>
       )}
     />

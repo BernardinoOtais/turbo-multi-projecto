@@ -823,7 +823,7 @@ export namespace Prisma {
   export type DecimalJsLike = runtime.DecimalJsLike
 
   /**
-   * Metrics 
+   * Metrics
    */
   export type Metrics = runtime.Metrics
   export type Metric<T> = runtime.Metric<T>
@@ -841,14 +841,14 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.2.1
-   * Query Engine version: 4123509d24aa4dede1e864b46351bf2790323b69
+   * Prisma Client JS version: 6.3.1
+   * Query Engine version: acc0b9dd43eb689cbd20c9470515d719db10d0b0
    */
   export type PrismaVersion = {
     client: string
   }
 
-  export const prismaVersion: PrismaVersion 
+  export const prismaVersion: PrismaVersion
 
   /**
    * Utility Types
@@ -864,15 +864,15 @@ export namespace Prisma {
 
   /**
    * Types of the values used to represent different kinds of `null` values when working with JSON fields.
-   * 
+   *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
   namespace NullTypes {
     /**
     * Type of `Prisma.DbNull`.
-    * 
+    *
     * You cannot use other instances of this class. Please use the `Prisma.DbNull` value.
-    * 
+    *
     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
     */
     class DbNull {
@@ -882,9 +882,9 @@ export namespace Prisma {
 
     /**
     * Type of `Prisma.JsonNull`.
-    * 
+    *
     * You cannot use other instances of this class. Please use the `Prisma.JsonNull` value.
-    * 
+    *
     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
     */
     class JsonNull {
@@ -894,9 +894,9 @@ export namespace Prisma {
 
     /**
     * Type of `Prisma.AnyNull`.
-    * 
+    *
     * You cannot use other instances of this class. Please use the `Prisma.AnyNull` value.
-    * 
+    *
     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
     */
     class AnyNull {
@@ -907,21 +907,21 @@ export namespace Prisma {
 
   /**
    * Helper for filtering JSON entries that have `null` on the database (empty on the db)
-   * 
+   *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
   export const DbNull: NullTypes.DbNull
 
   /**
    * Helper for filtering JSON entries that have JSON `null` values (not empty on the db)
-   * 
+   *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
   export const JsonNull: NullTypes.JsonNull
 
   /**
    * Helper for filtering JSON entries that are `Prisma.DbNull` or `Prisma.JsonNull`
-   * 
+   *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
   export const AnyNull: NullTypes.AnyNull
@@ -6280,6 +6280,10 @@ export namespace Prisma {
      * Filter which Bms to update
      */
     where?: BmWhereInput
+    /**
+     * Limit how many Bms to update.
+     */
+    limit?: number
   }
 
   /**
@@ -6342,6 +6346,10 @@ export namespace Prisma {
      * Filter which Bms to delete
      */
     where?: BmWhereInput
+    /**
+     * Limit how many Bms to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -7314,6 +7322,10 @@ export namespace Prisma {
      * Filter which BmFioComposicaos to update
      */
     where?: BmFioComposicaoWhereInput
+    /**
+     * Limit how many BmFioComposicaos to update.
+     */
+    limit?: number
   }
 
   /**
@@ -7376,6 +7388,10 @@ export namespace Prisma {
      * Filter which BmFioComposicaos to delete
      */
     where?: BmFioComposicaoWhereInput
+    /**
+     * Limit how many BmFioComposicaos to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -8265,6 +8281,10 @@ export namespace Prisma {
      * Filter which BmIdBmComposicaos to update
      */
     where?: BmIdBmComposicaoWhereInput
+    /**
+     * Limit how many BmIdBmComposicaos to update.
+     */
+    limit?: number
   }
 
   /**
@@ -8327,6 +8347,10 @@ export namespace Prisma {
      * Filter which BmIdBmComposicaos to delete
      */
     where?: BmIdBmComposicaoWhereInput
+    /**
+     * Limit how many BmIdBmComposicaos to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -9330,6 +9354,10 @@ export namespace Prisma {
      * Filter which BmMalhas to update
      */
     where?: BmMalhasWhereInput
+    /**
+     * Limit how many BmMalhas to update.
+     */
+    limit?: number
   }
 
   /**
@@ -9392,6 +9420,10 @@ export namespace Prisma {
      * Filter which BmMalhas to delete
      */
     where?: BmMalhasWhereInput
+    /**
+     * Limit how many BmMalhas to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -10459,6 +10491,10 @@ export namespace Prisma {
      * Filter which BmMalhasFios to update
      */
     where?: BmMalhasFioWhereInput
+    /**
+     * Limit how many BmMalhasFios to update.
+     */
+    limit?: number
   }
 
   /**
@@ -10521,6 +10557,10 @@ export namespace Prisma {
      * Filter which BmMalhasFios to delete
      */
     where?: BmMalhasFioWhereInput
+    /**
+     * Limit how many BmMalhasFios to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -11561,6 +11601,10 @@ export namespace Prisma {
      * Filter which BmMalhasFioMovimentos to update
      */
     where?: BmMalhasFioMovimentosWhereInput
+    /**
+     * Limit how many BmMalhasFioMovimentos to update.
+     */
+    limit?: number
   }
 
   /**
@@ -11623,6 +11667,10 @@ export namespace Prisma {
      * Filter which BmMalhasFioMovimentos to delete
      */
     where?: BmMalhasFioMovimentosWhereInput
+    /**
+     * Limit how many BmMalhasFioMovimentos to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -12458,6 +12506,10 @@ export namespace Prisma {
      * Filter which BmMateriais to update
      */
     where?: BmMateriaisWhereInput
+    /**
+     * Limit how many BmMateriais to update.
+     */
+    limit?: number
   }
 
   /**
@@ -12520,6 +12572,10 @@ export namespace Prisma {
      * Filter which BmMateriais to delete
      */
     where?: BmMateriaisWhereInput
+    /**
+     * Limit how many BmMateriais to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -13446,6 +13502,10 @@ export namespace Prisma {
      * Filter which BmMateriaisComposicaos to update
      */
     where?: BmMateriaisComposicaoWhereInput
+    /**
+     * Limit how many BmMateriaisComposicaos to update.
+     */
+    limit?: number
   }
 
   /**
@@ -13508,6 +13568,10 @@ export namespace Prisma {
      * Filter which BmMateriaisComposicaos to delete
      */
     where?: BmMateriaisComposicaoWhereInput
+    /**
+     * Limit how many BmMateriaisComposicaos to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -14391,6 +14455,10 @@ export namespace Prisma {
      * Filter which BmMateriaisFios to update
      */
     where?: BmMateriaisFioWhereInput
+    /**
+     * Limit how many BmMateriaisFios to update.
+     */
+    limit?: number
   }
 
   /**
@@ -14453,6 +14521,10 @@ export namespace Prisma {
      * Filter which BmMateriaisFios to delete
      */
     where?: BmMateriaisFioWhereInput
+    /**
+     * Limit how many BmMateriaisFios to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -15304,6 +15376,10 @@ export namespace Prisma {
      * Filter which BmMaterialGrupos to update
      */
     where?: BmMaterialGrupoWhereInput
+    /**
+     * Limit how many BmMaterialGrupos to update.
+     */
+    limit?: number
   }
 
   /**
@@ -15366,6 +15442,10 @@ export namespace Prisma {
      * Filter which BmMaterialGrupos to delete
      */
     where?: BmMaterialGrupoWhereInput
+    /**
+     * Limit how many BmMaterialGrupos to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -16217,6 +16297,10 @@ export namespace Prisma {
      * Filter which BmMaterialGrupoFios to update
      */
     where?: BmMaterialGrupoFioWhereInput
+    /**
+     * Limit how many BmMaterialGrupoFios to update.
+     */
+    limit?: number
   }
 
   /**
@@ -16279,6 +16363,10 @@ export namespace Prisma {
      * Filter which BmMaterialGrupoFios to delete
      */
     where?: BmMaterialGrupoFioWhereInput
+    /**
+     * Limit how many BmMaterialGrupoFios to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -17130,6 +17218,10 @@ export namespace Prisma {
      * Filter which BmMaterialSubGrupos to update
      */
     where?: BmMaterialSubGrupoWhereInput
+    /**
+     * Limit how many BmMaterialSubGrupos to update.
+     */
+    limit?: number
   }
 
   /**
@@ -17192,6 +17284,10 @@ export namespace Prisma {
      * Filter which BmMaterialSubGrupos to delete
      */
     where?: BmMaterialSubGrupoWhereInput
+    /**
+     * Limit how many BmMaterialSubGrupos to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -18043,6 +18139,10 @@ export namespace Prisma {
      * Filter which BmMaterialSubGrupoFios to update
      */
     where?: BmMaterialSubGrupoFioWhereInput
+    /**
+     * Limit how many BmMaterialSubGrupoFios to update.
+     */
+    limit?: number
   }
 
   /**
@@ -18105,6 +18205,10 @@ export namespace Prisma {
      * Filter which BmMaterialSubGrupoFios to delete
      */
     where?: BmMaterialSubGrupoFioWhereInput
+    /**
+     * Limit how many BmMaterialSubGrupoFios to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -19110,6 +19214,10 @@ export namespace Prisma {
      * Filter which BmMovimentosLotes to update
      */
     where?: BmMovimentosLotesWhereInput
+    /**
+     * Limit how many BmMovimentosLotes to update.
+     */
+    limit?: number
   }
 
   /**
@@ -19172,6 +19280,10 @@ export namespace Prisma {
      * Filter which BmMovimentosLotes to delete
      */
     where?: BmMovimentosLotesWhereInput
+    /**
+     * Limit how many BmMovimentosLotes to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -20063,6 +20175,10 @@ export namespace Prisma {
      * Filter which BmOps to update
      */
     where?: BmOpWhereInput
+    /**
+     * Limit how many BmOps to update.
+     */
+    limit?: number
   }
 
   /**
@@ -20125,6 +20241,10 @@ export namespace Prisma {
      * Filter which BmOps to delete
      */
     where?: BmOpWhereInput
+    /**
+     * Limit how many BmOps to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -21169,6 +21289,10 @@ export namespace Prisma {
      * Filter which BmOpFaturados to update
      */
     where?: BmOpFaturadoWhereInput
+    /**
+     * Limit how many BmOpFaturados to update.
+     */
+    limit?: number
   }
 
   /**
@@ -21231,6 +21355,10 @@ export namespace Prisma {
      * Filter which BmOpFaturados to delete
      */
     where?: BmOpFaturadoWhereInput
+    /**
+     * Limit how many BmOpFaturados to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -22115,6 +22243,10 @@ export namespace Prisma {
      * Filter which BmOpsPorMalhas to update
      */
     where?: BmOpsPorMalhaWhereInput
+    /**
+     * Limit how many BmOpsPorMalhas to update.
+     */
+    limit?: number
   }
 
   /**
@@ -22177,6 +22309,10 @@ export namespace Prisma {
      * Filter which BmOpsPorMalhas to delete
      */
     where?: BmOpsPorMalhaWhereInput
+    /**
+     * Limit how many BmOpsPorMalhas to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -23116,6 +23252,10 @@ export namespace Prisma {
      * Filter which BmOpsPorMalhaFios to update
      */
     where?: BmOpsPorMalhaFioWhereInput
+    /**
+     * Limit how many BmOpsPorMalhaFios to update.
+     */
+    limit?: number
   }
 
   /**
@@ -23178,6 +23318,10 @@ export namespace Prisma {
      * Filter which BmOpsPorMalhaFios to delete
      */
     where?: BmOpsPorMalhaFioWhereInput
+    /**
+     * Limit how many BmOpsPorMalhaFios to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -24027,6 +24171,10 @@ export namespace Prisma {
      * Filter which BmTcs to update
      */
     where?: BmTcWhereInput
+    /**
+     * Limit how many BmTcs to update.
+     */
+    limit?: number
   }
 
   /**
@@ -24089,6 +24237,10 @@ export namespace Prisma {
      * Filter which BmTcs to delete
      */
     where?: BmTcWhereInput
+    /**
+     * Limit how many BmTcs to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -25011,6 +25163,10 @@ export namespace Prisma {
      * Filter which DataCamiaos to update
      */
     where?: DataCamiaoWhereInput
+    /**
+     * Limit how many DataCamiaos to update.
+     */
+    limit?: number
   }
 
   /**
@@ -25073,6 +25229,10 @@ export namespace Prisma {
      * Filter which DataCamiaos to delete
      */
     where?: DataCamiaoWhereInput
+    /**
+     * Limit how many DataCamiaos to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -25995,6 +26155,10 @@ export namespace Prisma {
      * Filter which DataEnvios to update
      */
     where?: DataEnvioWhereInput
+    /**
+     * Limit how many DataEnvios to update.
+     */
+    limit?: number
   }
 
   /**
@@ -26057,6 +26221,10 @@ export namespace Prisma {
      * Filter which DataEnvios to delete
      */
     where?: DataEnvioWhereInput
+    /**
+     * Limit how many DataEnvios to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -26884,6 +27052,10 @@ export namespace Prisma {
      * Filter which Fornecedors to update
      */
     where?: FornecedorWhereInput
+    /**
+     * Limit how many Fornecedors to update.
+     */
+    limit?: number
   }
 
   /**
@@ -26946,6 +27118,10 @@ export namespace Prisma {
      * Filter which Fornecedors to delete
      */
     where?: FornecedorWhereInput
+    /**
+     * Limit how many Fornecedors to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -27983,6 +28159,10 @@ export namespace Prisma {
      * Filter which Livres to update
      */
     where?: LivreWhereInput
+    /**
+     * Limit how many Livres to update.
+     */
+    limit?: number
   }
 
   /**
@@ -28045,6 +28225,10 @@ export namespace Prisma {
      * Filter which Livres to delete
      */
     where?: LivreWhereInput
+    /**
+     * Limit how many Livres to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -29038,6 +29222,10 @@ export namespace Prisma {
      * Filter which Ops to update
      */
     where?: OpWhereInput
+    /**
+     * Limit how many Ops to update.
+     */
+    limit?: number
   }
 
   /**
@@ -29100,6 +29288,10 @@ export namespace Prisma {
      * Filter which Ops to delete
      */
     where?: OpWhereInput
+    /**
+     * Limit how many Ops to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -30045,6 +30237,10 @@ export namespace Prisma {
      * Filter which OrcamentoLivres to update
      */
     where?: OrcamentoLivreWhereInput
+    /**
+     * Limit how many OrcamentoLivres to update.
+     */
+    limit?: number
   }
 
   /**
@@ -30107,6 +30303,10 @@ export namespace Prisma {
      * Filter which OrcamentoLivres to delete
      */
     where?: OrcamentoLivreWhereInput
+    /**
+     * Limit how many OrcamentoLivres to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -31107,6 +31307,10 @@ export namespace Prisma {
      * Filter which OrcamentoLivreLinhas to update
      */
     where?: OrcamentoLivreLinhasWhereInput
+    /**
+     * Limit how many OrcamentoLivreLinhas to update.
+     */
+    limit?: number
   }
 
   /**
@@ -31169,6 +31373,10 @@ export namespace Prisma {
      * Filter which OrcamentoLivreLinhas to delete
      */
     where?: OrcamentoLivreLinhasWhereInput
+    /**
+     * Limit how many OrcamentoLivreLinhas to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -32095,6 +32303,10 @@ export namespace Prisma {
      * Filter which OrcamentoOps to update
      */
     where?: OrcamentoOpWhereInput
+    /**
+     * Limit how many OrcamentoOps to update.
+     */
+    limit?: number
   }
 
   /**
@@ -32157,6 +32369,10 @@ export namespace Prisma {
      * Filter which OrcamentoOps to delete
      */
     where?: OrcamentoOpWhereInput
+    /**
+     * Limit how many OrcamentoOps to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -33157,6 +33373,10 @@ export namespace Prisma {
      * Filter which OrcamentoOpLinhas to update
      */
     where?: OrcamentoOpLinhasWhereInput
+    /**
+     * Limit how many OrcamentoOpLinhas to update.
+     */
+    limit?: number
   }
 
   /**
@@ -33219,6 +33439,10 @@ export namespace Prisma {
      * Filter which OrcamentoOpLinhas to delete
      */
     where?: OrcamentoOpLinhasWhereInput
+    /**
+     * Limit how many OrcamentoOpLinhas to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -34070,6 +34294,10 @@ export namespace Prisma {
      * Filter which Papeis to update
      */
     where?: PapeisWhereInput
+    /**
+     * Limit how many Papeis to update.
+     */
+    limit?: number
   }
 
   /**
@@ -34132,6 +34360,10 @@ export namespace Prisma {
      * Filter which Papeis to delete
      */
     where?: PapeisWhereInput
+    /**
+     * Limit how many Papeis to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -35158,6 +35390,10 @@ export namespace Prisma {
      * Filter which Planeamentos to update
      */
     where?: PlaneamentoWhereInput
+    /**
+     * Limit how many Planeamentos to update.
+     */
+    limit?: number
   }
 
   /**
@@ -35220,6 +35456,10 @@ export namespace Prisma {
      * Filter which Planeamentos to delete
      */
     where?: PlaneamentoWhereInput
+    /**
+     * Limit how many Planeamentos to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -36266,6 +36506,10 @@ export namespace Prisma {
      * Filter which ServicosEscolhidosLivres to update
      */
     where?: ServicosEscolhidosLivreWhereInput
+    /**
+     * Limit how many ServicosEscolhidosLivres to update.
+     */
+    limit?: number
   }
 
   /**
@@ -36328,6 +36572,10 @@ export namespace Prisma {
      * Filter which ServicosEscolhidosLivres to delete
      */
     where?: ServicosEscolhidosLivreWhereInput
+    /**
+     * Limit how many ServicosEscolhidosLivres to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -37203,6 +37451,10 @@ export namespace Prisma {
      * Filter which ServicosEscolhidosLivreOrigems to update
      */
     where?: ServicosEscolhidosLivreOrigemWhereInput
+    /**
+     * Limit how many ServicosEscolhidosLivreOrigems to update.
+     */
+    limit?: number
   }
 
   /**
@@ -37265,6 +37517,10 @@ export namespace Prisma {
      * Filter which ServicosEscolhidosLivreOrigems to delete
      */
     where?: ServicosEscolhidosLivreOrigemWhereInput
+    /**
+     * Limit how many ServicosEscolhidosLivreOrigems to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -38215,6 +38471,10 @@ export namespace Prisma {
      * Filter which ServicosEscolhidosOps to update
      */
     where?: ServicosEscolhidosOpWhereInput
+    /**
+     * Limit how many ServicosEscolhidosOps to update.
+     */
+    limit?: number
   }
 
   /**
@@ -38277,6 +38537,10 @@ export namespace Prisma {
      * Filter which ServicosEscolhidosOps to delete
      */
     where?: ServicosEscolhidosOpWhereInput
+    /**
+     * Limit how many ServicosEscolhidosOps to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -39152,6 +39416,10 @@ export namespace Prisma {
      * Filter which ServicosEscolhidosOpOrigems to update
      */
     where?: ServicosEscolhidosOpOrigemWhereInput
+    /**
+     * Limit how many ServicosEscolhidosOpOrigems to update.
+     */
+    limit?: number
   }
 
   /**
@@ -39214,6 +39482,10 @@ export namespace Prisma {
      * Filter which ServicosEscolhidosOpOrigems to delete
      */
     where?: ServicosEscolhidosOpOrigemWhereInput
+    /**
+     * Limit how many ServicosEscolhidosOpOrigems to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -40079,6 +40351,10 @@ export namespace Prisma {
      * Filter which sysdiagrams to update
      */
     where?: sysdiagramsWhereInput
+    /**
+     * Limit how many sysdiagrams to update.
+     */
+    limit?: number
   }
 
   /**
@@ -40133,6 +40409,10 @@ export namespace Prisma {
      * Filter which sysdiagrams to delete
      */
     where?: sysdiagramsWhereInput
+    /**
+     * Limit how many sysdiagrams to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -40967,6 +41247,10 @@ export namespace Prisma {
      * Filter which Tcs to update
      */
     where?: TcWhereInput
+    /**
+     * Limit how many Tcs to update.
+     */
+    limit?: number
   }
 
   /**
@@ -41029,6 +41313,10 @@ export namespace Prisma {
      * Filter which Tcs to delete
      */
     where?: TcWhereInput
+    /**
+     * Limit how many Tcs to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -42044,6 +42332,10 @@ export namespace Prisma {
      * Filter which TcCompraConteudos to update
      */
     where?: TcCompraConteudoWhereInput
+    /**
+     * Limit how many TcCompraConteudos to update.
+     */
+    limit?: number
   }
 
   /**
@@ -42106,6 +42398,10 @@ export namespace Prisma {
      * Filter which TcCompraConteudos to delete
      */
     where?: TcCompraConteudoWhereInput
+    /**
+     * Limit how many TcCompraConteudos to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -43147,6 +43443,10 @@ export namespace Prisma {
      * Filter which TcCompraConteudoEntradas to update
      */
     where?: TcCompraConteudoEntradaWhereInput
+    /**
+     * Limit how many TcCompraConteudoEntradas to update.
+     */
+    limit?: number
   }
 
   /**
@@ -43209,6 +43509,10 @@ export namespace Prisma {
      * Filter which TcCompraConteudoEntradas to delete
      */
     where?: TcCompraConteudoEntradaWhereInput
+    /**
+     * Limit how many TcCompraConteudoEntradas to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -44192,6 +44496,10 @@ export namespace Prisma {
      * Filter which TcCompraConteudoEntradaFaturadas to update
      */
     where?: TcCompraConteudoEntradaFaturadaWhereInput
+    /**
+     * Limit how many TcCompraConteudoEntradaFaturadas to update.
+     */
+    limit?: number
   }
 
   /**
@@ -44254,6 +44562,10 @@ export namespace Prisma {
      * Filter which TcCompraConteudoEntradaFaturadas to delete
      */
     where?: TcCompraConteudoEntradaFaturadaWhereInput
+    /**
+     * Limit how many TcCompraConteudoEntradaFaturadas to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -45153,6 +45465,10 @@ export namespace Prisma {
      * Filter which TcOps to update
      */
     where?: TcOpWhereInput
+    /**
+     * Limit how many TcOps to update.
+     */
+    limit?: number
   }
 
   /**
@@ -45215,6 +45531,10 @@ export namespace Prisma {
      * Filter which TcOps to delete
      */
     where?: TcOpWhereInput
+    /**
+     * Limit how many TcOps to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -46235,6 +46555,10 @@ export namespace Prisma {
      * Filter which TcOpCompras to update
      */
     where?: TcOpCompraWhereInput
+    /**
+     * Limit how many TcOpCompras to update.
+     */
+    limit?: number
   }
 
   /**
@@ -46297,6 +46621,10 @@ export namespace Prisma {
      * Filter which TcOpCompras to delete
      */
     where?: TcOpCompraWhereInput
+    /**
+     * Limit how many TcOpCompras to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -47223,6 +47551,10 @@ export namespace Prisma {
      * Filter which Users to update
      */
     where?: UserWhereInput
+    /**
+     * Limit how many Users to update.
+     */
+    limit?: number
   }
 
   /**
@@ -47285,6 +47617,10 @@ export namespace Prisma {
      * Filter which Users to delete
      */
     where?: UserWhereInput
+    /**
+     * Limit how many Users to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -48258,6 +48594,10 @@ export namespace Prisma {
      * Filter which UserPapeis to update
      */
     where?: UserPapeisWhereInput
+    /**
+     * Limit how many UserPapeis to update.
+     */
+    limit?: number
   }
 
   /**
@@ -48320,6 +48660,10 @@ export namespace Prisma {
      * Filter which UserPapeis to delete
      */
     where?: UserPapeisWhereInput
+    /**
+     * Limit how many UserPapeis to delete.
+     */
+    limit?: number
   }
 
   /**

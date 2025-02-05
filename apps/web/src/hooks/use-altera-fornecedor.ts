@@ -2,7 +2,7 @@ import { PostDestinoSchemaDto } from "@repo/types";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
-import { insiroFornecedor } from "@/lib/actions/dashboard/embarques/novo";
+import { insiroFornecedor } from "@/lib/actions/dashboard/embarques";
 
 import useDebounce from "./use-debounce";
 

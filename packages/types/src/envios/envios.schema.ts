@@ -1,7 +1,7 @@
 import { z } from "zod";
-
+const chavePhc = z.string().max(25).min(17);
 export const DestinoEnvio = z.object({
-  idDestino: z.number().int().nonnegative(),
+  idDestino: chavePhc,
   idIdioma: z.number().int().nonnegative(),
   nomeDestino: z.string().max(60),
 });
@@ -120,7 +120,7 @@ export const EnvioSchema = z.object({
   DestinosDisponiveis: z
     .array(
       z.object({
-        value: z.number().int().nonnegative(),
+        value: chavePhc,
         label: z.string().max(100),
       })
     )
@@ -133,7 +133,7 @@ export const EnviosListSchema = z.object({
   DestinosDisponiveis: z
     .array(
       z.object({
-        value: z.number().int().nonnegative(),
+        value: chavePhc,
         label: z.string().max(100),
       })
     )
