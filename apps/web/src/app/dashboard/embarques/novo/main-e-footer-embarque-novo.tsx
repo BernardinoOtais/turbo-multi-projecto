@@ -1,6 +1,7 @@
 import {
   ContainerOpsSchemasDto,
   ConteudoDto,
+  DestinoEnvioDto,
   ItensSchemaDto,
   ListaDeContainersEnvioDto,
   UnidadesSchemaDto,
@@ -8,9 +9,9 @@ import {
 import React from "react";
 
 import Containers from "./containers";
-import ConteudoExistente from "./conteudo-existente";
-import InsereConteudoWrapper from "./insere-conteudo-wrapper";
 import RodaPe from "./rodape";
+import ConteudoExistentWrapper from "./wrapper-conteudo-existente";
+import InsereConteudoWrapper from "./wrapper-insere-conteudo";
 
 type MainEFooterEmbarqueNovoProps = {
   idEnvio: number;
@@ -25,6 +26,7 @@ type MainEFooterEmbarqueNovoProps = {
   unidades: UnidadesSchemaDto;
   itensDisponiveis: ItensSchemaDto;
   idConteudo: number | undefined;
+  destino: DestinoEnvioDto;
 };
 
 const MainEFooterEmbarqueNovo = async ({
@@ -40,6 +42,7 @@ const MainEFooterEmbarqueNovo = async ({
   unidades,
   itensDisponiveis,
   idConteudo,
+  destino,
 }: MainEFooterEmbarqueNovoProps) => {
   //console.log("footer", containerOpsTamanhosDiponiveis);
   //console.log("idTipoContainer: ", idTipoContainer);
@@ -53,7 +56,7 @@ const MainEFooterEmbarqueNovo = async ({
         <div className="absolute top-0 bottom-0 flex w-full">
           <div className="flex w-full flex-col gap-1 overflow-auto">
             {conteudos && conteudos.length !== 0 && (
-              <ConteudoExistente conteudos={conteudos} />
+              <ConteudoExistentWrapper conteudos={conteudos} />
             )}
 
             {mostraContainers ? (
@@ -61,6 +64,7 @@ const MainEFooterEmbarqueNovo = async ({
                 containers={containers}
                 idEnvio={idEnvio}
                 niveisValidados={niveisValidados}
+                destino={destino}
               />
             ) : (
               <InsereConteudoWrapper

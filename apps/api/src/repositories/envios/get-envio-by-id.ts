@@ -4,10 +4,17 @@ import PrismaSingleton from '@services/prisma';
 import { ApiResponseBody } from '@utils/api-response-body';
 import HttpStatusCode from '@utils/http-status-code';
 
-export async function getEnvioById(idEnvio: number) {
+export async function getEnvioById(idEnvio: number, idd?: number) {
   const resBody = new ApiResponseBody<EnvioDto>();
   const prisma = PrismaSingleton.getEnviosPrisma();
+  //console.log('idEnvio', idEnvio);
+  //console.log('idd', idd);
+  const tipoContainer = await prisma.container.findUnique({
+    where: { idContainer: idd ?? 0 },
+    select: { idTipoContainer: true },
+  });
 
+  //console.log('tipoContainer', tipoContainer?.idTipoContainer);
   try {
     const [dadosEnvio, itens, unidades, destinosDisponiveis] =
       await Promise.all([
@@ -21,6 +28,10 @@ export async function getEnvioById(idEnvio: number) {
                 idDestino: true,
                 idIdioma: true,
                 nomeDestino: true,
+                morada: true,
+                localMorada: true,
+                codigoPostal: true,
+                nacionalidade: true,
               },
             },
             fechado: true,
@@ -167,6 +178,14 @@ export async function getEnvioById(idEnvio: number) {
                               select: {
                                 idItem: true,
                                 Descricao: true,
+                                ItemTraduzido: {
+                                  select: {
+                                    descItem: true,
+                                  },
+                                  where: {
+                                    idIdioma: 2,
+                                  },
+                                },
                               },
                             },
                             Op: {
@@ -191,6 +210,18 @@ export async function getEnvioById(idEnvio: number) {
                                 idUnidades: true,
                                 idItem: true,
                                 descricaoUnidade: true,
+                                Item: {
+                                  select: {
+                                    ItemTraduzido: {
+                                      select: {
+                                        descItem: true,
+                                      },
+                                      where: {
+                                        idIdioma: 2,
+                                      },
+                                    },
+                                  },
+                                },
                               },
                             },
                             peso: true,
@@ -269,11 +300,17 @@ export async function getEnvioById(idEnvio: number) {
             //Container principal
           },
         }),
-        prisma.item.findMany({
-          where: { idItem: { gt: 199 } },
-        }),
+        prisma.$queryRaw<{ idItem: number; Descricao: string }[]>`
+        SELECT
+          a.idItem,
+          a.Descricao
+        from 
+          Item a
+        left join 
+          ligacaoAndroid b on a.idItem = b.idItem and ${tipoContainer?.idTipoContainer} = 3
+        where a.idItem > 199 and b.idItem is null`,
         prisma.unidades.findMany(),
-        prisma.$queryRaw<{ value: number; label: string }[]>`
+        prisma.$queryRaw<{ value: string; label: string }[]>`
         SELECT 
           idDestino AS value, 
           nomeDestino AS label 

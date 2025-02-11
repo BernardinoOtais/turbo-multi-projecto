@@ -186,7 +186,8 @@ exports.Prisma.IdiomasScalarFieldEnum = {
 
 exports.Prisma.ItemScalarFieldEnum = {
   idItem: 'idItem',
-  Descricao: 'Descricao'
+  Descricao: 'Descricao',
+  inativo: 'inativo'
 };
 
 exports.Prisma.ItemTraduzidoScalarFieldEnum = {
@@ -239,6 +240,11 @@ exports.Prisma.UnidadesScalarFieldEnum = {
   descricaoUnidade: 'descricaoUnidade'
 };
 
+exports.Prisma.LigacaoAndroidScalarFieldEnum = {
+  idItem: 'idItem',
+  idParte: 'idParte'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -266,7 +272,8 @@ exports.Prisma.ModelName = {
   ContainerOp: 'ContainerOp',
   Op: 'Op',
   OpTamanho: 'OpTamanho',
-  Unidades: 'Unidades'
+  Unidades: 'Unidades',
+  ligacaoAndroid: 'ligacaoAndroid'
 };
 
 /**

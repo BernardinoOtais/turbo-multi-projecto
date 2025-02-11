@@ -29,13 +29,18 @@ const BotaoApagaContainer = ({
     setScroll(false);
     apagaContainer(idContainer)
       .then(resultado => {
-        if (!resultado.success)
+        if (!resultado.success) {
           toast.error(
             `Erro ao apagar ${nomeContainer.trim()} id:${idContainer}`,
             {
               description: resultado.error,
             },
           );
+        } else {
+          toast.error(`Apagado ${nomeContainer.trim()} id:${idContainer}`, {
+            description: resultado.error,
+          });
+        }
       })
       .catch(error => console.error(error))
       .finally(() => setApagaCardEstado(false));

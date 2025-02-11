@@ -1,5 +1,6 @@
 import type {
   IdOrdemDto,
+  ListaIdsSchemaDto,
   PostAlturaDto,
   PostContainerSchemaDto,
   PostConteudoDto,
@@ -13,6 +14,7 @@ import {
   IdContainerOpSchema,
   IdNumeroInteiroNaoNegativoSchema,
   IdOrdemSchema,
+  ListaIdsSchema,
   PostAlturaSchema,
   PostContainerSchema,
   PostConteudoSchema,
@@ -28,6 +30,8 @@ import { enviosAuthenticator } from '@middlewares/envios-authenticator';
 import { validaSchema } from '@middlewares/valida-schema';
 import { EnviosRepository } from '@repositories/envios';
 import HttpStatusCode from '@utils/http-status-code';
+
+import Itens from './itens';
 
 const EnvioRotas = Router();
 
@@ -56,7 +60,10 @@ EnvioRotas.get(
   async (req: Request, res: Response, next: NextFunction) => {
     const idEnvio = IdNumeroInteiroNaoNegativoSchema.parse(req.query);
     try {
-      const envio = await EnviosRepository.getEnvioById(idEnvio.id);
+      const envio = await EnviosRepository.getEnvioById(
+        idEnvio.id,
+        idEnvio.idd,
+      );
       res
         .status(envio.error ? envio.error.code : HttpStatusCode.OK)
         .json(envio);
@@ -168,12 +175,11 @@ EnvioRotas.delete(
 
 EnvioRotas.delete(
   '/conteudoApaga',
-  validaSchema(IdNumeroInteiroNaoNegativoSchema, 'query'),
+  validaSchema(ListaIdsSchema),
   async (req: Request, res: Response, next: NextFunction) => {
-    const idRecebido = IdNumeroInteiroNaoNegativoSchema.parse(req.query);
-    const idConteudo = idRecebido.id;
+    const body: ListaIdsSchemaDto = ListaIdsSchema.parse(req.body);
     try {
-      const resBody = await EnviosRepository.apagoConteudo(idConteudo);
+      const resBody = await EnviosRepository.apagaConteudos(body);
       res
         .status(resBody.error ? resBody.error.code : HttpStatusCode.OK)
         .json(resBody);
@@ -263,4 +269,21 @@ EnvioRotas.post(
     }
   },
 );
+
+EnvioRotas.get(
+  '/getdestinos',
+  async (_: Request, res: Response, next: NextFunction) => {
+    try {
+      const destinos = await EnviosRepository.getDestinos();
+
+      res
+        .status(destinos.error ? destinos.error.code : HttpStatusCode.OK)
+        .json(destinos);
+    } catch (err) {
+      next(err);
+    }
+  },
+);
+
+EnvioRotas.use('/itens', Itens);
 export default EnvioRotas;

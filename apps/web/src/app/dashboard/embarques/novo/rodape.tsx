@@ -15,7 +15,7 @@ import {
   ContainersExistentes,
   TodosOsContainers,
   Container,
-} from "../../../../app/dashboard/embarques/menu-containers";
+} from "../menu-containers";
 
 type RodaPeProps = {
   idEnvio: number;

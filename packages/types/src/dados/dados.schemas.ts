@@ -56,6 +56,7 @@ const chavePhc = z
 
 export const IdNumeroInteiroNaoNegativoSchema = z.object({
   id: inteiroNaoNegativo,
+  idd: inteiroNaoNegativo.optional(),
 });
 
 const verdadeiroOuFalso = z.string().transform((val) => {
@@ -111,6 +112,7 @@ export const PostOpSchema = z.object({
 export const RespostaSchema = z.object({
   status: z.string(),
   errorMessage: z.string().nullable(),
+  successMessage: z.string().optional(),
   id: inteiroNaoNegativo.optional(),
 });
 
@@ -148,6 +150,10 @@ export const PostNovoEnvioSchema = z.object({
   nomeUser: z.string().optional(),
 });
 
+export const ListaIdsSchema = z.object({
+  numbers: z.array(inteiroNaoNegativo),
+});
+
 export type PostContainerSchemaDto = z.infer<typeof PostContainerSchema>;
 
 export type IdOrdemDto = z.infer<typeof IdOrdemSchema>;
@@ -173,3 +179,5 @@ export type PostDestinoSchemaDto = z.infer<typeof PostDestinoSchema>;
 export type PostNovoEnvioSchemaDto = z.infer<typeof PostNovoEnvioSchema>;
 
 export type PostNomeEnviochemaDto = z.infer<typeof PostNomeEnviochema>;
+
+export type ListaIdsSchemaDto = z.infer<typeof ListaIdsSchema>;

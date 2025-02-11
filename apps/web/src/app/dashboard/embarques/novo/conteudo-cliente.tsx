@@ -1,54 +1,50 @@
 "use client";
 import { ConteudoDto } from "@repo/types";
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 
 import { TableCell, TableRow } from "@/components/ui/table";
+import { cn } from "@/lib/utils";
 
 import ApagaConteudo from "./apaga-conteudo";
 
 type ConteudoClienteProps = {
   conteudos: ConteudoDto[] | undefined;
+  conteudosAgrupados: Record<
+    number,
+    {
+      idItem: number;
+      totalQtt: number;
+      totalPeso: number;
+      count: number;
+    }
+  >;
+  itensSelecionados: number[];
+  setItensSelecionados: React.Dispatch<React.SetStateAction<number[]>>;
+  disabledApaga: boolean;
 };
-const ConteudoCliente = ({ conteudos }: ConteudoClienteProps) => {
-  const [disabledApaga, setDisabledApaga] = useState(false);
-  const dados = conteudos?.sort((a, b) => a.idItem - b.idItem);
+const ConteudoCliente = ({
+  conteudos,
+  conteudosAgrupados,
+  itensSelecionados,
+  setItensSelecionados,
+  disabledApaga,
+}: ConteudoClienteProps) => {
+  //"bg-destructive text-destructive-foreground"
 
-  const groupedByIdItem =
-    conteudos?.reduce(
-      (acc, item) => {
-        if (!acc[item.idItem]) {
-          acc[item.idItem] = {
-            idItem: item.idItem,
-            totalQtt: 0,
-            totalPeso: 0,
-            count: 0,
-          };
-        }
-        acc[item.idItem].totalQtt += item.qtt;
-        acc[item.idItem].totalPeso += item.peso;
-        acc[item.idItem].count += 1;
-        return acc;
-      },
-      {} as Record<
-        number,
-        {
-          idItem: number;
-          totalQtt: number;
-          totalPeso: number;
-          count: number;
-        }
-      >,
-    ) || {};
-
-  return dados?.map((c, index, array) => {
+  return conteudos?.map((c, index, array) => {
     const isLastForIdItem =
       index === array.length - 1 || array[index + 1].idItem !== c.idItem;
 
-    const groupSummary = groupedByIdItem[c.idItem];
+    const groupSummary = conteudosAgrupados[c.idItem];
     return (
       <Fragment key={c.idConteudo}>
-        <TableRow>
-          <TableCell>{c.op}</TableCell>
+        <TableRow
+          className={cn({
+            "bg-destructive text-destructive-foreground hover:bg-destructive/30":
+              itensSelecionados.includes(c.idConteudo),
+          })}
+        >
+          <TableCell className="rounded-l-md">{c.op}</TableCell>
           <TableCell>{c.Op.modelo}</TableCell>
           <TableCell>{c.Op.cor}</TableCell>
           <TableCell>{c.Op.pedido}</TableCell>
@@ -56,8 +52,9 @@ const ConteudoCliente = ({ conteudos }: ConteudoClienteProps) => {
             <ApagaConteudo
               nome={c.Item.Descricao}
               idConteudo={c.idConteudo}
+              setItensSelecionados={setItensSelecionados}
+              estaSelecionado={itensSelecionados.includes(c.idConteudo)}
               disabledApaga={disabledApaga}
-              setDisabledApaga={setDisabledApaga}
             />
           </TableCell>
           <TableCell className="text-center">
@@ -68,7 +65,9 @@ const ConteudoCliente = ({ conteudos }: ConteudoClienteProps) => {
           <TableCell className="text-center">
             {c.qtt == 0 ? 0 : (c.peso / c.qtt).toFixed(5)}
           </TableCell>
-          <TableCell className="text-center">{c.peso.toFixed(5)}</TableCell>
+          <TableCell className="rounded-r-md text-center">
+            {c.peso.toFixed(5)}
+          </TableCell>
         </TableRow>
         {isLastForIdItem && groupSummary.count > 1 && (
           <TableRow>

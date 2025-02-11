@@ -1,53 +1,45 @@
-import { Loader2 } from "lucide-react";
 import React from "react";
-import { toast } from "sonner";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { apagaConteudo } from "@/lib/actions/dashboard/embarques";
 
 type ApagaConteudoProps = {
   nome: string;
   idConteudo: number;
+  setItensSelecionados: React.Dispatch<React.SetStateAction<number[]>>;
+  estaSelecionado: boolean;
   disabledApaga: boolean;
-  setDisabledApaga: (data: boolean) => void;
 };
 const ApagaConteudo = ({
   nome,
   idConteudo,
+  setItensSelecionados,
+  estaSelecionado,
   disabledApaga,
-  setDisabledApaga,
 }: ApagaConteudoProps) => {
   const apagoConteudoFun = () => {
-    setDisabledApaga(true);
-    apagaConteudo(idConteudo)
-      .then(resultado => {
-        if (!resultado.success)
-          toast.error(`Erro ao apagar Conteudo: ${idConteudo}`, {
-            description: resultado.error,
-          });
-        else
-          toast.info(`Conteudo ${idConteudo} Apagada`, {
-            description: "Sucesso",
-          });
-      })
-      .catch(error => console.error(error))
-      .finally(() => setDisabledApaga(false));
+    setItensSelecionados(prev =>
+      prev.includes(idConteudo)
+        ? prev.filter(id => id !== idConteudo)
+        : [...prev, idConteudo],
+    );
   };
   return (
     <Button
       className="group hover:bg-primary/40 relative m-0 h-5 cursor-pointer p-0"
       variant="ghost"
       onClick={apagoConteudoFun}
+      name={
+        estaSelecionado ? "Remove selecção..." : "Selecciona para apagar..."
+      }
       disabled={disabledApaga}
     >
       <span>{nome}</span>
-      {disabledApaga && <Loader2 className="absolute animate-spin" />}
       <Badge
-        variant="destructive"
+        variant={estaSelecionado ? "default" : "destructive"}
         className="absolute top-[-10px] right-[-15px] hidden h-5 w-5 items-center justify-center rounded-full text-xs font-bold group-hover:flex"
       >
-        {"x"}
+        {estaSelecionado ? "-" : "x"}
       </Badge>
     </Button>
   );

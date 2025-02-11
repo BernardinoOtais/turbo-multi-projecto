@@ -14,7 +14,7 @@ import SwitchFechado from "@/components/switch-fechado";
 import { fetchGet } from "@/lib/fetch/fetch-get";
 import { validadoValorNumeroItensPorPagina } from "@/lib/my-utils";
 
-import EnviosWrapper from "./novo/envios-wrapper";
+import EnviosWrapper from "./novo/wrapper-envios";
 
 type PageProps = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;

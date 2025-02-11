@@ -82,6 +82,12 @@ export const MenusExistentes: MenusTodos = {
         icon: PlaneIcon,
         subMenu: false,
       },
+      {
+        nome: "Configurações",
+        path: "/dashboard/embarques/configurar",
+        icon: PlaneIcon,
+        subMenu: false,
+      },
     ],
   },
 };

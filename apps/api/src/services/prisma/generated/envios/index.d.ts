@@ -93,6 +93,11 @@ export type OpTamanho = $Result.DefaultSelection<Prisma.$OpTamanhoPayload>
  * 
  */
 export type Unidades = $Result.DefaultSelection<Prisma.$UnidadesPayload>
+/**
+ * Model ligacaoAndroid
+ * 
+ */
+export type ligacaoAndroid = $Result.DefaultSelection<Prisma.$ligacaoAndroidPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -378,6 +383,16 @@ export class PrismaClient<
     * ```
     */
   get unidades(): Prisma.UnidadesDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.ligacaoAndroid`: Exposes CRUD operations for the **ligacaoAndroid** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LigacaoAndroids
+    * const ligacaoAndroids = await prisma.ligacaoAndroid.findMany()
+    * ```
+    */
+  get ligacaoAndroid(): Prisma.ligacaoAndroidDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -833,7 +848,8 @@ export namespace Prisma {
     ContainerOp: 'ContainerOp',
     Op: 'Op',
     OpTamanho: 'OpTamanho',
-    Unidades: 'Unidades'
+    Unidades: 'Unidades',
+    ligacaoAndroid: 'ligacaoAndroid'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -849,7 +865,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "papeis" | "sysdiagrams" | "user" | "userPapeis" | "container" | "conteudo" | "envio" | "idiomas" | "item" | "itemTraduzido" | "tipoContainer" | "destinos" | "containerOp" | "op" | "opTamanho" | "unidades"
+      modelProps: "papeis" | "sysdiagrams" | "user" | "userPapeis" | "container" | "conteudo" | "envio" | "idiomas" | "item" | "itemTraduzido" | "tipoContainer" | "destinos" | "containerOp" | "op" | "opTamanho" | "unidades" | "ligacaoAndroid"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1909,6 +1925,72 @@ export namespace Prisma {
           }
         }
       }
+      ligacaoAndroid: {
+        payload: Prisma.$ligacaoAndroidPayload<ExtArgs>
+        fields: Prisma.ligacaoAndroidFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ligacaoAndroidFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ligacaoAndroidPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ligacaoAndroidFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ligacaoAndroidPayload>
+          }
+          findFirst: {
+            args: Prisma.ligacaoAndroidFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ligacaoAndroidPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ligacaoAndroidFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ligacaoAndroidPayload>
+          }
+          findMany: {
+            args: Prisma.ligacaoAndroidFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ligacaoAndroidPayload>[]
+          }
+          create: {
+            args: Prisma.ligacaoAndroidCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ligacaoAndroidPayload>
+          }
+          createMany: {
+            args: Prisma.ligacaoAndroidCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ligacaoAndroidDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ligacaoAndroidPayload>
+          }
+          update: {
+            args: Prisma.ligacaoAndroidUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ligacaoAndroidPayload>
+          }
+          deleteMany: {
+            args: Prisma.ligacaoAndroidDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ligacaoAndroidUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ligacaoAndroidUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ligacaoAndroidPayload>
+          }
+          aggregate: {
+            args: Prisma.LigacaoAndroidAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLigacaoAndroid>
+          }
+          groupBy: {
+            args: Prisma.ligacaoAndroidGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LigacaoAndroidGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ligacaoAndroidCountArgs<ExtArgs>
+            result: $Utils.Optional<LigacaoAndroidCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2009,6 +2091,7 @@ export namespace Prisma {
     op?: OpOmit
     opTamanho?: OpTamanhoOmit
     unidades?: UnidadesOmit
+    ligacaoAndroid?: ligacaoAndroidOmit
   }
 
   /* Types for Logging */
@@ -10449,16 +10532,19 @@ export namespace Prisma {
   export type ItemMinAggregateOutputType = {
     idItem: number | null
     Descricao: string | null
+    inativo: boolean | null
   }
 
   export type ItemMaxAggregateOutputType = {
     idItem: number | null
     Descricao: string | null
+    inativo: boolean | null
   }
 
   export type ItemCountAggregateOutputType = {
     idItem: number
     Descricao: number
+    inativo: number
     _all: number
   }
 
@@ -10474,16 +10560,19 @@ export namespace Prisma {
   export type ItemMinAggregateInputType = {
     idItem?: true
     Descricao?: true
+    inativo?: true
   }
 
   export type ItemMaxAggregateInputType = {
     idItem?: true
     Descricao?: true
+    inativo?: true
   }
 
   export type ItemCountAggregateInputType = {
     idItem?: true
     Descricao?: true
+    inativo?: true
     _all?: true
   }
 
@@ -10576,6 +10665,7 @@ export namespace Prisma {
   export type ItemGroupByOutputType = {
     idItem: number
     Descricao: string
+    inativo: boolean
     _count: ItemCountAggregateOutputType | null
     _avg: ItemAvgAggregateOutputType | null
     _sum: ItemSumAggregateOutputType | null
@@ -10600,8 +10690,10 @@ export namespace Prisma {
   export type ItemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     idItem?: boolean
     Descricao?: boolean
+    inativo?: boolean
     Conteudo?: boolean | Item$ConteudoArgs<ExtArgs>
     ItemTraduzido?: boolean | Item$ItemTraduzidoArgs<ExtArgs>
+    ligacaoAndroid?: boolean | Item$ligacaoAndroidArgs<ExtArgs>
     TipoContainer?: boolean | Item$TipoContainerArgs<ExtArgs>
     Unidades?: boolean | Item$UnidadesArgs<ExtArgs>
     _count?: boolean | ItemCountOutputTypeDefaultArgs<ExtArgs>
@@ -10612,12 +10704,14 @@ export namespace Prisma {
   export type ItemSelectScalar = {
     idItem?: boolean
     Descricao?: boolean
+    inativo?: boolean
   }
 
-  export type ItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"idItem" | "Descricao", ExtArgs["result"]["item"]>
+  export type ItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"idItem" | "Descricao" | "inativo", ExtArgs["result"]["item"]>
   export type ItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Conteudo?: boolean | Item$ConteudoArgs<ExtArgs>
     ItemTraduzido?: boolean | Item$ItemTraduzidoArgs<ExtArgs>
+    ligacaoAndroid?: boolean | Item$ligacaoAndroidArgs<ExtArgs>
     TipoContainer?: boolean | Item$TipoContainerArgs<ExtArgs>
     Unidades?: boolean | Item$UnidadesArgs<ExtArgs>
     _count?: boolean | ItemCountOutputTypeDefaultArgs<ExtArgs>
@@ -10628,12 +10722,14 @@ export namespace Prisma {
     objects: {
       Conteudo: Prisma.$ConteudoPayload<ExtArgs>[]
       ItemTraduzido: Prisma.$ItemTraduzidoPayload<ExtArgs>[]
+      ligacaoAndroid: Prisma.$ligacaoAndroidPayload<ExtArgs> | null
       TipoContainer: Prisma.$TipoContainerPayload<ExtArgs> | null
       Unidades: Prisma.$UnidadesPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       idItem: number
       Descricao: string
+      inativo: boolean
     }, ExtArgs["result"]["item"]>
     composites: {}
   }
@@ -10976,6 +11072,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     Conteudo<T extends Item$ConteudoArgs<ExtArgs> = {}>(args?: Subset<T, Item$ConteudoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConteudoPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
     ItemTraduzido<T extends Item$ItemTraduzidoArgs<ExtArgs> = {}>(args?: Subset<T, Item$ItemTraduzidoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItemTraduzidoPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
+    ligacaoAndroid<T extends Item$ligacaoAndroidArgs<ExtArgs> = {}>(args?: Subset<T, Item$ligacaoAndroidArgs<ExtArgs>>): Prisma__ligacaoAndroidClient<$Result.GetResult<Prisma.$ligacaoAndroidPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
     TipoContainer<T extends Item$TipoContainerArgs<ExtArgs> = {}>(args?: Subset<T, Item$TipoContainerArgs<ExtArgs>>): Prisma__TipoContainerClient<$Result.GetResult<Prisma.$TipoContainerPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
     Unidades<T extends Item$UnidadesArgs<ExtArgs> = {}>(args?: Subset<T, Item$UnidadesArgs<ExtArgs>>): Prisma__UnidadesClient<$Result.GetResult<Prisma.$UnidadesPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
     /**
@@ -11009,6 +11106,7 @@ export namespace Prisma {
   interface ItemFieldRefs {
     readonly idItem: FieldRef<"Item", 'Int'>
     readonly Descricao: FieldRef<"Item", 'String'>
+    readonly inativo: FieldRef<"Item", 'Boolean'>
   }
     
 
@@ -11396,6 +11494,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ItemTraduzidoScalarFieldEnum | ItemTraduzidoScalarFieldEnum[]
+  }
+
+  /**
+   * Item.ligacaoAndroid
+   */
+  export type Item$ligacaoAndroidArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ligacaoAndroid
+     */
+    select?: ligacaoAndroidSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ligacaoAndroid
+     */
+    omit?: ligacaoAndroidOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ligacaoAndroidInclude<ExtArgs> | null
+    where?: ligacaoAndroidWhereInput
   }
 
   /**
@@ -13558,10 +13675,10 @@ export namespace Prisma {
     idDestino: string
     idIdioma: number
     nomeDestino: string
-    morada: string | null
-    localMorada: string | null
-    codigoPostal: string | null
-    nacionalidade: string | null
+    morada: string
+    localMorada: string
+    codigoPostal: string
+    nacionalidade: string
     _count: DestinosCountAggregateOutputType | null
     _avg: DestinosAvgAggregateOutputType | null
     _sum: DestinosSumAggregateOutputType | null
@@ -13625,10 +13742,10 @@ export namespace Prisma {
       idDestino: string
       idIdioma: number
       nomeDestino: string
-      morada: string | null
-      localMorada: string | null
-      codigoPostal: string | null
-      nacionalidade: string | null
+      morada: string
+      localMorada: string
+      codigoPostal: string
+      nacionalidade: string
     }, ExtArgs["result"]["destinos"]>
     composites: {}
   }
@@ -18388,6 +18505,939 @@ export namespace Prisma {
 
 
   /**
+   * Model ligacaoAndroid
+   */
+
+  export type AggregateLigacaoAndroid = {
+    _count: LigacaoAndroidCountAggregateOutputType | null
+    _avg: LigacaoAndroidAvgAggregateOutputType | null
+    _sum: LigacaoAndroidSumAggregateOutputType | null
+    _min: LigacaoAndroidMinAggregateOutputType | null
+    _max: LigacaoAndroidMaxAggregateOutputType | null
+  }
+
+  export type LigacaoAndroidAvgAggregateOutputType = {
+    idItem: number | null
+    idParte: number | null
+  }
+
+  export type LigacaoAndroidSumAggregateOutputType = {
+    idItem: number | null
+    idParte: number | null
+  }
+
+  export type LigacaoAndroidMinAggregateOutputType = {
+    idItem: number | null
+    idParte: number | null
+  }
+
+  export type LigacaoAndroidMaxAggregateOutputType = {
+    idItem: number | null
+    idParte: number | null
+  }
+
+  export type LigacaoAndroidCountAggregateOutputType = {
+    idItem: number
+    idParte: number
+    _all: number
+  }
+
+
+  export type LigacaoAndroidAvgAggregateInputType = {
+    idItem?: true
+    idParte?: true
+  }
+
+  export type LigacaoAndroidSumAggregateInputType = {
+    idItem?: true
+    idParte?: true
+  }
+
+  export type LigacaoAndroidMinAggregateInputType = {
+    idItem?: true
+    idParte?: true
+  }
+
+  export type LigacaoAndroidMaxAggregateInputType = {
+    idItem?: true
+    idParte?: true
+  }
+
+  export type LigacaoAndroidCountAggregateInputType = {
+    idItem?: true
+    idParte?: true
+    _all?: true
+  }
+
+  export type LigacaoAndroidAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ligacaoAndroid to aggregate.
+     */
+    where?: ligacaoAndroidWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ligacaoAndroids to fetch.
+     */
+    orderBy?: ligacaoAndroidOrderByWithRelationInput | ligacaoAndroidOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ligacaoAndroidWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ligacaoAndroids from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ligacaoAndroids.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ligacaoAndroids
+    **/
+    _count?: true | LigacaoAndroidCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LigacaoAndroidAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LigacaoAndroidSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LigacaoAndroidMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LigacaoAndroidMaxAggregateInputType
+  }
+
+  export type GetLigacaoAndroidAggregateType<T extends LigacaoAndroidAggregateArgs> = {
+        [P in keyof T & keyof AggregateLigacaoAndroid]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLigacaoAndroid[P]>
+      : GetScalarType<T[P], AggregateLigacaoAndroid[P]>
+  }
+
+
+
+
+  export type ligacaoAndroidGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ligacaoAndroidWhereInput
+    orderBy?: ligacaoAndroidOrderByWithAggregationInput | ligacaoAndroidOrderByWithAggregationInput[]
+    by: LigacaoAndroidScalarFieldEnum[] | LigacaoAndroidScalarFieldEnum
+    having?: ligacaoAndroidScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LigacaoAndroidCountAggregateInputType | true
+    _avg?: LigacaoAndroidAvgAggregateInputType
+    _sum?: LigacaoAndroidSumAggregateInputType
+    _min?: LigacaoAndroidMinAggregateInputType
+    _max?: LigacaoAndroidMaxAggregateInputType
+  }
+
+  export type LigacaoAndroidGroupByOutputType = {
+    idItem: number
+    idParte: number
+    _count: LigacaoAndroidCountAggregateOutputType | null
+    _avg: LigacaoAndroidAvgAggregateOutputType | null
+    _sum: LigacaoAndroidSumAggregateOutputType | null
+    _min: LigacaoAndroidMinAggregateOutputType | null
+    _max: LigacaoAndroidMaxAggregateOutputType | null
+  }
+
+  type GetLigacaoAndroidGroupByPayload<T extends ligacaoAndroidGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LigacaoAndroidGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LigacaoAndroidGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LigacaoAndroidGroupByOutputType[P]>
+            : GetScalarType<T[P], LigacaoAndroidGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ligacaoAndroidSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    idItem?: boolean
+    idParte?: boolean
+    Item?: boolean | ItemDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["ligacaoAndroid"]>
+
+
+
+  export type ligacaoAndroidSelectScalar = {
+    idItem?: boolean
+    idParte?: boolean
+  }
+
+  export type ligacaoAndroidOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"idItem" | "idParte", ExtArgs["result"]["ligacaoAndroid"]>
+  export type ligacaoAndroidInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Item?: boolean | ItemDefaultArgs<ExtArgs>
+  }
+
+  export type $ligacaoAndroidPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ligacaoAndroid"
+    objects: {
+      Item: Prisma.$ItemPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      idItem: number
+      idParte: number
+    }, ExtArgs["result"]["ligacaoAndroid"]>
+    composites: {}
+  }
+
+  type ligacaoAndroidGetPayload<S extends boolean | null | undefined | ligacaoAndroidDefaultArgs> = $Result.GetResult<Prisma.$ligacaoAndroidPayload, S>
+
+  type ligacaoAndroidCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ligacaoAndroidFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LigacaoAndroidCountAggregateInputType | true
+    }
+
+  export interface ligacaoAndroidDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ligacaoAndroid'], meta: { name: 'ligacaoAndroid' } }
+    /**
+     * Find zero or one LigacaoAndroid that matches the filter.
+     * @param {ligacaoAndroidFindUniqueArgs} args - Arguments to find a LigacaoAndroid
+     * @example
+     * // Get one LigacaoAndroid
+     * const ligacaoAndroid = await prisma.ligacaoAndroid.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ligacaoAndroidFindUniqueArgs>(args: SelectSubset<T, ligacaoAndroidFindUniqueArgs<ExtArgs>>): Prisma__ligacaoAndroidClient<$Result.GetResult<Prisma.$ligacaoAndroidPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find one LigacaoAndroid that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ligacaoAndroidFindUniqueOrThrowArgs} args - Arguments to find a LigacaoAndroid
+     * @example
+     * // Get one LigacaoAndroid
+     * const ligacaoAndroid = await prisma.ligacaoAndroid.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ligacaoAndroidFindUniqueOrThrowArgs>(args: SelectSubset<T, ligacaoAndroidFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ligacaoAndroidClient<$Result.GetResult<Prisma.$ligacaoAndroidPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first LigacaoAndroid that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ligacaoAndroidFindFirstArgs} args - Arguments to find a LigacaoAndroid
+     * @example
+     * // Get one LigacaoAndroid
+     * const ligacaoAndroid = await prisma.ligacaoAndroid.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ligacaoAndroidFindFirstArgs>(args?: SelectSubset<T, ligacaoAndroidFindFirstArgs<ExtArgs>>): Prisma__ligacaoAndroidClient<$Result.GetResult<Prisma.$ligacaoAndroidPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first LigacaoAndroid that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ligacaoAndroidFindFirstOrThrowArgs} args - Arguments to find a LigacaoAndroid
+     * @example
+     * // Get one LigacaoAndroid
+     * const ligacaoAndroid = await prisma.ligacaoAndroid.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ligacaoAndroidFindFirstOrThrowArgs>(args?: SelectSubset<T, ligacaoAndroidFindFirstOrThrowArgs<ExtArgs>>): Prisma__ligacaoAndroidClient<$Result.GetResult<Prisma.$ligacaoAndroidPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find zero or more LigacaoAndroids that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ligacaoAndroidFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LigacaoAndroids
+     * const ligacaoAndroids = await prisma.ligacaoAndroid.findMany()
+     * 
+     * // Get first 10 LigacaoAndroids
+     * const ligacaoAndroids = await prisma.ligacaoAndroid.findMany({ take: 10 })
+     * 
+     * // Only select the `idItem`
+     * const ligacaoAndroidWithIdItemOnly = await prisma.ligacaoAndroid.findMany({ select: { idItem: true } })
+     * 
+     */
+    findMany<T extends ligacaoAndroidFindManyArgs>(args?: SelectSubset<T, ligacaoAndroidFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ligacaoAndroidPayload<ExtArgs>, T, "findMany", ClientOptions>>
+
+    /**
+     * Create a LigacaoAndroid.
+     * @param {ligacaoAndroidCreateArgs} args - Arguments to create a LigacaoAndroid.
+     * @example
+     * // Create one LigacaoAndroid
+     * const LigacaoAndroid = await prisma.ligacaoAndroid.create({
+     *   data: {
+     *     // ... data to create a LigacaoAndroid
+     *   }
+     * })
+     * 
+     */
+    create<T extends ligacaoAndroidCreateArgs>(args: SelectSubset<T, ligacaoAndroidCreateArgs<ExtArgs>>): Prisma__ligacaoAndroidClient<$Result.GetResult<Prisma.$ligacaoAndroidPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Create many LigacaoAndroids.
+     * @param {ligacaoAndroidCreateManyArgs} args - Arguments to create many LigacaoAndroids.
+     * @example
+     * // Create many LigacaoAndroids
+     * const ligacaoAndroid = await prisma.ligacaoAndroid.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ligacaoAndroidCreateManyArgs>(args?: SelectSubset<T, ligacaoAndroidCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a LigacaoAndroid.
+     * @param {ligacaoAndroidDeleteArgs} args - Arguments to delete one LigacaoAndroid.
+     * @example
+     * // Delete one LigacaoAndroid
+     * const LigacaoAndroid = await prisma.ligacaoAndroid.delete({
+     *   where: {
+     *     // ... filter to delete one LigacaoAndroid
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ligacaoAndroidDeleteArgs>(args: SelectSubset<T, ligacaoAndroidDeleteArgs<ExtArgs>>): Prisma__ligacaoAndroidClient<$Result.GetResult<Prisma.$ligacaoAndroidPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Update one LigacaoAndroid.
+     * @param {ligacaoAndroidUpdateArgs} args - Arguments to update one LigacaoAndroid.
+     * @example
+     * // Update one LigacaoAndroid
+     * const ligacaoAndroid = await prisma.ligacaoAndroid.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ligacaoAndroidUpdateArgs>(args: SelectSubset<T, ligacaoAndroidUpdateArgs<ExtArgs>>): Prisma__ligacaoAndroidClient<$Result.GetResult<Prisma.$ligacaoAndroidPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Delete zero or more LigacaoAndroids.
+     * @param {ligacaoAndroidDeleteManyArgs} args - Arguments to filter LigacaoAndroids to delete.
+     * @example
+     * // Delete a few LigacaoAndroids
+     * const { count } = await prisma.ligacaoAndroid.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ligacaoAndroidDeleteManyArgs>(args?: SelectSubset<T, ligacaoAndroidDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LigacaoAndroids.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ligacaoAndroidUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LigacaoAndroids
+     * const ligacaoAndroid = await prisma.ligacaoAndroid.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ligacaoAndroidUpdateManyArgs>(args: SelectSubset<T, ligacaoAndroidUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one LigacaoAndroid.
+     * @param {ligacaoAndroidUpsertArgs} args - Arguments to update or create a LigacaoAndroid.
+     * @example
+     * // Update or create a LigacaoAndroid
+     * const ligacaoAndroid = await prisma.ligacaoAndroid.upsert({
+     *   create: {
+     *     // ... data to create a LigacaoAndroid
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LigacaoAndroid we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ligacaoAndroidUpsertArgs>(args: SelectSubset<T, ligacaoAndroidUpsertArgs<ExtArgs>>): Prisma__ligacaoAndroidClient<$Result.GetResult<Prisma.$ligacaoAndroidPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
+
+
+    /**
+     * Count the number of LigacaoAndroids.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ligacaoAndroidCountArgs} args - Arguments to filter LigacaoAndroids to count.
+     * @example
+     * // Count the number of LigacaoAndroids
+     * const count = await prisma.ligacaoAndroid.count({
+     *   where: {
+     *     // ... the filter for the LigacaoAndroids we want to count
+     *   }
+     * })
+    **/
+    count<T extends ligacaoAndroidCountArgs>(
+      args?: Subset<T, ligacaoAndroidCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LigacaoAndroidCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LigacaoAndroid.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LigacaoAndroidAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LigacaoAndroidAggregateArgs>(args: Subset<T, LigacaoAndroidAggregateArgs>): Prisma.PrismaPromise<GetLigacaoAndroidAggregateType<T>>
+
+    /**
+     * Group by LigacaoAndroid.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ligacaoAndroidGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ligacaoAndroidGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ligacaoAndroidGroupByArgs['orderBy'] }
+        : { orderBy?: ligacaoAndroidGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ligacaoAndroidGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLigacaoAndroidGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ligacaoAndroid model
+   */
+  readonly fields: ligacaoAndroidFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ligacaoAndroid.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ligacaoAndroidClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    Item<T extends ItemDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ItemDefaultArgs<ExtArgs>>): Prisma__ItemClient<$Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ligacaoAndroid model
+   */ 
+  interface ligacaoAndroidFieldRefs {
+    readonly idItem: FieldRef<"ligacaoAndroid", 'Int'>
+    readonly idParte: FieldRef<"ligacaoAndroid", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ligacaoAndroid findUnique
+   */
+  export type ligacaoAndroidFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ligacaoAndroid
+     */
+    select?: ligacaoAndroidSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ligacaoAndroid
+     */
+    omit?: ligacaoAndroidOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ligacaoAndroidInclude<ExtArgs> | null
+    /**
+     * Filter, which ligacaoAndroid to fetch.
+     */
+    where: ligacaoAndroidWhereUniqueInput
+  }
+
+  /**
+   * ligacaoAndroid findUniqueOrThrow
+   */
+  export type ligacaoAndroidFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ligacaoAndroid
+     */
+    select?: ligacaoAndroidSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ligacaoAndroid
+     */
+    omit?: ligacaoAndroidOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ligacaoAndroidInclude<ExtArgs> | null
+    /**
+     * Filter, which ligacaoAndroid to fetch.
+     */
+    where: ligacaoAndroidWhereUniqueInput
+  }
+
+  /**
+   * ligacaoAndroid findFirst
+   */
+  export type ligacaoAndroidFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ligacaoAndroid
+     */
+    select?: ligacaoAndroidSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ligacaoAndroid
+     */
+    omit?: ligacaoAndroidOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ligacaoAndroidInclude<ExtArgs> | null
+    /**
+     * Filter, which ligacaoAndroid to fetch.
+     */
+    where?: ligacaoAndroidWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ligacaoAndroids to fetch.
+     */
+    orderBy?: ligacaoAndroidOrderByWithRelationInput | ligacaoAndroidOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ligacaoAndroids.
+     */
+    cursor?: ligacaoAndroidWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ligacaoAndroids from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ligacaoAndroids.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ligacaoAndroids.
+     */
+    distinct?: LigacaoAndroidScalarFieldEnum | LigacaoAndroidScalarFieldEnum[]
+  }
+
+  /**
+   * ligacaoAndroid findFirstOrThrow
+   */
+  export type ligacaoAndroidFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ligacaoAndroid
+     */
+    select?: ligacaoAndroidSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ligacaoAndroid
+     */
+    omit?: ligacaoAndroidOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ligacaoAndroidInclude<ExtArgs> | null
+    /**
+     * Filter, which ligacaoAndroid to fetch.
+     */
+    where?: ligacaoAndroidWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ligacaoAndroids to fetch.
+     */
+    orderBy?: ligacaoAndroidOrderByWithRelationInput | ligacaoAndroidOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ligacaoAndroids.
+     */
+    cursor?: ligacaoAndroidWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ligacaoAndroids from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ligacaoAndroids.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ligacaoAndroids.
+     */
+    distinct?: LigacaoAndroidScalarFieldEnum | LigacaoAndroidScalarFieldEnum[]
+  }
+
+  /**
+   * ligacaoAndroid findMany
+   */
+  export type ligacaoAndroidFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ligacaoAndroid
+     */
+    select?: ligacaoAndroidSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ligacaoAndroid
+     */
+    omit?: ligacaoAndroidOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ligacaoAndroidInclude<ExtArgs> | null
+    /**
+     * Filter, which ligacaoAndroids to fetch.
+     */
+    where?: ligacaoAndroidWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ligacaoAndroids to fetch.
+     */
+    orderBy?: ligacaoAndroidOrderByWithRelationInput | ligacaoAndroidOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ligacaoAndroids.
+     */
+    cursor?: ligacaoAndroidWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ligacaoAndroids from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ligacaoAndroids.
+     */
+    skip?: number
+    distinct?: LigacaoAndroidScalarFieldEnum | LigacaoAndroidScalarFieldEnum[]
+  }
+
+  /**
+   * ligacaoAndroid create
+   */
+  export type ligacaoAndroidCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ligacaoAndroid
+     */
+    select?: ligacaoAndroidSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ligacaoAndroid
+     */
+    omit?: ligacaoAndroidOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ligacaoAndroidInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ligacaoAndroid.
+     */
+    data: XOR<ligacaoAndroidCreateInput, ligacaoAndroidUncheckedCreateInput>
+  }
+
+  /**
+   * ligacaoAndroid createMany
+   */
+  export type ligacaoAndroidCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ligacaoAndroids.
+     */
+    data: ligacaoAndroidCreateManyInput | ligacaoAndroidCreateManyInput[]
+  }
+
+  /**
+   * ligacaoAndroid update
+   */
+  export type ligacaoAndroidUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ligacaoAndroid
+     */
+    select?: ligacaoAndroidSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ligacaoAndroid
+     */
+    omit?: ligacaoAndroidOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ligacaoAndroidInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ligacaoAndroid.
+     */
+    data: XOR<ligacaoAndroidUpdateInput, ligacaoAndroidUncheckedUpdateInput>
+    /**
+     * Choose, which ligacaoAndroid to update.
+     */
+    where: ligacaoAndroidWhereUniqueInput
+  }
+
+  /**
+   * ligacaoAndroid updateMany
+   */
+  export type ligacaoAndroidUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ligacaoAndroids.
+     */
+    data: XOR<ligacaoAndroidUpdateManyMutationInput, ligacaoAndroidUncheckedUpdateManyInput>
+    /**
+     * Filter which ligacaoAndroids to update
+     */
+    where?: ligacaoAndroidWhereInput
+    /**
+     * Limit how many ligacaoAndroids to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ligacaoAndroid upsert
+   */
+  export type ligacaoAndroidUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ligacaoAndroid
+     */
+    select?: ligacaoAndroidSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ligacaoAndroid
+     */
+    omit?: ligacaoAndroidOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ligacaoAndroidInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ligacaoAndroid to update in case it exists.
+     */
+    where: ligacaoAndroidWhereUniqueInput
+    /**
+     * In case the ligacaoAndroid found by the `where` argument doesn't exist, create a new ligacaoAndroid with this data.
+     */
+    create: XOR<ligacaoAndroidCreateInput, ligacaoAndroidUncheckedCreateInput>
+    /**
+     * In case the ligacaoAndroid was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ligacaoAndroidUpdateInput, ligacaoAndroidUncheckedUpdateInput>
+  }
+
+  /**
+   * ligacaoAndroid delete
+   */
+  export type ligacaoAndroidDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ligacaoAndroid
+     */
+    select?: ligacaoAndroidSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ligacaoAndroid
+     */
+    omit?: ligacaoAndroidOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ligacaoAndroidInclude<ExtArgs> | null
+    /**
+     * Filter which ligacaoAndroid to delete.
+     */
+    where: ligacaoAndroidWhereUniqueInput
+  }
+
+  /**
+   * ligacaoAndroid deleteMany
+   */
+  export type ligacaoAndroidDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ligacaoAndroids to delete
+     */
+    where?: ligacaoAndroidWhereInput
+    /**
+     * Limit how many ligacaoAndroids to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ligacaoAndroid without action
+   */
+  export type ligacaoAndroidDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ligacaoAndroid
+     */
+    select?: ligacaoAndroidSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ligacaoAndroid
+     */
+    omit?: ligacaoAndroidOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ligacaoAndroidInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -18494,7 +19544,8 @@ export namespace Prisma {
 
   export const ItemScalarFieldEnum: {
     idItem: 'idItem',
-    Descricao: 'Descricao'
+    Descricao: 'Descricao',
+    inativo: 'inativo'
   };
 
   export type ItemScalarFieldEnum = (typeof ItemScalarFieldEnum)[keyof typeof ItemScalarFieldEnum]
@@ -18569,6 +19620,14 @@ export namespace Prisma {
   };
 
   export type UnidadesScalarFieldEnum = (typeof UnidadesScalarFieldEnum)[keyof typeof UnidadesScalarFieldEnum]
+
+
+  export const LigacaoAndroidScalarFieldEnum: {
+    idItem: 'idItem',
+    idParte: 'idParte'
+  };
+
+  export type LigacaoAndroidScalarFieldEnum = (typeof LigacaoAndroidScalarFieldEnum)[keyof typeof LigacaoAndroidScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -19142,8 +20201,10 @@ export namespace Prisma {
     NOT?: ItemWhereInput | ItemWhereInput[]
     idItem?: IntFilter<"Item"> | number
     Descricao?: StringFilter<"Item"> | string
+    inativo?: BoolFilter<"Item"> | boolean
     Conteudo?: ConteudoListRelationFilter
     ItemTraduzido?: ItemTraduzidoListRelationFilter
+    ligacaoAndroid?: XOR<LigacaoAndroidNullableScalarRelationFilter, ligacaoAndroidWhereInput> | null
     TipoContainer?: XOR<TipoContainerNullableScalarRelationFilter, TipoContainerWhereInput> | null
     Unidades?: XOR<UnidadesNullableScalarRelationFilter, UnidadesWhereInput> | null
   }
@@ -19151,8 +20212,10 @@ export namespace Prisma {
   export type ItemOrderByWithRelationInput = {
     idItem?: SortOrder
     Descricao?: SortOrder
+    inativo?: SortOrder
     Conteudo?: ConteudoOrderByRelationAggregateInput
     ItemTraduzido?: ItemTraduzidoOrderByRelationAggregateInput
+    ligacaoAndroid?: ligacaoAndroidOrderByWithRelationInput
     TipoContainer?: TipoContainerOrderByWithRelationInput
     Unidades?: UnidadesOrderByWithRelationInput
   }
@@ -19163,8 +20226,10 @@ export namespace Prisma {
     OR?: ItemWhereInput[]
     NOT?: ItemWhereInput | ItemWhereInput[]
     Descricao?: StringFilter<"Item"> | string
+    inativo?: BoolFilter<"Item"> | boolean
     Conteudo?: ConteudoListRelationFilter
     ItemTraduzido?: ItemTraduzidoListRelationFilter
+    ligacaoAndroid?: XOR<LigacaoAndroidNullableScalarRelationFilter, ligacaoAndroidWhereInput> | null
     TipoContainer?: XOR<TipoContainerNullableScalarRelationFilter, TipoContainerWhereInput> | null
     Unidades?: XOR<UnidadesNullableScalarRelationFilter, UnidadesWhereInput> | null
   }, "idItem">
@@ -19172,6 +20237,7 @@ export namespace Prisma {
   export type ItemOrderByWithAggregationInput = {
     idItem?: SortOrder
     Descricao?: SortOrder
+    inativo?: SortOrder
     _count?: ItemCountOrderByAggregateInput
     _avg?: ItemAvgOrderByAggregateInput
     _max?: ItemMaxOrderByAggregateInput
@@ -19185,6 +20251,7 @@ export namespace Prisma {
     NOT?: ItemScalarWhereWithAggregatesInput | ItemScalarWhereWithAggregatesInput[]
     idItem?: IntWithAggregatesFilter<"Item"> | number
     Descricao?: StringWithAggregatesFilter<"Item"> | string
+    inativo?: BoolWithAggregatesFilter<"Item"> | boolean
   }
 
   export type ItemTraduzidoWhereInput = {
@@ -19295,10 +20362,10 @@ export namespace Prisma {
     idDestino?: StringFilter<"Destinos"> | string
     idIdioma?: IntFilter<"Destinos"> | number
     nomeDestino?: StringFilter<"Destinos"> | string
-    morada?: StringNullableFilter<"Destinos"> | string | null
-    localMorada?: StringNullableFilter<"Destinos"> | string | null
-    codigoPostal?: StringNullableFilter<"Destinos"> | string | null
-    nacionalidade?: StringNullableFilter<"Destinos"> | string | null
+    morada?: StringFilter<"Destinos"> | string
+    localMorada?: StringFilter<"Destinos"> | string
+    codigoPostal?: StringFilter<"Destinos"> | string
+    nacionalidade?: StringFilter<"Destinos"> | string
     Idiomas?: XOR<IdiomasScalarRelationFilter, IdiomasWhereInput>
     Envio?: EnvioListRelationFilter
   }
@@ -19307,10 +20374,10 @@ export namespace Prisma {
     idDestino?: SortOrder
     idIdioma?: SortOrder
     nomeDestino?: SortOrder
-    morada?: SortOrderInput | SortOrder
-    localMorada?: SortOrderInput | SortOrder
-    codigoPostal?: SortOrderInput | SortOrder
-    nacionalidade?: SortOrderInput | SortOrder
+    morada?: SortOrder
+    localMorada?: SortOrder
+    codigoPostal?: SortOrder
+    nacionalidade?: SortOrder
     Idiomas?: IdiomasOrderByWithRelationInput
     Envio?: EnvioOrderByRelationAggregateInput
   }
@@ -19322,10 +20389,10 @@ export namespace Prisma {
     NOT?: DestinosWhereInput | DestinosWhereInput[]
     idIdioma?: IntFilter<"Destinos"> | number
     nomeDestino?: StringFilter<"Destinos"> | string
-    morada?: StringNullableFilter<"Destinos"> | string | null
-    localMorada?: StringNullableFilter<"Destinos"> | string | null
-    codigoPostal?: StringNullableFilter<"Destinos"> | string | null
-    nacionalidade?: StringNullableFilter<"Destinos"> | string | null
+    morada?: StringFilter<"Destinos"> | string
+    localMorada?: StringFilter<"Destinos"> | string
+    codigoPostal?: StringFilter<"Destinos"> | string
+    nacionalidade?: StringFilter<"Destinos"> | string
     Idiomas?: XOR<IdiomasScalarRelationFilter, IdiomasWhereInput>
     Envio?: EnvioListRelationFilter
   }, "idDestino">
@@ -19334,10 +20401,10 @@ export namespace Prisma {
     idDestino?: SortOrder
     idIdioma?: SortOrder
     nomeDestino?: SortOrder
-    morada?: SortOrderInput | SortOrder
-    localMorada?: SortOrderInput | SortOrder
-    codigoPostal?: SortOrderInput | SortOrder
-    nacionalidade?: SortOrderInput | SortOrder
+    morada?: SortOrder
+    localMorada?: SortOrder
+    codigoPostal?: SortOrder
+    nacionalidade?: SortOrder
     _count?: DestinosCountOrderByAggregateInput
     _avg?: DestinosAvgOrderByAggregateInput
     _max?: DestinosMaxOrderByAggregateInput
@@ -19352,10 +20419,10 @@ export namespace Prisma {
     idDestino?: StringWithAggregatesFilter<"Destinos"> | string
     idIdioma?: IntWithAggregatesFilter<"Destinos"> | number
     nomeDestino?: StringWithAggregatesFilter<"Destinos"> | string
-    morada?: StringNullableWithAggregatesFilter<"Destinos"> | string | null
-    localMorada?: StringNullableWithAggregatesFilter<"Destinos"> | string | null
-    codigoPostal?: StringNullableWithAggregatesFilter<"Destinos"> | string | null
-    nacionalidade?: StringNullableWithAggregatesFilter<"Destinos"> | string | null
+    morada?: StringWithAggregatesFilter<"Destinos"> | string
+    localMorada?: StringWithAggregatesFilter<"Destinos"> | string
+    codigoPostal?: StringWithAggregatesFilter<"Destinos"> | string
+    nacionalidade?: StringWithAggregatesFilter<"Destinos"> | string
   }
 
   export type ContainerOpWhereInput = {
@@ -19584,6 +20651,49 @@ export namespace Prisma {
     idUnidades?: IntWithAggregatesFilter<"Unidades"> | number
     idItem?: IntWithAggregatesFilter<"Unidades"> | number
     descricaoUnidade?: StringWithAggregatesFilter<"Unidades"> | string
+  }
+
+  export type ligacaoAndroidWhereInput = {
+    AND?: ligacaoAndroidWhereInput | ligacaoAndroidWhereInput[]
+    OR?: ligacaoAndroidWhereInput[]
+    NOT?: ligacaoAndroidWhereInput | ligacaoAndroidWhereInput[]
+    idItem?: IntFilter<"ligacaoAndroid"> | number
+    idParte?: IntFilter<"ligacaoAndroid"> | number
+    Item?: XOR<ItemScalarRelationFilter, ItemWhereInput>
+  }
+
+  export type ligacaoAndroidOrderByWithRelationInput = {
+    idItem?: SortOrder
+    idParte?: SortOrder
+    Item?: ItemOrderByWithRelationInput
+  }
+
+  export type ligacaoAndroidWhereUniqueInput = Prisma.AtLeast<{
+    idItem?: number
+    idParte?: number
+    idItem_idParte?: ligacaoAndroidIdItemIdParteCompoundUniqueInput
+    AND?: ligacaoAndroidWhereInput | ligacaoAndroidWhereInput[]
+    OR?: ligacaoAndroidWhereInput[]
+    NOT?: ligacaoAndroidWhereInput | ligacaoAndroidWhereInput[]
+    Item?: XOR<ItemScalarRelationFilter, ItemWhereInput>
+  }, "idItem_idParte" | "idItem" | "idParte">
+
+  export type ligacaoAndroidOrderByWithAggregationInput = {
+    idItem?: SortOrder
+    idParte?: SortOrder
+    _count?: ligacaoAndroidCountOrderByAggregateInput
+    _avg?: ligacaoAndroidAvgOrderByAggregateInput
+    _max?: ligacaoAndroidMaxOrderByAggregateInput
+    _min?: ligacaoAndroidMinOrderByAggregateInput
+    _sum?: ligacaoAndroidSumOrderByAggregateInput
+  }
+
+  export type ligacaoAndroidScalarWhereWithAggregatesInput = {
+    AND?: ligacaoAndroidScalarWhereWithAggregatesInput | ligacaoAndroidScalarWhereWithAggregatesInput[]
+    OR?: ligacaoAndroidScalarWhereWithAggregatesInput[]
+    NOT?: ligacaoAndroidScalarWhereWithAggregatesInput | ligacaoAndroidScalarWhereWithAggregatesInput[]
+    idItem?: IntWithAggregatesFilter<"ligacaoAndroid"> | number
+    idParte?: IntWithAggregatesFilter<"ligacaoAndroid"> | number
   }
 
   export type PapeisCreateInput = {
@@ -20055,8 +21165,10 @@ export namespace Prisma {
 
   export type ItemCreateInput = {
     Descricao: string
+    inativo: boolean
     Conteudo?: ConteudoCreateNestedManyWithoutItemInput
     ItemTraduzido?: ItemTraduzidoCreateNestedManyWithoutItemInput
+    ligacaoAndroid?: ligacaoAndroidCreateNestedOneWithoutItemInput
     TipoContainer?: TipoContainerCreateNestedOneWithoutItemInput
     Unidades?: UnidadesCreateNestedOneWithoutItemInput
   }
@@ -20064,16 +21176,20 @@ export namespace Prisma {
   export type ItemUncheckedCreateInput = {
     idItem?: number
     Descricao: string
+    inativo: boolean
     Conteudo?: ConteudoUncheckedCreateNestedManyWithoutItemInput
     ItemTraduzido?: ItemTraduzidoUncheckedCreateNestedManyWithoutItemInput
+    ligacaoAndroid?: ligacaoAndroidUncheckedCreateNestedOneWithoutItemInput
     TipoContainer?: TipoContainerUncheckedCreateNestedOneWithoutItemInput
     Unidades?: UnidadesUncheckedCreateNestedOneWithoutItemInput
   }
 
   export type ItemUpdateInput = {
     Descricao?: StringFieldUpdateOperationsInput | string
+    inativo?: BoolFieldUpdateOperationsInput | boolean
     Conteudo?: ConteudoUpdateManyWithoutItemNestedInput
     ItemTraduzido?: ItemTraduzidoUpdateManyWithoutItemNestedInput
+    ligacaoAndroid?: ligacaoAndroidUpdateOneWithoutItemNestedInput
     TipoContainer?: TipoContainerUpdateOneWithoutItemNestedInput
     Unidades?: UnidadesUpdateOneWithoutItemNestedInput
   }
@@ -20081,23 +21197,28 @@ export namespace Prisma {
   export type ItemUncheckedUpdateInput = {
     idItem?: IntFieldUpdateOperationsInput | number
     Descricao?: StringFieldUpdateOperationsInput | string
+    inativo?: BoolFieldUpdateOperationsInput | boolean
     Conteudo?: ConteudoUncheckedUpdateManyWithoutItemNestedInput
     ItemTraduzido?: ItemTraduzidoUncheckedUpdateManyWithoutItemNestedInput
+    ligacaoAndroid?: ligacaoAndroidUncheckedUpdateOneWithoutItemNestedInput
     TipoContainer?: TipoContainerUncheckedUpdateOneWithoutItemNestedInput
     Unidades?: UnidadesUncheckedUpdateOneWithoutItemNestedInput
   }
 
   export type ItemCreateManyInput = {
     Descricao: string
+    inativo: boolean
   }
 
   export type ItemUpdateManyMutationInput = {
     Descricao?: StringFieldUpdateOperationsInput | string
+    inativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ItemUncheckedUpdateManyInput = {
     idItem?: IntFieldUpdateOperationsInput | number
     Descricao?: StringFieldUpdateOperationsInput | string
+    inativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ItemTraduzidoCreateInput = {
@@ -20184,10 +21305,10 @@ export namespace Prisma {
   export type DestinosCreateInput = {
     idDestino: string
     nomeDestino: string
-    morada?: string | null
-    localMorada?: string | null
-    codigoPostal?: string | null
-    nacionalidade?: string | null
+    morada: string
+    localMorada: string
+    codigoPostal: string
+    nacionalidade: string
     Idiomas: IdiomasCreateNestedOneWithoutDestinosInput
     Envio?: EnvioCreateNestedManyWithoutDestinosInput
   }
@@ -20196,20 +21317,20 @@ export namespace Prisma {
     idDestino: string
     idIdioma: number
     nomeDestino: string
-    morada?: string | null
-    localMorada?: string | null
-    codigoPostal?: string | null
-    nacionalidade?: string | null
+    morada: string
+    localMorada: string
+    codigoPostal: string
+    nacionalidade: string
     Envio?: EnvioUncheckedCreateNestedManyWithoutDestinosInput
   }
 
   export type DestinosUpdateInput = {
     idDestino?: StringFieldUpdateOperationsInput | string
     nomeDestino?: StringFieldUpdateOperationsInput | string
-    morada?: NullableStringFieldUpdateOperationsInput | string | null
-    localMorada?: NullableStringFieldUpdateOperationsInput | string | null
-    codigoPostal?: NullableStringFieldUpdateOperationsInput | string | null
-    nacionalidade?: NullableStringFieldUpdateOperationsInput | string | null
+    morada?: StringFieldUpdateOperationsInput | string
+    localMorada?: StringFieldUpdateOperationsInput | string
+    codigoPostal?: StringFieldUpdateOperationsInput | string
+    nacionalidade?: StringFieldUpdateOperationsInput | string
     Idiomas?: IdiomasUpdateOneRequiredWithoutDestinosNestedInput
     Envio?: EnvioUpdateManyWithoutDestinosNestedInput
   }
@@ -20218,10 +21339,10 @@ export namespace Prisma {
     idDestino?: StringFieldUpdateOperationsInput | string
     idIdioma?: IntFieldUpdateOperationsInput | number
     nomeDestino?: StringFieldUpdateOperationsInput | string
-    morada?: NullableStringFieldUpdateOperationsInput | string | null
-    localMorada?: NullableStringFieldUpdateOperationsInput | string | null
-    codigoPostal?: NullableStringFieldUpdateOperationsInput | string | null
-    nacionalidade?: NullableStringFieldUpdateOperationsInput | string | null
+    morada?: StringFieldUpdateOperationsInput | string
+    localMorada?: StringFieldUpdateOperationsInput | string
+    codigoPostal?: StringFieldUpdateOperationsInput | string
+    nacionalidade?: StringFieldUpdateOperationsInput | string
     Envio?: EnvioUncheckedUpdateManyWithoutDestinosNestedInput
   }
 
@@ -20229,29 +21350,29 @@ export namespace Prisma {
     idDestino: string
     idIdioma: number
     nomeDestino: string
-    morada?: string | null
-    localMorada?: string | null
-    codigoPostal?: string | null
-    nacionalidade?: string | null
+    morada: string
+    localMorada: string
+    codigoPostal: string
+    nacionalidade: string
   }
 
   export type DestinosUpdateManyMutationInput = {
     idDestino?: StringFieldUpdateOperationsInput | string
     nomeDestino?: StringFieldUpdateOperationsInput | string
-    morada?: NullableStringFieldUpdateOperationsInput | string | null
-    localMorada?: NullableStringFieldUpdateOperationsInput | string | null
-    codigoPostal?: NullableStringFieldUpdateOperationsInput | string | null
-    nacionalidade?: NullableStringFieldUpdateOperationsInput | string | null
+    morada?: StringFieldUpdateOperationsInput | string
+    localMorada?: StringFieldUpdateOperationsInput | string
+    codigoPostal?: StringFieldUpdateOperationsInput | string
+    nacionalidade?: StringFieldUpdateOperationsInput | string
   }
 
   export type DestinosUncheckedUpdateManyInput = {
     idDestino?: StringFieldUpdateOperationsInput | string
     idIdioma?: IntFieldUpdateOperationsInput | number
     nomeDestino?: StringFieldUpdateOperationsInput | string
-    morada?: NullableStringFieldUpdateOperationsInput | string | null
-    localMorada?: NullableStringFieldUpdateOperationsInput | string | null
-    codigoPostal?: NullableStringFieldUpdateOperationsInput | string | null
-    nacionalidade?: NullableStringFieldUpdateOperationsInput | string | null
+    morada?: StringFieldUpdateOperationsInput | string
+    localMorada?: StringFieldUpdateOperationsInput | string
+    codigoPostal?: StringFieldUpdateOperationsInput | string
+    nacionalidade?: StringFieldUpdateOperationsInput | string
   }
 
   export type ContainerOpCreateInput = {
@@ -20465,6 +21586,40 @@ export namespace Prisma {
     idUnidades?: IntFieldUpdateOperationsInput | number
     idItem?: IntFieldUpdateOperationsInput | number
     descricaoUnidade?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ligacaoAndroidCreateInput = {
+    idParte: number
+    Item: ItemCreateNestedOneWithoutLigacaoAndroidInput
+  }
+
+  export type ligacaoAndroidUncheckedCreateInput = {
+    idItem: number
+    idParte: number
+  }
+
+  export type ligacaoAndroidUpdateInput = {
+    idParte?: IntFieldUpdateOperationsInput | number
+    Item?: ItemUpdateOneRequiredWithoutLigacaoAndroidNestedInput
+  }
+
+  export type ligacaoAndroidUncheckedUpdateInput = {
+    idItem?: IntFieldUpdateOperationsInput | number
+    idParte?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ligacaoAndroidCreateManyInput = {
+    idItem: number
+    idParte: number
+  }
+
+  export type ligacaoAndroidUpdateManyMutationInput = {
+    idParte?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ligacaoAndroidUncheckedUpdateManyInput = {
+    idItem?: IntFieldUpdateOperationsInput | number
+    idParte?: IntFieldUpdateOperationsInput | number
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -21098,6 +22253,11 @@ export namespace Prisma {
     idIdioma?: SortOrder
   }
 
+  export type LigacaoAndroidNullableScalarRelationFilter = {
+    is?: ligacaoAndroidWhereInput | null
+    isNot?: ligacaoAndroidWhereInput | null
+  }
+
   export type TipoContainerNullableScalarRelationFilter = {
     is?: TipoContainerWhereInput | null
     isNot?: TipoContainerWhereInput | null
@@ -21111,6 +22271,7 @@ export namespace Prisma {
   export type ItemCountOrderByAggregateInput = {
     idItem?: SortOrder
     Descricao?: SortOrder
+    inativo?: SortOrder
   }
 
   export type ItemAvgOrderByAggregateInput = {
@@ -21120,11 +22281,13 @@ export namespace Prisma {
   export type ItemMaxOrderByAggregateInput = {
     idItem?: SortOrder
     Descricao?: SortOrder
+    inativo?: SortOrder
   }
 
   export type ItemMinOrderByAggregateInput = {
     idItem?: SortOrder
     Descricao?: SortOrder
+    inativo?: SortOrder
   }
 
   export type ItemSumOrderByAggregateInput = {
@@ -21387,6 +22550,36 @@ export namespace Prisma {
   export type UnidadesSumOrderByAggregateInput = {
     idUnidades?: SortOrder
     idItem?: SortOrder
+  }
+
+  export type ligacaoAndroidIdItemIdParteCompoundUniqueInput = {
+    idItem: number
+    idParte: number
+  }
+
+  export type ligacaoAndroidCountOrderByAggregateInput = {
+    idItem?: SortOrder
+    idParte?: SortOrder
+  }
+
+  export type ligacaoAndroidAvgOrderByAggregateInput = {
+    idItem?: SortOrder
+    idParte?: SortOrder
+  }
+
+  export type ligacaoAndroidMaxOrderByAggregateInput = {
+    idItem?: SortOrder
+    idParte?: SortOrder
+  }
+
+  export type ligacaoAndroidMinOrderByAggregateInput = {
+    idItem?: SortOrder
+    idParte?: SortOrder
+  }
+
+  export type ligacaoAndroidSumOrderByAggregateInput = {
+    idItem?: SortOrder
+    idParte?: SortOrder
   }
 
   export type UserPapeisCreateNestedManyWithoutPapeisInput = {
@@ -21957,6 +23150,12 @@ export namespace Prisma {
     connect?: ItemTraduzidoWhereUniqueInput | ItemTraduzidoWhereUniqueInput[]
   }
 
+  export type ligacaoAndroidCreateNestedOneWithoutItemInput = {
+    create?: XOR<ligacaoAndroidCreateWithoutItemInput, ligacaoAndroidUncheckedCreateWithoutItemInput>
+    connectOrCreate?: ligacaoAndroidCreateOrConnectWithoutItemInput
+    connect?: ligacaoAndroidWhereUniqueInput
+  }
+
   export type TipoContainerCreateNestedOneWithoutItemInput = {
     create?: XOR<TipoContainerCreateWithoutItemInput, TipoContainerUncheckedCreateWithoutItemInput>
     connectOrCreate?: TipoContainerCreateOrConnectWithoutItemInput
@@ -21981,6 +23180,12 @@ export namespace Prisma {
     connectOrCreate?: ItemTraduzidoCreateOrConnectWithoutItemInput | ItemTraduzidoCreateOrConnectWithoutItemInput[]
     createMany?: ItemTraduzidoCreateManyItemInputEnvelope
     connect?: ItemTraduzidoWhereUniqueInput | ItemTraduzidoWhereUniqueInput[]
+  }
+
+  export type ligacaoAndroidUncheckedCreateNestedOneWithoutItemInput = {
+    create?: XOR<ligacaoAndroidCreateWithoutItemInput, ligacaoAndroidUncheckedCreateWithoutItemInput>
+    connectOrCreate?: ligacaoAndroidCreateOrConnectWithoutItemInput
+    connect?: ligacaoAndroidWhereUniqueInput
   }
 
   export type TipoContainerUncheckedCreateNestedOneWithoutItemInput = {
@@ -22021,6 +23226,16 @@ export namespace Prisma {
     update?: ItemTraduzidoUpdateWithWhereUniqueWithoutItemInput | ItemTraduzidoUpdateWithWhereUniqueWithoutItemInput[]
     updateMany?: ItemTraduzidoUpdateManyWithWhereWithoutItemInput | ItemTraduzidoUpdateManyWithWhereWithoutItemInput[]
     deleteMany?: ItemTraduzidoScalarWhereInput | ItemTraduzidoScalarWhereInput[]
+  }
+
+  export type ligacaoAndroidUpdateOneWithoutItemNestedInput = {
+    create?: XOR<ligacaoAndroidCreateWithoutItemInput, ligacaoAndroidUncheckedCreateWithoutItemInput>
+    connectOrCreate?: ligacaoAndroidCreateOrConnectWithoutItemInput
+    upsert?: ligacaoAndroidUpsertWithoutItemInput
+    disconnect?: ligacaoAndroidWhereInput | boolean
+    delete?: ligacaoAndroidWhereInput | boolean
+    connect?: ligacaoAndroidWhereUniqueInput
+    update?: XOR<XOR<ligacaoAndroidUpdateToOneWithWhereWithoutItemInput, ligacaoAndroidUpdateWithoutItemInput>, ligacaoAndroidUncheckedUpdateWithoutItemInput>
   }
 
   export type TipoContainerUpdateOneWithoutItemNestedInput = {
@@ -22069,6 +23284,16 @@ export namespace Prisma {
     update?: ItemTraduzidoUpdateWithWhereUniqueWithoutItemInput | ItemTraduzidoUpdateWithWhereUniqueWithoutItemInput[]
     updateMany?: ItemTraduzidoUpdateManyWithWhereWithoutItemInput | ItemTraduzidoUpdateManyWithWhereWithoutItemInput[]
     deleteMany?: ItemTraduzidoScalarWhereInput | ItemTraduzidoScalarWhereInput[]
+  }
+
+  export type ligacaoAndroidUncheckedUpdateOneWithoutItemNestedInput = {
+    create?: XOR<ligacaoAndroidCreateWithoutItemInput, ligacaoAndroidUncheckedCreateWithoutItemInput>
+    connectOrCreate?: ligacaoAndroidCreateOrConnectWithoutItemInput
+    upsert?: ligacaoAndroidUpsertWithoutItemInput
+    disconnect?: ligacaoAndroidWhereInput | boolean
+    delete?: ligacaoAndroidWhereInput | boolean
+    connect?: ligacaoAndroidWhereUniqueInput
+    update?: XOR<XOR<ligacaoAndroidUpdateToOneWithWhereWithoutItemInput, ligacaoAndroidUpdateWithoutItemInput>, ligacaoAndroidUncheckedUpdateWithoutItemInput>
   }
 
   export type TipoContainerUncheckedUpdateOneWithoutItemNestedInput = {
@@ -22537,6 +23762,20 @@ export namespace Prisma {
     update?: ConteudoUpdateWithWhereUniqueWithoutUnidadesInput | ConteudoUpdateWithWhereUniqueWithoutUnidadesInput[]
     updateMany?: ConteudoUpdateManyWithWhereWithoutUnidadesInput | ConteudoUpdateManyWithWhereWithoutUnidadesInput[]
     deleteMany?: ConteudoScalarWhereInput | ConteudoScalarWhereInput[]
+  }
+
+  export type ItemCreateNestedOneWithoutLigacaoAndroidInput = {
+    create?: XOR<ItemCreateWithoutLigacaoAndroidInput, ItemUncheckedCreateWithoutLigacaoAndroidInput>
+    connectOrCreate?: ItemCreateOrConnectWithoutLigacaoAndroidInput
+    connect?: ItemWhereUniqueInput
+  }
+
+  export type ItemUpdateOneRequiredWithoutLigacaoAndroidNestedInput = {
+    create?: XOR<ItemCreateWithoutLigacaoAndroidInput, ItemUncheckedCreateWithoutLigacaoAndroidInput>
+    connectOrCreate?: ItemCreateOrConnectWithoutLigacaoAndroidInput
+    upsert?: ItemUpsertWithoutLigacaoAndroidInput
+    connect?: ItemWhereUniqueInput
+    update?: XOR<XOR<ItemUpdateToOneWithWhereWithoutLigacaoAndroidInput, ItemUpdateWithoutLigacaoAndroidInput>, ItemUncheckedUpdateWithoutLigacaoAndroidInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -23310,7 +24549,9 @@ export namespace Prisma {
 
   export type ItemCreateWithoutConteudoInput = {
     Descricao: string
+    inativo: boolean
     ItemTraduzido?: ItemTraduzidoCreateNestedManyWithoutItemInput
+    ligacaoAndroid?: ligacaoAndroidCreateNestedOneWithoutItemInput
     TipoContainer?: TipoContainerCreateNestedOneWithoutItemInput
     Unidades?: UnidadesCreateNestedOneWithoutItemInput
   }
@@ -23318,7 +24559,9 @@ export namespace Prisma {
   export type ItemUncheckedCreateWithoutConteudoInput = {
     idItem?: number
     Descricao: string
+    inativo: boolean
     ItemTraduzido?: ItemTraduzidoUncheckedCreateNestedManyWithoutItemInput
+    ligacaoAndroid?: ligacaoAndroidUncheckedCreateNestedOneWithoutItemInput
     TipoContainer?: TipoContainerUncheckedCreateNestedOneWithoutItemInput
     Unidades?: UnidadesUncheckedCreateNestedOneWithoutItemInput
   }
@@ -23460,7 +24703,9 @@ export namespace Prisma {
 
   export type ItemUpdateWithoutConteudoInput = {
     Descricao?: StringFieldUpdateOperationsInput | string
+    inativo?: BoolFieldUpdateOperationsInput | boolean
     ItemTraduzido?: ItemTraduzidoUpdateManyWithoutItemNestedInput
+    ligacaoAndroid?: ligacaoAndroidUpdateOneWithoutItemNestedInput
     TipoContainer?: TipoContainerUpdateOneWithoutItemNestedInput
     Unidades?: UnidadesUpdateOneWithoutItemNestedInput
   }
@@ -23468,7 +24713,9 @@ export namespace Prisma {
   export type ItemUncheckedUpdateWithoutConteudoInput = {
     idItem?: IntFieldUpdateOperationsInput | number
     Descricao?: StringFieldUpdateOperationsInput | string
+    inativo?: BoolFieldUpdateOperationsInput | boolean
     ItemTraduzido?: ItemTraduzidoUncheckedUpdateManyWithoutItemNestedInput
+    ligacaoAndroid?: ligacaoAndroidUncheckedUpdateOneWithoutItemNestedInput
     TipoContainer?: TipoContainerUncheckedUpdateOneWithoutItemNestedInput
     Unidades?: UnidadesUncheckedUpdateOneWithoutItemNestedInput
   }
@@ -23590,10 +24837,10 @@ export namespace Prisma {
   export type DestinosCreateWithoutEnvioInput = {
     idDestino: string
     nomeDestino: string
-    morada?: string | null
-    localMorada?: string | null
-    codigoPostal?: string | null
-    nacionalidade?: string | null
+    morada: string
+    localMorada: string
+    codigoPostal: string
+    nacionalidade: string
     Idiomas: IdiomasCreateNestedOneWithoutDestinosInput
   }
 
@@ -23601,10 +24848,10 @@ export namespace Prisma {
     idDestino: string
     idIdioma: number
     nomeDestino: string
-    morada?: string | null
-    localMorada?: string | null
-    codigoPostal?: string | null
-    nacionalidade?: string | null
+    morada: string
+    localMorada: string
+    codigoPostal: string
+    nacionalidade: string
   }
 
   export type DestinosCreateOrConnectWithoutEnvioInput = {
@@ -23642,10 +24889,10 @@ export namespace Prisma {
   export type DestinosUpdateWithoutEnvioInput = {
     idDestino?: StringFieldUpdateOperationsInput | string
     nomeDestino?: StringFieldUpdateOperationsInput | string
-    morada?: NullableStringFieldUpdateOperationsInput | string | null
-    localMorada?: NullableStringFieldUpdateOperationsInput | string | null
-    codigoPostal?: NullableStringFieldUpdateOperationsInput | string | null
-    nacionalidade?: NullableStringFieldUpdateOperationsInput | string | null
+    morada?: StringFieldUpdateOperationsInput | string
+    localMorada?: StringFieldUpdateOperationsInput | string
+    codigoPostal?: StringFieldUpdateOperationsInput | string
+    nacionalidade?: StringFieldUpdateOperationsInput | string
     Idiomas?: IdiomasUpdateOneRequiredWithoutDestinosNestedInput
   }
 
@@ -23653,29 +24900,29 @@ export namespace Prisma {
     idDestino?: StringFieldUpdateOperationsInput | string
     idIdioma?: IntFieldUpdateOperationsInput | number
     nomeDestino?: StringFieldUpdateOperationsInput | string
-    morada?: NullableStringFieldUpdateOperationsInput | string | null
-    localMorada?: NullableStringFieldUpdateOperationsInput | string | null
-    codigoPostal?: NullableStringFieldUpdateOperationsInput | string | null
-    nacionalidade?: NullableStringFieldUpdateOperationsInput | string | null
+    morada?: StringFieldUpdateOperationsInput | string
+    localMorada?: StringFieldUpdateOperationsInput | string
+    codigoPostal?: StringFieldUpdateOperationsInput | string
+    nacionalidade?: StringFieldUpdateOperationsInput | string
   }
 
   export type DestinosCreateWithoutIdiomasInput = {
     idDestino: string
     nomeDestino: string
-    morada?: string | null
-    localMorada?: string | null
-    codigoPostal?: string | null
-    nacionalidade?: string | null
+    morada: string
+    localMorada: string
+    codigoPostal: string
+    nacionalidade: string
     Envio?: EnvioCreateNestedManyWithoutDestinosInput
   }
 
   export type DestinosUncheckedCreateWithoutIdiomasInput = {
     idDestino: string
     nomeDestino: string
-    morada?: string | null
-    localMorada?: string | null
-    codigoPostal?: string | null
-    nacionalidade?: string | null
+    morada: string
+    localMorada: string
+    codigoPostal: string
+    nacionalidade: string
     Envio?: EnvioUncheckedCreateNestedManyWithoutDestinosInput
   }
 
@@ -23730,10 +24977,10 @@ export namespace Prisma {
     idDestino?: StringFilter<"Destinos"> | string
     idIdioma?: IntFilter<"Destinos"> | number
     nomeDestino?: StringFilter<"Destinos"> | string
-    morada?: StringNullableFilter<"Destinos"> | string | null
-    localMorada?: StringNullableFilter<"Destinos"> | string | null
-    codigoPostal?: StringNullableFilter<"Destinos"> | string | null
-    nacionalidade?: StringNullableFilter<"Destinos"> | string | null
+    morada?: StringFilter<"Destinos"> | string
+    localMorada?: StringFilter<"Destinos"> | string
+    codigoPostal?: StringFilter<"Destinos"> | string
+    nacionalidade?: StringFilter<"Destinos"> | string
   }
 
   export type ItemTraduzidoUpsertWithWhereUniqueWithoutIdiomasInput = {
@@ -23810,6 +25057,19 @@ export namespace Prisma {
     data: ItemTraduzidoCreateManyItemInput | ItemTraduzidoCreateManyItemInput[]
   }
 
+  export type ligacaoAndroidCreateWithoutItemInput = {
+    idParte: number
+  }
+
+  export type ligacaoAndroidUncheckedCreateWithoutItemInput = {
+    idParte: number
+  }
+
+  export type ligacaoAndroidCreateOrConnectWithoutItemInput = {
+    where: ligacaoAndroidWhereUniqueInput
+    create: XOR<ligacaoAndroidCreateWithoutItemInput, ligacaoAndroidUncheckedCreateWithoutItemInput>
+  }
+
   export type TipoContainerCreateWithoutItemInput = {
     permiteSubContainer?: boolean
     Container?: ContainerCreateNestedManyWithoutTipoContainerInput
@@ -23874,6 +25134,25 @@ export namespace Prisma {
     data: XOR<ItemTraduzidoUpdateManyMutationInput, ItemTraduzidoUncheckedUpdateManyWithoutItemInput>
   }
 
+  export type ligacaoAndroidUpsertWithoutItemInput = {
+    update: XOR<ligacaoAndroidUpdateWithoutItemInput, ligacaoAndroidUncheckedUpdateWithoutItemInput>
+    create: XOR<ligacaoAndroidCreateWithoutItemInput, ligacaoAndroidUncheckedCreateWithoutItemInput>
+    where?: ligacaoAndroidWhereInput
+  }
+
+  export type ligacaoAndroidUpdateToOneWithWhereWithoutItemInput = {
+    where?: ligacaoAndroidWhereInput
+    data: XOR<ligacaoAndroidUpdateWithoutItemInput, ligacaoAndroidUncheckedUpdateWithoutItemInput>
+  }
+
+  export type ligacaoAndroidUpdateWithoutItemInput = {
+    idParte?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ligacaoAndroidUncheckedUpdateWithoutItemInput = {
+    idParte?: IntFieldUpdateOperationsInput | number
+  }
+
   export type TipoContainerUpsertWithoutItemInput = {
     update: XOR<TipoContainerUpdateWithoutItemInput, TipoContainerUncheckedUpdateWithoutItemInput>
     create: XOR<TipoContainerCreateWithoutItemInput, TipoContainerUncheckedCreateWithoutItemInput>
@@ -23936,7 +25215,9 @@ export namespace Prisma {
 
   export type ItemCreateWithoutItemTraduzidoInput = {
     Descricao: string
+    inativo: boolean
     Conteudo?: ConteudoCreateNestedManyWithoutItemInput
+    ligacaoAndroid?: ligacaoAndroidCreateNestedOneWithoutItemInput
     TipoContainer?: TipoContainerCreateNestedOneWithoutItemInput
     Unidades?: UnidadesCreateNestedOneWithoutItemInput
   }
@@ -23944,7 +25225,9 @@ export namespace Prisma {
   export type ItemUncheckedCreateWithoutItemTraduzidoInput = {
     idItem?: number
     Descricao: string
+    inativo: boolean
     Conteudo?: ConteudoUncheckedCreateNestedManyWithoutItemInput
+    ligacaoAndroid?: ligacaoAndroidUncheckedCreateNestedOneWithoutItemInput
     TipoContainer?: TipoContainerUncheckedCreateNestedOneWithoutItemInput
     Unidades?: UnidadesUncheckedCreateNestedOneWithoutItemInput
   }
@@ -23989,7 +25272,9 @@ export namespace Prisma {
 
   export type ItemUpdateWithoutItemTraduzidoInput = {
     Descricao?: StringFieldUpdateOperationsInput | string
+    inativo?: BoolFieldUpdateOperationsInput | boolean
     Conteudo?: ConteudoUpdateManyWithoutItemNestedInput
+    ligacaoAndroid?: ligacaoAndroidUpdateOneWithoutItemNestedInput
     TipoContainer?: TipoContainerUpdateOneWithoutItemNestedInput
     Unidades?: UnidadesUpdateOneWithoutItemNestedInput
   }
@@ -23997,7 +25282,9 @@ export namespace Prisma {
   export type ItemUncheckedUpdateWithoutItemTraduzidoInput = {
     idItem?: IntFieldUpdateOperationsInput | number
     Descricao?: StringFieldUpdateOperationsInput | string
+    inativo?: BoolFieldUpdateOperationsInput | boolean
     Conteudo?: ConteudoUncheckedUpdateManyWithoutItemNestedInput
+    ligacaoAndroid?: ligacaoAndroidUncheckedUpdateOneWithoutItemNestedInput
     TipoContainer?: TipoContainerUncheckedUpdateOneWithoutItemNestedInput
     Unidades?: UnidadesUncheckedUpdateOneWithoutItemNestedInput
   }
@@ -24036,16 +25323,20 @@ export namespace Prisma {
 
   export type ItemCreateWithoutTipoContainerInput = {
     Descricao: string
+    inativo: boolean
     Conteudo?: ConteudoCreateNestedManyWithoutItemInput
     ItemTraduzido?: ItemTraduzidoCreateNestedManyWithoutItemInput
+    ligacaoAndroid?: ligacaoAndroidCreateNestedOneWithoutItemInput
     Unidades?: UnidadesCreateNestedOneWithoutItemInput
   }
 
   export type ItemUncheckedCreateWithoutTipoContainerInput = {
     idItem?: number
     Descricao: string
+    inativo: boolean
     Conteudo?: ConteudoUncheckedCreateNestedManyWithoutItemInput
     ItemTraduzido?: ItemTraduzidoUncheckedCreateNestedManyWithoutItemInput
+    ligacaoAndroid?: ligacaoAndroidUncheckedCreateNestedOneWithoutItemInput
     Unidades?: UnidadesUncheckedCreateNestedOneWithoutItemInput
   }
 
@@ -24083,16 +25374,20 @@ export namespace Prisma {
 
   export type ItemUpdateWithoutTipoContainerInput = {
     Descricao?: StringFieldUpdateOperationsInput | string
+    inativo?: BoolFieldUpdateOperationsInput | boolean
     Conteudo?: ConteudoUpdateManyWithoutItemNestedInput
     ItemTraduzido?: ItemTraduzidoUpdateManyWithoutItemNestedInput
+    ligacaoAndroid?: ligacaoAndroidUpdateOneWithoutItemNestedInput
     Unidades?: UnidadesUpdateOneWithoutItemNestedInput
   }
 
   export type ItemUncheckedUpdateWithoutTipoContainerInput = {
     idItem?: IntFieldUpdateOperationsInput | number
     Descricao?: StringFieldUpdateOperationsInput | string
+    inativo?: BoolFieldUpdateOperationsInput | boolean
     Conteudo?: ConteudoUncheckedUpdateManyWithoutItemNestedInput
     ItemTraduzido?: ItemTraduzidoUncheckedUpdateManyWithoutItemNestedInput
+    ligacaoAndroid?: ligacaoAndroidUncheckedUpdateOneWithoutItemNestedInput
     Unidades?: UnidadesUncheckedUpdateOneWithoutItemNestedInput
   }
 
@@ -24636,16 +25931,20 @@ export namespace Prisma {
 
   export type ItemCreateWithoutUnidadesInput = {
     Descricao: string
+    inativo: boolean
     Conteudo?: ConteudoCreateNestedManyWithoutItemInput
     ItemTraduzido?: ItemTraduzidoCreateNestedManyWithoutItemInput
+    ligacaoAndroid?: ligacaoAndroidCreateNestedOneWithoutItemInput
     TipoContainer?: TipoContainerCreateNestedOneWithoutItemInput
   }
 
   export type ItemUncheckedCreateWithoutUnidadesInput = {
     idItem?: number
     Descricao: string
+    inativo: boolean
     Conteudo?: ConteudoUncheckedCreateNestedManyWithoutItemInput
     ItemTraduzido?: ItemTraduzidoUncheckedCreateNestedManyWithoutItemInput
+    ligacaoAndroid?: ligacaoAndroidUncheckedCreateNestedOneWithoutItemInput
     TipoContainer?: TipoContainerUncheckedCreateNestedOneWithoutItemInput
   }
 
@@ -24683,17 +25982,75 @@ export namespace Prisma {
 
   export type ItemUpdateWithoutUnidadesInput = {
     Descricao?: StringFieldUpdateOperationsInput | string
+    inativo?: BoolFieldUpdateOperationsInput | boolean
     Conteudo?: ConteudoUpdateManyWithoutItemNestedInput
     ItemTraduzido?: ItemTraduzidoUpdateManyWithoutItemNestedInput
+    ligacaoAndroid?: ligacaoAndroidUpdateOneWithoutItemNestedInput
     TipoContainer?: TipoContainerUpdateOneWithoutItemNestedInput
   }
 
   export type ItemUncheckedUpdateWithoutUnidadesInput = {
     idItem?: IntFieldUpdateOperationsInput | number
     Descricao?: StringFieldUpdateOperationsInput | string
+    inativo?: BoolFieldUpdateOperationsInput | boolean
+    Conteudo?: ConteudoUncheckedUpdateManyWithoutItemNestedInput
+    ItemTraduzido?: ItemTraduzidoUncheckedUpdateManyWithoutItemNestedInput
+    ligacaoAndroid?: ligacaoAndroidUncheckedUpdateOneWithoutItemNestedInput
+    TipoContainer?: TipoContainerUncheckedUpdateOneWithoutItemNestedInput
+  }
+
+  export type ItemCreateWithoutLigacaoAndroidInput = {
+    Descricao: string
+    inativo: boolean
+    Conteudo?: ConteudoCreateNestedManyWithoutItemInput
+    ItemTraduzido?: ItemTraduzidoCreateNestedManyWithoutItemInput
+    TipoContainer?: TipoContainerCreateNestedOneWithoutItemInput
+    Unidades?: UnidadesCreateNestedOneWithoutItemInput
+  }
+
+  export type ItemUncheckedCreateWithoutLigacaoAndroidInput = {
+    idItem?: number
+    Descricao: string
+    inativo: boolean
+    Conteudo?: ConteudoUncheckedCreateNestedManyWithoutItemInput
+    ItemTraduzido?: ItemTraduzidoUncheckedCreateNestedManyWithoutItemInput
+    TipoContainer?: TipoContainerUncheckedCreateNestedOneWithoutItemInput
+    Unidades?: UnidadesUncheckedCreateNestedOneWithoutItemInput
+  }
+
+  export type ItemCreateOrConnectWithoutLigacaoAndroidInput = {
+    where: ItemWhereUniqueInput
+    create: XOR<ItemCreateWithoutLigacaoAndroidInput, ItemUncheckedCreateWithoutLigacaoAndroidInput>
+  }
+
+  export type ItemUpsertWithoutLigacaoAndroidInput = {
+    update: XOR<ItemUpdateWithoutLigacaoAndroidInput, ItemUncheckedUpdateWithoutLigacaoAndroidInput>
+    create: XOR<ItemCreateWithoutLigacaoAndroidInput, ItemUncheckedCreateWithoutLigacaoAndroidInput>
+    where?: ItemWhereInput
+  }
+
+  export type ItemUpdateToOneWithWhereWithoutLigacaoAndroidInput = {
+    where?: ItemWhereInput
+    data: XOR<ItemUpdateWithoutLigacaoAndroidInput, ItemUncheckedUpdateWithoutLigacaoAndroidInput>
+  }
+
+  export type ItemUpdateWithoutLigacaoAndroidInput = {
+    Descricao?: StringFieldUpdateOperationsInput | string
+    inativo?: BoolFieldUpdateOperationsInput | boolean
+    Conteudo?: ConteudoUpdateManyWithoutItemNestedInput
+    ItemTraduzido?: ItemTraduzidoUpdateManyWithoutItemNestedInput
+    TipoContainer?: TipoContainerUpdateOneWithoutItemNestedInput
+    Unidades?: UnidadesUpdateOneWithoutItemNestedInput
+  }
+
+  export type ItemUncheckedUpdateWithoutLigacaoAndroidInput = {
+    idItem?: IntFieldUpdateOperationsInput | number
+    Descricao?: StringFieldUpdateOperationsInput | string
+    inativo?: BoolFieldUpdateOperationsInput | boolean
     Conteudo?: ConteudoUncheckedUpdateManyWithoutItemNestedInput
     ItemTraduzido?: ItemTraduzidoUncheckedUpdateManyWithoutItemNestedInput
     TipoContainer?: TipoContainerUncheckedUpdateOneWithoutItemNestedInput
+    Unidades?: UnidadesUncheckedUpdateOneWithoutItemNestedInput
   }
 
   export type UserPapeisCreateManyPapeisInput = {
@@ -24868,10 +26225,10 @@ export namespace Prisma {
   export type DestinosCreateManyIdiomasInput = {
     idDestino: string
     nomeDestino: string
-    morada?: string | null
-    localMorada?: string | null
-    codigoPostal?: string | null
-    nacionalidade?: string | null
+    morada: string
+    localMorada: string
+    codigoPostal: string
+    nacionalidade: string
   }
 
   export type ItemTraduzidoCreateManyIdiomasInput = {
@@ -24882,30 +26239,30 @@ export namespace Prisma {
   export type DestinosUpdateWithoutIdiomasInput = {
     idDestino?: StringFieldUpdateOperationsInput | string
     nomeDestino?: StringFieldUpdateOperationsInput | string
-    morada?: NullableStringFieldUpdateOperationsInput | string | null
-    localMorada?: NullableStringFieldUpdateOperationsInput | string | null
-    codigoPostal?: NullableStringFieldUpdateOperationsInput | string | null
-    nacionalidade?: NullableStringFieldUpdateOperationsInput | string | null
+    morada?: StringFieldUpdateOperationsInput | string
+    localMorada?: StringFieldUpdateOperationsInput | string
+    codigoPostal?: StringFieldUpdateOperationsInput | string
+    nacionalidade?: StringFieldUpdateOperationsInput | string
     Envio?: EnvioUpdateManyWithoutDestinosNestedInput
   }
 
   export type DestinosUncheckedUpdateWithoutIdiomasInput = {
     idDestino?: StringFieldUpdateOperationsInput | string
     nomeDestino?: StringFieldUpdateOperationsInput | string
-    morada?: NullableStringFieldUpdateOperationsInput | string | null
-    localMorada?: NullableStringFieldUpdateOperationsInput | string | null
-    codigoPostal?: NullableStringFieldUpdateOperationsInput | string | null
-    nacionalidade?: NullableStringFieldUpdateOperationsInput | string | null
+    morada?: StringFieldUpdateOperationsInput | string
+    localMorada?: StringFieldUpdateOperationsInput | string
+    codigoPostal?: StringFieldUpdateOperationsInput | string
+    nacionalidade?: StringFieldUpdateOperationsInput | string
     Envio?: EnvioUncheckedUpdateManyWithoutDestinosNestedInput
   }
 
   export type DestinosUncheckedUpdateManyWithoutIdiomasInput = {
     idDestino?: StringFieldUpdateOperationsInput | string
     nomeDestino?: StringFieldUpdateOperationsInput | string
-    morada?: NullableStringFieldUpdateOperationsInput | string | null
-    localMorada?: NullableStringFieldUpdateOperationsInput | string | null
-    codigoPostal?: NullableStringFieldUpdateOperationsInput | string | null
-    nacionalidade?: NullableStringFieldUpdateOperationsInput | string | null
+    morada?: StringFieldUpdateOperationsInput | string
+    localMorada?: StringFieldUpdateOperationsInput | string
+    codigoPostal?: StringFieldUpdateOperationsInput | string
+    nacionalidade?: StringFieldUpdateOperationsInput | string
   }
 
   export type ItemTraduzidoUpdateWithoutIdiomasInput = {

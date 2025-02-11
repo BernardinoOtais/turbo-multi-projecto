@@ -1,20 +1,35 @@
 import { z } from "zod";
 const chavePhc = z.string().max(25).min(17);
+const itemTraduzido = z.array(z.object({ descItem: z.string().max(100) }));
+
+export const DestinosPossiveisSchema = z.array(
+  z.object({
+    value: chavePhc,
+    label: z.string().max(100),
+  })
+);
+
 export const DestinoEnvio = z.object({
   idDestino: chavePhc,
   idIdioma: z.number().int().nonnegative(),
   nomeDestino: z.string().max(60),
+  morada: z.string().max(55),
+  localMorada: z.string().max(43),
+  codigoPostal: z.string().max(45),
+  nacionalidade: z.string().max(20),
 });
 
 export const item = z.object({
   idItem: z.number().int().nonnegative(),
   Descricao: z.string().max(100),
+  ItemTraduzido: itemTraduzido,
 });
 
 export const UnidadeSchema = z.object({
   idUnidades: z.number().int().nonnegative(),
   idItem: z.number().int().nonnegative(),
   descricaoUnidade: z.string().max(100),
+  Item: z.object({ ItemTraduzido: itemTraduzido }).optional(),
 });
 
 export const OpTamanhoSchema = z.object({
@@ -117,27 +132,13 @@ export const EnvioSchema = z.object({
   Container: ListaDeContainersEnvio,
   Itens: ItensSchema.optional(),
   Unidades: UnidadesSchema.optional(),
-  DestinosDisponiveis: z
-    .array(
-      z.object({
-        value: chavePhc,
-        label: z.string().max(100),
-      })
-    )
-    .optional(),
+  DestinosDisponiveis: DestinosPossiveisSchema.optional(),
 });
 
 export const EnviosListSchema = z.object({
   lista: z.array(EnvioSchema),
   tamanhoLista: z.number().int().nonnegative(),
-  DestinosDisponiveis: z
-    .array(
-      z.object({
-        value: chavePhc,
-        label: z.string().max(100),
-      })
-    )
-    .optional(),
+  DestinosDisponiveis: DestinosPossiveisSchema.optional(),
 });
 
 export type EnvioDto = z.infer<typeof EnvioSchema>;
@@ -159,3 +160,7 @@ export type ItensSchemaDto = z.infer<typeof ItensSchema>;
 export type OpTamanhoDto = z.infer<typeof OpTamanhoSchema>;
 
 export type OpSchemaDto = z.infer<typeof OpSchema>;
+
+export type DestinoEnvioDto = z.infer<typeof DestinoEnvio>;
+
+export type DestinosPossiveisDto = z.infer<typeof DestinosPossiveisSchema>;

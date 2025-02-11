@@ -2,6 +2,7 @@
 
 import {
   IdContainerOpSchemaDto,
+  ListaIdsSchemaDto,
   PostAlturaDto,
   PostContainerSchemaDto,
   PostConteudoDto,
@@ -15,6 +16,7 @@ import { redirect } from "next/navigation";
 
 import { getSession } from "@/lib/actions/auth/sessions";
 import { fetchDelete } from "@/lib/fetch/fetch-delete";
+import { fetchDeleteBody } from "@/lib/fetch/fetch-delete-body";
 import { fetchPatch } from "@/lib/fetch/fetch-patch";
 import { fetchPost } from "@/lib/fetch/fetch-post";
 
@@ -123,14 +125,15 @@ export async function reordenaContainer(
   }
 }
 
-export async function apagaConteudo(idConteudo: number) {
+export async function apagaConteudo(listaConteudo: ListaIdsSchemaDto) {
   try {
-    const response = await fetchDelete("envios/conteudoApaga", {
-      id: idConteudo,
-    });
+    const response = await fetchDeleteBody(
+      "envios/conteudoApaga",
+      listaConteudo,
+    );
 
     // Trigger revalidation of the specified path
-    revalidatePath("embarques/novo");
+    revalidatePath("dashboard/embarques/novo");
 
     return response;
   } catch (error) {
@@ -229,6 +232,24 @@ export async function novoEnvio(conteudo: PostNovoEnvioSchemaDto) {
     return response;
   } catch (error) {
     console.log("Erro insiroAltura:", error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : "Erro inesperado...",
+    };
+  }
+}
+
+export async function actualizaAndroid() {
+  try {
+    const session = await getSession();
+
+    if (!session) redirect("/dashboard");
+
+    const response = fetchPost("envios/itens/actualiza-android");
+
+    return response;
+  } catch (error) {
+    console.log("Erro ao actulizar partes provenientes do android:", error);
     return {
       success: false,
       error: error instanceof Error ? error.message : "Erro inesperado...",

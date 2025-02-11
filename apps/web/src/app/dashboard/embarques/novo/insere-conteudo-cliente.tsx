@@ -128,6 +128,7 @@ const InsereConteudoCliente = ({
   }, [dadoOps, form, tamanhoUnico]);
 
   const tamanhosQttPeso = form.getValues("conteudo.TamanhosQttPeso");
+
   function onSubmit(values: PostConteudoDto) {
     setEstadoBoataoSubmitDisabled(true);
     insiroConteudo(values)

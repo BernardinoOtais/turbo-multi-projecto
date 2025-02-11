@@ -13,7 +13,11 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { ListaDeContainersEnvioDto, ContainerSchemaDto } from "@repo/types";
+import {
+  ListaDeContainersEnvioDto,
+  ContainerSchemaDto,
+  DestinoEnvioDto,
+} from "@repo/types";
 import dynamic from "next/dynamic";
 import React, { useEffect, useRef, useState } from "react";
 
@@ -30,12 +34,14 @@ type ContainersProps = {
   containers: ListaDeContainersEnvioDto;
   idEnvio: number;
   niveisValidados: number[];
+  destino: DestinoEnvioDto;
 };
 
 const Containers = ({
   containers,
   idEnvio,
   niveisValidados,
+  destino,
 }: ContainersProps) => {
   //console.log("Containers", dadosDisponiveisParaInserir);
   const [apagaCardEstado, setApagaCardEstado] = useState(false);
@@ -200,6 +206,7 @@ const Containers = ({
             setApagaCardEstado={setApagaCardEstado}
             apagaOpEstado={apagaOpEstado}
             setApagaOpEstado={setApagaOpEstado}
+            destino={destino}
           />
         ))}
       </SortableContext>

@@ -101,12 +101,14 @@ model Idiomas {
 }
 
 model Item {
-  idItem        Int             @id(map: "PK_Item") @default(autoincrement())
-  Descricao     String          @db.NVarChar(100)
-  Conteudo      Conteudo[]
-  ItemTraduzido ItemTraduzido[]
-  TipoContainer TipoContainer?
-  Unidades      Unidades?
+  idItem         Int             @id(map: "PK_Item") @default(autoincrement())
+  Descricao      String          @db.NVarChar(100)
+  inativo        Boolean
+  Conteudo       Conteudo[]
+  ItemTraduzido  ItemTraduzido[]
+  ligacaoAndroid ligacaoAndroid?
+  TipoContainer  TipoContainer?
+  Unidades       Unidades?
 }
 
 model ItemTraduzido {
@@ -131,10 +133,10 @@ model Destinos {
   idDestino     String  @id(map: "PK_Destinos") @db.Char(25)
   idIdioma      Int
   nomeDestino   String  @db.NVarChar(60)
-  morada        String? @db.VarChar(55)
-  localMorada   String? @db.VarChar(43)
-  codigoPostal  String? @db.VarChar(45)
-  nacionalidade String? @db.VarChar(20)
+  morada        String  @db.VarChar(55)
+  localMorada   String  @db.VarChar(43)
+  codigoPostal  String  @db.VarChar(45)
+  nacionalidade String  @db.VarChar(20)
   Idiomas       Idiomas @relation(fields: [idIdioma], references: [idIdioma], onUpdate: NoAction, map: "FK_Destinos_Idiomas")
   Envio         Envio[]
 }
@@ -179,4 +181,12 @@ model Unidades {
   descricaoUnidade String     @db.NVarChar(100)
   Conteudo         Conteudo[]
   Item             Item       @relation(fields: [idItem], references: [idItem], onUpdate: NoAction, map: "FK_Unidades_Item")
+}
+
+model ligacaoAndroid {
+  idItem  Int  @unique(map: "UQ_LigacaoAndroid_Iditem")
+  idParte Int  @unique(map: "UQ_LigacaoAndroid_IdParte")
+  Item    Item @relation(fields: [idItem], references: [idItem], onUpdate: NoAction, map: "FK_ligacaoAndroid_Item")
+
+  @@id([idItem, idParte], map: "PK_ligacaoAndroid")
 }

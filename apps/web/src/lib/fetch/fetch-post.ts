@@ -8,7 +8,7 @@ export interface FetchOptions extends RequestInit {
 }
 export const fetchPost = async (
   url: string,
-  body: Record<string, unknown>,
+  body?: Record<string, unknown>,
   revalida?: string,
   options: FetchOptions = {},
 ) => {
@@ -26,7 +26,7 @@ export const fetchPost = async (
     const response = await fetch(requestUrl, {
       ...options,
       method: "POST",
-      body: JSON.stringify(body),
+      body: body ? JSON.stringify(body) : undefined, // Handle undefined body
       credentials: "include",
     });
 

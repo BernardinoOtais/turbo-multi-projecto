@@ -1,7 +1,8 @@
+import { apagaConteudos } from './apaga-conteudos';
 import { apagoEnvio } from './apaga-envio';
-import { apagoConteudo } from './apago-conteudo';
 import { apagoOpContainer } from './apago-op-container';
 import { containerApagar } from './container-apagar';
+import { getDestinos } from './get-destinos';
 import { getEnvioById } from './get-envio-by-id';
 import { getEnvios } from './get-envios';
 import { insiroAlturaContainer } from './insiro-altura-container';
@@ -30,7 +31,7 @@ export class EnviosRepository {
 
   static apagoOpContainer = apagoOpContainer;
 
-  static apagoConteudo = apagoConteudo;
+  static apagaConteudos = apagaConteudos;
 
   static insiroConteudo = insiroConteudo;
 
@@ -41,4 +42,6 @@ export class EnviosRepository {
   static patchNomeEnvio = patchNomeEnvio;
 
   static novoEnvioOUPatch = novoEnvioOUPatch;
+
+  static getDestinos = getDestinos;
 }

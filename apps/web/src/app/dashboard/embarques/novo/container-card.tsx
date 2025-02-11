@@ -1,6 +1,6 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { ContainerSchemaDto, PostOpDto } from "@repo/types";
+import { ContainerSchemaDto, DestinoEnvioDto, PostOpDto } from "@repo/types";
 import { PostAlturaDto } from "@repo/types";
 import { GripHorizontal } from "lucide-react";
 import Link from "next/link";
@@ -35,6 +35,7 @@ type ContainerCardProps = {
   setApagaCardEstado: (data: boolean) => void;
   apagaOpEstado: boolean;
   setApagaOpEstado: (data: boolean) => void;
+  destino: DestinoEnvioDto;
 };
 const ContainerCard = ({
   container,
@@ -46,6 +47,7 @@ const ContainerCard = ({
   setApagaCardEstado,
   apagaOpEstado,
   setApagaOpEstado,
+  destino,
 }: ContainerCardProps) => {
   const {
     attributes,
@@ -172,7 +174,13 @@ const ContainerCard = ({
             nomeContainer={container.TipoContainer?.Item.Descricao || ""}
           />
         ) : (
-          container.TipoContainer?.idItem === 4 && <PrintPallet />
+          container.TipoContainer?.idItem === 4 && (
+            <PrintPallet
+              container={container}
+              destino={destino}
+              altura={container.altura}
+            />
+          )
         )}
       </Card>
     </>

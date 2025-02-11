@@ -35,9 +35,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { novoEnvio } from "@/lib/actions/dashboard/embarques";
 import { cn } from "@/lib/utils";
 
-type NovoEnvioProps = { destinos: AutocompleteStringDto[] };
+type NovoEnvioProps = {
+  destinos: AutocompleteStringDto[];
+  aberto?: boolean;
+};
 
-const NovoEnvio = ({ destinos }: NovoEnvioProps) => {
+const NovoEnvio = ({ destinos, aberto }: NovoEnvioProps) => {
+  const [open, setOpen] = useState(aberto || false);
   const router = useRouter();
   const [disabledBotao, setDisabledBotao] = useState(true);
   const form = useForm<PostNovoEnvioSchemaDto>({
@@ -87,18 +91,20 @@ const NovoEnvio = ({ destinos }: NovoEnvioProps) => {
       });
   }
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button
-          size="icon"
-          className={cn(
-            "relative flex items-center justify-center", // Default classes
-          )}
-          title="Novo envio"
-        >
-          <ClipboardPlus />
-        </Button>
-      </DialogTrigger>
+    <Dialog open={open} onOpenChange={setOpen}>
+      {!open && (
+        <DialogTrigger asChild>
+          <Button
+            size="icon"
+            className={cn(
+              "relative flex items-center justify-center", // Default classes
+            )}
+            title="Novo envio"
+          >
+            <ClipboardPlus />
+          </Button>
+        </DialogTrigger>
+      )}
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
           <DialogTitle>Novo Envio</DialogTitle>

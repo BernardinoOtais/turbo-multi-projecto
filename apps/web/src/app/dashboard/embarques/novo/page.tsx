@@ -1,6 +1,7 @@
 import {
   ContainerOpsSchemasDto,
   ConteudoDto,
+  DestinosPossiveisSchema,
   EnvioSchema,
   ItensSchemaDto,
 } from "@repo/types";
@@ -17,6 +18,7 @@ import { cn } from "@/lib/utils";
 import DestinosDesteEnvio from "../destinos-deste-envio";
 import ContainerBreadCrumbs from "./container-bread-crumbes";
 import MainEFooterEmbarqueNovo from "./main-e-footer-embarque-novo";
+import NovoEnvio from "../novo-envio";
 
 const niveis = z.object({
   nivel: z
@@ -50,16 +52,35 @@ const NovoEmbarque = async ({ searchParams }: PageProps) => {
   const nIdEnvio = idEnvio ? parseInt(idEnvio as string) : null;
 
   if (!nIdEnvio) {
+    const destinos = await fetchGet("envios/getdestinos");
+    const destinosValidados = DestinosPossiveisSchema.safeParse(destinos.data);
+    if (!destinosValidados.success) {
+      redirect("/dashboard");
+    }
+
     return (
-      <div className="flex h-screen items-center justify-center">
-        <div>novo</div>
+      <div className="mx-auto p-1">
+        <NovoEnvio destinos={destinosValidados.data} aberto={true} />
       </div>
     );
   }
 
-  const dadosGetEnvio = { id: nIdEnvio };
+  let idContainerInicial = 0;
+  if (niveisValidados.length > 0) {
+    idContainerInicial = niveisValidados[0];
+  }
 
-  const envios = await fetchGet("envios/envio", dadosGetEnvio);
+  const dadosGetEnvio =
+    idContainerInicial === 0
+      ? { id: nIdEnvio }
+      : { id: nIdEnvio, idd: idContainerInicial };
+
+  // Remove undefined values
+  const filteredDadosGetEnvio = Object.fromEntries(
+    Object.entries(dadosGetEnvio).filter(([, v]) => v !== undefined),
+  );
+
+  const envios = await fetchGet("envios/envio", filteredDadosGetEnvio);
   //console.log(envios);
   if (!envios) {
     redirect("/dashboard");
@@ -191,6 +212,7 @@ const NovoEmbarque = async ({ searchParams }: PageProps) => {
         unidades={unidades}
         itensDisponiveis={itensDisponiveis}
         idConteudo={idConteudoRecebido}
+        destino={dadosEnvio.Destinos}
       />
     </>
   );
