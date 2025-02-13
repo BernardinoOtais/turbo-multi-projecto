@@ -2,7 +2,7 @@ import React from "react";
 
 const PackingListDizeres = () => {
   return (
-    <div className="text-[9px]">
+    <div className="text-[9px]" style={{ pageBreakAfter: "always" }}>
       <p>RESPONSABILITÉ DU FABRICANT:</p>
       <p>1) La bonne exécution du service contracté sur ce document ;</p>
       <p>

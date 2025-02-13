@@ -23,7 +23,7 @@ import ApagaOpDoContainer from "./apaga-op-do-container";
 import BotaoApagaContainer from "./botao-apaga-container";
 import InputAltura from "./input-altura";
 import InputOp from "./input-op";
-import PrintPallet from "./print-pallet";
+import PrintPalletDialog from "./print-pallet-dialog";
 
 type ContainerCardProps = {
   container: ContainerSchemaDto;
@@ -78,6 +78,17 @@ const ContainerCard = ({
   const naoTemSubContainers =
     container.other_Container?.length == 0 ||
     !container.other_Container?.length;
+
+  const getContainerComponent = () => {
+    switch (container.TipoContainer?.idItem) {
+      case 4:
+        return <PrintPalletDialog container={container} destino={destino} />;
+      case 3:
+        return <PrintPalletDialog container={container} destino={destino} />;
+      default:
+        return null;
+    }
+  };
 
   return (
     <>
@@ -174,13 +185,7 @@ const ContainerCard = ({
             nomeContainer={container.TipoContainer?.Item.Descricao || ""}
           />
         ) : (
-          container.TipoContainer?.idItem === 4 && (
-            <PrintPallet
-              container={container}
-              destino={destino}
-              altura={container.altura}
-            />
-          )
+          getContainerComponent()
         )}
       </Card>
     </>
