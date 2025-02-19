@@ -175,7 +175,9 @@ const ConfiguracaoEmbarques = async ({ searchParams }: PageProps) => {
         <BoataoActualizaAndroid />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline">Insere Itens</Button>
+            <Button variant="outline" className="m-1 mx-auto">
+              Insere Itens
+            </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="m-1 mx-auto w-56">
             <DropdownMenuLabel>Dados a Inserir...</DropdownMenuLabel>
