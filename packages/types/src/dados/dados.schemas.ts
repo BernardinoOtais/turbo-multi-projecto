@@ -1,5 +1,5 @@
 import z from "zod";
-const inteiroNaoNegativo = z.coerce
+export const inteiroNaoNegativo = z.coerce
   .number({
     required_error: "Tem que inserrir números...",
     invalid_type_error: "Formato errado...",

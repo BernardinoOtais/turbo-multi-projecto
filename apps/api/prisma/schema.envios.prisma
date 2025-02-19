@@ -104,6 +104,7 @@ model Item {
   idItem         Int             @id(map: "PK_Item") @default(autoincrement())
   Descricao      String          @db.NVarChar(100)
   inativo        Boolean
+  Acessorios     Acessorios?
   Conteudo       Conteudo[]
   ItemTraduzido  ItemTraduzido[]
   ligacaoAndroid ligacaoAndroid?
@@ -189,4 +190,10 @@ model ligacaoAndroid {
   Item    Item @relation(fields: [idItem], references: [idItem], onUpdate: NoAction, map: "FK_ligacaoAndroid_Item")
 
   @@id([idItem, idParte], map: "PK_ligacaoAndroid")
+}
+
+model Acessorios {
+  idItem    Int    @id(map: "PK_Acessorios")
+  Descricao String @db.NVarChar(100)
+  Item      Item   @relation(fields: [idItem], references: [idItem], onUpdate: NoAction, map: "FK_Acessorios_Item")
 }

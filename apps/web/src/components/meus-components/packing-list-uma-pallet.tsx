@@ -1,5 +1,5 @@
 import { ContainerSchemaDto, DestinoEnvioDto } from "@repo/types";
-import React, { Fragment } from "react";
+import React from "react";
 
 import PackingListConteudo from "./packing-list-conteudo";
 import PackingListDestino from "./packing-list-destino";

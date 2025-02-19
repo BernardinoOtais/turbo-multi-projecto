@@ -245,6 +245,11 @@ exports.Prisma.LigacaoAndroidScalarFieldEnum = {
   idParte: 'idParte'
 };
 
+exports.Prisma.AcessoriosScalarFieldEnum = {
+  idItem: 'idItem',
+  Descricao: 'Descricao'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -273,7 +278,8 @@ exports.Prisma.ModelName = {
   Op: 'Op',
   OpTamanho: 'OpTamanho',
   Unidades: 'Unidades',
-  ligacaoAndroid: 'ligacaoAndroid'
+  ligacaoAndroid: 'ligacaoAndroid',
+  Acessorios: 'Acessorios'
 };
 
 /**

@@ -98,6 +98,11 @@ export type Unidades = $Result.DefaultSelection<Prisma.$UnidadesPayload>
  * 
  */
 export type ligacaoAndroid = $Result.DefaultSelection<Prisma.$ligacaoAndroidPayload>
+/**
+ * Model Acessorios
+ * 
+ */
+export type Acessorios = $Result.DefaultSelection<Prisma.$AcessoriosPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -393,6 +398,16 @@ export class PrismaClient<
     * ```
     */
   get ligacaoAndroid(): Prisma.ligacaoAndroidDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.acessorios`: Exposes CRUD operations for the **Acessorios** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Acessorios
+    * const acessorios = await prisma.acessorios.findMany()
+    * ```
+    */
+  get acessorios(): Prisma.AcessoriosDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -849,7 +864,8 @@ export namespace Prisma {
     Op: 'Op',
     OpTamanho: 'OpTamanho',
     Unidades: 'Unidades',
-    ligacaoAndroid: 'ligacaoAndroid'
+    ligacaoAndroid: 'ligacaoAndroid',
+    Acessorios: 'Acessorios'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -865,7 +881,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "papeis" | "sysdiagrams" | "user" | "userPapeis" | "container" | "conteudo" | "envio" | "idiomas" | "item" | "itemTraduzido" | "tipoContainer" | "destinos" | "containerOp" | "op" | "opTamanho" | "unidades" | "ligacaoAndroid"
+      modelProps: "papeis" | "sysdiagrams" | "user" | "userPapeis" | "container" | "conteudo" | "envio" | "idiomas" | "item" | "itemTraduzido" | "tipoContainer" | "destinos" | "containerOp" | "op" | "opTamanho" | "unidades" | "ligacaoAndroid" | "acessorios"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1991,6 +2007,72 @@ export namespace Prisma {
           }
         }
       }
+      Acessorios: {
+        payload: Prisma.$AcessoriosPayload<ExtArgs>
+        fields: Prisma.AcessoriosFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AcessoriosFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcessoriosPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AcessoriosFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcessoriosPayload>
+          }
+          findFirst: {
+            args: Prisma.AcessoriosFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcessoriosPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AcessoriosFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcessoriosPayload>
+          }
+          findMany: {
+            args: Prisma.AcessoriosFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcessoriosPayload>[]
+          }
+          create: {
+            args: Prisma.AcessoriosCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcessoriosPayload>
+          }
+          createMany: {
+            args: Prisma.AcessoriosCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.AcessoriosDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcessoriosPayload>
+          }
+          update: {
+            args: Prisma.AcessoriosUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcessoriosPayload>
+          }
+          deleteMany: {
+            args: Prisma.AcessoriosDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AcessoriosUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.AcessoriosUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcessoriosPayload>
+          }
+          aggregate: {
+            args: Prisma.AcessoriosAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAcessorios>
+          }
+          groupBy: {
+            args: Prisma.AcessoriosGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AcessoriosGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AcessoriosCountArgs<ExtArgs>
+            result: $Utils.Optional<AcessoriosCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2092,6 +2174,7 @@ export namespace Prisma {
     opTamanho?: OpTamanhoOmit
     unidades?: UnidadesOmit
     ligacaoAndroid?: ligacaoAndroidOmit
+    acessorios?: AcessoriosOmit
   }
 
   /* Types for Logging */
@@ -10691,6 +10774,7 @@ export namespace Prisma {
     idItem?: boolean
     Descricao?: boolean
     inativo?: boolean
+    Acessorios?: boolean | Item$AcessoriosArgs<ExtArgs>
     Conteudo?: boolean | Item$ConteudoArgs<ExtArgs>
     ItemTraduzido?: boolean | Item$ItemTraduzidoArgs<ExtArgs>
     ligacaoAndroid?: boolean | Item$ligacaoAndroidArgs<ExtArgs>
@@ -10709,6 +10793,7 @@ export namespace Prisma {
 
   export type ItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"idItem" | "Descricao" | "inativo", ExtArgs["result"]["item"]>
   export type ItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Acessorios?: boolean | Item$AcessoriosArgs<ExtArgs>
     Conteudo?: boolean | Item$ConteudoArgs<ExtArgs>
     ItemTraduzido?: boolean | Item$ItemTraduzidoArgs<ExtArgs>
     ligacaoAndroid?: boolean | Item$ligacaoAndroidArgs<ExtArgs>
@@ -10720,6 +10805,7 @@ export namespace Prisma {
   export type $ItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Item"
     objects: {
+      Acessorios: Prisma.$AcessoriosPayload<ExtArgs> | null
       Conteudo: Prisma.$ConteudoPayload<ExtArgs>[]
       ItemTraduzido: Prisma.$ItemTraduzidoPayload<ExtArgs>[]
       ligacaoAndroid: Prisma.$ligacaoAndroidPayload<ExtArgs> | null
@@ -11070,6 +11156,7 @@ export namespace Prisma {
    */
   export interface Prisma__ItemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    Acessorios<T extends Item$AcessoriosArgs<ExtArgs> = {}>(args?: Subset<T, Item$AcessoriosArgs<ExtArgs>>): Prisma__AcessoriosClient<$Result.GetResult<Prisma.$AcessoriosPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
     Conteudo<T extends Item$ConteudoArgs<ExtArgs> = {}>(args?: Subset<T, Item$ConteudoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConteudoPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
     ItemTraduzido<T extends Item$ItemTraduzidoArgs<ExtArgs> = {}>(args?: Subset<T, Item$ItemTraduzidoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItemTraduzidoPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
     ligacaoAndroid<T extends Item$ligacaoAndroidArgs<ExtArgs> = {}>(args?: Subset<T, Item$ligacaoAndroidArgs<ExtArgs>>): Prisma__ligacaoAndroidClient<$Result.GetResult<Prisma.$ligacaoAndroidPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
@@ -11446,6 +11533,25 @@ export namespace Prisma {
      * Limit how many Items to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Item.Acessorios
+   */
+  export type Item$AcessoriosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Acessorios
+     */
+    select?: AcessoriosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Acessorios
+     */
+    omit?: AcessoriosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AcessoriosInclude<ExtArgs> | null
+    where?: AcessoriosWhereInput
   }
 
   /**
@@ -19438,6 +19544,935 @@ export namespace Prisma {
 
 
   /**
+   * Model Acessorios
+   */
+
+  export type AggregateAcessorios = {
+    _count: AcessoriosCountAggregateOutputType | null
+    _avg: AcessoriosAvgAggregateOutputType | null
+    _sum: AcessoriosSumAggregateOutputType | null
+    _min: AcessoriosMinAggregateOutputType | null
+    _max: AcessoriosMaxAggregateOutputType | null
+  }
+
+  export type AcessoriosAvgAggregateOutputType = {
+    idItem: number | null
+  }
+
+  export type AcessoriosSumAggregateOutputType = {
+    idItem: number | null
+  }
+
+  export type AcessoriosMinAggregateOutputType = {
+    idItem: number | null
+    Descricao: string | null
+  }
+
+  export type AcessoriosMaxAggregateOutputType = {
+    idItem: number | null
+    Descricao: string | null
+  }
+
+  export type AcessoriosCountAggregateOutputType = {
+    idItem: number
+    Descricao: number
+    _all: number
+  }
+
+
+  export type AcessoriosAvgAggregateInputType = {
+    idItem?: true
+  }
+
+  export type AcessoriosSumAggregateInputType = {
+    idItem?: true
+  }
+
+  export type AcessoriosMinAggregateInputType = {
+    idItem?: true
+    Descricao?: true
+  }
+
+  export type AcessoriosMaxAggregateInputType = {
+    idItem?: true
+    Descricao?: true
+  }
+
+  export type AcessoriosCountAggregateInputType = {
+    idItem?: true
+    Descricao?: true
+    _all?: true
+  }
+
+  export type AcessoriosAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Acessorios to aggregate.
+     */
+    where?: AcessoriosWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Acessorios to fetch.
+     */
+    orderBy?: AcessoriosOrderByWithRelationInput | AcessoriosOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AcessoriosWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Acessorios from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Acessorios.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Acessorios
+    **/
+    _count?: true | AcessoriosCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AcessoriosAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AcessoriosSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AcessoriosMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AcessoriosMaxAggregateInputType
+  }
+
+  export type GetAcessoriosAggregateType<T extends AcessoriosAggregateArgs> = {
+        [P in keyof T & keyof AggregateAcessorios]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAcessorios[P]>
+      : GetScalarType<T[P], AggregateAcessorios[P]>
+  }
+
+
+
+
+  export type AcessoriosGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AcessoriosWhereInput
+    orderBy?: AcessoriosOrderByWithAggregationInput | AcessoriosOrderByWithAggregationInput[]
+    by: AcessoriosScalarFieldEnum[] | AcessoriosScalarFieldEnum
+    having?: AcessoriosScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AcessoriosCountAggregateInputType | true
+    _avg?: AcessoriosAvgAggregateInputType
+    _sum?: AcessoriosSumAggregateInputType
+    _min?: AcessoriosMinAggregateInputType
+    _max?: AcessoriosMaxAggregateInputType
+  }
+
+  export type AcessoriosGroupByOutputType = {
+    idItem: number
+    Descricao: string
+    _count: AcessoriosCountAggregateOutputType | null
+    _avg: AcessoriosAvgAggregateOutputType | null
+    _sum: AcessoriosSumAggregateOutputType | null
+    _min: AcessoriosMinAggregateOutputType | null
+    _max: AcessoriosMaxAggregateOutputType | null
+  }
+
+  type GetAcessoriosGroupByPayload<T extends AcessoriosGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AcessoriosGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AcessoriosGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AcessoriosGroupByOutputType[P]>
+            : GetScalarType<T[P], AcessoriosGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AcessoriosSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    idItem?: boolean
+    Descricao?: boolean
+    Item?: boolean | ItemDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["acessorios"]>
+
+
+
+  export type AcessoriosSelectScalar = {
+    idItem?: boolean
+    Descricao?: boolean
+  }
+
+  export type AcessoriosOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"idItem" | "Descricao", ExtArgs["result"]["acessorios"]>
+  export type AcessoriosInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Item?: boolean | ItemDefaultArgs<ExtArgs>
+  }
+
+  export type $AcessoriosPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Acessorios"
+    objects: {
+      Item: Prisma.$ItemPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      idItem: number
+      Descricao: string
+    }, ExtArgs["result"]["acessorios"]>
+    composites: {}
+  }
+
+  type AcessoriosGetPayload<S extends boolean | null | undefined | AcessoriosDefaultArgs> = $Result.GetResult<Prisma.$AcessoriosPayload, S>
+
+  type AcessoriosCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AcessoriosFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AcessoriosCountAggregateInputType | true
+    }
+
+  export interface AcessoriosDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Acessorios'], meta: { name: 'Acessorios' } }
+    /**
+     * Find zero or one Acessorios that matches the filter.
+     * @param {AcessoriosFindUniqueArgs} args - Arguments to find a Acessorios
+     * @example
+     * // Get one Acessorios
+     * const acessorios = await prisma.acessorios.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AcessoriosFindUniqueArgs>(args: SelectSubset<T, AcessoriosFindUniqueArgs<ExtArgs>>): Prisma__AcessoriosClient<$Result.GetResult<Prisma.$AcessoriosPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find one Acessorios that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AcessoriosFindUniqueOrThrowArgs} args - Arguments to find a Acessorios
+     * @example
+     * // Get one Acessorios
+     * const acessorios = await prisma.acessorios.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AcessoriosFindUniqueOrThrowArgs>(args: SelectSubset<T, AcessoriosFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AcessoriosClient<$Result.GetResult<Prisma.$AcessoriosPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Acessorios that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AcessoriosFindFirstArgs} args - Arguments to find a Acessorios
+     * @example
+     * // Get one Acessorios
+     * const acessorios = await prisma.acessorios.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AcessoriosFindFirstArgs>(args?: SelectSubset<T, AcessoriosFindFirstArgs<ExtArgs>>): Prisma__AcessoriosClient<$Result.GetResult<Prisma.$AcessoriosPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Acessorios that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AcessoriosFindFirstOrThrowArgs} args - Arguments to find a Acessorios
+     * @example
+     * // Get one Acessorios
+     * const acessorios = await prisma.acessorios.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AcessoriosFindFirstOrThrowArgs>(args?: SelectSubset<T, AcessoriosFindFirstOrThrowArgs<ExtArgs>>): Prisma__AcessoriosClient<$Result.GetResult<Prisma.$AcessoriosPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find zero or more Acessorios that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AcessoriosFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Acessorios
+     * const acessorios = await prisma.acessorios.findMany()
+     * 
+     * // Get first 10 Acessorios
+     * const acessorios = await prisma.acessorios.findMany({ take: 10 })
+     * 
+     * // Only select the `idItem`
+     * const acessoriosWithIdItemOnly = await prisma.acessorios.findMany({ select: { idItem: true } })
+     * 
+     */
+    findMany<T extends AcessoriosFindManyArgs>(args?: SelectSubset<T, AcessoriosFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AcessoriosPayload<ExtArgs>, T, "findMany", ClientOptions>>
+
+    /**
+     * Create a Acessorios.
+     * @param {AcessoriosCreateArgs} args - Arguments to create a Acessorios.
+     * @example
+     * // Create one Acessorios
+     * const Acessorios = await prisma.acessorios.create({
+     *   data: {
+     *     // ... data to create a Acessorios
+     *   }
+     * })
+     * 
+     */
+    create<T extends AcessoriosCreateArgs>(args: SelectSubset<T, AcessoriosCreateArgs<ExtArgs>>): Prisma__AcessoriosClient<$Result.GetResult<Prisma.$AcessoriosPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Create many Acessorios.
+     * @param {AcessoriosCreateManyArgs} args - Arguments to create many Acessorios.
+     * @example
+     * // Create many Acessorios
+     * const acessorios = await prisma.acessorios.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AcessoriosCreateManyArgs>(args?: SelectSubset<T, AcessoriosCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Acessorios.
+     * @param {AcessoriosDeleteArgs} args - Arguments to delete one Acessorios.
+     * @example
+     * // Delete one Acessorios
+     * const Acessorios = await prisma.acessorios.delete({
+     *   where: {
+     *     // ... filter to delete one Acessorios
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AcessoriosDeleteArgs>(args: SelectSubset<T, AcessoriosDeleteArgs<ExtArgs>>): Prisma__AcessoriosClient<$Result.GetResult<Prisma.$AcessoriosPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Update one Acessorios.
+     * @param {AcessoriosUpdateArgs} args - Arguments to update one Acessorios.
+     * @example
+     * // Update one Acessorios
+     * const acessorios = await prisma.acessorios.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AcessoriosUpdateArgs>(args: SelectSubset<T, AcessoriosUpdateArgs<ExtArgs>>): Prisma__AcessoriosClient<$Result.GetResult<Prisma.$AcessoriosPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Delete zero or more Acessorios.
+     * @param {AcessoriosDeleteManyArgs} args - Arguments to filter Acessorios to delete.
+     * @example
+     * // Delete a few Acessorios
+     * const { count } = await prisma.acessorios.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AcessoriosDeleteManyArgs>(args?: SelectSubset<T, AcessoriosDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Acessorios.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AcessoriosUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Acessorios
+     * const acessorios = await prisma.acessorios.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AcessoriosUpdateManyArgs>(args: SelectSubset<T, AcessoriosUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Acessorios.
+     * @param {AcessoriosUpsertArgs} args - Arguments to update or create a Acessorios.
+     * @example
+     * // Update or create a Acessorios
+     * const acessorios = await prisma.acessorios.upsert({
+     *   create: {
+     *     // ... data to create a Acessorios
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Acessorios we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AcessoriosUpsertArgs>(args: SelectSubset<T, AcessoriosUpsertArgs<ExtArgs>>): Prisma__AcessoriosClient<$Result.GetResult<Prisma.$AcessoriosPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
+
+
+    /**
+     * Count the number of Acessorios.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AcessoriosCountArgs} args - Arguments to filter Acessorios to count.
+     * @example
+     * // Count the number of Acessorios
+     * const count = await prisma.acessorios.count({
+     *   where: {
+     *     // ... the filter for the Acessorios we want to count
+     *   }
+     * })
+    **/
+    count<T extends AcessoriosCountArgs>(
+      args?: Subset<T, AcessoriosCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AcessoriosCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Acessorios.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AcessoriosAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AcessoriosAggregateArgs>(args: Subset<T, AcessoriosAggregateArgs>): Prisma.PrismaPromise<GetAcessoriosAggregateType<T>>
+
+    /**
+     * Group by Acessorios.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AcessoriosGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AcessoriosGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AcessoriosGroupByArgs['orderBy'] }
+        : { orderBy?: AcessoriosGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AcessoriosGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAcessoriosGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Acessorios model
+   */
+  readonly fields: AcessoriosFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Acessorios.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AcessoriosClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    Item<T extends ItemDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ItemDefaultArgs<ExtArgs>>): Prisma__ItemClient<$Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Acessorios model
+   */ 
+  interface AcessoriosFieldRefs {
+    readonly idItem: FieldRef<"Acessorios", 'Int'>
+    readonly Descricao: FieldRef<"Acessorios", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Acessorios findUnique
+   */
+  export type AcessoriosFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Acessorios
+     */
+    select?: AcessoriosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Acessorios
+     */
+    omit?: AcessoriosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AcessoriosInclude<ExtArgs> | null
+    /**
+     * Filter, which Acessorios to fetch.
+     */
+    where: AcessoriosWhereUniqueInput
+  }
+
+  /**
+   * Acessorios findUniqueOrThrow
+   */
+  export type AcessoriosFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Acessorios
+     */
+    select?: AcessoriosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Acessorios
+     */
+    omit?: AcessoriosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AcessoriosInclude<ExtArgs> | null
+    /**
+     * Filter, which Acessorios to fetch.
+     */
+    where: AcessoriosWhereUniqueInput
+  }
+
+  /**
+   * Acessorios findFirst
+   */
+  export type AcessoriosFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Acessorios
+     */
+    select?: AcessoriosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Acessorios
+     */
+    omit?: AcessoriosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AcessoriosInclude<ExtArgs> | null
+    /**
+     * Filter, which Acessorios to fetch.
+     */
+    where?: AcessoriosWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Acessorios to fetch.
+     */
+    orderBy?: AcessoriosOrderByWithRelationInput | AcessoriosOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Acessorios.
+     */
+    cursor?: AcessoriosWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Acessorios from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Acessorios.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Acessorios.
+     */
+    distinct?: AcessoriosScalarFieldEnum | AcessoriosScalarFieldEnum[]
+  }
+
+  /**
+   * Acessorios findFirstOrThrow
+   */
+  export type AcessoriosFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Acessorios
+     */
+    select?: AcessoriosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Acessorios
+     */
+    omit?: AcessoriosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AcessoriosInclude<ExtArgs> | null
+    /**
+     * Filter, which Acessorios to fetch.
+     */
+    where?: AcessoriosWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Acessorios to fetch.
+     */
+    orderBy?: AcessoriosOrderByWithRelationInput | AcessoriosOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Acessorios.
+     */
+    cursor?: AcessoriosWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Acessorios from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Acessorios.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Acessorios.
+     */
+    distinct?: AcessoriosScalarFieldEnum | AcessoriosScalarFieldEnum[]
+  }
+
+  /**
+   * Acessorios findMany
+   */
+  export type AcessoriosFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Acessorios
+     */
+    select?: AcessoriosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Acessorios
+     */
+    omit?: AcessoriosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AcessoriosInclude<ExtArgs> | null
+    /**
+     * Filter, which Acessorios to fetch.
+     */
+    where?: AcessoriosWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Acessorios to fetch.
+     */
+    orderBy?: AcessoriosOrderByWithRelationInput | AcessoriosOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Acessorios.
+     */
+    cursor?: AcessoriosWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Acessorios from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Acessorios.
+     */
+    skip?: number
+    distinct?: AcessoriosScalarFieldEnum | AcessoriosScalarFieldEnum[]
+  }
+
+  /**
+   * Acessorios create
+   */
+  export type AcessoriosCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Acessorios
+     */
+    select?: AcessoriosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Acessorios
+     */
+    omit?: AcessoriosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AcessoriosInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Acessorios.
+     */
+    data: XOR<AcessoriosCreateInput, AcessoriosUncheckedCreateInput>
+  }
+
+  /**
+   * Acessorios createMany
+   */
+  export type AcessoriosCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Acessorios.
+     */
+    data: AcessoriosCreateManyInput | AcessoriosCreateManyInput[]
+  }
+
+  /**
+   * Acessorios update
+   */
+  export type AcessoriosUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Acessorios
+     */
+    select?: AcessoriosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Acessorios
+     */
+    omit?: AcessoriosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AcessoriosInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Acessorios.
+     */
+    data: XOR<AcessoriosUpdateInput, AcessoriosUncheckedUpdateInput>
+    /**
+     * Choose, which Acessorios to update.
+     */
+    where: AcessoriosWhereUniqueInput
+  }
+
+  /**
+   * Acessorios updateMany
+   */
+  export type AcessoriosUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Acessorios.
+     */
+    data: XOR<AcessoriosUpdateManyMutationInput, AcessoriosUncheckedUpdateManyInput>
+    /**
+     * Filter which Acessorios to update
+     */
+    where?: AcessoriosWhereInput
+    /**
+     * Limit how many Acessorios to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Acessorios upsert
+   */
+  export type AcessoriosUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Acessorios
+     */
+    select?: AcessoriosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Acessorios
+     */
+    omit?: AcessoriosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AcessoriosInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Acessorios to update in case it exists.
+     */
+    where: AcessoriosWhereUniqueInput
+    /**
+     * In case the Acessorios found by the `where` argument doesn't exist, create a new Acessorios with this data.
+     */
+    create: XOR<AcessoriosCreateInput, AcessoriosUncheckedCreateInput>
+    /**
+     * In case the Acessorios was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AcessoriosUpdateInput, AcessoriosUncheckedUpdateInput>
+  }
+
+  /**
+   * Acessorios delete
+   */
+  export type AcessoriosDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Acessorios
+     */
+    select?: AcessoriosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Acessorios
+     */
+    omit?: AcessoriosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AcessoriosInclude<ExtArgs> | null
+    /**
+     * Filter which Acessorios to delete.
+     */
+    where: AcessoriosWhereUniqueInput
+  }
+
+  /**
+   * Acessorios deleteMany
+   */
+  export type AcessoriosDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Acessorios to delete
+     */
+    where?: AcessoriosWhereInput
+    /**
+     * Limit how many Acessorios to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Acessorios without action
+   */
+  export type AcessoriosDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Acessorios
+     */
+    select?: AcessoriosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Acessorios
+     */
+    omit?: AcessoriosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AcessoriosInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -19628,6 +20663,14 @@ export namespace Prisma {
   };
 
   export type LigacaoAndroidScalarFieldEnum = (typeof LigacaoAndroidScalarFieldEnum)[keyof typeof LigacaoAndroidScalarFieldEnum]
+
+
+  export const AcessoriosScalarFieldEnum: {
+    idItem: 'idItem',
+    Descricao: 'Descricao'
+  };
+
+  export type AcessoriosScalarFieldEnum = (typeof AcessoriosScalarFieldEnum)[keyof typeof AcessoriosScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -20202,6 +21245,7 @@ export namespace Prisma {
     idItem?: IntFilter<"Item"> | number
     Descricao?: StringFilter<"Item"> | string
     inativo?: BoolFilter<"Item"> | boolean
+    Acessorios?: XOR<AcessoriosNullableScalarRelationFilter, AcessoriosWhereInput> | null
     Conteudo?: ConteudoListRelationFilter
     ItemTraduzido?: ItemTraduzidoListRelationFilter
     ligacaoAndroid?: XOR<LigacaoAndroidNullableScalarRelationFilter, ligacaoAndroidWhereInput> | null
@@ -20213,6 +21257,7 @@ export namespace Prisma {
     idItem?: SortOrder
     Descricao?: SortOrder
     inativo?: SortOrder
+    Acessorios?: AcessoriosOrderByWithRelationInput
     Conteudo?: ConteudoOrderByRelationAggregateInput
     ItemTraduzido?: ItemTraduzidoOrderByRelationAggregateInput
     ligacaoAndroid?: ligacaoAndroidOrderByWithRelationInput
@@ -20227,6 +21272,7 @@ export namespace Prisma {
     NOT?: ItemWhereInput | ItemWhereInput[]
     Descricao?: StringFilter<"Item"> | string
     inativo?: BoolFilter<"Item"> | boolean
+    Acessorios?: XOR<AcessoriosNullableScalarRelationFilter, AcessoriosWhereInput> | null
     Conteudo?: ConteudoListRelationFilter
     ItemTraduzido?: ItemTraduzidoListRelationFilter
     ligacaoAndroid?: XOR<LigacaoAndroidNullableScalarRelationFilter, ligacaoAndroidWhereInput> | null
@@ -20694,6 +21740,48 @@ export namespace Prisma {
     NOT?: ligacaoAndroidScalarWhereWithAggregatesInput | ligacaoAndroidScalarWhereWithAggregatesInput[]
     idItem?: IntWithAggregatesFilter<"ligacaoAndroid"> | number
     idParte?: IntWithAggregatesFilter<"ligacaoAndroid"> | number
+  }
+
+  export type AcessoriosWhereInput = {
+    AND?: AcessoriosWhereInput | AcessoriosWhereInput[]
+    OR?: AcessoriosWhereInput[]
+    NOT?: AcessoriosWhereInput | AcessoriosWhereInput[]
+    idItem?: IntFilter<"Acessorios"> | number
+    Descricao?: StringFilter<"Acessorios"> | string
+    Item?: XOR<ItemScalarRelationFilter, ItemWhereInput>
+  }
+
+  export type AcessoriosOrderByWithRelationInput = {
+    idItem?: SortOrder
+    Descricao?: SortOrder
+    Item?: ItemOrderByWithRelationInput
+  }
+
+  export type AcessoriosWhereUniqueInput = Prisma.AtLeast<{
+    idItem?: number
+    AND?: AcessoriosWhereInput | AcessoriosWhereInput[]
+    OR?: AcessoriosWhereInput[]
+    NOT?: AcessoriosWhereInput | AcessoriosWhereInput[]
+    Descricao?: StringFilter<"Acessorios"> | string
+    Item?: XOR<ItemScalarRelationFilter, ItemWhereInput>
+  }, "idItem">
+
+  export type AcessoriosOrderByWithAggregationInput = {
+    idItem?: SortOrder
+    Descricao?: SortOrder
+    _count?: AcessoriosCountOrderByAggregateInput
+    _avg?: AcessoriosAvgOrderByAggregateInput
+    _max?: AcessoriosMaxOrderByAggregateInput
+    _min?: AcessoriosMinOrderByAggregateInput
+    _sum?: AcessoriosSumOrderByAggregateInput
+  }
+
+  export type AcessoriosScalarWhereWithAggregatesInput = {
+    AND?: AcessoriosScalarWhereWithAggregatesInput | AcessoriosScalarWhereWithAggregatesInput[]
+    OR?: AcessoriosScalarWhereWithAggregatesInput[]
+    NOT?: AcessoriosScalarWhereWithAggregatesInput | AcessoriosScalarWhereWithAggregatesInput[]
+    idItem?: IntWithAggregatesFilter<"Acessorios"> | number
+    Descricao?: StringWithAggregatesFilter<"Acessorios"> | string
   }
 
   export type PapeisCreateInput = {
@@ -21166,6 +22254,7 @@ export namespace Prisma {
   export type ItemCreateInput = {
     Descricao: string
     inativo: boolean
+    Acessorios?: AcessoriosCreateNestedOneWithoutItemInput
     Conteudo?: ConteudoCreateNestedManyWithoutItemInput
     ItemTraduzido?: ItemTraduzidoCreateNestedManyWithoutItemInput
     ligacaoAndroid?: ligacaoAndroidCreateNestedOneWithoutItemInput
@@ -21177,6 +22266,7 @@ export namespace Prisma {
     idItem?: number
     Descricao: string
     inativo: boolean
+    Acessorios?: AcessoriosUncheckedCreateNestedOneWithoutItemInput
     Conteudo?: ConteudoUncheckedCreateNestedManyWithoutItemInput
     ItemTraduzido?: ItemTraduzidoUncheckedCreateNestedManyWithoutItemInput
     ligacaoAndroid?: ligacaoAndroidUncheckedCreateNestedOneWithoutItemInput
@@ -21187,6 +22277,7 @@ export namespace Prisma {
   export type ItemUpdateInput = {
     Descricao?: StringFieldUpdateOperationsInput | string
     inativo?: BoolFieldUpdateOperationsInput | boolean
+    Acessorios?: AcessoriosUpdateOneWithoutItemNestedInput
     Conteudo?: ConteudoUpdateManyWithoutItemNestedInput
     ItemTraduzido?: ItemTraduzidoUpdateManyWithoutItemNestedInput
     ligacaoAndroid?: ligacaoAndroidUpdateOneWithoutItemNestedInput
@@ -21198,6 +22289,7 @@ export namespace Prisma {
     idItem?: IntFieldUpdateOperationsInput | number
     Descricao?: StringFieldUpdateOperationsInput | string
     inativo?: BoolFieldUpdateOperationsInput | boolean
+    Acessorios?: AcessoriosUncheckedUpdateOneWithoutItemNestedInput
     Conteudo?: ConteudoUncheckedUpdateManyWithoutItemNestedInput
     ItemTraduzido?: ItemTraduzidoUncheckedUpdateManyWithoutItemNestedInput
     ligacaoAndroid?: ligacaoAndroidUncheckedUpdateOneWithoutItemNestedInput
@@ -21620,6 +22712,40 @@ export namespace Prisma {
   export type ligacaoAndroidUncheckedUpdateManyInput = {
     idItem?: IntFieldUpdateOperationsInput | number
     idParte?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type AcessoriosCreateInput = {
+    Descricao: string
+    Item: ItemCreateNestedOneWithoutAcessoriosInput
+  }
+
+  export type AcessoriosUncheckedCreateInput = {
+    idItem: number
+    Descricao: string
+  }
+
+  export type AcessoriosUpdateInput = {
+    Descricao?: StringFieldUpdateOperationsInput | string
+    Item?: ItemUpdateOneRequiredWithoutAcessoriosNestedInput
+  }
+
+  export type AcessoriosUncheckedUpdateInput = {
+    idItem?: IntFieldUpdateOperationsInput | number
+    Descricao?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AcessoriosCreateManyInput = {
+    idItem: number
+    Descricao: string
+  }
+
+  export type AcessoriosUpdateManyMutationInput = {
+    Descricao?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AcessoriosUncheckedUpdateManyInput = {
+    idItem?: IntFieldUpdateOperationsInput | number
+    Descricao?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -22253,6 +23379,11 @@ export namespace Prisma {
     idIdioma?: SortOrder
   }
 
+  export type AcessoriosNullableScalarRelationFilter = {
+    is?: AcessoriosWhereInput | null
+    isNot?: AcessoriosWhereInput | null
+  }
+
   export type LigacaoAndroidNullableScalarRelationFilter = {
     is?: ligacaoAndroidWhereInput | null
     isNot?: ligacaoAndroidWhereInput | null
@@ -22580,6 +23711,29 @@ export namespace Prisma {
   export type ligacaoAndroidSumOrderByAggregateInput = {
     idItem?: SortOrder
     idParte?: SortOrder
+  }
+
+  export type AcessoriosCountOrderByAggregateInput = {
+    idItem?: SortOrder
+    Descricao?: SortOrder
+  }
+
+  export type AcessoriosAvgOrderByAggregateInput = {
+    idItem?: SortOrder
+  }
+
+  export type AcessoriosMaxOrderByAggregateInput = {
+    idItem?: SortOrder
+    Descricao?: SortOrder
+  }
+
+  export type AcessoriosMinOrderByAggregateInput = {
+    idItem?: SortOrder
+    Descricao?: SortOrder
+  }
+
+  export type AcessoriosSumOrderByAggregateInput = {
+    idItem?: SortOrder
   }
 
   export type UserPapeisCreateNestedManyWithoutPapeisInput = {
@@ -23136,6 +24290,12 @@ export namespace Prisma {
     deleteMany?: ItemTraduzidoScalarWhereInput | ItemTraduzidoScalarWhereInput[]
   }
 
+  export type AcessoriosCreateNestedOneWithoutItemInput = {
+    create?: XOR<AcessoriosCreateWithoutItemInput, AcessoriosUncheckedCreateWithoutItemInput>
+    connectOrCreate?: AcessoriosCreateOrConnectWithoutItemInput
+    connect?: AcessoriosWhereUniqueInput
+  }
+
   export type ConteudoCreateNestedManyWithoutItemInput = {
     create?: XOR<ConteudoCreateWithoutItemInput, ConteudoUncheckedCreateWithoutItemInput> | ConteudoCreateWithoutItemInput[] | ConteudoUncheckedCreateWithoutItemInput[]
     connectOrCreate?: ConteudoCreateOrConnectWithoutItemInput | ConteudoCreateOrConnectWithoutItemInput[]
@@ -23168,6 +24328,12 @@ export namespace Prisma {
     connect?: UnidadesWhereUniqueInput
   }
 
+  export type AcessoriosUncheckedCreateNestedOneWithoutItemInput = {
+    create?: XOR<AcessoriosCreateWithoutItemInput, AcessoriosUncheckedCreateWithoutItemInput>
+    connectOrCreate?: AcessoriosCreateOrConnectWithoutItemInput
+    connect?: AcessoriosWhereUniqueInput
+  }
+
   export type ConteudoUncheckedCreateNestedManyWithoutItemInput = {
     create?: XOR<ConteudoCreateWithoutItemInput, ConteudoUncheckedCreateWithoutItemInput> | ConteudoCreateWithoutItemInput[] | ConteudoUncheckedCreateWithoutItemInput[]
     connectOrCreate?: ConteudoCreateOrConnectWithoutItemInput | ConteudoCreateOrConnectWithoutItemInput[]
@@ -23198,6 +24364,16 @@ export namespace Prisma {
     create?: XOR<UnidadesCreateWithoutItemInput, UnidadesUncheckedCreateWithoutItemInput>
     connectOrCreate?: UnidadesCreateOrConnectWithoutItemInput
     connect?: UnidadesWhereUniqueInput
+  }
+
+  export type AcessoriosUpdateOneWithoutItemNestedInput = {
+    create?: XOR<AcessoriosCreateWithoutItemInput, AcessoriosUncheckedCreateWithoutItemInput>
+    connectOrCreate?: AcessoriosCreateOrConnectWithoutItemInput
+    upsert?: AcessoriosUpsertWithoutItemInput
+    disconnect?: AcessoriosWhereInput | boolean
+    delete?: AcessoriosWhereInput | boolean
+    connect?: AcessoriosWhereUniqueInput
+    update?: XOR<XOR<AcessoriosUpdateToOneWithWhereWithoutItemInput, AcessoriosUpdateWithoutItemInput>, AcessoriosUncheckedUpdateWithoutItemInput>
   }
 
   export type ConteudoUpdateManyWithoutItemNestedInput = {
@@ -23256,6 +24432,16 @@ export namespace Prisma {
     delete?: UnidadesWhereInput | boolean
     connect?: UnidadesWhereUniqueInput
     update?: XOR<XOR<UnidadesUpdateToOneWithWhereWithoutItemInput, UnidadesUpdateWithoutItemInput>, UnidadesUncheckedUpdateWithoutItemInput>
+  }
+
+  export type AcessoriosUncheckedUpdateOneWithoutItemNestedInput = {
+    create?: XOR<AcessoriosCreateWithoutItemInput, AcessoriosUncheckedCreateWithoutItemInput>
+    connectOrCreate?: AcessoriosCreateOrConnectWithoutItemInput
+    upsert?: AcessoriosUpsertWithoutItemInput
+    disconnect?: AcessoriosWhereInput | boolean
+    delete?: AcessoriosWhereInput | boolean
+    connect?: AcessoriosWhereUniqueInput
+    update?: XOR<XOR<AcessoriosUpdateToOneWithWhereWithoutItemInput, AcessoriosUpdateWithoutItemInput>, AcessoriosUncheckedUpdateWithoutItemInput>
   }
 
   export type ConteudoUncheckedUpdateManyWithoutItemNestedInput = {
@@ -23776,6 +24962,20 @@ export namespace Prisma {
     upsert?: ItemUpsertWithoutLigacaoAndroidInput
     connect?: ItemWhereUniqueInput
     update?: XOR<XOR<ItemUpdateToOneWithWhereWithoutLigacaoAndroidInput, ItemUpdateWithoutLigacaoAndroidInput>, ItemUncheckedUpdateWithoutLigacaoAndroidInput>
+  }
+
+  export type ItemCreateNestedOneWithoutAcessoriosInput = {
+    create?: XOR<ItemCreateWithoutAcessoriosInput, ItemUncheckedCreateWithoutAcessoriosInput>
+    connectOrCreate?: ItemCreateOrConnectWithoutAcessoriosInput
+    connect?: ItemWhereUniqueInput
+  }
+
+  export type ItemUpdateOneRequiredWithoutAcessoriosNestedInput = {
+    create?: XOR<ItemCreateWithoutAcessoriosInput, ItemUncheckedCreateWithoutAcessoriosInput>
+    connectOrCreate?: ItemCreateOrConnectWithoutAcessoriosInput
+    upsert?: ItemUpsertWithoutAcessoriosInput
+    connect?: ItemWhereUniqueInput
+    update?: XOR<XOR<ItemUpdateToOneWithWhereWithoutAcessoriosInput, ItemUpdateWithoutAcessoriosInput>, ItemUncheckedUpdateWithoutAcessoriosInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -24550,6 +25750,7 @@ export namespace Prisma {
   export type ItemCreateWithoutConteudoInput = {
     Descricao: string
     inativo: boolean
+    Acessorios?: AcessoriosCreateNestedOneWithoutItemInput
     ItemTraduzido?: ItemTraduzidoCreateNestedManyWithoutItemInput
     ligacaoAndroid?: ligacaoAndroidCreateNestedOneWithoutItemInput
     TipoContainer?: TipoContainerCreateNestedOneWithoutItemInput
@@ -24560,6 +25761,7 @@ export namespace Prisma {
     idItem?: number
     Descricao: string
     inativo: boolean
+    Acessorios?: AcessoriosUncheckedCreateNestedOneWithoutItemInput
     ItemTraduzido?: ItemTraduzidoUncheckedCreateNestedManyWithoutItemInput
     ligacaoAndroid?: ligacaoAndroidUncheckedCreateNestedOneWithoutItemInput
     TipoContainer?: TipoContainerUncheckedCreateNestedOneWithoutItemInput
@@ -24704,6 +25906,7 @@ export namespace Prisma {
   export type ItemUpdateWithoutConteudoInput = {
     Descricao?: StringFieldUpdateOperationsInput | string
     inativo?: BoolFieldUpdateOperationsInput | boolean
+    Acessorios?: AcessoriosUpdateOneWithoutItemNestedInput
     ItemTraduzido?: ItemTraduzidoUpdateManyWithoutItemNestedInput
     ligacaoAndroid?: ligacaoAndroidUpdateOneWithoutItemNestedInput
     TipoContainer?: TipoContainerUpdateOneWithoutItemNestedInput
@@ -24714,6 +25917,7 @@ export namespace Prisma {
     idItem?: IntFieldUpdateOperationsInput | number
     Descricao?: StringFieldUpdateOperationsInput | string
     inativo?: BoolFieldUpdateOperationsInput | boolean
+    Acessorios?: AcessoriosUncheckedUpdateOneWithoutItemNestedInput
     ItemTraduzido?: ItemTraduzidoUncheckedUpdateManyWithoutItemNestedInput
     ligacaoAndroid?: ligacaoAndroidUncheckedUpdateOneWithoutItemNestedInput
     TipoContainer?: TipoContainerUncheckedUpdateOneWithoutItemNestedInput
@@ -25008,6 +26212,19 @@ export namespace Prisma {
     descItem?: StringFilter<"ItemTraduzido"> | string
   }
 
+  export type AcessoriosCreateWithoutItemInput = {
+    Descricao: string
+  }
+
+  export type AcessoriosUncheckedCreateWithoutItemInput = {
+    Descricao: string
+  }
+
+  export type AcessoriosCreateOrConnectWithoutItemInput = {
+    where: AcessoriosWhereUniqueInput
+    create: XOR<AcessoriosCreateWithoutItemInput, AcessoriosUncheckedCreateWithoutItemInput>
+  }
+
   export type ConteudoCreateWithoutItemInput = {
     idConteudo?: number
     qtt: number
@@ -25100,6 +26317,25 @@ export namespace Prisma {
   export type UnidadesCreateOrConnectWithoutItemInput = {
     where: UnidadesWhereUniqueInput
     create: XOR<UnidadesCreateWithoutItemInput, UnidadesUncheckedCreateWithoutItemInput>
+  }
+
+  export type AcessoriosUpsertWithoutItemInput = {
+    update: XOR<AcessoriosUpdateWithoutItemInput, AcessoriosUncheckedUpdateWithoutItemInput>
+    create: XOR<AcessoriosCreateWithoutItemInput, AcessoriosUncheckedCreateWithoutItemInput>
+    where?: AcessoriosWhereInput
+  }
+
+  export type AcessoriosUpdateToOneWithWhereWithoutItemInput = {
+    where?: AcessoriosWhereInput
+    data: XOR<AcessoriosUpdateWithoutItemInput, AcessoriosUncheckedUpdateWithoutItemInput>
+  }
+
+  export type AcessoriosUpdateWithoutItemInput = {
+    Descricao?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AcessoriosUncheckedUpdateWithoutItemInput = {
+    Descricao?: StringFieldUpdateOperationsInput | string
   }
 
   export type ConteudoUpsertWithWhereUniqueWithoutItemInput = {
@@ -25216,6 +26452,7 @@ export namespace Prisma {
   export type ItemCreateWithoutItemTraduzidoInput = {
     Descricao: string
     inativo: boolean
+    Acessorios?: AcessoriosCreateNestedOneWithoutItemInput
     Conteudo?: ConteudoCreateNestedManyWithoutItemInput
     ligacaoAndroid?: ligacaoAndroidCreateNestedOneWithoutItemInput
     TipoContainer?: TipoContainerCreateNestedOneWithoutItemInput
@@ -25226,6 +26463,7 @@ export namespace Prisma {
     idItem?: number
     Descricao: string
     inativo: boolean
+    Acessorios?: AcessoriosUncheckedCreateNestedOneWithoutItemInput
     Conteudo?: ConteudoUncheckedCreateNestedManyWithoutItemInput
     ligacaoAndroid?: ligacaoAndroidUncheckedCreateNestedOneWithoutItemInput
     TipoContainer?: TipoContainerUncheckedCreateNestedOneWithoutItemInput
@@ -25273,6 +26511,7 @@ export namespace Prisma {
   export type ItemUpdateWithoutItemTraduzidoInput = {
     Descricao?: StringFieldUpdateOperationsInput | string
     inativo?: BoolFieldUpdateOperationsInput | boolean
+    Acessorios?: AcessoriosUpdateOneWithoutItemNestedInput
     Conteudo?: ConteudoUpdateManyWithoutItemNestedInput
     ligacaoAndroid?: ligacaoAndroidUpdateOneWithoutItemNestedInput
     TipoContainer?: TipoContainerUpdateOneWithoutItemNestedInput
@@ -25283,6 +26522,7 @@ export namespace Prisma {
     idItem?: IntFieldUpdateOperationsInput | number
     Descricao?: StringFieldUpdateOperationsInput | string
     inativo?: BoolFieldUpdateOperationsInput | boolean
+    Acessorios?: AcessoriosUncheckedUpdateOneWithoutItemNestedInput
     Conteudo?: ConteudoUncheckedUpdateManyWithoutItemNestedInput
     ligacaoAndroid?: ligacaoAndroidUncheckedUpdateOneWithoutItemNestedInput
     TipoContainer?: TipoContainerUncheckedUpdateOneWithoutItemNestedInput
@@ -25324,6 +26564,7 @@ export namespace Prisma {
   export type ItemCreateWithoutTipoContainerInput = {
     Descricao: string
     inativo: boolean
+    Acessorios?: AcessoriosCreateNestedOneWithoutItemInput
     Conteudo?: ConteudoCreateNestedManyWithoutItemInput
     ItemTraduzido?: ItemTraduzidoCreateNestedManyWithoutItemInput
     ligacaoAndroid?: ligacaoAndroidCreateNestedOneWithoutItemInput
@@ -25334,6 +26575,7 @@ export namespace Prisma {
     idItem?: number
     Descricao: string
     inativo: boolean
+    Acessorios?: AcessoriosUncheckedCreateNestedOneWithoutItemInput
     Conteudo?: ConteudoUncheckedCreateNestedManyWithoutItemInput
     ItemTraduzido?: ItemTraduzidoUncheckedCreateNestedManyWithoutItemInput
     ligacaoAndroid?: ligacaoAndroidUncheckedCreateNestedOneWithoutItemInput
@@ -25375,6 +26617,7 @@ export namespace Prisma {
   export type ItemUpdateWithoutTipoContainerInput = {
     Descricao?: StringFieldUpdateOperationsInput | string
     inativo?: BoolFieldUpdateOperationsInput | boolean
+    Acessorios?: AcessoriosUpdateOneWithoutItemNestedInput
     Conteudo?: ConteudoUpdateManyWithoutItemNestedInput
     ItemTraduzido?: ItemTraduzidoUpdateManyWithoutItemNestedInput
     ligacaoAndroid?: ligacaoAndroidUpdateOneWithoutItemNestedInput
@@ -25385,6 +26628,7 @@ export namespace Prisma {
     idItem?: IntFieldUpdateOperationsInput | number
     Descricao?: StringFieldUpdateOperationsInput | string
     inativo?: BoolFieldUpdateOperationsInput | boolean
+    Acessorios?: AcessoriosUncheckedUpdateOneWithoutItemNestedInput
     Conteudo?: ConteudoUncheckedUpdateManyWithoutItemNestedInput
     ItemTraduzido?: ItemTraduzidoUncheckedUpdateManyWithoutItemNestedInput
     ligacaoAndroid?: ligacaoAndroidUncheckedUpdateOneWithoutItemNestedInput
@@ -25932,6 +27176,7 @@ export namespace Prisma {
   export type ItemCreateWithoutUnidadesInput = {
     Descricao: string
     inativo: boolean
+    Acessorios?: AcessoriosCreateNestedOneWithoutItemInput
     Conteudo?: ConteudoCreateNestedManyWithoutItemInput
     ItemTraduzido?: ItemTraduzidoCreateNestedManyWithoutItemInput
     ligacaoAndroid?: ligacaoAndroidCreateNestedOneWithoutItemInput
@@ -25942,6 +27187,7 @@ export namespace Prisma {
     idItem?: number
     Descricao: string
     inativo: boolean
+    Acessorios?: AcessoriosUncheckedCreateNestedOneWithoutItemInput
     Conteudo?: ConteudoUncheckedCreateNestedManyWithoutItemInput
     ItemTraduzido?: ItemTraduzidoUncheckedCreateNestedManyWithoutItemInput
     ligacaoAndroid?: ligacaoAndroidUncheckedCreateNestedOneWithoutItemInput
@@ -25983,6 +27229,7 @@ export namespace Prisma {
   export type ItemUpdateWithoutUnidadesInput = {
     Descricao?: StringFieldUpdateOperationsInput | string
     inativo?: BoolFieldUpdateOperationsInput | boolean
+    Acessorios?: AcessoriosUpdateOneWithoutItemNestedInput
     Conteudo?: ConteudoUpdateManyWithoutItemNestedInput
     ItemTraduzido?: ItemTraduzidoUpdateManyWithoutItemNestedInput
     ligacaoAndroid?: ligacaoAndroidUpdateOneWithoutItemNestedInput
@@ -25993,6 +27240,7 @@ export namespace Prisma {
     idItem?: IntFieldUpdateOperationsInput | number
     Descricao?: StringFieldUpdateOperationsInput | string
     inativo?: BoolFieldUpdateOperationsInput | boolean
+    Acessorios?: AcessoriosUncheckedUpdateOneWithoutItemNestedInput
     Conteudo?: ConteudoUncheckedUpdateManyWithoutItemNestedInput
     ItemTraduzido?: ItemTraduzidoUncheckedUpdateManyWithoutItemNestedInput
     ligacaoAndroid?: ligacaoAndroidUncheckedUpdateOneWithoutItemNestedInput
@@ -26002,6 +27250,7 @@ export namespace Prisma {
   export type ItemCreateWithoutLigacaoAndroidInput = {
     Descricao: string
     inativo: boolean
+    Acessorios?: AcessoriosCreateNestedOneWithoutItemInput
     Conteudo?: ConteudoCreateNestedManyWithoutItemInput
     ItemTraduzido?: ItemTraduzidoCreateNestedManyWithoutItemInput
     TipoContainer?: TipoContainerCreateNestedOneWithoutItemInput
@@ -26012,6 +27261,7 @@ export namespace Prisma {
     idItem?: number
     Descricao: string
     inativo: boolean
+    Acessorios?: AcessoriosUncheckedCreateNestedOneWithoutItemInput
     Conteudo?: ConteudoUncheckedCreateNestedManyWithoutItemInput
     ItemTraduzido?: ItemTraduzidoUncheckedCreateNestedManyWithoutItemInput
     TipoContainer?: TipoContainerUncheckedCreateNestedOneWithoutItemInput
@@ -26037,6 +27287,7 @@ export namespace Prisma {
   export type ItemUpdateWithoutLigacaoAndroidInput = {
     Descricao?: StringFieldUpdateOperationsInput | string
     inativo?: BoolFieldUpdateOperationsInput | boolean
+    Acessorios?: AcessoriosUpdateOneWithoutItemNestedInput
     Conteudo?: ConteudoUpdateManyWithoutItemNestedInput
     ItemTraduzido?: ItemTraduzidoUpdateManyWithoutItemNestedInput
     TipoContainer?: TipoContainerUpdateOneWithoutItemNestedInput
@@ -26047,8 +27298,67 @@ export namespace Prisma {
     idItem?: IntFieldUpdateOperationsInput | number
     Descricao?: StringFieldUpdateOperationsInput | string
     inativo?: BoolFieldUpdateOperationsInput | boolean
+    Acessorios?: AcessoriosUncheckedUpdateOneWithoutItemNestedInput
     Conteudo?: ConteudoUncheckedUpdateManyWithoutItemNestedInput
     ItemTraduzido?: ItemTraduzidoUncheckedUpdateManyWithoutItemNestedInput
+    TipoContainer?: TipoContainerUncheckedUpdateOneWithoutItemNestedInput
+    Unidades?: UnidadesUncheckedUpdateOneWithoutItemNestedInput
+  }
+
+  export type ItemCreateWithoutAcessoriosInput = {
+    Descricao: string
+    inativo: boolean
+    Conteudo?: ConteudoCreateNestedManyWithoutItemInput
+    ItemTraduzido?: ItemTraduzidoCreateNestedManyWithoutItemInput
+    ligacaoAndroid?: ligacaoAndroidCreateNestedOneWithoutItemInput
+    TipoContainer?: TipoContainerCreateNestedOneWithoutItemInput
+    Unidades?: UnidadesCreateNestedOneWithoutItemInput
+  }
+
+  export type ItemUncheckedCreateWithoutAcessoriosInput = {
+    idItem?: number
+    Descricao: string
+    inativo: boolean
+    Conteudo?: ConteudoUncheckedCreateNestedManyWithoutItemInput
+    ItemTraduzido?: ItemTraduzidoUncheckedCreateNestedManyWithoutItemInput
+    ligacaoAndroid?: ligacaoAndroidUncheckedCreateNestedOneWithoutItemInput
+    TipoContainer?: TipoContainerUncheckedCreateNestedOneWithoutItemInput
+    Unidades?: UnidadesUncheckedCreateNestedOneWithoutItemInput
+  }
+
+  export type ItemCreateOrConnectWithoutAcessoriosInput = {
+    where: ItemWhereUniqueInput
+    create: XOR<ItemCreateWithoutAcessoriosInput, ItemUncheckedCreateWithoutAcessoriosInput>
+  }
+
+  export type ItemUpsertWithoutAcessoriosInput = {
+    update: XOR<ItemUpdateWithoutAcessoriosInput, ItemUncheckedUpdateWithoutAcessoriosInput>
+    create: XOR<ItemCreateWithoutAcessoriosInput, ItemUncheckedCreateWithoutAcessoriosInput>
+    where?: ItemWhereInput
+  }
+
+  export type ItemUpdateToOneWithWhereWithoutAcessoriosInput = {
+    where?: ItemWhereInput
+    data: XOR<ItemUpdateWithoutAcessoriosInput, ItemUncheckedUpdateWithoutAcessoriosInput>
+  }
+
+  export type ItemUpdateWithoutAcessoriosInput = {
+    Descricao?: StringFieldUpdateOperationsInput | string
+    inativo?: BoolFieldUpdateOperationsInput | boolean
+    Conteudo?: ConteudoUpdateManyWithoutItemNestedInput
+    ItemTraduzido?: ItemTraduzidoUpdateManyWithoutItemNestedInput
+    ligacaoAndroid?: ligacaoAndroidUpdateOneWithoutItemNestedInput
+    TipoContainer?: TipoContainerUpdateOneWithoutItemNestedInput
+    Unidades?: UnidadesUpdateOneWithoutItemNestedInput
+  }
+
+  export type ItemUncheckedUpdateWithoutAcessoriosInput = {
+    idItem?: IntFieldUpdateOperationsInput | number
+    Descricao?: StringFieldUpdateOperationsInput | string
+    inativo?: BoolFieldUpdateOperationsInput | boolean
+    Conteudo?: ConteudoUncheckedUpdateManyWithoutItemNestedInput
+    ItemTraduzido?: ItemTraduzidoUncheckedUpdateManyWithoutItemNestedInput
+    ligacaoAndroid?: ligacaoAndroidUncheckedUpdateOneWithoutItemNestedInput
     TipoContainer?: TipoContainerUncheckedUpdateOneWithoutItemNestedInput
     Unidades?: UnidadesUncheckedUpdateOneWithoutItemNestedInput
   }

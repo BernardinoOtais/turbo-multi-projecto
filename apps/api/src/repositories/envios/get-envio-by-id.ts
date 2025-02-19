@@ -306,9 +306,8 @@ export async function getEnvioById(idEnvio: number, idd?: number) {
           a.Descricao
         from 
           Item a
-        left join 
-          ligacaoAndroid b on a.idItem = b.idItem and ${tipoContainer?.idTipoContainer} = 3
-        where a.idItem > 199 and b.idItem is null`,
+        join 
+          Acessorios b on a.idItem = b.idItem and ${tipoContainer?.idTipoContainer} = 3`,
         prisma.unidades.findMany(),
         prisma.$queryRaw<{ value: string; label: string }[]>`
         SELECT 

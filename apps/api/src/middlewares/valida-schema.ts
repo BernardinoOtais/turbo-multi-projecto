@@ -17,6 +17,7 @@ export function validaSchema(
   return (req: Request, res: Response, next: NextFunction) => {
     try {
       const dataToValidate = source === 'body' ? req.body : req.query; // Use body or query based on source
+      //console.log('dataToValidate zod:', dataToValidate);
       schema.parse(dataToValidate); // Validate the appropriate data source
       next(); // Proceed to the next middleware if valid
     } catch (error) {

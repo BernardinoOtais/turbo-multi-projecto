@@ -8,13 +8,13 @@ import { redirect } from "next/navigation";
 import React from "react";
 
 import NovoEnvio from "@/app/dashboard/embarques/novo-envio";
+import SwitchFechado from "@/app/dashboard/embarques/switch-fechado";
 import NItensPorPagina from "@/components/meus-components/n-itens-por-pagina";
 import Paginacao from "@/components/meus-components/paginacao";
-import SwitchFechado from "@/components/switch-fechado";
 import { fetchGet } from "@/lib/fetch/fetch-get";
 import { validadoValorNumeroItensPorPagina } from "@/lib/my-utils";
 
-import EnviosWrapper from "./novo/wrapper-envios";
+import EnviosWrapper from "./wrapper-envios";
 
 type PageProps = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
