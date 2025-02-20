@@ -24,16 +24,18 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { itemNomePatch } from "@/lib/actions/dashboard/embarques/configurar";
+import {
+  itemApaga,
+  itemNomePatch,
+} from "@/lib/actions/dashboard/embarques/configurar";
 
 type FormAlteraItemExistentProps = {
   dados: PatchItemSchemaDto;
 };
 const FormAlteraItemExistent = ({ dados }: FormAlteraItemExistentProps) => {
   const router = useRouter();
-  const [botaoDisabled, setBotaoDisabled] = useState(true);
-  const [botaoAlteraNomeIsloading, setBotaoAlteraNomeIsloading] =
-    useState(false);
+  const [botaoAlteraItemDisabled, setBotaoAlteraItemDisabled] = useState(true);
+  const [botaoIsloading, setBotaoIsloading] = useState(false);
 
   const form = useForm<PatchItemSchemaDto>({
     resolver: zodResolver(PatchItemSchema),
@@ -42,7 +44,7 @@ const FormAlteraItemExistent = ({ dados }: FormAlteraItemExistentProps) => {
 
   useEffect(() => {
     const { unsubscribe } = form.watch(async values => {
-      setBotaoDisabled(true);
+      setBotaoAlteraItemDisabled(true);
 
       const isValid = await form.trigger();
 
@@ -53,35 +55,59 @@ const FormAlteraItemExistent = ({ dados }: FormAlteraItemExistentProps) => {
 
       if (valoresNoForEmString === dadosOriginaisEmString) return;
 
-      setBotaoDisabled(false);
+      setBotaoAlteraItemDisabled(false);
     });
 
     return unsubscribe;
   }, [dados, form]);
 
   function onSubmit(values: PatchItemSchemaDto) {
-    setBotaoAlteraNomeIsloading(true);
+    setBotaoIsloading(true);
 
     itemNomePatch(values)
       .then(resultado => {
         console.log(resultado);
         if (!resultado.success)
-          toast.error(`Erro ao inserir conteudo...`, {
+          toast.error(`Erro ao alterar item...`, {
             description: resultado.error,
           });
         else {
-          toast.info(`Inserido correctament...`, {
+          toast.info(`Alterado correctament...`, {
             description: "Sucesso",
           });
         }
       })
       .catch(error => console.error(error))
       .finally(() => {
-        setBotaoAlteraNomeIsloading(false);
-        setBotaoDisabled(true);
+        setBotaoIsloading(false);
+        setBotaoAlteraItemDisabled(true);
         router.push("/dashboard/embarques/configurar?tipo=ac");
       });
   }
+
+  const apagaItem = () => {
+    setBotaoIsloading(true);
+
+    itemApaga(dados.idItem)
+      .then(resultado => {
+        console.log(resultado);
+        if (!resultado.success)
+          toast.error(`Erro ao apagar item...`, {
+            description: resultado.error,
+          });
+        else {
+          toast.info(`Apagado correctament...`, {
+            description: "Sucesso",
+          });
+        }
+      })
+      .catch(error => console.error(error))
+      .finally(() => {
+        setBotaoIsloading(false);
+        setBotaoAlteraItemDisabled(true);
+        router.push("/dashboard/embarques/configurar?tipo=ac");
+      });
+  };
 
   return (
     <Form {...form}>
@@ -91,7 +117,7 @@ const FormAlteraItemExistent = ({ dados }: FormAlteraItemExistentProps) => {
             <CardTitle className="">Altera Item...</CardTitle>
             <CardDescription>{`Id do item: ${dados.idItem}`}</CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="">
             <FormField
               control={form.control}
               name="Descricao"
@@ -128,11 +154,25 @@ const FormAlteraItemExistent = ({ dados }: FormAlteraItemExistentProps) => {
                 </FormItem>
               )}
             />
-
-            <Button disabled={botaoDisabled}>
-              {botaoAlteraNomeIsloading && <Loader2 className="animate-spin" />}
-              Alterar Envio
-            </Button>
+            <div className="flex w-full">
+              <Button
+                disabled={botaoAlteraItemDisabled || botaoIsloading}
+                className="mx-auto"
+                type="submit"
+              >
+                {botaoIsloading && <Loader2 className="animate-spin" />}
+                Alterar Item
+              </Button>
+              <Button
+                className="mx-auto"
+                disabled={botaoIsloading}
+                type="button"
+                onClick={apagaItem}
+              >
+                {botaoIsloading && <Loader2 className="animate-spin" />}
+                Apaga Item
+              </Button>
+            </div>
           </CardContent>
           <CardFooter></CardFooter>
         </Card>

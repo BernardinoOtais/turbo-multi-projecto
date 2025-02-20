@@ -1,5 +1,9 @@
 import type { PatchEstadoItemSchemaDto, PatchItemSchemaDto } from '@repo/types';
-import { PatchEstadoItemSchema, PatchItemSchema } from '@repo/types';
+import {
+  IdNumeroInteiroNaoNegativoSchema,
+  PatchEstadoItemSchema,
+  PatchItemSchema,
+} from '@repo/types';
 import { Router } from 'express';
 import type { NextFunction, Request, Response } from 'express';
 
@@ -68,6 +72,23 @@ ItensRotas.patch(
           patchNomeItem.error ? patchNomeItem.error.code : HttpStatusCode.OK,
         )
         .json(patchNomeItem);
+    } catch (err) {
+      next(err);
+    }
+  },
+);
+
+ItensRotas.delete(
+  '/apaga-item',
+  validaSchema(IdNumeroInteiroNaoNegativoSchema, 'query'),
+  async (req: Request, res: Response, next: NextFunction) => {
+    const idRecebido = IdNumeroInteiroNaoNegativoSchema.parse(req.query);
+    const idItem = idRecebido.id;
+    try {
+      const apagaItem = await EnviosItensRepository.apagaItem(idItem);
+      res
+        .status(apagaItem.error ? apagaItem.error.code : HttpStatusCode.OK)
+        .json(apagaItem);
     } catch (err) {
       next(err);
     }

@@ -181,3 +181,7 @@ export type PostNovoEnvioSchemaDto = z.infer<typeof PostNovoEnvioSchema>;
 export type PostNomeEnviochemaDto = z.infer<typeof PostNomeEnviochema>;
 
 export type ListaIdsSchemaDto = z.infer<typeof ListaIdsSchema>;
+
+export type IdNumeroInteiroNaoNegativoSchemaDto = z.infer<
+  typeof IdNumeroInteiroNaoNegativoSchema
+>;

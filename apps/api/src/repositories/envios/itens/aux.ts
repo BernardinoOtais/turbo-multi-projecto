@@ -58,4 +58,11 @@ export class AuxEnviosItens {
       }),
     );
   }
+
+  static async verificoSeOItemJaFoiUsado(idItem: number) {
+    const prisma = PrismaSingleton.getEnviosPrisma();
+    return await prisma.conteudo.findFirst({
+      where: { idItem },
+    });
+  }
 }

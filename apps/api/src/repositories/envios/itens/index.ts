@@ -1,3 +1,4 @@
+import { apagaItem } from './apaga-item';
 import { getIntensAcessorios } from './get-itens-acessorios';
 import { patchEstadoItem } from './patch-estado-item';
 import { patchNomeItem } from './patch-nome-item';
@@ -8,4 +9,5 @@ export class EnviosItensRepository {
   static getIntensAcessorios = getIntensAcessorios;
   static patchEstadoItem = patchEstadoItem;
   static patchNomeItem = patchNomeItem;
+  static apagaItem = apagaItem;
 }

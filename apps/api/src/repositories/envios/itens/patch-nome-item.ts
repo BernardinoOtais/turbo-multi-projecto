@@ -4,6 +4,8 @@ import PrismaSingleton from '@services/prisma';
 import { ApiResponseBody } from '@utils/api-response-body';
 import HttpStatusCode from '@utils/http-status-code';
 
+import { AuxEnviosItens } from './aux';
+
 export async function patchNomeItem(dados: PatchItemSchemaDto) {
   const { idItem, idIdioma, Descricao, descItem } = dados;
   const resBody = new ApiResponseBody<RespostaDto>();
@@ -11,9 +13,8 @@ export async function patchNomeItem(dados: PatchItemSchemaDto) {
 
   try {
     // Check if the item has content before proceeding
-    const existeConteudoEsteItem = await prisma.conteudo.findFirst({
-      where: { idItem },
-    });
+    const existeConteudoEsteItem =
+      await AuxEnviosItens.verificoSeOItemJaFoiUsado(idItem);
     if (existeConteudoEsteItem) {
       resBody.data = {
         status: 'ok',
