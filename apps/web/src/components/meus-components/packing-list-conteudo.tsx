@@ -56,7 +56,7 @@ const PackingListConteudo = ({
                 {c.Op.cor}
               </td>
               <td className="border border-gray-200 px-1 text-center whitespace-nowrap">
-                {c.tam}
+                {c.tam == "nt" ? "" : c.tam}
               </td>
               <td className="border border-gray-200 px-1 text-center whitespace-nowrap">
                 {c.Op.op}

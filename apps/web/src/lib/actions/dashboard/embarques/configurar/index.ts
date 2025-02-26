@@ -1,9 +1,10 @@
 "use server";
-import { PatchItemSchemaDto } from "@repo/types";
+import { PatchItemSchemaDto, PostItensAcessoriosSchemaDto } from "@repo/types";
 import { revalidatePath } from "next/cache";
 
-import { fetchPatch } from "@/lib/fetch/fetch-patch";
 import { fetchDelete } from "@/lib/fetch/fetch-delete";
+import { fetchPatch } from "@/lib/fetch/fetch-patch";
+import { fetchPost } from "@/lib/fetch/fetch-post";
 
 export async function itemInactivoPatch(idItem: number) {
   try {
@@ -60,3 +61,20 @@ export async function itemApaga(idItem: number) {
     };
   }
 }
+
+export async function insiroItens(itensSchema: PostItensAcessoriosSchemaDto) {
+  try {
+    const response = fetchPost("envios/itens/itens-novos", itensSchema);
+
+    revalidatePath("/dashboard/embarques/configurar");
+    return response;
+  } catch (error) {
+    console.log("Erro insiroItens:", error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : "Erro inesperado...",
+    };
+  }
+}
+
+//itens-novos

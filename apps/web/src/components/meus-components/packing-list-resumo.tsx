@@ -11,7 +11,7 @@ type PackingListResumoProps = {
 const PackingListResumo = ({ dadosResumo }: PackingListResumoProps) => {
   return (
     <table className="mx-auto border-collapse border border-gray-200 text-[9px]">
-      <caption className="p-2 text-left">Résumé:</caption>
+      <caption className="p-2 text-center">Résumé:</caption>
       <thead className="bg-gray-100">
         <tr>
           <th className="border border-gray-200 px-1 whitespace-nowrap">

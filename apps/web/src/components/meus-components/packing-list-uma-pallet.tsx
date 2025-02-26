@@ -54,7 +54,7 @@ const PackingListUmaPallet = ({
   altura,
 }: PackingListUmaPalletProps) => {
   const { dadosResumo, pesoDaPallet } = tratarDadosDeUmaPalete(container);
-  console.log("PackingListUmaPallet", container);
+  /// console.log("PackingListUmaPallet", container);
   return (
     <>
       <PackingListDestino destino={destino} />

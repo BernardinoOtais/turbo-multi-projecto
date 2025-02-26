@@ -24,6 +24,7 @@ import BotaoApagaContainer from "./botao-apaga-container";
 import InputAltura from "./input-altura";
 import InputOp from "./input-op";
 import PrintPalletDialog from "./print-pallet-dialog";
+import PrintRotulosDialog from "./print-rotulos-dialog";
 
 type ContainerCardProps = {
   container: ContainerSchemaDto;
@@ -82,9 +83,19 @@ const ContainerCard = ({
   const getContainerComponent = () => {
     switch (container.TipoContainer?.idItem) {
       case 4:
-        return <PrintPalletDialog container={container} destino={destino} />;
+        return (
+          <div>
+            <PrintPalletDialog container={container} destino={destino} />
+            <PrintRotulosDialog container={container} destino={destino} />
+          </div>
+        );
       case 3:
-        return <PrintPalletDialog container={container} destino={destino} />;
+        return (
+          <div>
+            <PrintPalletDialog container={container} destino={destino} />
+            <PrintRotulosDialog container={container} destino={destino} />
+          </div>
+        );
       default:
         return null;
     }

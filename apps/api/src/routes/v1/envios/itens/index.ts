@@ -1,8 +1,13 @@
-import type { PatchEstadoItemSchemaDto, PatchItemSchemaDto } from '@repo/types';
+import type {
+  PatchEstadoItemSchemaDto,
+  PatchItemSchemaDto,
+  PostItensAcessoriosSchemaDto,
+} from '@repo/types';
 import {
   IdNumeroInteiroNaoNegativoSchema,
   PatchEstadoItemSchema,
   PatchItemSchema,
+  PostItensAcessoriosSchema,
 } from '@repo/types';
 import { Router } from 'express';
 import type { NextFunction, Request, Response } from 'express';
@@ -24,6 +29,21 @@ ItensRotas.post(
     }
   },
 );
+
+ItensRotas.post(
+  '/itens-novos',
+  validaSchema(PostItensAcessoriosSchema),
+  async (req: Request, res: Response, next: NextFunction) => {
+    const body: PostItensAcessoriosSchemaDto = req.body;
+    try {
+      const post = await EnviosItensRepository.insiroItens(body);
+      res.status(post.error ? post.error.code : HttpStatusCode.OK).json(post);
+    } catch (err) {
+      next(err);
+    }
+  },
+);
+
 ItensRotas.get(
   '/itens-acessorios',
   async (_: Request, res: Response, next: NextFunction) => {

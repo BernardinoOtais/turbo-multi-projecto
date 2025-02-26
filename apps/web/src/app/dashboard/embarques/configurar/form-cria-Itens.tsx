@@ -8,6 +8,7 @@ import { Loader2, MinusCircle, PlusCircle } from "lucide-react";
 import React, { useCallback, useEffect, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -37,6 +38,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { insiroItens } from "@/lib/actions/dashboard/embarques/configurar";
 
 type FormCriaItensProps = {
   idiomas: {
@@ -51,7 +53,7 @@ const FormCriaItens = ({ idiomas }: FormCriaItensProps) => {
     useState(true);
   const [botaoIsloading, setBotaoIsloading] = useState(false);
 
-  const form = useForm<{ itens: PostItensAcessoriosSchemaDto }>({
+  const form = useForm<PostItensAcessoriosSchemaDto>({
     resolver: zodResolver(PostItensAcessoriosSchema),
     defaultValues: {
       itens: [
@@ -63,11 +65,10 @@ const FormCriaItens = ({ idiomas }: FormCriaItensProps) => {
     },
   });
 
-  const { fields, append, prepend, remove, swap, move, insert, replace } =
-    useFieldArray({
-      control: form.control,
-      name: "itens",
-    });
+  const { fields, append, replace, remove } = useFieldArray({
+    control: form.control,
+    name: "itens",
+  });
 
   const appendItem = useCallback(
     (desc: string, idIdioma: number, descItem: string) => {
@@ -75,6 +76,11 @@ const FormCriaItens = ({ idiomas }: FormCriaItensProps) => {
     },
     [append],
   );
+
+  useEffect(() => {
+    // Log form errors whenever they change
+    console.log("Form errors:", form.formState.errors);
+  }, [form.formState.errors]);
 
   useEffect(() => {
     const handlePaste = (event: ClipboardEvent) => {
@@ -123,6 +129,8 @@ const FormCriaItens = ({ idiomas }: FormCriaItensProps) => {
         idiomas: [{ idIdioma: 2, descItem: row.length >= 2 ? row[1] : "" }],
       }));
 
+      console.log("form Inserido: ", dataToInsert);
+
       replace(dataToInsert);
       // Perform any action with the pasted content
     };
@@ -134,8 +142,26 @@ const FormCriaItens = ({ idiomas }: FormCriaItensProps) => {
     };
   }, [replace]);
 
-  function onSubmit(values: { itens: PostItensAcessoriosSchemaDto }) {
-    console.log("Form Submitted:", values);
+  function onSubmit(values: PostItensAcessoriosSchemaDto) {
+    console.log("Cenas");
+    insiroItens(values)
+      .then(resultado => {
+        console.log(resultado);
+        if (!resultado.success)
+          toast.error(`Erro ao inserie itens...`, {
+            description: resultado.error,
+          });
+        else {
+          toast.info(`Inseridos correctamente...`, {
+            description: "Sucesso",
+          });
+        }
+      })
+      .catch(error => console.error(error))
+      .finally(() => {
+        setBotaoIsloading(false);
+        form.reset();
+      });
   }
 
   return (

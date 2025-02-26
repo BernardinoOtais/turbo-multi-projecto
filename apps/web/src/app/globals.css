@@ -172,12 +172,32 @@
 }
 
 @media print {
+  /* Default A4 Print Layout */
   #resumePreviewContent {
     zoom: 1 !important;
     padding: 0;
   }
+
+  /* Packing List (10cm x 15cm) */
+  .packing-list {
+    page: packing-list !important;
+  }
+
+  /* Ensuring the inner content follows the size */
+  .packing-list #resumePreviewRotulosContent {
+    zoom: 1 !important;
+    padding: 0;
+  }
 }
+
+/* Define Print Page Sizes */
 @page {
   size: A4;
   margin: 0.6cm;
+}
+
+@page packing-list {
+  size: 10cm 15cm;
+  margin: 0.2cm;
+  border: none;
 }

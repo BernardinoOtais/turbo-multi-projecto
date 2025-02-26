@@ -24,7 +24,7 @@ const PrintPalletConteudo = ({
             key={c.idContainer}
             container={c}
             destino={destino}
-            altura={altura}
+            altura={c.altura}
           />
         ))
       ) : (

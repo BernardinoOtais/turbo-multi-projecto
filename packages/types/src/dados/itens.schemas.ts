@@ -14,26 +14,28 @@ export const PatchItemSchema = z.object({
     .min(5, { message: "Mínimo 5 caracteres" }),
 });
 
-export const PostItensAcessoriosSchema = z.array(
-  z.object({
-    Descricao: z
-      .string()
-      .max(100, { message: "Máximo 100 caracteres" })
-      .min(5, { message: "Mínimo 5 caracteres" })
-      .optional(),
-    idiomas: z
-      .array(
-        z.object({
-          idIdioma: inteiroNaoNegativo,
-          descItem: z
-            .string()
-            .max(100, { message: "Máximo 100 caracteres" })
-            .min(5, { message: "Mínimo 5 caracteres" }),
-        })
-      )
-      .optional(),
-  })
-);
+export const PostItensAcessoriosSchema = z.object({
+  itens: z.array(
+    z.object({
+      Descricao: z
+        .string()
+        .max(100, { message: "Máximo 100 caracteres" })
+        .min(5, { message: "Mínimo 5 caracteres" })
+        .optional(),
+      idiomas: z
+        .array(
+          z.object({
+            idIdioma: inteiroNaoNegativo,
+            descItem: z
+              .string()
+              .max(100, { message: "Máximo 100 caracteres" })
+              .min(5, { message: "Mínimo 5 caracteres" }),
+          })
+        )
+        .optional(),
+    })
+  ),
+});
 
 export const PatchEstadoItemSchema = z.object({
   idItem: inteiroNaoNegativo,
