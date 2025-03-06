@@ -24,7 +24,7 @@ const PrintRotulosConteudo = ({
               <div
                 key={cc.idContainer}
                 className=""
-                style={{ breakInside: "avoid", display: "block" }}
+                style={{ pageBreakAfter: "always" }}
               >
                 <p>{`Palett :${c.nContainer}`}</p>
                 <p>{`Caixa :${cc.nContainer}`}</p>
@@ -38,13 +38,19 @@ const PrintRotulosConteudo = ({
             <div
               key={c.idContainer}
               className=""
-              style={{ breakInside: "avoid", display: "block" }}
+              style={{ pageBreakAfter: "always" }}
             >
-              <p>{`Palett :${container.nContainer}`}</p>
-              <p>{`Caixa :${c.nContainer}`}</p>
-              {c.Conteudo?.map(cont => (
-                <div key={cont.idConteudo}>{cont.Item.Descricao}</div>
-              ))}
+              <div>
+                <div className="bg-amber-400">
+                  <div className="bg-image h-[20px] w-[150px] bg-contain bg-center bg-no-repeat" />
+                </div>
+
+                <p>{`Palett :${container.nContainer}`}</p>
+                <p>{`Caixa :${c.nContainer}`}</p>
+                {c.Conteudo?.map(cont => (
+                  <div key={cont.idConteudo}>{cont.Item.Descricao}</div>
+                ))}
+              </div>
             </div>
           ))}
     </>

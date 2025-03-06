@@ -21,7 +21,7 @@ export default function PrintRotulosWrapper({
 }: PrintRotulosWrapperProps) {
   const containerRef: React.RefObject<HTMLDivElement | null> = useRef(null);
   const { width } = useDimensions(containerRef);
-  console.log("width: ", width);
+  // console.log("width: ", width);
   return (
     <div
       className={cn(

@@ -55,6 +55,13 @@
   --animate-collapsible-down: collapsible-down 0.2s ease-out;
   --animate-collapsible-up: collapsible-up 0.2s ease-out;
 
+  --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+  --background-image-gradient-conic: conic-gradient(
+    from 180deg at 50% 50%,
+    var(--tw-gradient-stops)
+  );
+  --background-image-image: var(--fmoda-logo);
+
   @keyframes collapsible-down {
     from {
       height: 0;
@@ -126,6 +133,7 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    --fmoda-logo: url("/assets/fmoda-light.svg");
   }
   .dark {
     --background: 222.2 84% 4.9%;
@@ -160,6 +168,7 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    --fmoda-logo: url("/assets/fmoda-dark.svg");
   }
 }
 @layer base {

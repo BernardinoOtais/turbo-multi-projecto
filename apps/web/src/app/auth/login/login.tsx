@@ -1,7 +1,6 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginDto, LoginZ } from "@repo/types";
-import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
 
@@ -84,19 +83,10 @@ const Login = () => {
             </FormItem>
           )}
         />
-        <Link className="text-sm underline" href="#">
-          Forgot your password?
-        </Link>
         {/* Submit Button */}
         <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "Signing Up..." : "Sign Up"}
+          {isSubmitting ? "Login..." : "Login"}
         </Button>
-        <div className="flex justify-between text-sm">
-          <p> Don&apos;t have an account? </p>
-          <Link className="text-sm underline" href="/auth/signup">
-            Sign Up
-          </Link>
-        </div>
       </Form>
     </form>
   );

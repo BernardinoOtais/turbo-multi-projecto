@@ -5,7 +5,7 @@ import { server } from '@config/config';
 import HttpStatusCode from '@utils/http-status-code';
 
 import AuthRoutes from './auth';
-import Envios from './envios';
+import Envios from './marrocos-envio-acessorios';
 
 const routes = Router();
 
