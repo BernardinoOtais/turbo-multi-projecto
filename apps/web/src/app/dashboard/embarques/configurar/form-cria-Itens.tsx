@@ -8,7 +8,6 @@ import { Loader2, MinusCircle, PlusCircle } from "lucide-react";
 import React, { useCallback, useEffect, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -48,9 +47,11 @@ type FormCriaItensProps = {
 };
 
 const FormCriaItens = ({ idiomas }: FormCriaItensProps) => {
+  /*
   const [, setForceUpdate] = useState(false);
   const [estadoBoataoSubmitDisabled, setEstadoBoataoSubmitDisabled] =
     useState(true);
+    */
   const [botaoIsloading, setBotaoIsloading] = useState(false);
 
   const form = useForm<PostItensAcessoriosSchemaDto>({

@@ -86,14 +86,14 @@ const ContainerCard = ({
         return (
           <div>
             <PrintPalletDialog container={container} destino={destino} />
-            <PrintRotulosDialog container={container} destino={destino} />
+            <PrintRotulosDialog container={container} />
           </div>
         );
       case 3:
         return (
           <div>
             <PrintPalletDialog container={container} destino={destino} />
-            <PrintRotulosDialog container={container} destino={destino} />
+            <PrintRotulosDialog container={container} />
           </div>
         );
       default:

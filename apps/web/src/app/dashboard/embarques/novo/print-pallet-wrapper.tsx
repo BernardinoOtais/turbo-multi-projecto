@@ -19,7 +19,7 @@ export default function PrintPalletWrapper({
   container,
   destino,
 }: PrintPalletWrapperProps) {
-  const containerRef: React.RefObject<HTMLDivElement | null> = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const { width } = useDimensions(containerRef);
 
   return (

@@ -122,6 +122,7 @@ const tamanhosQttPeso = z.object({
   tam: z.string().max(25, { message: "Máximo 25 caracteres" }),
   qtt: floatZero,
   peso: floatZero,
+  pesoUnit: floatZero,
 });
 export const PostConteudoSchema = z.object({
   conteudo: z.object({

@@ -14,7 +14,7 @@ export async function insiroConteudo(
   const prisma = PrismaSingleton.getEnviosPrisma();
 
   const tamanhosSemZeros = TamanhosQttPeso.filter(
-    ({ qtt, peso }) => qtt !== 0 && peso !== 0,
+    ({ qtt, peso, pesoUnit }) => qtt !== 0 && (peso !== 0 || pesoUnit !== 0),
   );
   const tam = tamanhosSemZeros.map(({ tam }) => tam);
 
@@ -31,7 +31,12 @@ export async function insiroConteudo(
             where: { idConteudo: c.idConteudo },
             data: {
               peso:
-                tamanhosSemZeros.find(({ tam }) => tam === c.tam)?.peso ??
+                (tamanhosSemZeros.find(({ tam }) => tam === c.tam)?.peso === 0
+                  ? (tamanhosSemZeros.find(({ tam }) => tam === c.tam)?.qtt ??
+                    c.qtt *
+                      (tamanhosSemZeros.find(({ tam }) => tam === c.tam)
+                        ?.pesoUnit ?? 0))
+                  : tamanhosSemZeros.find(({ tam }) => tam === c.tam)?.peso) ??
                 c.peso,
               qtt:
                 tamanhosSemZeros.find(({ tam }) => tam === c.tam)?.qtt ?? c.qtt,
@@ -55,7 +60,7 @@ export async function insiroConteudo(
         tam: t.tam,
         qtt: t.qtt,
         idUnidades,
-        peso: t.peso,
+        peso: t.peso === 0 ? t.qtt * t.pesoUnit : t.peso,
       }));
 
       if (dadosAInserir.length > 0) {

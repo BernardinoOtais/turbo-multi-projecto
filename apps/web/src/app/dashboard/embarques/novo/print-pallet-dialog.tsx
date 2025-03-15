@@ -45,7 +45,7 @@ const PrintPalletDialog = ({ container, destino }: PrintPalletDialogProp) => {
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="w-[360px] bg-white sm:w-full sm:bg-red-400 md:bg-blue-300 lg:bg-green-200 xl:bg-pink-600 2xl:bg-gray-600">
+      <DialogContent className="max-w-xl bg-white sm:bg-red-400 md:bg-blue-300 lg:bg-green-200 xl:bg-pink-600 2xl:bg-gray-600">
         <DialogHeader>
           <DialogTitle>Packing List</DialogTitle>
           <DialogDescription>{`Id: ${container.idContainer}`}</DialogDescription>

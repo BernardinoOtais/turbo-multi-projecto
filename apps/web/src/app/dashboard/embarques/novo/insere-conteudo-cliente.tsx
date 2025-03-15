@@ -13,6 +13,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 import { AutoCompleteFormField } from "@/components/meus-components/AutoCompleteFormField";
+import { SelectFormField } from "@/components/meus-components/AutoCompleteFormField copy";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -47,6 +48,7 @@ const getTamanhos = (dados: OpSchemaDto) =>
       tam: item.tam,
       qtt: 0,
       peso: 0,
+      pesoUnit: 0,
     })) ?? [];
 
 const InsereConteudoCliente = ({
@@ -79,6 +81,8 @@ const InsereConteudoCliente = ({
 
   //console.log("errors: ", form.formState.errors);
 
+  //verificar se o form está valido
+  //console.log("isValid: ", form.formState.isValid);
   useEffect(() => {
     const { unsubscribe } = form.watch(async (values, { name }) => {
       setEstadoBoataoSubmitDisabled(true);
@@ -93,7 +97,7 @@ const InsereConteudoCliente = ({
           form.setValue(
             "conteudo.TamanhosQttPeso",
             tamanhoUnico
-              ? [{ tam: "nt", qtt: 0, peso: 0 }]
+              ? [{ tam: "nt", qtt: 0, peso: 0, pesoUnit: 0 }]
               : getTamanhos(dados),
           );
           setDadosOp({
@@ -111,6 +115,7 @@ const InsereConteudoCliente = ({
     return unsubscribe;
   }, [dadoOps, form, tamanhoUnico]);
 
+  //
   useEffect(() => {
     const opSelecionado = form.getValues("conteudo.op");
     if (!opSelecionado) return;
@@ -122,7 +127,9 @@ const InsereConteudoCliente = ({
     if (dados) {
       form.setValue(
         "conteudo.TamanhosQttPeso",
-        tamanhoUnico ? [{ tam: "nt", qtt: 0, peso: 0 }] : getTamanhos(dados),
+        tamanhoUnico
+          ? [{ tam: "nt", qtt: 0, peso: 0, pesoUnit: 0 }]
+          : getTamanhos(dados),
       );
     }
   }, [dadoOps, form, tamanhoUnico]);
@@ -155,15 +162,22 @@ const InsereConteudoCliente = ({
         setEstadoBoataoSubmitDisabled(false);
       });
   }
+
   const handleArrowNavigation = (
     e: React.KeyboardEvent,
     index: number,
-    fieldType: "qtt" | "peso",
+    fieldType: "qtt" | "peso" | "pesoUnit",
+    totalRows: number,
   ) => {
-    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
-      e.preventDefault(); // Prevent scrolling
+    const fieldOrder: ("qtt" | "peso" | "pesoUnit")[] = [
+      "qtt",
+      "peso",
+      "pesoUnit",
+    ];
+    const currentIndex = fieldOrder.indexOf(fieldType);
 
-      // Move vertically (Up/Down between different rows)
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      e.preventDefault();
       const nextIndex = e.key === "ArrowDown" ? index + 1 : index - 1;
       const nextField = document.querySelector<HTMLInputElement>(
         `input[name="conteudo.TamanhosQttPeso.${nextIndex}.${fieldType}"]`,
@@ -175,12 +189,43 @@ const InsereConteudoCliente = ({
     }
 
     if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
-      e.preventDefault(); // Prevent scrolling
+      e.preventDefault();
+      let nextFieldType: "qtt" | "peso" | "pesoUnit" | null = null;
 
-      // Move horizontally (Left/Right between qtt and peso in the same row)
-      const nextFieldType = fieldType === "qtt" ? "peso" : "qtt";
+      if (e.key === "ArrowLeft" && currentIndex > 0) {
+        nextFieldType = fieldOrder[currentIndex - 1];
+      }
+      if (e.key === "ArrowRight" && currentIndex < fieldOrder.length - 1) {
+        nextFieldType = fieldOrder[currentIndex + 1];
+      }
+
+      if (nextFieldType) {
+        const nextField = document.querySelector<HTMLInputElement>(
+          `input[name="conteudo.TamanhosQttPeso.${index}.${nextFieldType}"]`,
+        );
+
+        if (nextField) {
+          nextField.focus();
+        }
+      }
+    }
+
+    if (e.key === "Tab") {
+      if (index === totalRows - 1 && fieldType === "pesoUnit") {
+        return;
+      }
+
+      e.preventDefault();
+
+      const nextIndex =
+        currentIndex < fieldOrder.length - 1 ? index : index + 1;
+      const nextFieldType =
+        currentIndex < fieldOrder.length - 1
+          ? fieldOrder[currentIndex + 1]
+          : "qtt";
+
       const nextField = document.querySelector<HTMLInputElement>(
-        `input[name="conteudo.TamanhosQttPeso.${index}.${nextFieldType}"]`,
+        `input[name="conteudo.TamanhosQttPeso.${nextIndex}.${nextFieldType}"]`,
       );
 
       if (nextField) {
@@ -188,11 +233,12 @@ const InsereConteudoCliente = ({
       }
     }
   };
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="mx-auto">
-        <div className="flex h-24 items-center space-x-4">
-          <AutoCompleteFormField
+        <div className="flex flex-col items-center">
+          <SelectFormField
             form={form}
             name="conteudo.op"
             options={ops}
@@ -200,18 +246,29 @@ const InsereConteudoCliente = ({
             placeholder="Op..."
             largura="w-[120px]"
           />
-          {dadosOp.modelo && (
-            <span className="mx-auto font-semibold">
-              <span className="">Mode:</span> {dadosOp.modelo}
-              <Separator orientation="vertical" className="mx-2 h-2 w-[2px]" />
-              <span className="">Cor:</span> {dadosOp.cor}
-              <Separator orientation="vertical" className="mx-2 h-2 w-[2px]" />
-              <span className="">Pedido:</span> {dadosOp.pedido}
-            </span>
-          )}
+          <div className="mx-auto flex flex-row items-center py-2">
+            {dadosOp.modelo && (
+              <>
+                <span className="mx-1">Mode:</span>
+                <p className="font-semibold">{dadosOp.modelo}</p>
+                <Separator
+                  orientation="vertical"
+                  className="mx-2 h-8 w-[2px]"
+                />
+                <span className="mx-1">Cor:</span>
+                <p className="font-semibold">{dadosOp.cor}</p>
+                <Separator
+                  orientation="vertical"
+                  className="mx-2 h-8 w-[2px]"
+                />
+                <span className="mx-1">Pedido:</span>
+                <p className="font-semibold">{dadosOp.pedido}</p>
+              </>
+            )}
+          </div>
         </div>
 
-        <div className="flex flex-col items-center gap-1 sm:flex-row sm:items-start">
+        <div className="flex flex-col items-center justify-around gap-1 sm:flex-row sm:items-start">
           <AutoCompleteFormField
             form={form}
             name="conteudo.idItem"
@@ -221,12 +278,12 @@ const InsereConteudoCliente = ({
             largura="w-[400px]"
           />
 
-          <AutoCompleteFormField
+          <SelectFormField
             form={form}
             name="conteudo.idUnidades"
             options={unidades}
             label="Unidade"
-            placeholder="Unidade"
+            placeholder="Unidade..."
             largura="w-[120px]"
           />
         </div>
@@ -265,7 +322,12 @@ const InsereConteudoCliente = ({
                           placeholder="qtt.."
                           {...field}
                           onKeyDown={e =>
-                            handleArrowNavigation(e, index, "qtt")
+                            handleArrowNavigation(
+                              e,
+                              index,
+                              "qtt",
+                              tamanhosQttPeso.length,
+                            )
                           }
                         />
                       </FormControl>
@@ -280,13 +342,44 @@ const InsereConteudoCliente = ({
                   name={`conteudo.TamanhosQttPeso.${index}.peso`}
                   render={({ field }) => (
                     <FormItem>
-                      {index === 0 && <FormLabel>Peso</FormLabel>}
+                      {index === 0 && <FormLabel>Peso T</FormLabel>}
                       <FormControl>
                         <Input
                           placeholder="peso..."
                           {...field}
                           onKeyDown={e =>
-                            handleArrowNavigation(e, index, "peso")
+                            handleArrowNavigation(
+                              e,
+                              index,
+                              "peso",
+                              tamanhosQttPeso.length,
+                            )
+                          }
+                        />
+                      </FormControl>
+                      <div className="h-5">
+                        <FormMessage />
+                      </div>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name={`conteudo.TamanhosQttPeso.${index}.pesoUnit`}
+                  render={({ field }) => (
+                    <FormItem>
+                      {index === 0 && <FormLabel>Peso U</FormLabel>}
+                      <FormControl>
+                        <Input
+                          placeholder="peso..."
+                          {...field}
+                          onKeyDown={e =>
+                            handleArrowNavigation(
+                              e,
+                              index,
+                              "pesoUnit",
+                              tamanhosQttPeso.length,
+                            )
                           }
                         />
                       </FormControl>

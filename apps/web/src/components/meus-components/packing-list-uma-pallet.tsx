@@ -62,7 +62,10 @@ const PackingListUmaPallet = ({
         containerAImprimir={container.other_Container}
         numeroPai={container.nContainer}
       />
-      <div style={{ breakInside: "avoid", display: "block" }}>
+      <div
+        style={{ breakInside: "avoid", display: "block" }}
+        className="max-w-full"
+      >
         <PackingListResumo dadosResumo={dadosResumo} />
         <PackingListPesoTotalVolume altura={altura} peso={pesoDaPallet} />
         <PackingListDizeres />
