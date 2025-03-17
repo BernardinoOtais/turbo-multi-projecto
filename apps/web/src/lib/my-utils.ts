@@ -1,14 +1,18 @@
 import { jwtDecode } from "jwt-decode";
 
-export function isTokenExpired(accessToken: string) {
+export function isTokenExpired(
+  accessToken: string,
+  bufferTime = 30 /**30 segundos de buffering */,
+): boolean {
   try {
-    const decoded = jwtDecode(accessToken); // Synchronous
-    const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
+    const decoded: { exp?: number } = jwtDecode(accessToken);
+    if (!decoded.exp) return true; // Treat as expired if no exp field
 
-    return decoded?.exp !== undefined && decoded.exp < currentTime;
+    const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
+    return decoded.exp < currentTime + bufferTime; // True if expiring within bufferTime
   } catch (error) {
     console.error("Error decoding token:", error);
-    return true;
+    return true; // If decoding fails, assume token is expired
   }
 }
 

@@ -58,8 +58,8 @@ const RotuloCaixa = ({ conteudo, totalVolumes, numero }: RotuloCaixaProps) => {
   if (!conteudo) return;
 
   return (
-    <>
-      <div className="flex flex-row pb-1">
+    <div className="flex flex-col space-y-1">
+      <div className="flex flex-row">
         <Image
           src={"/assets/fmoda-print.svg"}
           alt="Logo"
@@ -67,10 +67,12 @@ const RotuloCaixa = ({ conteudo, totalVolumes, numero }: RotuloCaixaProps) => {
           height={149} // Use the actual height of your image
           className="h-[35px] w-[126px] object-contain"
         />
-        <p className="mx-auto my-auto">FMODA INÚSTRIA TÊXTIL S.A.</p>
+        <p className="mx-auto my-auto text-2xl font-semibold">
+          FMODA INÚSTRIA TÊXTIL S.A.
+        </p>
       </div>
 
-      <table className="min-w-full border-collapse border border-gray-200">
+      <table className="min-w-full border-collapse border border-gray-200 text-[12px]">
         <thead className="bg-gray-100">
           <tr>
             <th className="border border-gray-200 px-1 whitespace-nowrap">
@@ -82,10 +84,10 @@ const RotuloCaixa = ({ conteudo, totalVolumes, numero }: RotuloCaixaProps) => {
             <th className="border border-gray-200 px-1 whitespace-nowrap">
               Couleur
             </th>
-            <th className="w-full border border-gray-200 px-1 whitespace-nowrap">
+            <th className="w-full border border-gray-200 px-1 text-[13px] whitespace-nowrap">
               Contenu
             </th>
-            <th className="border border-gray-200 px-1 whitespace-nowrap">
+            <th className="border border-gray-200 px-1 text-[13px] whitespace-nowrap">
               Quantité
             </th>
             <th className="border border-gray-200 px-1 whitespace-nowrap">
@@ -105,10 +107,10 @@ const RotuloCaixa = ({ conteudo, totalVolumes, numero }: RotuloCaixaProps) => {
               <td className="border border-gray-200 px-1 text-center whitespace-nowrap">
                 {con.Op.cor}
               </td>
-              <td className="border border-gray-200 px-1 text-start whitespace-nowrap">
+              <td className="border border-gray-200 px-1 text-start text-[13px] whitespace-nowrap">
                 {`${con.Item.ItemTraduzido.length > 0 ? con.Item.ItemTraduzido[0].descItem : con.Item.Descricao}${con.tam === "nt" ? "" : "-" + con.tam}`}
               </td>
-              <td className="border border-gray-200 px-1 text-center whitespace-nowrap">
+              <td className="border border-gray-200 px-1 text-center text-[13px] whitespace-nowrap">
                 {con.qtt}
               </td>
               <td className="border border-gray-200 px-1 text-center whitespace-nowrap">
@@ -127,6 +129,6 @@ const RotuloCaixa = ({ conteudo, totalVolumes, numero }: RotuloCaixaProps) => {
         </p>
         <p> </p>
       </div>
-    </>
+    </div>
   );
 };

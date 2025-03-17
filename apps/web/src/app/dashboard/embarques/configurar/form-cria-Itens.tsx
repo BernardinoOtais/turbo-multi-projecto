@@ -47,11 +47,6 @@ type FormCriaItensProps = {
 };
 
 const FormCriaItens = ({ idiomas }: FormCriaItensProps) => {
-  /*
-  const [, setForceUpdate] = useState(false);
-  const [estadoBoataoSubmitDisabled, setEstadoBoataoSubmitDisabled] =
-    useState(true);
-    */
   const [botaoIsloading, setBotaoIsloading] = useState(false);
 
   const form = useForm<PostItensAcessoriosSchemaDto>({
@@ -77,11 +72,6 @@ const FormCriaItens = ({ idiomas }: FormCriaItensProps) => {
     },
     [append],
   );
-
-  useEffect(() => {
-    // Log form errors whenever they change
-    console.log("Form errors:", form.formState.errors);
-  }, [form.formState.errors]);
 
   useEffect(() => {
     const handlePaste = (event: ClipboardEvent) => {
@@ -144,7 +134,7 @@ const FormCriaItens = ({ idiomas }: FormCriaItensProps) => {
   }, [replace]);
 
   function onSubmit(values: PostItensAcessoriosSchemaDto) {
-    console.log("Cenas");
+    setBotaoIsloading(true);
     insiroItens(values)
       .then(resultado => {
         console.log(resultado);
