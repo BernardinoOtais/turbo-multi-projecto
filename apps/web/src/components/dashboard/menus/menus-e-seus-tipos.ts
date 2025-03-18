@@ -1,4 +1,4 @@
-import { Move3D, PlaneIcon, Settings, Truck } from "lucide-react";
+import { Move3D, PlaneIcon, Settings, Truck, Anvil } from "lucide-react";
 
 type IconType = React.FC<React.SVGProps<SVGSVGElement>>;
 
@@ -23,6 +23,7 @@ export type MenusTodos = {
   Planeamento: Menu;
   Modelistas: Menu;
   Embarques: Menu;
+  Administrador: Menu;
 };
 
 export const MenusExistentes: MenusTodos = {
@@ -89,5 +90,11 @@ export const MenusExistentes: MenusTodos = {
         subMenu: false,
       },
     ],
+  },
+  Administrador: {
+    nome: "Administrador",
+    path: "/dashboard/administrador",
+    icon: Anvil,
+    subMenu: false,
   },
 };
