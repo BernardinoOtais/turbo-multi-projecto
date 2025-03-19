@@ -1,13 +1,5 @@
 module.exports = {
   apps: [
-    /*{
-      namespace: "next-express",
-      name: "App",
-      script: "npm run start",
-      cwd: ".",
-    },
-    */
-
     {
       namespace: "next-express",
       name: "web",

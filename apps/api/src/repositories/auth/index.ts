@@ -1,6 +1,7 @@
 import type {
-  CriaUserDto,
+  CriaUserComValidacaoPasswordDto,
   LoginDto,
+  PapeisDto,
   RefreshTokenDto,
   UserCriadoDto,
   UserDto,
@@ -15,29 +16,41 @@ import { geraTokens, verifyToken } from '@utils/jwt-handler';
 
 export class AuthRepository {
   static async createUser(
-    payload: CriaUserDto,
+    payload: CriaUserComValidacaoPasswordDto,
   ): Promise<ApiResponseBody<UserCriadoDto>> {
     const resBody = new ApiResponseBody<UserCriadoDto>();
-
+    const prisma = PrismaSingleton.getAuthPrisma();
     try {
       const pHashed = await hash(payload.password);
 
-      const user = await PrismaSingleton.getAuthPrisma().user.create({
-        data: {
+      const userRecebido = await prisma.$transaction(async (tx) => {
+        const user = await tx.user.create({
+          data: {
+            nomeUser: payload.nomeUser,
+            pHashed,
+            nome: payload.nome,
+            apelido: payload.apelido,
+            email: payload.email,
+            updatedAt: new Date(),
+          },
+        });
+
+        const papeisAInserir = payload.papeis.map((papel) => ({
+          idPapel: papel,
           nomeUser: payload.nomeUser,
-          pHashed,
-          nome: payload.nome,
-          apelido: payload.apelido,
-          email: payload.email,
-          updatedAt: new Date(),
-        },
+        }));
+
+        await tx.userPapeis.createMany({
+          data: papeisAInserir,
+        });
+        return user;
       });
 
       resBody.data = {
-        nomeUser: user.nomeUser,
-        nome: user.nome,
-        apelido: user.apelido,
-        email: user.email,
+        nomeUser: userRecebido.nomeUser,
+        nome: userRecebido.nome,
+        apelido: userRecebido.apelido,
+        email: userRecebido.email,
       };
     } catch (err) {
       if (err instanceof PrismaClientKnownRequestError) {
@@ -217,6 +230,32 @@ export class AuthRepository {
       };
     }
 
+    return resBody;
+  }
+
+  static async getPapeis(): Promise<ApiResponseBody<PapeisDto>> {
+    const resBody = new ApiResponseBody<PapeisDto>();
+    try {
+      const papeisRecebido =
+        await PrismaSingleton.getAuthPrisma().userPapeis.findMany({
+          include: { Papeis: { select: { descPapel: true } } },
+        });
+      resBody.data = {
+        papeis: papeisRecebido.map((papel) => ({
+          idPapel: papel.idPapel,
+          descricao: papel.Papeis.descPapel,
+        })),
+      };
+      return resBody;
+    } catch (error) {
+      resBody.error = {
+        code: HttpStatusCode.INTERNAL_SERVER_ERROR,
+        message:
+          error instanceof Error
+            ? error.message
+            : 'Unexpected error occurred while updating container order.',
+      };
+    }
     return resBody;
   }
 }

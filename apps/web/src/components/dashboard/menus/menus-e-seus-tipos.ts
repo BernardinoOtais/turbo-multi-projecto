@@ -26,11 +26,19 @@ export type MenusTodos = {
   Administrador: Menu;
 };
 
+export const IconsMenus = {
+  Qualidade: Settings,
+  Planeamento: PlaneIcon,
+  Modelistas: Move3D,
+  Embarques: Truck,
+  Administrador: Anvil,
+};
+
 export const MenusExistentes: MenusTodos = {
   Qualidade: {
     nome: "Qualidade",
     path: "/dashboard/qualidade",
-    icon: Settings,
+    icon: IconsMenus.Qualidade,
     subMenu: true,
     subMenuItems: [
       {
@@ -48,7 +56,7 @@ export const MenusExistentes: MenusTodos = {
   Planeamento: {
     nome: "Planeamento",
     path: "/dashboard/planeamento",
-    icon: PlaneIcon,
+    icon: IconsMenus.Planeamento,
     subMenu: true,
     subMenuItems: [
       {
@@ -68,13 +76,13 @@ export const MenusExistentes: MenusTodos = {
   Modelistas: {
     nome: "Modelistas",
     path: "/dashboard/modelistas",
-    icon: Move3D,
+    icon: IconsMenus.Modelistas,
     subMenu: false,
   },
   Embarques: {
     nome: "Embarques",
     path: "/dashboard/embarques",
-    icon: Truck,
+    icon: IconsMenus.Embarques,
     subMenu: true,
     subMenuItems: [
       {
@@ -94,7 +102,7 @@ export const MenusExistentes: MenusTodos = {
   Administrador: {
     nome: "Administrador",
     path: "/dashboard/administrador",
-    icon: Anvil,
+    icon: IconsMenus.Administrador,
     subMenu: false,
   },
 };

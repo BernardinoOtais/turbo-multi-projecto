@@ -1,8 +1,17 @@
-import type { CriaUserDto, LoginDto, RefreshTokenDto } from '@repo/types';
-import { CriaUser, LoginZ, RefreshToken } from '@repo/types';
+import type {
+  CriaUserComValidacaoPasswordDto,
+  LoginDto,
+  RefreshTokenDto,
+} from '@repo/types';
+import {
+  CriaUserComValidacaoPassword,
+  LoginZ,
+  RefreshToken,
+} from '@repo/types';
 import { Router } from 'express';
 import type { NextFunction, Request, Response } from 'express';
 
+import { administrador } from '@middlewares/administrador';
 import { validaSchema } from '@middlewares/valida-schema';
 import { AuthRepository } from '@repositories/auth';
 import HttpStatusCode from '@utils/http-status-code';
@@ -27,13 +36,30 @@ AuthRoutes.post(
 );
 
 AuthRoutes.post(
-  '/register',
-  validaSchema(CriaUser),
+  '/refresh-token',
+  validaSchema(RefreshToken),
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const body: CriaUserDto = req.body;
-      const resBody = await AuthRepository.createUser(body);
+      const body: RefreshTokenDto = req.body;
 
+      const resBody = await AuthRepository.refreshToken(body);
+      res
+        .status(resBody.error ? resBody.error.code : HttpStatusCode.OK)
+        .json(resBody);
+    } catch (err) {
+      next(err);
+    }
+  },
+);
+
+AuthRoutes.use(administrador);
+
+AuthRoutes.get(
+  '/papeis',
+  async (_: Request, res: Response, next: NextFunction) => {
+    try {
+      const resBody = await AuthRepository.getPapeis();
+      // console.log('aqui');
       res
         .status(resBody.error ? resBody.error.code : HttpStatusCode.OK)
         .json(resBody);
@@ -44,13 +70,13 @@ AuthRoutes.post(
 );
 
 AuthRoutes.post(
-  '/refresh-token',
-  validaSchema(RefreshToken),
+  '/register',
+  validaSchema(CriaUserComValidacaoPassword),
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const body: RefreshTokenDto = req.body;
+      const body: CriaUserComValidacaoPasswordDto = req.body;
+      const resBody = await AuthRepository.createUser(body);
 
-      const resBody = await AuthRepository.refreshToken(body);
       res
         .status(resBody.error ? resBody.error.code : HttpStatusCode.OK)
         .json(resBody);
